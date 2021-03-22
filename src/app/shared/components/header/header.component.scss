@@ -1,0 +1,25 @@
+.toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #00a1de;
+  color: white;
+  font-weight: 600;
+  padding: 0 86px;
+
+  span {
+    width: 156px;
+    text-align: left;
+    font-size: 14px;
+    letter-spacing: 0.42px;
+    color: #ffffff;
+    text-transform: uppercase;
+    opacity: 1;
+    font-weight: 400;
+    margin-left: 15px;
+  }
+}

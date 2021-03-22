@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  visibleSidebar1;
+  
   constructor() { }
 
   ngOnInit(): void {

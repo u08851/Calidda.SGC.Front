@@ -1,1 +1,39 @@
-<p>login works!</p>
+<section class="wallpaper">
+  <div class="custom_grid">
+    <div class="p-col-12 p-md-6 p-lg-4 p-xl-3 p-mr-auto p-ml-auto">
+      <div class="custom_grid_login">
+        <img src="../../../assets/icons/calidda.svg" alt="calidda_logo" />
+        <p>Inicia sesión</p>
+        <span> Por favor, ingrese los datos solicitados </span>
+
+        <!-- Formulario -->
+        <div class="p-fluid">
+            <!-- correo -->
+          <div class="p-field">
+            <label for="correo1">Correo</label>
+            <input id="correo1" type="text" pInputText />
+          </div>
+
+          <!-- contraseña -->
+          <div class="p-field">
+            <label for="contraseña1">Contraseña</label>
+            <p-password [(ngModel)]="value3" [toggleMask]="true"></p-password>
+          </div>
+
+          <!-- captcha -->
+          <div class="p-d-flex p-jc-center p-m-4">
+            <div class="g-recaptcha" data-sitekey="Your site key goes here"></div>
+          </div>
+
+          <!-- Button -->
+          <div>
+            <p-button label="Iniciar sesión" routerLink="/home"></p-button>
+          </div>
+          <div class="p-m-3">
+            <p-button label="Olvidé mi contraseña" styleClass="p-button-link"></p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
