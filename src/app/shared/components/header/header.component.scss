@@ -1,3 +1,4 @@
+$color-white: var(--surface-a);
 .toolbar {
   position: absolute;
   top: 0;
@@ -11,6 +12,18 @@
   font-weight: 600;
   padding: 0 86px;
 
+  @media screen and (max-width: 768px) {
+    padding: 0 8px;
+  }
+
+  .toolbar-textlogo::after {
+    content: "Sistema de Gestión de Comités";
+
+    @media screen and (max-width: 768px) {
+      content: "SGC";
+    }
+  }
+
   span {
     width: 156px;
     text-align: left;
@@ -22,4 +35,48 @@
     font-weight: 400;
     margin-left: 15px;
   }
+
+  [alt="user_icon"] {
+    width: 20px;
+  }
+
+  &-options {
+    margin-left: auto !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
 }
+
+.header-input-container {
+  width: 315px !important;
+  input {
+    border: none;
+    background: transparent;
+    color: white;
+    outline: none;
+    &::placeholder {
+      font-size: 12px;
+      color: white;
+    }
+    &:hover {
+      transition: all 0.3s ease-in;
+    }
+  }
+  &:hover {
+    transition: all 0.3s ease-in;
+    border: 1px solid white;
+    border-radius: 5px;
+  }
+
+}
+
+.pi-search::before {
+  color: white;
+}
+
+.wh-color {
+  color: $color-white;
+}
+
+// --surface-a

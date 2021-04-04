@@ -1,13 +1,19 @@
 :root {
-  --primary-color: #00A1DE !important;
-  --danger-color:  #f00248;
+  --primary-color: #00a1de !important;
+  --danger-color: #f00248;
   --warning-color: #ffa602;
   --success-color: #2ecc71;
   --default-color: #7a7a7a;
-  --info-color:    #00A1DE;
+  --info-color: #00a1de;
+  --dark-blue: #2e4259;
 
   --text-color: #7a7a7a !important;
-  --font-family: normal normal normal 16px/19px "Roboto", sans-serif !important;
-  font-family: 'Roboto', sans-serif;
-}
+  font-family: "Roboto", sans-serif;
+  background: transparent linear-gradient(180deg, #f3f7fd 0%, #cde8f2 100%) 0%
+    0% no-repeat padding-box;
+  width: 100%;
 
+  @media screen and (min-width: 1025px) {
+    height: -webkit-fill-available;
+  }
+}

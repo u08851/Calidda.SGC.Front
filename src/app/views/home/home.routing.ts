@@ -10,7 +10,7 @@ export const HomeRoutes: Routes = [
                 component: HomeComponent,
             },
             {
-                path: 'dashboard',
+                path: 'home',
                 component: HomeComponent,
             }
         ],

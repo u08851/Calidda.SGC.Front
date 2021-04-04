@@ -1,6 +1,5 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
-
   <!-- SIDEBAR -->
   <p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000">
     <h1 style="font-weight: normal">Left Sidebar</h1>
@@ -18,7 +17,7 @@
     ></p-button>
   </p-sidebar>
 
-<!-- Button to open Sidebar -->
+  <!-- Button to open Sidebar -->
   <button
     pButton
     pRipple
@@ -27,6 +26,43 @@
     icon="pi pi-bars"
     class="p-button-rounded"
   ></button>
-  <span>Sistema de Gestión de Comités</span>
+  <span class="toolbar-textlogo"></span>
   <!-- Button to open Sidebar -->
+
+  <!-- input search -->
+  <span
+    class="header-input-container"
+    id="inputContainer"
+    [ngClass]="event"
+    (mouseenter)="event = 'p-input-icon-right'"
+    (mouseleave)="event = 'p-input-icon-left'"
+  >
+    <i class="pi pi-search"></i>
+    <input type="text" pInputText placeholder="Buscar por nombre" />
+  </span>
+
+  <!-- notification - user - signout -->
+  <div class="toolbar-options">
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-bell"
+      class="p-button-rounded wh-color p-button-text"
+    ></button>
+
+    <button pButton pRipple type="button" label=" " class="p-button-rounded p-button-text" (click)="menu.toggle($event)">
+      <img src="../../../../assets/icons/perfil.svg" alt="user_icon" />
+    </button>
+    <p-menu #menu [popup]="true" [model]="items"></p-menu>
+
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-sign-out"
+      class="p-button-rounded wh-color p-button-text"
+    ></button>
+
+  </div>
 </div>
