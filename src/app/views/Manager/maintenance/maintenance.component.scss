@@ -56,7 +56,24 @@ tbody td:last-of-type {
 .icon-mood {
   font-size: 8px;
   vertical-align: top;
-  margin-top: 3px;
+  margin-top: 4px;
+}
+
+.icon-color-active {
+  color: green;
+}
+.icon-color-inactive {
+  color: red;
+}
+
+::ng-deep.icon-size {
+  .pi {
+    font-size: 28px !important;
+  }
+}
+
+.p-icon-size {
+  @extend .icon-size;
 }
 
 @media only screen and (max-width: 760px),

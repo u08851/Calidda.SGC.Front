@@ -1,0 +1,164 @@
+.p-bg {
+  background-image: url("../../../../assets/images/wallpaper.png");
+  background-color: rgb(96 168 195);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 175px;
+  position: relative;
+
+  p {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 26px 0 0 26px;
+  }
+
+  .leyenda {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    top: 100px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #ffffff;
+
+    div {
+      margin: 0 8px;
+
+      i {
+        margin: 0 8px;
+        border: 1px solid #ffffff;
+        border-radius: 50%;
+        font-size: 10px;
+        vertical-align: top;
+        margin-top: 2px;
+      }
+
+      .created {
+        color: #00a34b;
+      }
+      .active {
+        color: #72c7e7;
+      }
+      .config {
+        color: #fab200;
+      }
+      .low {
+        color: #e31919;
+      }
+    }
+  }
+}
+
+
+.p-table-bg {
+  background-color: #ffffff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th {
+  background: #fff;
+  color: #60c4ff;
+  font-weight: 500;
+}
+// border
+td,
+th {
+  padding: 10px;
+  border: none;
+  text-align: left;
+}
+
+tbody tr {
+  background: #f6f7f9;
+  font-size: 13px;
+}
+
+.margin-mood {
+  margin: 16px 0;
+}
+
+.icon-mood {
+  font-size: 8px;
+  vertical-align: top;
+  margin-top: 4px;
+}
+
+.icon-color-active {
+  color: green;
+}
+.icon-color-inactive {
+  color: red;
+}
+
+::ng-deep.icon-size {
+  .pi {
+    font-size: 28px !important;
+  }
+}
+
+.p-icon-size {
+  @extend .icon-size;
+}
+
+@media only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+  table.p-table-mood {
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: block;
+    }
+
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    tr {
+      border: 1px solid #ccc;
+    }
+
+    td {
+      border: none;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-left: 50%;
+    }
+
+    td:before {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+    td:before {
+      content: attr(data-table-header);
+    }
+
+    /* Zebra striping */
+    tr:nth-of-type(odd) {
+      background: #eee;
+    }
+  }
+}
+
+.table-responsive .bootstrap {
+  min-height: 0.01%;
+  overflow-x: auto;
+}

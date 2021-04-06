@@ -9,13 +9,13 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'manager',
         pathMatch: 'full',
       },
       {
-        path: 'home',
-        loadChildren: () => import('./../views/home/home.module').then((m) => m.HomeModule),
-      }
+        path: 'manager', 
+        loadChildren: () => import('./../views/Manager/manager.module').then((m) => m.ManagerModule),
+      } 
     ],
   },
 ];

@@ -78,6 +78,10 @@ $dark-blue: var(--dark-blue);
           cursor: pointer;
         }
 
+        &:focus {
+          outline: none;
+        }
+
         i {
           margin-right: 12px;
         }
@@ -139,4 +143,9 @@ $dark-blue: var(--dark-blue);
       // }
     }
   }
+}
+
+.is-active {
+  background: #0000000d 0% 0% no-repeat padding-box;
+  color: var(--primary-color);
 }

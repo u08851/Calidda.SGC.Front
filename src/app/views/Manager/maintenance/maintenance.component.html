@@ -18,8 +18,8 @@
                 <th scope="col">Rol</th>
                 <th scope="col">Empresa</th>
                 <th scope="col">Estado</th>
-                <th scope="col">A</th>
-                <th scope="col">B</th>
+                <th scope="col"> </th>
+                <th scope="col"> </th>
               </tr>
             </thead>
             <tbody>
@@ -35,23 +35,26 @@
                 <td data-table-header="Rol">Voto</td>
                 <td data-table-header="Empresa">Calidda</td>
                 <td data-table-header="Estado">
-                  <i class="pi pi-circle-on icon-mood"></i>
+                  <i class="pi pi-circle-on icon-mood icon-color-active"></i>
                   Activo
                 </td>
-                <td data-table-header="A">
+                <td data-table-header=" ">
                   <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
                 </td>
-                <td data-table-header="B">
+                <td data-table-header=" ">
                   <button
-                    type="button"
                     pButton
-                    icon="pi pi-bars"
-                    label="Show"
+                    pRipple
+                    type="button"
+                    icon="pi pi-ellipsis-v"
+                    class="p-button-rounded p-button-info p-button-text icon-size"
+                    styleClass="p-icon-size"
                     (click)="menu.toggle($event)"
                   ></button>
                   <p-menu #menu [popup]="true" [model]="items"></p-menu>
                 </td>
               </tr>
+
               <div class="margin-mood"></div>
               <tr>
                 <td data-table-header="Nombres y apellidos">
@@ -62,10 +65,27 @@
                 <td data-table-header="Celular">987654321</td>
                 <td data-table-header="Rol">Voz y Voto</td>
                 <td data-table-header="Empresa">Calidda</td>
-                <td data-table-header="Estado">Cesado</td>
-                <td data-table-header="A">swith</td>
-                <td data-table-header="B">opt</td>
+                <td data-table-header="Estado">
+                  <i class="pi pi-circle-on icon-mood icon-color-inactive"></i>
+                  Cesado
+                </td>
+                <td data-table-header=" ">
+                  <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+                </td>
+                <td data-table-header=" ">
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-ellipsis-v"
+                    class="p-button-rounded p-button-info p-button-text icon-size"
+                    styleClass="icon-size"
+                    (click)="menu.toggle($event)"
+                  ></button>
+                  <p-menu #menu [popup]="true" [model]="items"></p-menu>
+                </td>
               </tr>
+
               <div class="margin-mood"></div>
               <tr>
                 <td data-table-header="Nombres y apellidos">Rocío Del Valle</td>
@@ -74,25 +94,34 @@
                 <td data-table-header="Celular">987654321</td>
                 <td data-table-header="Rol">Voto</td>
                 <td data-table-header="Empresa">Calidda</td>
-                <td data-table-header="Estado">Activo</td>
-                <td data-table-header="A">swith</td>
-                <td data-table-header="B">opt</td>
+                <td data-table-header="Estado">
+                  <i class="pi pi-circle-on icon-mood icon-color-active"></i>
+                  Activo
+                </td>
+                <td data-table-header=" ">
+                  <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+                </td>
+                <td data-table-header=" ">
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-ellipsis-v"
+                    class="p-button-rounded p-button-info p-button-text icon-size"
+                    styleClass="icon-size"
+                    (click)="menu.toggle($event)"
+                  ></button>
+                  <p-menu #menu [popup]="true" [model]="items"></p-menu>
+                </td>
               </tr>
+
               <div class="margin-mood"></div>
             </tbody>
           </table>
         </div>
       </p-tabPanel>
       <p-tabPanel header="Roles">
-        <p>
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-          ab illo inventore veritatis et quasi architecto beatae vitae dicta
-          sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-          aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
-          qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit,
-          sed quia non numquam eius modi.
-        </p>
+        <p>Still working ... maybe this part change too cx</p>
       </p-tabPanel>
     </p-tabView>
   </div>
