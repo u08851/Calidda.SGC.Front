@@ -1,8 +1,11 @@
 .wrapper {
-  margin-left: 24rem;
   transition: all 0.3s ease-in-out;
-  margin-right: 4rem;
 
+  @media screen and(min-width: 768px) { 
+    margin-left: 24rem;
+    margin-right: 4rem;
+  }
+  
   .content {
     width: 100%;
     margin-top: 60px;
@@ -10,6 +13,10 @@
   }
 }
 
-.close-sidevar {
-  margin-left: 4rem;
+
+
+@media screen and(min-width: 768px) { 
+  .close-sidevar {
+     margin-left: 4rem;
+  }  
 }

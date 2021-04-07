@@ -1,8 +1,13 @@
-.p-sidebar {
-  background: transparent;
-  margin-left: 4rem;
-}
+
 .p-sidebar-left {
   padding-top: 75px;
   width: 21rem !important;
+}  
+
+.p-sidebar {
+  @media screen and(min-width: 768px) {
+    background: transparent;
+    margin-left: 4rem;
+    box-shadow: none;
+  }  
 }
