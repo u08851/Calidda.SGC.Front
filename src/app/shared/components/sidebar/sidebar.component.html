@@ -1,0 +1,47 @@
+<p-sidebar class="p-sidebar-half" [(visible)]="visibleSidebar" [modal]="false" [showCloseIcon]="false" [baseZIndex]="1002">
+    <div class="custom-card">
+        <div class="custom-card-header">
+            <img src="../../../assets/images/img-perfil-test.jpg" alt="foto_perfil" />
+            <p>Simy Benzaquen</p>
+            <p>Miembro del Comité</p>
+            <p>Cálidda</p>
+            <hr />
+        </div>
+        <div class="custom-card-content">
+            <!-- options -->
+            <ul>
+                <li routerLink="/manager/dashboard" routerLinkActive="is-active">
+                    <i class="material-icons material-icons-outlined md-icon-24">
+                        home </i>
+                    Inicio
+                </li>
+                <li routerLink="/manager/comites" routerLinkActive="is-active">
+                    <i class="material-icons material-icons-outlined md-icon-24">
+                        article
+                    </i>
+                    Comités
+                </li>
+                <li>
+                    <i class="material-icons material-icons-outlined md-icon-24">
+                        assessment
+                    </i>
+                    Reportes
+                </li>
+                <li routerLink="/manager/mantenimiento" routerLinkActive="is-active">
+                    <i class="material-icons material-icons-outlined md-icon-24">
+                        build
+                    </i>
+                    Mantenimiento
+                </li>
+            </ul>
+
+            <!-- button -->
+            <div class="p-btn">
+                <button>
+                    <!-- <fa-icon [icon]="faReply" class="faReply"></fa-icon> -->
+                    <span>Cancelar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</p-sidebar>

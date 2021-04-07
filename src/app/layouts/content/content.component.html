@@ -1,60 +1,7 @@
-<div class="bg-content">
-  <app-header></app-header>
-
-  <div class="custom-grid">
-    <div class="guide p-col-12 p-md-12 p-lg-3 p-xl-3">
-      <div class="custom-card">
-        <div class="custom-card-header">
-          <img
-            src="../../../assets/images/img-perfil-test.jpg"
-            alt="foto_perfil"
-          />
-          <p>Simy Benzaquen</p>
-          <p>Miembro del Comité</p>
-          <p>Cálidda</p>
-          <hr />
-        </div>
-        <div class="custom-card-content">
-          <!-- options -->
-          <ul>
-            <li routerLink="/manager/dashboard" routerLinkActive="is-active">
-              <i class="material-icons material-icons-outlined md-icon-24">
-                home </i>
-                Inicio
-            </li>
-            <li routerLink="/manager/comites" routerLinkActive="is-active">
-              <i class="material-icons material-icons-outlined md-icon-24">
-                article
-              </i>
-              Comités
-            </li>
-            <li>
-              <i class="material-icons material-icons-outlined md-icon-24">
-                assessment
-              </i>
-              Reportes
-            </li>
-            <li routerLink="/manager/mantenimiento" routerLinkActive="is-active">
-              <i class="material-icons material-icons-outlined md-icon-24">
-                build
-              </i>
-              Mantenimiento           
-            </li>
-          </ul>
-
-          <!-- button -->
-          <div class="p-btn">
-            <button>
-              <fa-icon [icon]="faReply" class="faReply"></fa-icon>
-              <span>Cancelar</span>
-            </button>
-          </div>
-        </div>
-      </div>
+<div class="wrapper bg-content" [ngClass]="{'close-sidevar': !visibleSidebar}">
+    <app-header></app-header>
+    <app-sidebar></app-sidebar>
+    <div class="content">
+        <router-outlet></router-outlet>
     </div>
-
-    <div class="guide p-col-12 p-md-12 p-lg-9 p-xl-9">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
 </div>

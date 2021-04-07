@@ -1,6 +1,7 @@
 $color-white: var(--surface-a);
 .toolbar {
-  position: absolute;
+  position: fixed;
+  z-index: 9999;
   top: 0;
   left: 0;
   right: 0;
@@ -10,7 +11,7 @@ $color-white: var(--surface-a);
   background-color: #00a1de;
   color: white;
   font-weight: 600;
-  padding: 0 86px;
+  padding: 0 71px;
 
   @media screen and (max-width: 768px) {
     padding: 0 8px;
@@ -25,7 +26,7 @@ $color-white: var(--surface-a);
   }
 
   span {
-    width: 156px;
+    width: 224px;
     text-align: left;
     font-size: 14px;
     letter-spacing: 0.42px;
@@ -33,7 +34,8 @@ $color-white: var(--surface-a);
     text-transform: uppercase;
     opacity: 1;
     font-weight: 400;
-    margin-left: 15px;
+    // margin-left: 15px;
+    padding: 0 1.5rem;
   }
 
   [alt="user_icon"] {
