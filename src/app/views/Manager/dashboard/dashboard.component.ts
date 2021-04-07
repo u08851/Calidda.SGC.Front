@@ -33,5 +33,16 @@ export class DashboardComponent implements OnInit {
         },
       ],
     };
+    // this.basicOptions = {
+    //   scales: {
+    //     xAxes: [
+    //       {
+    //         gridLines: {
+    //           basicOptions: false,
+    //         },
+    //       },
+    //     ]
+    //   },
+    // };
   }
 }
