@@ -6,19 +6,19 @@ import { RouterModule } from '@angular/router';
 import { ManagerRoutes } from './manager.routing';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ComitesComponent } from './comites/comites.component';
-
-
-
+import { CrearComiteComponent } from './dialog/crear-comite/crear-comite.component';
 @NgModule({
   declarations: [
     MaintenanceComponent,
     DashboardComponent,
-    ComitesComponent
+    ComitesComponent,
+    CrearComiteComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule.forChild(ManagerRoutes),
-  ]
+  ],
+  providers: []
 })
 export class ManagerModule { }

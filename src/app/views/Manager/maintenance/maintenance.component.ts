@@ -16,12 +16,12 @@ export class MaintenanceComponent implements OnInit {
 
     this.items = [
       {
-        label: 'Update',
-        icon: 'pi pi-refresh',
+        label: 'Editar usuario',
+        icon: 'pi pi-user-edit',
       },
       {
-        label: 'Delete',
-        icon: 'pi pi-times',
+        label: 'Eliminar usuario',
+        icon: 'pi pi-trash',
       },
     ];
 }

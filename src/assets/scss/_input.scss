@@ -1,0 +1,42 @@
+// custom input
+:host ::ng-deep .style-input-1.input.p-inputtext {
+  font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial,
+    Lucida Grande, sans-serif;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.87);
+  background: #ffffff;
+  padding: 0.7rem 0rem 0.5rem;
+  border: 0px solid #ced3d9;
+  border-bottom: 1px solid #ced3d9;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s,
+    box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
+  appearance: none;
+  border-radius: 0px;
+  width: 100%;
+
+  &:enabled:hover {
+    border-color: #babcbe;
+  }
+
+  &:enabled:focus {
+    box-shadow: none;
+  }
+
+  &:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: none;
+    border-color: #00a1de;
+  }
+
+
+  .p-float-label > label {
+    left: 0rem;
+    transition-duration: 0.2s;
+  }
+}
+
+
+.p-style-input-fill {
+  @extend .style-input-1;
+}

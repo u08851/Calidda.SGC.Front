@@ -1,7 +1,8 @@
 $color-darkblue: var(--dark-blue);
 $primary: var(--primary-color);
 
-.p-tab-style-1.p-tabview {
+// Style 1 - outlined
+.p-tab-1.p-tabview {
   .p-tabview-nav {
     background: transparent;
     border: none;
@@ -68,10 +69,115 @@ $primary: var(--primary-color);
     border-radius: 5px;
   }
 
+// Content
+  .tab-content {
+    background: #fff;
+    padding: 21px 18px;
+    border-radius: 5px;
+  
+    &-label {
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    &-p {
+      color: var(--primary-color);
+      padding: 17px 0;
+    }
+  }
+
 }
 
-.p-tab-1 {
-  @extend .p-tab-style-1;
+// Style 2 
+.p-tab-2.p-tabview {
+  .p-tabview-nav {
+    background: transparent;
+    border: none;
+    border-width: 0 0 1px 0;
+  }
+  .p-tabview-nav li {
+    margin-right: 0;
+  }
+  .p-tabview-nav li .p-tabview-nav-link {
+    border: solid;
+    border-width: 1px;
+    border-color: $primary;
+    background: transparent;
+    color: $primary;
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    border-radius: 20px;
+    transition: box-shadow 0.15s;
+    margin: 0;
+  }
+  .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: none;
+  }
+
+  .p-tabview-nav .p-tabview-ink-bar {
+    z-index: 1;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background-color: transparent;
+    transition: 500ms cubic-bezier(0.35, 0, 0.25, 1);
+  }
+
+  .p-tabview-nav
+    li:not(.p-highlight):not(.p-disabled):hover
+    .p-tabview-nav-link {
+    background: transparent;
+    border-color: $primary;
+    color: $primary;
+  }
+  .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    background: $primary;
+    color: #fff;
+    border-radius: 5px 5px 0 0;
+  }
+  .p-tabview-left-icon {
+    margin-right: 0.5rem;
+  }
+  .p-tabview-right-icon {
+    margin-left: 0.5rem;
+  }
+  .p-tabview-close {
+    margin-left: 0.5rem;
+  }
+  .p-tabview-panels {
+    background: transparent;
+    padding: 0;
+    border: 0 none;
+    color: $color-darkblue;
+    border-radius: 5px;
+  }
+
+// Content
+  .tab-content {
+    background: #fff;
+    padding: 21px 18px;
+    border-radius: 5px;
+  
+    &-label {
+      font-weight: 600;
+    }
+  
+    &-p {
+      color: var(--primary-color);
+      padding: 17px 0;
+    }
+  }
+}
+
+.p-tab-style-1 {
+  @extend .p-tab-1;
+}
+
+.p-tab-style-2 {
+  @extend .p-tab-2;
 }
 
 // styleClass="p-tab-1"

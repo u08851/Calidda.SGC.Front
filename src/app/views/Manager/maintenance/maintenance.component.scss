@@ -6,21 +6,6 @@ $color-darkblue: var(--dark-blue);
   font-weight: 600;
 }
 
-.tab-content {
-  background: #fff;
-  padding: 21px 18px;
-  border-radius: 5px;
-
-  &-label {
-    font-weight: 600;
-  }
-
-  &-p {
-    color: var(--primary-color);
-    padding: 17px 0;
-  }
-}
-
 table {
   width: 100%;
   border-collapse: collapse;

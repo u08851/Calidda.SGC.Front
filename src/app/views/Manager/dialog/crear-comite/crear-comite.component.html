@@ -1,0 +1,133 @@
+<div class="card">
+  <p-tabView styleClass="p-tab-style-2">
+    <p-tabPanel header="Información básica">
+      <div class="tab-content">
+        <form>
+          <div class="p-grid">
+            <!-- Nombre del comité -->
+            <div class="p-col-12 p-md-6 p-lg-4">
+              <div class="p-field">
+                <label>Nombre del comité</label>
+                <input pInputText />
+              </div>
+            </div>
+
+            <!-- Empresa del comité -->
+            <div class="p-col-12 p-md-6 p-lg-4">
+              <div class="p-field">
+                <label>Empresa del comité</label>
+                <p-dropdown
+                  [options]="empresa"
+                  optionLabel="name"
+                  [showClear]="true"
+                  styleClass="style-dropdown"
+                ></p-dropdown>
+              </div>
+            </div>
+
+            <!-- País -->
+            <div class="p-col-12 p-md-6 p-lg-4">
+              <div class="p-field">
+                <label>País</label>
+                <p-dropdown
+                  [options]="pais"
+                  optionLabel="name2"
+                  [showClear]="true"
+                  styleClass="style-dropdown"
+                ></p-dropdown>
+              </div>
+            </div>
+
+            <!-- Responsable del comité -->
+            <div class="p-col-12 p-md-6 p-lg-4">
+              <div class="p-field">
+                <label>Responsable del comité</label>
+                <input pInputText />
+              </div>
+            </div>
+
+            <!-- Correo electrónico -->
+            <div class="p-col-12 p-md-6 p-lg-4">
+              <div class="p-field">
+                <label>Correo electrónico</label>
+                <input pInputText />
+              </div>
+            </div>
+
+            <!-- Dirección dueña del comité -->
+            <div class="p-col-12 p-md-6 p-lg-4">
+              <div class="p-field">
+                <label>Dirección dueña del comité</label>
+                <input pInputText />
+              </div>
+            </div>
+
+            <!-- Código del comité -->
+            <div class="p-col-12 p-md-6 p-lg-4">
+              <div class="p-field">
+                <label>Código del comité</label>
+                <input pInputText />
+              </div>
+            </div>
+
+            <!-- Fecha de la creación de comité -->
+            <div class="p-col-12 p-md-6 p-lg-4">
+              <div class="p-field">
+                <label>Fecha de la creación de comité</label>
+                <input pInputText />
+              </div>
+            </div>
+
+            <!-- Hora de creación de comité -->
+            <div class="p-col-12 p-md-6 p-lg-4">
+              <div class="p-field">
+                <label>Hora de creación de comité</label>
+                <input pInputText />
+              </div>
+            </div>
+
+            <!-- Btn Crear -->
+            <div class="p-col-12 p-text-center">
+              <p-button label="Crear" (click)="showModalDialog()"></p-button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+
+  <div class="card-rightSide">
+    <div class="card-rightSide-status">
+      <i class="pi pi-circle-on icon-mood icon-color-status"></i>
+      Comité sin estado
+    </div>
+    <div class="card-rightSide-title">
+      <p>Comité: COC21-2</p>
+    </div>
+  </div>
+</div>
+
+<!-- Dialog Crear content -->
+<p-dialog
+  [(visible)]="displayModal"
+  [modal]="true"
+  [style]="{ width: '400px' }"
+  [baseZIndex]="10000"
+  [draggable]="false"
+  [resizable]="false"
+  [closable]="false"
+>
+  <div class="dialog-content">
+    <i class="material-icons"> check_circle_outline </i>
+    <h3>Confirmación</h3>
+    <p class="p-m-0">
+      El comité <strong>“Comité Cálidda”</strong> ha sido creado correctamente
+    </p>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button
+      (click)="displayModal = false"
+      label="Ir a mis comités"
+    ></p-button>
+  </ng-template>
+</p-dialog>

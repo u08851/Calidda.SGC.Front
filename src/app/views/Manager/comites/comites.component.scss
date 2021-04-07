@@ -25,6 +25,7 @@
     bottom: 0;
     right: 0;
     color: #ffffff;
+    margin-right: 26px;
 
     div {
       margin: 0 8px;
@@ -54,9 +55,9 @@
   }
 }
 
-
 .p-table-bg {
   background-color: #ffffff;
+  padding: 26px;
 }
 
 table {
@@ -95,9 +96,11 @@ tbody tr {
 
 .icon-color-active {
   color: green;
+  margin-right: 5px;
 }
 .icon-color-inactive {
   color: red;
+  margin-right: 5px;
 }
 
 ::ng-deep.icon-size {

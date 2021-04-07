@@ -2,12 +2,57 @@
   <div class="title">Mantenimiento</div>
 
   <div class="card">
-    <p-tabView styleClass="p-tab-1">
+    <p-tabView styleClass="p-tab-style-1">
+      <!-- Tab Usuarios -->
       <p-tabPanel header="Usuarios">
         <div class="tab-content">
-          <label class="tab-content-label">Usuarios</label>
+          <div class="tab-content-label">
+            <label>
+              <strong>Usuarios</strong>
+            </label>
+            <label>N° de usuarios: <strong>152</strong></label>
+          </div>
           <p class="tab-content-p">Filtrar por</p>
+          <!-- form -->
+          <form>
+            <div class="p-grid">
+              <div class="p-col-12 p-md-6 p-lg-6">
+                <span class="p-float-label">
+                  <input
+                    type="text"
+                    id="inputtext"
+                    pInputText
+                    styleClass="p-style-input-fill"
+                  />
+                  <label for="inputtext">Nombre del usuario</label>
+                </span>
+              </div>
+              <div class="p-col-12 p-md-6 p-lg-3">
+                <span class="p-float-label">
+                  <input
+                    styleClass="p-style-input-fill"
+                    id="float-input"
+                    type="text"
+                    pInputText
+                  />
+                  <label for="float-input">Empresa</label>
+                </span>
+              </div>
+              <div class="p-col-12 p-md-6 p-lg-3">
+                <span class="p-float-label">
+                  <input
+                    styleClass="p-style-input-fill"
+                    id="float-input"
+                    type="text"
+                    pInputText
+                  />
+                  <label for="float-input">Correo electrónico</label>
+                </span>
+              </div>
+            </div>
+          </form>
 
+          <!-- table -->
           <table class="p-table-mood">
             <thead>
               <tr>
@@ -18,8 +63,8 @@
                 <th scope="col">Rol</th>
                 <th scope="col">Empresa</th>
                 <th scope="col">Estado</th>
-                <th scope="col"> </th>
-                <th scope="col"> </th>
+                <th scope="col"></th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
@@ -120,8 +165,66 @@
           </table>
         </div>
       </p-tabPanel>
+
+      <!-- Tab Roles -->
       <p-tabPanel header="Roles">
-        <p>Still working ... maybe this part change too cx</p>
+        <div class="tab-content">
+          <div class="tab-content-label">
+            <label>
+              <strong>Roles</strong>
+            </label>
+          </div>
+
+          <!-- table -->
+          <table class="p-table-mood">
+            <thead>
+              <tr>
+                <th scope="col" style="width: 18rem;"></th>
+                <th scope="col" style="text-align: center;">Rol</th>
+                <th scope="col" style="text-align: right;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <div class="margin-mood"></div>
+              <tr>
+                <td style="width: 18rem;"></td>
+                <td data-table-header="Nombres y apellidos"  style="text-align: center;">Administrador</td>
+                <td data-table-header=" " style="text-align: right;">
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-ellipsis-v"
+                    class="p-button-rounded p-button-info p-button-text icon-size"
+                    styleClass="icon-size"
+                    (click)="menu.toggle($event)"
+                  ></button>
+                  <p-menu #menu [popup]="true" [model]="items"></p-menu>
+                </td>
+              </tr>
+
+              <div class="margin-mood"></div>
+              <tr>
+                <td style="width: 18rem;"></td>
+                <td data-table-header="Nombres y apellidos"  style="text-align: center;">Invitado</td>
+                <td data-table-header=" " style="text-align: right;">
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-ellipsis-v"
+                    class="p-button-rounded p-button-info p-button-text icon-size"
+                    styleClass="icon-size"
+                    (click)="menu.toggle($event)"
+                  ></button>
+                  <p-menu #menu [popup]="true" [model]="items"></p-menu>
+                </td>
+              </tr>
+
+              <div class="margin-mood"></div>
+            </tbody>
+          </table>
+        </div>
       </p-tabPanel>
     </p-tabView>
   </div>

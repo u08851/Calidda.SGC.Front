@@ -12,6 +12,7 @@ export class ComitesComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    // menu dentro del table
     this.items = [
       {
         label: 'Update',

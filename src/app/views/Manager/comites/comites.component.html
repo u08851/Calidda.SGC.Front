@@ -1,109 +1,107 @@
 <div>
-    <div class="p-d-flex p-jc-end">
-        <p-button label="Crear Comité" icon="pi pi-plus-circle"></p-button>
-    </div>
-    <div class="p-bg">
-        <p>Relación de comites</p>
+  <div class="p-d-flex p-jc-end">
+    <p-button label="Crear Comité" icon="pi pi-plus-circle" routerLink="/manager/crear-comites"></p-button>
+  </div>
+  <div class="p-bg">
+    <p>Relación de comites</p>
 
-        <div class="leyenda">
-            <p>Leyenda:</p>
-            <div>
-                <i class="pi pi-circle-on created"></i>
-                <span>Creado</span>
-            </div>
-            <div>
-                <i class="pi pi-circle-on active"></i>
-                <span>Activo</span>
-            </div>
-            <div>
-                <i class="pi pi-circle-on config"></i>
-                <span>En configuración</span>
-            </div>
-            <div>
-                <i class="pi pi-circle-on low"></i>
-                <span>De baja</span>
-            </div>
-        </div>
+    <div class="leyenda">
+      <p>Leyenda:</p>
+      <div>
+        <i class="pi pi-circle-on created"></i>
+        <span>Creado</span>
+      </div>
+      <div>
+        <i class="pi pi-circle-on active"></i>
+        <span>Activo</span>
+      </div>
+      <div>
+        <i class="pi pi-circle-on config"></i>
+        <span>En configuración</span>
+      </div>
+      <div>
+        <i class="pi pi-circle-on low"></i>
+        <span>De baja</span>
+      </div>
     </div>
+  </div>
 
-    <div class="p-table-bg">
-        <table class="p-table-mood">
-            <thead>
-              <tr>
-                <th scope="col">Fec. de Creación</th>
-                <th scope="col">Código</th>
-                <th scope="col">Nombre del Comité</th>
-                <th scope="col">Dirección Dueña del Comité</th>
-                <th scope="col">Responsable</th>
-                <th scope="col">Frecuencia</th>
-                <th scope="col">Empresa</th>
-                <th scope="col">País</th>
-                <th scope="col"> </th>
-              </tr>
-            </thead>
-            <tbody>
-                <div class="margin-mood"></div>
-              <tr>
-                <td data-table-header="Fec. de Creación">
-                    <i class="pi pi-circle-on icon-mood icon-color-active"></i>
-                    20/11/2020
-                </td>
-                <td data-table-header="Código">
-                    COC21-1
-                </td>
-                <td data-table-header="Nombre del Comité">Comité Operativo de Contrataciones</td>
-                <td data-table-header="Dirección Dueña del Comité">Abastecimientos y Servicios</td>
-                <td data-table-header="Responsable">Rosario Chiarella</td>
-                <td data-table-header="Frecuencia">Semanal</td>
-                <td data-table-header="Empresa">Calidda</td>
-                <td data-table-header="País">
-                  imgPeru
-                </td>
-                <td data-table-header=" ">
-                  <button
-                    pButton
-                    pRipple
-                    type="button"
-                    icon="pi pi-ellipsis-v"
-                    class="p-button-rounded p-button-info p-button-text icon-size"
-                    styleClass="p-icon-size"
-                    (click)="menu.toggle($event)"
-                  ></button>
-                  <p-menu #menu [popup]="true" [model]="items"></p-menu>
-                </td>
-              </tr>
-              <div class="margin-mood"></div>
-              <tr>
-                <td data-table-header="Fec. de Creación">
-                    <i class="pi pi-circle-on icon-mood icon-color-active"></i>
-                    20/11/2020
-                </td>
-                <td data-table-header="Código">CD21-2</td>
-                <td data-table-header="Nombre del Comité">Comité de Dirección</td>
-                <td data-table-header="Dirección Dueña del Comité">Dirección General</td>
-                <td data-table-header="Responsable">Jorge Miranda</td>
-                <td data-table-header="Frecuencia">Jorge Miranda</td>
-                <td data-table-header="Empresa">
-                    Calidda
-                </td>
-                <td data-table-header="País">
-                  imgPeru
-                </td>
-                <td data-table-header=" ">
-                  <button
-                    pButton
-                    pRipple
-                    type="button"
-                    icon="pi pi-ellipsis-v"
-                    class="p-button-rounded p-button-info p-button-text icon-size"
-                    styleClass="icon-size"
-                    (click)="menu.toggle($event)"
-                  ></button>
-                  <p-menu #menu [popup]="true" [model]="items"></p-menu>
-                </td>
-              </tr>
-              <div class="margin-mood"></div>
-            </tbody>
-          </table>
-    </div>
+  <div class="p-table-bg">
+    <table class="p-table-mood">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 15%;">Fec. de Creación</th>
+          <th scope="col" style="width: 10%;">Código</th>
+          <th scope="col">Nombre del Comité</th>
+          <th scope="col">Dirección Dueña del Comité</th>
+          <th scope="col">Responsable</th>
+          <th scope="col">Frecuencia</th>
+          <th scope="col">Empresa</th>
+          <th scope="col">País</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <div class="margin-mood"></div>
+        <tr>
+          <td data-table-header="Fec. de Creación">
+            <i class="pi pi-circle-on icon-mood icon-color-active"></i>
+            20/11/2020
+          </td>
+          <td data-table-header="Código">COC21-1</td>
+          <td data-table-header="Nombre del Comité">
+            Comité Operativo de Contrataciones
+          </td>
+          <td data-table-header="Dirección Dueña del Comité">
+            Abastecimientos y Servicios
+          </td>
+          <td data-table-header="Responsable">Rosario Chiarella</td>
+          <td data-table-header="Frecuencia">Semanal</td>
+          <td data-table-header="Empresa">Calidda</td>
+          <td data-table-header="País">imgPeru</td>
+          <td data-table-header=" ">
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-ellipsis-v"
+              class="p-button-rounded p-button-info p-button-text icon-size"
+              styleClass="p-icon-size"
+              (click)="menu.toggle($event)"
+            ></button>
+            <p-menu #menu [popup]="true" [model]="items"></p-menu>
+          </td>
+        </tr>
+        <div class="margin-mood"></div>
+        <tr>
+          <td data-table-header="Fec. de Creación">
+            <i class="pi pi-circle-on icon-mood icon-color-active"></i>
+            20/11/2020
+          </td>
+          <td data-table-header="Código">CD21-2</td>
+          <td data-table-header="Nombre del Comité">Comité de Dirección</td>
+          <td data-table-header="Dirección Dueña del Comité">
+            Dirección General
+          </td>
+          <td data-table-header="Responsable">Jorge Miranda</td>
+          <td data-table-header="Frecuencia">Jorge Miranda</td>
+          <td data-table-header="Empresa">Calidda</td>
+          <td data-table-header="País">imgPeru</td>
+          <td data-table-header=" ">
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-ellipsis-v"
+              class="p-button-rounded p-button-info p-button-text icon-size"
+              styleClass="icon-size"
+              (click)="menu.toggle($event)"
+            ></button>
+            <p-menu #menu [popup]="true" [model]="items"></p-menu>
+          </td>
+        </tr>
+        <div class="margin-mood"></div>
+      </tbody>
+    </table>
+  </div>
 </div>
