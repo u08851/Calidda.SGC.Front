@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
+import { SidenavService } from 'src/app/back/services/sidenav.service';
 
 @Component({
   selector: 'app-header',
@@ -18,9 +19,13 @@ export class HeaderComponent implements OnInit {
       $event.type == 'mouseover' ? 'p-input-icon-right' : 'p-input-icon-left';
   }
 
-  constructor() {}
+  constructor(
+    public sidenav: SidenavService
+  ) {}
 
   ngOnInit(): void {
+    
+
     this.items = [
       {
         label: 'Administrador de Sistema',
@@ -36,4 +41,13 @@ export class HeaderComponent implements OnInit {
       },
     ];
   }
+
+
+  
+  sideToogle() {
+    this.sidenav.toggle();
+  }
+  
+
+  
 }

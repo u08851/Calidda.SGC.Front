@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
+import { SidenavService } from './back/services/sidenav.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { SharedModule } from './shared/shared.module';
    exports: [
     RouterModule
   ],
-  providers: [],
+  providers: [SidenavService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 

@@ -1,5 +1,5 @@
 // custom input
-:host ::ng-deep .style-input-1.p-inputtext {
+.style-input-1 .p-inputtext {
   font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial,
   Lucida Grande, sans-serif;
   font-size: 14px;
@@ -28,15 +28,14 @@
     box-shadow: none;
     border-color: #00a1de;
   }
-
-
+  
   .p-float-label > label {
     left: 0rem;
     transition-duration: 0.2s;
   }
+
 }
 
-
 .p-style-input-fill {
-  @extend .style-input-1;
+    @extend .style-input-1;
 }
