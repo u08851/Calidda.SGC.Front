@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { PrimengModule } from '../shared/primeng.module';
 import { RolComponent } from './rol/rol.component';
+import { ResetComponent } from './reset/reset.component';
 
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RolComponent
+    RolComponent,
+    ResetComponent
   ],
   imports: [
     CommonModule,
