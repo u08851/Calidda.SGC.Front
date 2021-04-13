@@ -1,28 +1,83 @@
 <div>
-  <div class="p-d-flex p-jc-end">
-    <p-button label="Crear Comité" icon="pi pi-plus-circle" routerLink="/manager/crear-comites"></p-button>
-  </div>
-  <div class="p-bg">
-    <p>Relación de comites</p>
 
-    <div class="leyenda">
-      <p>Leyenda:</p>
-      <div>
-        <i class="pi pi-circle-on created"></i>
-        <span>Creado</span>
+  <!-- Banner -->
+  <div class="pi-container">
+    <div class="pi-banner">
+      <div class="pi-banner-content">
+        <h1>Relación de comites</h1>
+
+        <div
+          class="p-d-flex p-flex-wrap p-jc-between p-ai-center p-mt-0 p-mt-lg-5"
+        >
+        <!-- Leyenda -->
+          <div class="leyenda">
+            <p>Leyenda:</p>
+            <div>
+              <i class="pi pi-circle-on created"></i>
+              <span>Creado</span>
+            </div>
+            <div>
+              <i class="pi pi-circle-on active"></i>
+              <span>Activo</span>
+            </div>
+            <div>
+              <i class="pi pi-circle-on config"></i>
+              <span>En configuración</span>
+            </div>
+            <div>
+              <i class="pi pi-circle-on low"></i>
+              <span>De baja</span>
+            </div>
+          </div>
+
+          <!-- Button crear -->
+          <div class="p-d-flex p-jc-end">
+            <p-button
+              label="Crear Comité"
+              icon="pi pi-plus-circle"
+              routerLink="/manager/crear-comites"
+            ></p-button>
+          </div>
+        </div>
+
       </div>
-      <div>
-        <i class="pi pi-circle-on active"></i>
-        <span>Activo</span>
-      </div>
-      <div>
-        <i class="pi pi-circle-on config"></i>
-        <span>En configuración</span>
-      </div>
-      <div>
-        <i class="pi pi-circle-on low"></i>
-        <span>De baja</span>
-      </div>
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div class="p-grid p-style-input-fill p-m-4">
+    <!-- Nombre del comité -->
+    <div class="p-col-12 p-md-6 p-lg-3">
+      <span class="p-float-label p-input-icon-right">
+        <i class="pi pi-search"></i>
+        <input type="text" pInputText />
+        <label for="inputtext">Nombre del comité</label>
+      </span>
+    </div>
+
+    <!-- Código del comité -->
+    <div class="p-col-12 p-md-6 p-lg-3">
+      <span class="p-float-label p-input-icon-right">
+        <i class="pi pi-search"></i>
+        <input type="text" pInputText />
+        <label for="inputtext">Código del comité</label>
+      </span>
+    </div>
+
+    <!-- calendario DESDE -->
+    <div class="p-col-12 p-md-6 p-lg-3">
+      <span class="p-float-label">
+        <p-calendar [(ngModel)]="date3" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+        <label for="inputtext">Desde</label>
+      </span>
+    </div>
+
+    <!-- calendario HASTA -->
+    <div class="p-col-12 p-md-6 p-lg-3">
+      <span class="p-float-label">
+        <p-calendar [(ngModel)]="date4" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+        <label for="inputtext">Hasta</label>
+      </span>
     </div>
   </div>
 
@@ -30,8 +85,8 @@
     <table class="p-table-mood">
       <thead>
         <tr>
-          <th scope="col" style="width: 15%;">Fec. de Creación</th>
-          <th scope="col" style="width: 10%;">Código</th>
+          <th scope="col" style="width: 15%">Fec. de Creación</th>
+          <th scope="col" style="width: 10%">Código</th>
           <th scope="col">Nombre del Comité</th>
           <th scope="col">Dirección Dueña del Comité</th>
           <th scope="col">Responsable</th>
