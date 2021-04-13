@@ -10,7 +10,7 @@
         <div class="p-fluid">
             <!-- correo -->
           <div class="p-field">
-            <label for="correo1">Correo</label>
+            <label for="correo1">Usuario</label>
             <input id="correo1" type="text" pInputText />
           </div>
 
@@ -21,16 +21,19 @@
           </div>
 
           <!-- captcha -->
-          <!-- <div class="p-d-flex p-jc-center p-m-4">
-            <div class="g-recaptcha" data-sitekey="Your site key goes here"></div>
-          </div> -->
+           <!-- <div class="p-d-flex p-jc-center p-m-4"> 
+              <div class="g-recaptcha" data-sitekey="Your site key goes here"></div> 
+           </div> -->
+
+          <p-captcha siteKey="6Lf2XQkTAAAAANcvOwYqPxWL4iZDksFqHpS39GDA" (onResponse)="showResponse($event)"></p-captcha>
+
+          <div class="p-m-3">
+            <p-button label="Olvidé mi contraseña"  routerLink="/reset" styleClass="p-button-link"></p-button>
+          </div>
 
           <!-- Button -->
           <div>
             <p-button label="Iniciar sesión" routerLink="/manager"></p-button>
-          </div>
-          <div class="p-m-3">
-            <p-button label="Olvidé mi contraseña" styleClass="p-button-link"></p-button>
           </div>
         </div>
       </div>

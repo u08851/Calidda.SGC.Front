@@ -20,7 +20,7 @@ $color-white: var(--surface-a);
     &_login {
       border-radius: 5px;
       // margin: 4rem auto;
-      padding: 27px 35px;
+      padding: 3.5rem 35px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -57,7 +57,6 @@ $color-white: var(--surface-a);
         font-size: 12px;
         font-weight: normal;
         margin: 0 0 1.5rem;
-        opacity: 0.8;
       }
 
       label {
@@ -74,6 +73,11 @@ $color-white: var(--surface-a);
           margin-bottom: 0.5rem;
       }
 
+      .link {
+        color: black;
+        font-size: 13px;
+        font-weight: 500;
+      } 
     }
   }
 }
