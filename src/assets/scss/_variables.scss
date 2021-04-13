@@ -9,8 +9,7 @@
 
   --text-color: #7a7a7a !important;
   font-family: "Roboto", sans-serif;
-  --background: transparent linear-gradient(180deg, #f3f7fd 0%, #cde8f2 100%) 0%
-    0% no-repeat padding-box;
+  --background: transparent linear-gradient(180deg, #f3f7fd 0%, #cde8f2 100%) 0% 0% no-repeat padding-box;
   width: 100%;
 
   @media screen and (min-width: 1025px) {
@@ -19,5 +18,5 @@
 }
 
 body {
-  background: var(--background);
+  background:#CDE8F2;
 }

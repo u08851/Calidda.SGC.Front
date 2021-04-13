@@ -7,12 +7,15 @@ import { ManagerRoutes } from './manager.routing';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ComitesComponent } from './comites/comites.component';
 import { CrearComiteComponent } from './dialog/crear-comite/crear-comite.component';
+import { BarComponent } from './components/bar/bar.component';
+
 @NgModule({
   declarations: [
     MaintenanceComponent,
     DashboardComponent,
     ComitesComponent,
-    CrearComiteComponent
+    CrearComiteComponent,
+    BarComponent
   ],
   imports: [
     CommonModule,

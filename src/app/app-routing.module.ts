@@ -4,7 +4,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { ResetComponent } from './auth/reset/reset.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'rol', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'reset', component: ResetComponent },
   {
