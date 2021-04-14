@@ -16,11 +16,12 @@ $color-white: var(--surface-a);
     flex-wrap: wrap;
     height: 100%;
     align-items: center;
+    background: #00b8fe7d;
 
     &_login {
       border-radius: 5px;
       // margin: 4rem auto;
-      padding: 27px 35px;
+      padding: 2rem 35px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -40,7 +41,7 @@ $color-white: var(--surface-a);
       opacity: 1;
 
       img {
-        width: 177px;
+        width: 135px;
         margin: 0 auto;
       }
 
@@ -70,6 +71,10 @@ $color-white: var(--surface-a);
         opacity: 0.8;
       }
 
+      .link-password {
+        color: #435468;
+        font-size: 12px;
+      }
       input {
           margin-bottom: 0.5rem;
       }
