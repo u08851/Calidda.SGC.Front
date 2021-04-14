@@ -11,17 +11,17 @@
                     <!-- correo -->
                     <div class="p-field" *ngIf="!recuperar">
                         <label for="correo1">Ingrese correo electrónico</label>
-                        <input id="correo1" type="text" pInputText />
+                        <input class="p-inputtext-sm" id="correo1" type="text" pInputText />
                     </div>
                 </div>
                 <div class="p-fluid" *ngIf="recuperar">
                     <div class="p-field">
                         <label for="correo1">Nueva contraseña</label>
-                        <p-password [(ngModel)]="value3" [toggleMask]="true"></p-password>
+                        <p-password styleClass="style-input-password" class="p-inputtext-sm" [(ngModel)]="value3" [toggleMask]="true"></p-password>
                     </div>
                     <div class="p-field">
                         <label for="contraseña1">Confirmar contraseña</label>
-                        <p-password [(ngModel)]="value3" [toggleMask]="true"></p-password>
+                        <p-password styleClass="style-input-password" class="p-inputtext-sm" [(ngModel)]="value3" [toggleMask]="true"></p-password>
                     </div>
                 </div>
                 <!-- contraseña -->

@@ -47,7 +47,7 @@ $color-white: var(--surface-a);
 
       p {
         color: $color-text;
-        font-weight: bold;
+        font-weight: 600;
         font-size: 20px;
         margin-top: 1.5rem;
         margin-bottom: 0.7rem;
@@ -74,6 +74,9 @@ $color-white: var(--surface-a);
       .link-password {
         color: #435468;
         font-size: 12px;
+      }
+      .p-inputtext  {
+        padding: 0.6rem 0.7rem !important;
       }
       input {
           margin-bottom: 0.5rem;
