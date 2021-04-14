@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { ComitesComponent } from './comites/comites.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { ComitesComponent } from './pages/comites/comites.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CrearComiteComponent } from './dialog/crear-comite/crear-comite.component';
-import { MaintenanceComponent } from './maintenance/maintenance.component';
+import { MaintenanceComponent } from './pages/maintenance/maintenance.component';
 
 export const ManagerRoutes: Routes = [
     {
