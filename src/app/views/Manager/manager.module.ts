@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ComitesComponent } from './comites/comites.component';
 import { CrearComiteComponent } from './dialog/crear-comite/crear-comite.component';
 import { BarComponent } from './components/bar/bar.component';
+import { ComiteTableComponent } from './components/comite-table/comite-table.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { BarComponent } from './components/bar/bar.component';
     DashboardComponent,
     ComitesComponent,
     CrearComiteComponent,
-    BarComponent
+    BarComponent,
+    ComiteTableComponent
   ],
   imports: [
     CommonModule,

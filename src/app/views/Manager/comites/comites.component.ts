@@ -14,29 +14,38 @@ export class ComitesComponent implements OnInit {
   date4: Date;
   es: any;
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
     // menu dentro del table
     this.items = [
       {
-        label: 'Update',
+        label: 'Editar Comité',
         icon: 'pi pi-refresh',
       },
       {
-        label: 'Delete',
+        label: 'Ver histórico',
         icon: 'pi pi-times',
       },
+      {
+        label: 'Dar de baja al Comité',
+        icon: 'pi pi-times',
+      },
+      {
+        label: 'Eliminar Comité',
+        icon: 'pi pi-times',
+      }
+
     ];
 
 
     this.es = {
       firstDayOfWeek: 1,
-      dayNames: [ "domingo","lunes","martes","miércoles","jueves","viernes","sábado" ],
-      dayNamesShort: [ "dom","lun","mar","mié","jue","vie","sáb" ],
-      dayNamesMin: [ "D","L","M","X","J","V","S" ],
-      monthNames: [ "enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre" ],
-      monthNamesShort: [ "ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic" ],
+      dayNames: ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"],
+      dayNamesShort: ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"],
+      dayNamesMin: ["D", "L", "M", "X", "J", "V", "S"],
+      monthNames: ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"],
+      monthNamesShort: ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"],
       today: 'Hoy',
       clear: 'Borrar'
     }
