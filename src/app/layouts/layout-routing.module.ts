@@ -12,10 +12,17 @@ const routes: Routes = [
         redirectTo: 'manager',
         pathMatch: 'full',
       },
+
       {
         path: 'manager', 
         loadChildren: () => import('./../views/Manager/manager.module').then((m) => m.ManagerModule),
+      },
+
+      {
+        path: 'secretary', 
+        loadChildren: () => import('./../views/secretary/secretary.module').then((m) => m.SecretaryModule),
       } 
+
     ],
   },
 ];
