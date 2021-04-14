@@ -2,7 +2,7 @@
   <div class="custom_grid">
     <div class="p-col-12 p-md-6 p-lg-4 p-xl-3 p-mr-auto p-ml-auto">
       <div class="custom_grid_login">
-        <img src="../../../assets/icons/calidda.svg" alt="calidda_logo" />
+        <img src="assets/icons/calidda.svg" alt="calidda_logo" />
         <p>Inicia sesión</p>
         <span> Por favor, ingrese los datos solicitados </span>
 
@@ -17,7 +17,7 @@
           <!-- contraseña -->
           <div class="p-field">
             <label for="contraseña1">Contraseña</label>
-            <p-password [(ngModel)]="value3" [toggleMask]="true"></p-password>
+            <p-password styleClass="style-input-password" [toggleMask]="true"></p-password>
           </div>
 
           <!-- captcha -->
@@ -27,8 +27,8 @@
 
           <p-captcha siteKey="6Lf2XQkTAAAAANcvOwYqPxWL4iZDksFqHpS39GDA" (onResponse)="showResponse($event)"></p-captcha>
 
-          <div class="p-m-3">
-            <p-button label="Olvidé mi contraseña"  routerLink="/reset" styleClass="p-button-link"></p-button>
+          <div class="p-my-5">
+            <a class="link-password" routerLink="/reset" href="http://">¿Olvidaste tu contraseña?</a>
           </div>
 
           <!-- Button -->

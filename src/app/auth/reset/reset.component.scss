@@ -16,6 +16,7 @@ $color-white: var(--surface-a);
     flex-wrap: wrap;
     height: 100%;
     align-items: center;
+    background: #00b8fe7d;
 
     &_login {
       border-radius: 5px;
@@ -40,13 +41,13 @@ $color-white: var(--surface-a);
       opacity: 1;
 
       img {
-        width: 177px;
+        width: 135px;
         margin: 0 auto;
       }
 
       p {
         color: $color-text;
-        font-weight: bold;
+        font-weight: 600;
         font-size: 20px;
         margin-top: 1.5rem;
         margin-bottom: 0.7rem;
@@ -57,6 +58,7 @@ $color-white: var(--surface-a);
         font-size: 12px;
         font-weight: normal;
         margin: 0 0 1.5rem;
+        opacity: 0.8;
       }
 
       label {
@@ -72,9 +74,11 @@ $color-white: var(--surface-a);
       input {
           margin-bottom: 0.5rem;
       }
-
+      .p-inputtext  {
+        padding: 0.6rem 0.7rem !important;
+      }
       .link {
-        color: black;
+        color: #2E4259;
         font-size: 13px;
         font-weight: 500;
       } 
