@@ -11,8 +11,10 @@ import { BarComponent } from './components/bar/bar.component';
 import { ComiteTableComponent } from './components/comite-table/comite-table.component';
 import { UsersTableComponent } from './components/users-table/users-table.component';
 import { CreateUserComponent } from './dialog/create-user/create-user.component';
-import { DialogService } from 'primeng/dynamicdialog';
 import { CeseMasivoComponent } from './components/cese-masivo/cese-masivo.component';
+import { TableDireccionComiteComponent } from './components/table-direccion-comite/table-direccion-comite.component';
+import { TableEmpresaComponent } from './components/table-empresa/table-empresa.component';
+import { TableUsuariosComponent } from './components/table-usuarios/table-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,10 @@ import { CeseMasivoComponent } from './components/cese-masivo/cese-masivo.compon
     ComiteTableComponent,
     UsersTableComponent,
     CreateUserComponent,
-    CeseMasivoComponent
+    CeseMasivoComponent,
+    TableDireccionComiteComponent,
+    TableEmpresaComponent,
+    TableUsuariosComponent
   ],
   imports: [
     CommonModule,

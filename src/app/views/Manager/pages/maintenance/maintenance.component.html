@@ -1,70 +1,152 @@
 <div>
     <div class="title">Mantenimiento</div>
 
-    <div class="card">
-        <p-tabView styleClass="p-tab-style-1">
-            <!-- Tab Usuarios -->
-            <p-tabPanel header="Usuarios">
-                <div class="tab-content">
+  <div class="card">
+    <p-tabView styleClass="p-tab-style-1">
+      <!-- Tab Usuarios -->
+      <p-tabPanel header="Usuarios">
+        <div class="tab-pd">
+            <div class="tab-content-label">
+              <label> Usuarios </label>
+  
+              <div>
+                <p-button
+                label="Cese Masivo"
+                icon="pi pi-thumbs-down"
+                class="p-mr-2"
+              ></p-button>
 
-                    <!-- table -->
-
-                    <!-- <app-cese-masivo></app-cese-masivo> -->
-
-                    <app-users-table></app-users-table>
-
+              <p-button
+                label="Crear usuario"
+                icon="pi pi-plus-circle"
+              ></p-button>
+              </div>
+            </div>
+            <p class="tab-content-p">Filtrar por</p>
+            <!-- form -->
+            <form>
+              <div class="p-grid p-style-input-fill p-mt-3">
+                <!-- Nombre de Usuarios -->
+                <div class="p-col-12 p-md-6 p-lg-6">
+                  <span class="p-float-label">
+                    <input
+                      type="text"
+                      id="inputtext"
+                      pInputText
+                      styleClass="style-input-1"
+                    />
+                    <label for="inputtext">Nombre de Usuarios</label>
+                  </span>
                 </div>
-            </p-tabPanel>
 
-            <!-- Tab Roles -->
-            <p-tabPanel header="Roles">
-                <div class="tab-content">
-                    <div class="tab-content-label">
-                        <label>
-                            <strong>Roles</strong>
-                        </label>
-                    </div>
+                <!-- EMpresa -->
+                <div class="p-col-12 p-md-6 p-lg-3">
+                    <span class="p-float-label">
+                      <input
+                        type="text"
+                        id="inputtext"
+                        pInputText
+                        styleClass="style-input-1"
+                      />
+                      <label for="inputtext">Empresa</label>
+                    </span>
+                  </div>
 
-                    <!-- table -->
-                    <table class="p-table-mood">
-                        <thead>
-                            <tr>
-                                <th scope="col" style="width: 18rem;"></th>
-                                <th scope="col" style="text-align: center;">Rol</th>
-                                <th scope="col" style="text-align: right;"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <div class="margin-mood"></div>
-                            <tr>
-                                <td style="width: 18rem;"></td>
-                                <td data-table-header="Nombres y apellidos" style="text-align: center;">Administrador
-                                </td>
-                                <td data-table-header=" " style="text-align: right;">
-                                    <button pButton pRipple type="button" icon="pi pi-ellipsis-v"
-                                        class="p-button-rounded p-button-info p-button-text icon-size"
-                                        styleClass="icon-size" (click)="menu.toggle($event)"></button>
-                                    <p-menu #menu [popup]="true" [model]="items"></p-menu>
-                                </td>
-                            </tr>
+                  <!-- Correo electronico -->
+                  <div class="p-col-12 p-md-6 p-lg-3">
+                    <span class="p-float-label">
+                      <input
+                        type="text"
+                        id="inputtext"
+                        pInputText
+                        styleClass="style-input-1"
+                      />
+                      <label for="inputtext">Correo electronico</label>
+                    </span>
+                  </div>
+              </div>
+            </form>
+        </div>
 
-                            <div class="margin-mood"></div>
-                            <tr>
-                                <td style="width: 18rem;"></td>
-                                <td data-table-header="Nombres y apellidos" style="text-align: center;">Invitado</td>
-                                <td data-table-header=" " style="text-align: right;">
-                                    <button pButton pRipple type="button" icon="pi pi-ellipsis-v"
-                                        class="p-button-rounded p-button-info p-button-text icon-size"
-                                        styleClass="icon-size" (click)="menu.toggle($event)"></button>
-                                    <p-menu #menu [popup]="true" [model]="items"></p-menu>
-                                </td>
-                            </tr>
+        <div class="tab-content">
+            <!-- tableeee -->
+            <app-table-usuarios></app-table-usuarios>
+          </div>
+      </p-tabPanel>
 
-                            <div class="margin-mood"></div>
-                        </tbody>
-                    </table>
-                </div>
-            </p-tabPanel>
-        </p-tabView>
-    </div>
+      <!-- Tab-2 Dirección del comité -->
+      <p-tabPanel header="Dirección del comité">
+        <div class="tab-pd">
+          <div class="tab-content-label">
+            <label> Dirección del comité </label>
+
+            <p-button
+              label="Crear dirección del comité"
+              icon="pi pi-plus-circle"
+            ></p-button>
+          </div>
+          <p class="tab-content-p">Filtrar por</p>
+          <!-- form -->
+          <form>
+            <div class="p-grid p-style-input-fill p-mt-3">
+              <!-- Nombre de dirección del comité -->
+              <div class="p-col-12 p-md-6 p-lg-6">
+                <span class="p-float-label">
+                  <input
+                    type="text"
+                    id="inputtext"
+                    pInputText
+                    styleClass="style-input-1"
+                  />
+                  <label for="inputtext">Nombre de dirección del comité</label>
+                </span>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="tab-content">
+          <!-- tableeee -->
+          <app-table-direccion-comite></app-table-direccion-comite>
+        </div>
+      </p-tabPanel>
+
+      <!-- Tab-3 Empresa -->
+      <p-tabPanel header="Empresa">
+        <div class="tab-pd">
+          <div class="tab-content-label">
+            <label> Empresa </label>
+
+            <p-button
+              label="Crear Empresa"
+              icon="pi pi-plus-circle"
+            ></p-button>
+          </div>
+          <p class="tab-content-p">Filtrar por</p>
+          <!-- form -->
+          <form>
+            <div class="p-grid p-style-input-fill p-mt-3">
+              <!-- Nombre de Empresa -->
+              <div class="p-col-12 p-md-6 p-lg-6">
+                <span class="p-float-label">
+                  <input
+                    type="text"
+                    id="inputtext"
+                    pInputText
+                    styleClass="style-input-1"
+                  />
+                  <label for="inputtext">Nombre de empresa</label>
+                </span>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="tab-content">
+          <!-- tableeee -->
+          <app-table-empresa></app-table-empresa>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
 </div>

@@ -74,8 +74,6 @@ import {BadgeModule} from 'primeng/badge';
 import {AvatarModule} from 'primeng/avatar';
 import {AvatarGroupModule} from 'primeng/avatargroup';
 
-
-
 @NgModule({
   declarations: [],
   imports: [
