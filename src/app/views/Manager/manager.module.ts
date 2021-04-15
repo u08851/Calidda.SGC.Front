@@ -18,6 +18,8 @@ import { TableUsuariosComponent } from './components/table-usuarios/table-usuari
 import { EjemploComponent } from './components/ejemplo/ejemplo.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ConfirmationService } from 'primeng/api';
+import { CrearDireccionComponent } from './dialog/crear-direccion/crear-direccion.component';
+import { CrearEmpresaComponent } from './dialog/crear-empresa/crear-empresa.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { ConfirmationService } from 'primeng/api';
     TableDireccionComiteComponent,
     TableEmpresaComponent,
     TableUsuariosComponent,
-    EjemploComponent
+    EjemploComponent,
+    CrearDireccionComponent,
+    CrearEmpresaComponent
   ],
   imports: [
     CommonModule,
