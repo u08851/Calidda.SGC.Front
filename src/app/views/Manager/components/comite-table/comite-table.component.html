@@ -1,6 +1,5 @@
 <div class="p-card p-px-5 p-py-3 br-05">
     <p-table [columns]="cols" [value]="products" styleClass="style-table-comite">
-
         <ng-template pTemplate="colgroup" let-columns>
             <colgroup>
                 <col [style.width]="10 + '%'" />
@@ -32,9 +31,10 @@
                 <td>Comite operativa de contrataciones</td>
                 <td>s</td>
                 <td>
-                    <div class="p-d-flex p-ai-center avatar">
-                        <img src="assets/images/img-perfil-test.jpg" alt="">
-                        <span class="p-ml-3">Rocio del valle</span>
+                    <div class="p-d-flex p-ai-center">
+                        <p-avatar image="assets/images/img-perfil-test.jpg" styleClass="p-mr-2" shape="circle">
+                        </p-avatar>
+                        <span>Rocio del valle</span>
                     </div>
                 </td>
                 <td>s</td>

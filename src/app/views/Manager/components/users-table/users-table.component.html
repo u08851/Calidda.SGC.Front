@@ -1,0 +1,91 @@
+<!-- form -->
+<div class="p-d-flex p-jc-end p-mb-2">
+    <button class="p-mr-2" pButton type="button" label="Crear Usuario" (click)="showCreateUser()">
+    </button>
+
+    <button  pButton type="button" label="Cese Masivo"></button>
+</div>
+
+<label> <strong>Usuarios</strong></label>
+<p class="tab-content-p">Filtrar por</p>
+
+<form>
+    <div class="p-grid p-fluid p-style-input-fill p-mb-4">
+        <div class="p-col-12 p-md-6 p-lg-6">
+            <span class="p-float-label">
+                <input class="" type="text" id="inputtext" pInputText styleClass="style-input-1" />
+                <label for="inputtext">Nombre del usuario</label>
+            </span>
+        </div>
+        <div class="p-col-12 p-md-6 p-lg-3">
+            <span class="p-float-label">
+                <input styleClass="style-input-1" id="float-input" type="text" pInputText />
+                <label for="float-input">Empresa</label>
+            </span>
+        </div>
+        <div class="p-col-12 p-md-6 p-lg-3">
+            <span class="p-float-label">
+                <input styleClass="p-style-input-fill" id="float-input" type="text" pInputText />
+                <label for="float-input">Correo electrónico</label>
+            </span>
+        </div>
+    </div>
+</form>
+
+<!-- table -->
+<div class="p-card p-px-5 p-py-3 br-05">
+    <p-table [columns]="cols" [value]="products" styleClass="style-table-users">
+        <ng-template pTemplate="colgroup" let-columns>
+            <colgroup>
+                <col [style.width]="20 + '%'" />
+                <col [style.width]="20  + '%'" />
+                <col [style.width]="20 + '%'" />
+                <col [style.width]="20 + '%'" />
+                <col [style.width]="20 + '%'" />
+                <col [style.width]="13 + '%'" />
+            </colgroup>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                <td>
+                    <div class="p-d-flex p-ai-center">
+                        <p-avatar image="assets/images/img-perfil-test.jpg" styleClass="p-mr-2" shape="circle">
+                        </p-avatar>
+                        <span>Rocio del valle</span>
+                    </div>
+                </td>
+                <td>luis@gmail.com</td>
+                <td>Voto</td>
+                <td>Calida</td>
+                <td>
+                    <div class="p-d-flex p-ai-center">
+                        <!-- variables:  --red --green --info  -->
+                        <i class="pi pi-circle-on icon-mood icon-color-active p-mr-2" [style.color]="'var(--green)'">
+                        </i>
+                        <span>Avtivo</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+
+                        <button (click)="showEditeUser()" class="p-button-rounded p-button-text" pButton pRipple
+                            type="button" icon="pi pi-pencil">
+                        </button>
+                    </div>
+                </td>
+                <!-- <td  class="b-dander" *ngFor="let col of columns">
+                        {{rowData[col.field]}}
+                </td>-->
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

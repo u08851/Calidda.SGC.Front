@@ -1,0 +1,62 @@
+<div class="p-fluid p-formgrid p-grid form-input-sm">
+    <div class="p-field p-col-12 p-d-flex p-jc-between">
+        <div class="p-d-flex">
+            <p-badge [value]="1" severity="info" styleClass="p-mr-2"></p-badge>
+            <label class="color-primary">Sobre la Empresa</label>
+        </div>
+
+        <div class="p-d-flex p-ai-center">
+            <!-- variables:  --red --green --info  -->
+            <i class="pi pi-circle-on icon-mood icon-color-active p-mr-2"
+                [style.color]="'var(--green)'">
+            </i>
+            <label>Activo</label>
+        </div>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+        <label>Empresa</label>
+        <input type="text" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+        <label>Empresa</label>
+        <input type="text" pInputText>
+    </div>
+
+    <div class="p-field p-col-12 p-md-6">
+        <div class="p-d-flex">
+            <p-badge [value]="1" severity="info" styleClass="p-mr-2"></p-badge>
+            <label class="color-primary">Datos Personales</label>
+        </div>
+    </div>
+    
+    <div class="p-field p-col-12 p-md-12">
+        <label>Nombres y apellidos</label>
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+                <p-avatar image="assets/images/img-perfil-test.jpg" styleClass="p-mr-2" shape="circle">
+                </p-avatar>
+            </span>
+            <input class="p-bl-0" type="text" pInputText placeholder="Username">         
+        </div>
+        <!-- <input type="text" pInputText> -->
+    </div>
+    <div class="p-field p-col-12 p-md-12">
+        <label>Correo Electronico</label>
+        <input type="text" pInputText>
+    </div>
+
+
+    <div class="p-field p-col-12 p-md-6">
+        <label>Celular</label>
+        <input type="text" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+        <label>Rol</label>
+        <input type="text" pInputText>
+    </div>
+
+</div>
+
+<div class="p-d-flex p-jc-center w-100 p-mb-3">
+    <button pButton type="button" label="Crear" ></button>
+</div>

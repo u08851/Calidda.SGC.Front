@@ -9,6 +9,10 @@ import { ComitesComponent } from './pages/comites/comites.component';
 import { CrearComiteComponent } from './dialog/crear-comite/crear-comite.component';
 import { BarComponent } from './components/bar/bar.component';
 import { ComiteTableComponent } from './components/comite-table/comite-table.component';
+import { UsersTableComponent } from './components/users-table/users-table.component';
+import { CreateUserComponent } from './dialog/create-user/create-user.component';
+import { DialogService } from 'primeng/dynamicdialog';
+import { CeseMasivoComponent } from './components/cese-masivo/cese-masivo.component';
 
 @NgModule({
   declarations: [
@@ -17,13 +21,17 @@ import { ComiteTableComponent } from './components/comite-table/comite-table.com
     ComitesComponent,
     CrearComiteComponent,
     BarComponent,
-    ComiteTableComponent
+    ComiteTableComponent,
+    UsersTableComponent,
+    CreateUserComponent,
+    CeseMasivoComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule.forChild(ManagerRoutes),
   ],
+  entryComponents: [ ],
   providers: []
 })
 export class ManagerModule { }

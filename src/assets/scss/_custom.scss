@@ -8,3 +8,26 @@
       color: black;
     }
 }
+
+//circle
+.icon-mood {
+  font-size: 8px;
+  vertical-align: top;
+  margin-top: 4px;
+}
+
+
+//buttons
+.btn-group {
+  .p-button, input, .field {
+      margin: 0 0.3rem;
+  }
+}
+.btn-group {
+  margin: 0 -0.3rem;
+  align-items: center;
+}
+
+.p-chips .p-chips-multiple-container .p-chips-token {
+  font-family: sans-serif;
+}

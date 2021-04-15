@@ -3,9 +3,10 @@
   font-size: 14px;
   color: rgba(0, 0, 0, 0.87);
   background: transparent;
-  padding: 0.7rem 0rem 0.5rem;
+  padding: 0.6rem 0rem 0.5rem;
   border: 0px solid #ced3d9;
-  border-bottom: 1px solid #ced3d9;
+  // border-bottom: 1px solid #ced3d9;
+  border-bottom: 2.5px solid var(--primary-color);
   transition: background-color 0.2s, border-color 0.2s, color 0.2s,
     box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
   appearance: none;
@@ -89,4 +90,14 @@
   }
 
   @extend .style-input-1;
+}
+
+.p-float-label > label {
+  color: var(--primary-color);
+}
+
+.form-input-sm {
+    input {
+      padding: 0.6rem 0rem 0.5rem;
+    }
 }
