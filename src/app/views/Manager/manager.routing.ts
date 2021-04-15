@@ -3,6 +3,7 @@ import { ComitesComponent } from './pages/comites/comites.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CrearComiteComponent } from './dialog/crear-comite/crear-comite.component';
 import { MaintenanceComponent } from './pages/maintenance/maintenance.component';
+import { CeseMasivoComponent } from './components/cese-masivo/cese-masivo.component';
 
 export const ManagerRoutes: Routes = [
     {
@@ -23,6 +24,10 @@ export const ManagerRoutes: Routes = [
             {
                 path: 'mantenimiento',
                 component: MaintenanceComponent,
+            },
+            {
+                path: 'mantenimiento/masivo',
+                component: CeseMasivoComponent,
             },
             {
                 path: 'crear-comites',

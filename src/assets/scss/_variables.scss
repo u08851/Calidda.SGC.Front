@@ -7,6 +7,11 @@
   --info-color: #00a1de;
   --dark-blue: #2e4259;
 
+  --red:   #E31919;
+  --green:  #00A34B;
+  --orange:#FAB200;
+  --info:  #00A1DE;
+
   --text-color: #7a7a7a !important;
   font-family: "Galano Grotesque", sans-serif;
   --background: transparent linear-gradient(180deg, #f3f7fd 0%, #cde8f2 100%) 0%
@@ -21,4 +26,18 @@
 body {
   background: transparent linear-gradient(180deg, #f3f7fd 0%, #cde8f2 100%) 0%
     0% no-repeat padding-box;
+}
+
+
+.red {   
+  color: #E31919
+}
+.green {
+  color: #00A34B
+}
+.orange {
+  color: #FAB200
+}
+.info {
+  color: #00A1DE
 }

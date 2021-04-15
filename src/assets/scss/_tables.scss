@@ -2,12 +2,29 @@
   border-radius: 0.5rem !important;
 }
 
-.avatar {
-  img {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
+%style-table-base {
+
+  table {
+      border-collapse: separate !important;
+      border-spacing: 0px 10px;
+      font-size: 13px;
   }
+  .p-datatable-thead > tr > th {
+    color: #00A1DE;
+  }
+  .p-datatable-tbody > tr > td {
+    padding: 0.5rem 1rem;
+  }
+  .p-datatable-tbody > tr td:first-child {
+    border-bottom-left-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
+  }
+
+  .p-datatable-tbody > tr td:last-child {
+    border-bottom-right-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+
 }
 
 .stripeed {
@@ -28,51 +45,17 @@
   }
 }
 
+.style-table-users {
+  @extend %style-table-base;
+}
+
 .style-table-comite {
-  table {
-    border-collapse: separate !important;
-    border-spacing: 0px 10px;
-    font-size: 13px;
-  }
-
-  .p-datatable-thead > tr > th {
-    color: #00a1de;
-  }
-  .p-datatable-tbody > tr {
-    background: #f6f7f9;
-    padding: 0.5rem 0;
-    .b-dander {
-      // border-left: 0.5em solid red;
-    }
-  }
-  .p-datatable-tbody > tr > td {
-    padding: 0.5rem 1rem;
-  }
-
-  .p-datatable-tbody > tr td:first-child {
-    border-bottom-left-radius: 0.5rem;
-    border-top-left-radius: 0.5rem;
-  }
-
-  .p-datatable-tbody > tr td:last-child {
-    border-bottom-right-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-  }
+  @extend %style-table-base;
 
   .p-datatable-tbody > tr > td:first-child {
-    border-left: 0.5em solid red;
+    border-left: 0.5em solid;
   }
-
-  .p-datatable-tbody > tr > td:first-child {
-    border-left: 0.5em solid red;
-  }
-
-  .danger {
-    border-left: 0.5em solid #00a34b;
-  }
-  .success {
-    border-left: 0.5em solid #00a34b;
-  }
+  
 }
 
 .style-panel.p-menu {
@@ -148,9 +131,20 @@
     }
 }
 
-
 ::ng-deep.icon-table-size {
   .pi {
     font-size: 20px !important;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+

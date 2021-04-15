@@ -1,3 +1,22 @@
 .w-100 {
     width: 100% !important;
 }
+
+//colors
+.red {   
+    color: #E31919
+}
+.green {
+    color: #00A34B
+}
+.orange {
+    color: #FAB200
+}
+.info {
+    color: #00A1DE
+}
+
+//
+.color-primary {
+    color: var(--primary-color) !important;
+}
