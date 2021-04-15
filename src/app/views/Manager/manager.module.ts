@@ -11,6 +11,7 @@ import { BarComponent } from './components/bar/bar.component';
 import { TableDireccionComiteComponent } from './components/table-direccion-comite/table-direccion-comite.component';
 import { TableEmpresaComponent } from './components/table-empresa/table-empresa.component';
 import { TableUsuariosComponent } from './components/table-usuarios/table-usuarios.component';
+import { EjemploComponent } from './components/ejemplo/ejemplo.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TableUsuariosComponent } from './components/table-usuarios/table-usuari
     BarComponent,
     TableDireccionComiteComponent,
     TableEmpresaComponent,
-    TableUsuariosComponent
+    TableUsuariosComponent,
+    EjemploComponent
   ],
   imports: [
     CommonModule,
