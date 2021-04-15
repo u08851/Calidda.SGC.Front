@@ -1,0 +1,41 @@
+<div class="p-fluid p-formgrid p-grid form-input-sm p-mb-3">
+  <div class="p-field p-col-12 p-md-6">
+    <label>Nombre</label>
+    <input type="text" pInputText />
+  </div>
+  <div class="p-field p-col-12 p-md-6">
+    <label>País</label>
+    <p-dropdown
+      [options]="countries"
+      [(ngModel)]="selectedCountry"
+      optionLabel="name"
+      [filter]="true"
+      filterBy="name"
+      [showClear]="true"
+      placeholder="Select a Country"
+    >
+      <ng-template pTemplate="selectedItem">
+        <div class="country-item country-item-value" *ngIf="selectedCountry">
+          <img
+            src="assets/images/flag/PE.svg"
+            [class]="'flag flag-' + selectedCountry.code.toLowerCase()" alt="flag PE"
+          />
+          <div>{{ selectedCountry.name }}</div>
+        </div>
+      </ng-template>
+      <ng-template let-country pTemplate="item">
+        <div class="country-item">
+          <img
+            src="assets/images/flag/PE.svg"
+            [class]="'flag flag-' + country.code.toLowerCase()" alt="flag PE"
+          />
+          <div>{{ country.name }}</div>
+        </div>
+      </ng-template>
+    </p-dropdown>
+  </div>
+</div>
+
+<div class="p-d-flex p-jc-center w-100 p-mb-3">
+  <button pButton type="button" label="Crear"></button>
+</div>

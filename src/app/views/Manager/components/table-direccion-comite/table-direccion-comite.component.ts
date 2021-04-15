@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { CreateDireccionComiteComponent } from '../../dialog/create-direccion-comite/create-direccion-comite.component';
+import { CrearDireccionComponent } from '../../dialog/crear-direccion/crear-direccion.component';
 
 @Component({
   selector: 'app-table-direccion-comite',
@@ -9,7 +9,6 @@ import { CreateDireccionComiteComponent } from '../../dialog/create-direccion-co
 })
 export class TableDireccionComiteComponent implements OnInit {
   checked: boolean = true;
-  ref: DynamicDialogRef;
 
   products: any[] = [
     {
@@ -22,9 +21,9 @@ export class TableDireccionComiteComponent implements OnInit {
 
   cols: any[];
 
-  constructor(
-    public dialogService: DialogService
-  ) {}
+  ref: DynamicDialogRef;
+
+  constructor(public dialogService: DialogService) {}
 
   ngOnInit(): void {
     this.cols = [
@@ -34,15 +33,16 @@ export class TableDireccionComiteComponent implements OnInit {
 
 
   showCreateDireccion() {
-    this.ref = this.dialogService.open(CreateDireccionComiteComponent, {
-      header: 'Creación de nuena Dirección de Comité',
+    this.ref = this.dialogService.open(CrearDireccionComponent, {
+      header: 'Creación de nueva Dirección de Comité',
       width: '40%',
       contentStyle: { "max-height": "500px", "overflow": "auto" },
       baseZIndex: 10000
     });
   }
+
   showEditDireccion() {
-    this.ref = this.dialogService.open(CreateDireccionComiteComponent, {
+    this.ref = this.dialogService.open(CrearDireccionComponent, {
       header: 'Editar Dirección de Comité',
       width: '40%',
       contentStyle: { "max-height": "500px", "overflow": "auto" },

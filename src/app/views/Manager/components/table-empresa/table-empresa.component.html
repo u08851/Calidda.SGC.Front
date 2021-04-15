@@ -5,6 +5,7 @@
     <p-button
       label="Crear Empresa"
       icon="pi pi-plus-circle"
+      (click)="showCreateEmpresa()"
     ></p-button>
   </div>
   <p class="tab-content-p">Filtrar por</p>
@@ -77,8 +78,9 @@
               pButton
               pRipple
               type="button"
-              icon="pi pi-pencil"
+              icon="icon-edit"
               class="p-button-rounded p-button-info p-button-text icon-table-size"
+              (click)="showEditEmpresa()"
             ></button>
           </div>
         </td>
