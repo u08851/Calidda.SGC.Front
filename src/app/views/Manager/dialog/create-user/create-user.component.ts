@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-create-user',
@@ -9,9 +10,15 @@ export class CreateUserComponent implements OnInit {
 
   values:string;
   checked:boolean;
-  constructor() { }
-
+  displayModal:boolean;
+  
+  constructor(private confirmationService: ConfirmationService) {}
+  
   ngOnInit(): void {
   }
 
+  
+    showModalDialog() {
+      this.displayModal = true;
+    } 
 }

@@ -7,8 +7,7 @@
 
         <div class="p-d-flex p-ai-center">
             <!-- variables:  --red --green --info  -->
-            <i class="pi pi-circle-on icon-mood icon-color-active p-mr-2"
-                [style.color]="'var(--green)'">
+            <i class="pi pi-circle-on icon-mood icon-color-active p-mr-2" [style.color]="'var(--green)'">
             </i>
             <label class="p-mr-2">Activo</label>
             <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
@@ -29,7 +28,7 @@
             <label class="color-primary">Datos Personales</label>
         </div>
     </div>
-    
+
     <div class="p-field p-col-12 p-md-12">
         <label>Nombres y apellidos</label>
         <div class="p-inputgroup">
@@ -37,7 +36,7 @@
                 <p-avatar image="assets/images/img-perfil-test.jpg" styleClass="p-mr-2" shape="circle">
                 </p-avatar>
             </span>
-            <input class="p-bl-0 bl-0" type="text" pInputText placeholder="Username">         
+            <input class="p-bl-0 bl-0" type="text" pInputText placeholder="Username">
         </div>
         <!-- <input type="text" pInputText> -->
     </div>
@@ -59,5 +58,20 @@
 </div>
 
 <div class="p-d-flex p-jc-center w-100 p-mb-3">
-    <button pButton type="button" label="Crear" ></button>
+    <button (click)="showModalDialog();" pButton type="button" label="Crear"></button>
 </div>
+
+<!-- Dialog Crear content -->
+<p-dialog [(visible)]="displayModal" [modal]="true" [style]="{ width: '400px' }" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false" [closable]="false" styleClass="style-dialog-confirmation">
+    <div class="dialog-content">
+        <i class="material-icons"> check_circle_outline </i>
+        <h3>Confirmación</h3>
+        <p class="p-m-0">
+            El comité <strong>“Comité Cálidda”</strong> ha sido creado correctamente
+        </p>
+    </div>
+    <ng-template pTemplate="footer">
+        <p-button (click)="displayModal = false" label="Ir a mis comités"></p-button>
+    </ng-template>
+</p-dialog>

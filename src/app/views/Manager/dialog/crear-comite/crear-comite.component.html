@@ -16,12 +16,8 @@
             <div class="p-col-12 p-md-6 p-lg-4">
               <div class="p-field">
                 <label>Empresa del comité</label>
-                <p-dropdown
-                  [options]="empresa"
-                  optionLabel="name"
-                  [showClear]="true"
-                  styleClass="style-dropdown"
-                ></p-dropdown>
+                <p-dropdown [options]="empresa" optionLabel="name" [showClear]="true" styleClass="style-dropdown">
+                </p-dropdown>
               </div>
             </div>
 
@@ -29,12 +25,8 @@
             <div class="p-col-12 p-md-6 p-lg-4">
               <div class="p-field">
                 <label>País</label>
-                <p-dropdown
-                  [options]="pais"
-                  optionLabel="name2"
-                  [showClear]="true"
-                  styleClass="style-dropdown"
-                ></p-dropdown>
+                <p-dropdown [options]="pais" optionLabel="name2" [showClear]="true" styleClass="style-dropdown">
+                </p-dropdown>
               </div>
             </div>
 
@@ -108,15 +100,8 @@
 </div>
 
 <!-- Dialog Crear content -->
-<p-dialog
-  [(visible)]="displayModal"
-  [modal]="true"
-  [style]="{ width: '400px' }"
-  [baseZIndex]="10000"
-  [draggable]="false"
-  [resizable]="false"
-  [closable]="false"
->
+<p-dialog [(visible)]="displayModal" [modal]="true" [style]="{ width: '400px' }" [baseZIndex]="10000"
+  [draggable]="false" [resizable]="false" [closable]="false" styleClass="style-dialog-confirmation">
   <div class="dialog-content">
     <i class="material-icons"> check_circle_outline </i>
     <h3>Confirmación</h3>
@@ -125,9 +110,6 @@
     </p>
   </div>
   <ng-template pTemplate="footer">
-    <p-button
-      (click)="displayModal = false"
-      label="Ir a mis comités"
-    ></p-button>
+    <p-button (click)="displayModal = false" label="Ir a mis comités"></p-button>
   </ng-template>
 </p-dialog>

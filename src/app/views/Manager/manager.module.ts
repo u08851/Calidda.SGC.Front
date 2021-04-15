@@ -17,6 +17,7 @@ import { TableEmpresaComponent } from './components/table-empresa/table-empresa.
 import { TableUsuariosComponent } from './components/table-usuarios/table-usuarios.component';
 import { EjemploComponent } from './components/ejemplo/ejemplo.component';
 import { DialogService } from 'primeng/dynamicdialog';
+import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,6 @@ import { DialogService } from 'primeng/dynamicdialog';
     RouterModule.forChild(ManagerRoutes),
   ],
   entryComponents: [ ],
-  providers: [DialogService]
+  providers: [DialogService, ConfirmationService ]
 })
 export class ManagerModule { }

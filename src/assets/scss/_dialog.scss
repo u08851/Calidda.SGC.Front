@@ -24,3 +24,27 @@
 .p-button {
     min-width: 105px;
 }
+
+
+.style-dialog-confirmation {
+    .dialog-content {
+        text-align: center;
+      
+        i {
+          color: #87d741;
+          font-size: 72px;
+        }
+        h3 {
+          color: #00a1de;
+          font-size: 22px;
+          padding: 20px 0;
+        }
+        p {
+          color: #2e4259;
+        }
+      
+      }
+      .p-dialog-footer {
+        text-align: center;
+      }
+}
