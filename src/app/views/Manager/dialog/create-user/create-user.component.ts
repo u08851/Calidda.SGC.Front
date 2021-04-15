@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class CreateUserComponent implements OnInit {
 
   values:string;
+  checked:boolean;
   constructor() { }
 
   ngOnInit(): void {

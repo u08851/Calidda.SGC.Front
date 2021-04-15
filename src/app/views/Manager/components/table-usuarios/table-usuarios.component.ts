@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { CreateUserComponent } from '../../dialog/create-user/create-user.component';
 
 @Component({
   selector: 'app-table-usuarios',
@@ -25,10 +27,12 @@ export class TableUsuariosComponent implements OnInit {
 
   cols: any[];
   items: any[];
-
   checked: boolean;
-
-  constructor() {}
+  ref: DynamicDialogRef;
+  
+  constructor(
+    public dialogService: DialogService
+  ) { }
 
   ngOnInit(): void {
     this.cols = [
@@ -49,5 +53,24 @@ export class TableUsuariosComponent implements OnInit {
         icon: 'pi pi-trash',
       },
     ];
+  }
+
+  showCreateUser() {
+    this.ref = this.dialogService.open(CreateUserComponent, {
+      header: 'Creación de nuevo Usuario',
+      width: '33%',
+      contentStyle: { "max-height": "500px", "overflow": "auto" },
+      baseZIndex: 10000
+    });
+  }
+
+  
+  showEditeUser() {
+    this.ref = this.dialogService.open(CreateUserComponent, {
+      header: 'Editar Usuario',
+      width: '33%',
+      contentStyle: { "max-height": "500px", "overflow": "auto" },
+      baseZIndex: 10000
+    });
   }
 }
