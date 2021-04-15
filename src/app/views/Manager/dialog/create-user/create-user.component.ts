@@ -11,10 +11,18 @@ export class CreateUserComponent implements OnInit {
   values:string;
   checked:boolean;
   displayModal:boolean;
+  selectedCountry:string;
+  countries:any[];
   
   constructor(private confirmationService: ConfirmationService) {}
   
   ngOnInit(): void {
+
+    this.countries = [
+      {name: 'PERÚ', code: 'PE'},
+    ];
+
+
   }
 
   
