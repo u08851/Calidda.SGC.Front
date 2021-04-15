@@ -8,6 +8,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ComitesComponent } from './pages/comites/comites.component';
 import { CrearComiteComponent } from './dialog/crear-comite/crear-comite.component';
 import { BarComponent } from './components/bar/bar.component';
+import { TableDireccionComiteComponent } from './components/table-direccion-comite/table-direccion-comite.component';
+import { TableEmpresaComponent } from './components/table-empresa/table-empresa.component';
+import { TableUsuariosComponent } from './components/table-usuarios/table-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,10 @@ import { BarComponent } from './components/bar/bar.component';
     DashboardComponent,
     ComitesComponent,
     CrearComiteComponent,
-    BarComponent
+    BarComponent,
+    TableDireccionComiteComponent,
+    TableEmpresaComponent,
+    TableUsuariosComponent
   ],
   imports: [
     CommonModule,

@@ -34,12 +34,17 @@ $color-white: var(--surface-a);
     text-transform: uppercase;
     opacity: 1;
     font-weight: 400;
-    // margin-left: 15px;
-    padding: 0 1.5rem;
+    padding: 0 0.5rem;
   }
 
-  [alt="user_icon"] {
-    width: 20px;
+  ::ng-deep .custom-avatar.p-avatar {
+    margin: 0 9px;
+
+    img {
+      border: 2px solid #fff;
+      border-radius: 50%;
+      cursor: pointer;
+    }
   }
 
   &-options {
@@ -47,6 +52,7 @@ $color-white: var(--surface-a);
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    align-items: center;
   }
 }
 
@@ -81,4 +87,8 @@ $color-white: var(--surface-a);
   color: $color-white;
 }
 
-// --surface-a
+::ng-deep.icon-header-size {
+  .pi {
+    font-size: 20px !important;
+  }
+}

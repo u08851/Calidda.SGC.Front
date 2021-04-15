@@ -78,11 +78,11 @@ $primary: var(--primary-color);
     &-label {
       display: flex;
       justify-content: space-between;
+      font-weight: 500;
     }
   
     &-p {
       color: var(--primary-color);
-      padding: 17px 0;
     }
   }
 
@@ -180,4 +180,20 @@ $primary: var(--primary-color);
   @extend .p-tab-2;
 }
 
-// styleClass="p-tab-1"
+
+.title {
+  font-size: 16px;
+  color: $color-darkblue;
+  font-weight: 500;
+
+  p:nth-of-type(2) {
+    color: var(--primary-color);
+    font-size: 13px;
+    opacity: 0.8;
+    margin-top: 22px;
+  }
+}
+
+.tab-pd {
+  padding: 0 18px 12px;
+}

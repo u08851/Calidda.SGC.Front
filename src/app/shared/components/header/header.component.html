@@ -23,16 +23,15 @@
     <!-- notification - user - signout -->
     <div class="toolbar-options">
         <button pButton pRipple type="button" icon="pi pi-bell"
-            class="p-button-rounded wh-color p-button-text"></button>
+            class="p-button-rounded wh-color icon-header-size p-button-text"></button>
 
-        <button pButton pRipple type="button" label=" " class="p-button-rounded p-button-text"
-            (click)="menu.toggle($event)">
-            <img src="assets/icons/perfil.svg" alt="user_icon" />
-        </button>
-        <p-menu #menu [popup]="true" [model]="items"></p-menu>
+        <div class="p-d-flex p-ai-center">
+            <p-avatar image="assets/images/img11.jpg" styleClass="custom-avatar" shape="circle" (click)="menu.toggle($event)"></p-avatar>
+            <p-menu #menu [popup]="true" [model]="items"></p-menu>
+        </div>
 
         <button pButton pRipple type="button" icon="pi pi-sign-out" routerLink="/login"  
-            class="p-button-rounded wh-color p-button-text"></button>
+            class="p-button-rounded wh-color icon-header-size p-button-text"></button>
 
     </div>
 </div>

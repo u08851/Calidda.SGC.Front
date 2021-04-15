@@ -70,6 +70,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { RippleModule } from 'primeng/ripple';
 import { TreeTableModule } from 'primeng/treetable';
 import { ChartModule } from 'primeng/chart';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
 
 @NgModule({
   declarations: [],
@@ -144,6 +146,8 @@ import { ChartModule } from 'primeng/chart';
     RippleModule,
     TreeTableModule,
     ChartModule,
+    AvatarModule,
+    AvatarGroupModule
   ],
   exports: [
     CommonModule,
@@ -216,6 +220,8 @@ import { ChartModule } from 'primeng/chart';
     RippleModule,
     TreeTableModule,
     ChartModule,
+    AvatarModule,
+    AvatarGroupModule
   ],
   providers: [],
 })

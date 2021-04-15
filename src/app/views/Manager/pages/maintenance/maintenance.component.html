@@ -5,17 +5,91 @@
     <p-tabView styleClass="p-tab-style-1">
       <!-- Tab Usuarios -->
       <p-tabPanel header="Usuarios">
+        <div class="tab-pd">
+            <div class="tab-content-label">
+              <label> Usuarios </label>
+  
+              <div>
+                <p-button
+                label="Cese Masivo"
+                icon="pi pi-thumbs-down"
+                class="p-mr-2"
+              ></p-button>
+
+              <p-button
+                label="Crear usuario"
+                icon="pi pi-plus-circle"
+              ></p-button>
+              </div>
+            </div>
+            <p class="tab-content-p">Filtrar por</p>
+            <!-- form -->
+            <form>
+              <div class="p-grid p-style-input-fill p-mt-3">
+                <!-- Nombre de Usuarios -->
+                <div class="p-col-12 p-md-6 p-lg-6">
+                  <span class="p-float-label">
+                    <input
+                      type="text"
+                      id="inputtext"
+                      pInputText
+                      styleClass="style-input-1"
+                    />
+                    <label for="inputtext">Nombre de Usuarios</label>
+                  </span>
+                </div>
+
+                <!-- EMpresa -->
+                <div class="p-col-12 p-md-6 p-lg-3">
+                    <span class="p-float-label">
+                      <input
+                        type="text"
+                        id="inputtext"
+                        pInputText
+                        styleClass="style-input-1"
+                      />
+                      <label for="inputtext">Empresa</label>
+                    </span>
+                  </div>
+
+                  <!-- Correo electronico -->
+                  <div class="p-col-12 p-md-6 p-lg-3">
+                    <span class="p-float-label">
+                      <input
+                        type="text"
+                        id="inputtext"
+                        pInputText
+                        styleClass="style-input-1"
+                      />
+                      <label for="inputtext">Correo electronico</label>
+                    </span>
+                  </div>
+              </div>
+            </form>
+        </div>
+
         <div class="tab-content">
+            <!-- tableeee -->
+            <app-table-usuarios></app-table-usuarios>
+          </div>
+      </p-tabPanel>
+
+      <!-- Tab-2 Dirección del comité -->
+      <p-tabPanel header="Dirección del comité">
+        <div class="tab-pd">
           <div class="tab-content-label">
-            <label>
-              <strong>Usuarios</strong>
-            </label>
-            <label>N° de usuarios: <strong>152</strong></label>
+            <label> Dirección del comité </label>
+
+            <p-button
+              label="Crear dirección del comité"
+              icon="pi pi-plus-circle"
+            ></p-button>
           </div>
           <p class="tab-content-p">Filtrar por</p>
           <!-- form -->
           <form>
-            <div class="p-grid p-style-input-fill">
+            <div class="p-grid p-style-input-fill p-mt-3">
+              <!-- Nombre de dirección del comité -->
               <div class="p-col-12 p-md-6 p-lg-6">
                 <span class="p-float-label">
                   <input
@@ -24,206 +98,53 @@
                     pInputText
                     styleClass="style-input-1"
                   />
-                  <label for="inputtext">Nombre del usuario</label>
-                </span>
-              </div>
-              <div class="p-col-12 p-md-6 p-lg-3">
-                <span class="p-float-label">
-                  <input
-                    styleClass="style-input-1"
-                    id="float-input"
-                    type="text"
-                    pInputText
-                  />
-                  <label for="float-input">Empresa</label>
-                </span>
-              </div>
-              <div class="p-col-12 p-md-6 p-lg-3">
-                <span class="p-float-label">
-                  <input
-                    styleClass="p-style-input-fill"
-                    id="float-input"
-                    type="text"
-                    pInputText
-                  />
-                  <label for="float-input">Correo electrónico</label>
+                  <label for="inputtext">Nombre de dirección del comité</label>
                 </span>
               </div>
             </div>
           </form>
+        </div>
 
-          <!-- table -->
-          <table class="p-table-mood">
-            <thead>
-              <tr>
-                <th scope="col">Nombres y apellidos</th>
-                <th scope="col">Correo electrónico</th>
-                <th scope="col">DNI</th>
-                <th scope="col">Celular</th>
-                <th scope="col">Rol</th>
-                <th scope="col">Empresa</th>
-                <th scope="col">Estado</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <div class="margin-mood"></div>
-              <tr>
-                <td data-table-header="Nombres y apellidos">
-                  <!-- pi-circle-on -->
-                  Rocío Del Valle
-                </td>
-                <td data-table-header="Correo electrónico">luis@calidda.com</td>
-                <td data-table-header="DNI">78964231</td>
-                <td data-table-header="Celular">987654321</td>
-                <td data-table-header="Rol">Voto</td>
-                <td data-table-header="Empresa">Calidda</td>
-                <td data-table-header="Estado">
-                  <i class="pi pi-circle-on icon-mood icon-color-active"></i>
-                  Activo
-                </td>
-                <td data-table-header=" ">
-                  <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
-                </td>
-                <td data-table-header=" ">
-                  <button
-                    pButton
-                    pRipple
-                    type="button"
-                    icon="pi pi-ellipsis-v"
-                    class="p-button-rounded p-button-info p-button-text icon-size"
-                    styleClass="p-icon-size"
-                    (click)="menu.toggle($event)"
-                  ></button>
-                  <p-menu #menu [popup]="true" [model]="items"></p-menu>
-                </td>
-              </tr>
-
-              <div class="margin-mood"></div>
-              <tr>
-                <td data-table-header="Nombres y apellidos">
-                  Javier Prado García
-                </td>
-                <td data-table-header="Correo electrónico">luis@calidda.com</td>
-                <td data-table-header="DNI">4585423</td>
-                <td data-table-header="Celular">987654321</td>
-                <td data-table-header="Rol">Voz y Voto</td>
-                <td data-table-header="Empresa">Calidda</td>
-                <td data-table-header="Estado">
-                  <i class="pi pi-circle-on icon-mood icon-color-inactive"></i>
-                  Cesado
-                </td>
-                <td data-table-header=" ">
-                  <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
-                </td>
-                <td data-table-header=" ">
-                  <button
-                    pButton
-                    pRipple
-                    type="button"
-                    icon="pi pi-ellipsis-v"
-                    class="p-button-rounded p-button-info p-button-text icon-size"
-                    styleClass="icon-size"
-                    (click)="menu.toggle($event)"
-                  ></button>
-                  <p-menu #menu [popup]="true" [model]="items"></p-menu>
-                </td>
-              </tr>
-
-              <div class="margin-mood"></div>
-              <tr>
-                <td data-table-header="Nombres y apellidos">Rocío Del Valle</td>
-                <td data-table-header="Correo electrónico">luis@calidda.com</td>
-                <td data-table-header="DNI">78964231</td>
-                <td data-table-header="Celular">987654321</td>
-                <td data-table-header="Rol">Voto</td>
-                <td data-table-header="Empresa">Calidda</td>
-                <td data-table-header="Estado">
-                  <i class="pi pi-circle-on icon-mood icon-color-active"></i>
-                  Activo
-                </td>
-                <td data-table-header=" ">
-                  <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
-                </td>
-                <td data-table-header=" ">
-                  <button
-                    pButton
-                    pRipple
-                    type="button"
-                    icon="pi pi-ellipsis-v"
-                    class="p-button-rounded p-button-info p-button-text icon-size"
-                    styleClass="icon-size"
-                    (click)="menu.toggle($event)"
-                  ></button>
-                  <p-menu #menu [popup]="true" [model]="items"></p-menu>
-                </td>
-              </tr>
-
-              <div class="margin-mood"></div>
-            </tbody>
-          </table>
+        <div class="tab-content">
+          <!-- tableeee -->
+          <app-table-direccion-comite></app-table-direccion-comite>
         </div>
       </p-tabPanel>
 
-      <!-- Tab Roles -->
-      <p-tabPanel header="Roles">
-        <div class="tab-content">
+      <!-- Tab-3 Empresa -->
+      <p-tabPanel header="Empresa">
+        <div class="tab-pd">
           <div class="tab-content-label">
-            <label>
-              <strong>Roles</strong>
-            </label>
+            <label> Empresa </label>
+
+            <p-button
+              label="Crear Empresa"
+              icon="pi pi-plus-circle"
+            ></p-button>
           </div>
+          <p class="tab-content-p">Filtrar por</p>
+          <!-- form -->
+          <form>
+            <div class="p-grid p-style-input-fill p-mt-3">
+              <!-- Nombre de Empresa -->
+              <div class="p-col-12 p-md-6 p-lg-6">
+                <span class="p-float-label">
+                  <input
+                    type="text"
+                    id="inputtext"
+                    pInputText
+                    styleClass="style-input-1"
+                  />
+                  <label for="inputtext">Nombre de empresa</label>
+                </span>
+              </div>
+            </div>
+          </form>
+        </div>
 
-          <!-- table -->
-          <table class="p-table-mood">
-            <thead>
-              <tr>
-                <th scope="col" style="width: 18rem;"></th>
-                <th scope="col" style="text-align: center;">Rol</th>
-                <th scope="col" style="text-align: right;"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <div class="margin-mood"></div>
-              <tr>
-                <td style="width: 18rem;"></td>
-                <td data-table-header="Nombres y apellidos"  style="text-align: center;">Administrador</td>
-                <td data-table-header=" " style="text-align: right;">
-                  <button
-                    pButton
-                    pRipple
-                    type="button"
-                    icon="pi pi-ellipsis-v"
-                    class="p-button-rounded p-button-info p-button-text icon-size"
-                    styleClass="icon-size"
-                    (click)="menu.toggle($event)"
-                  ></button>
-                  <p-menu #menu [popup]="true" [model]="items"></p-menu>
-                </td>
-              </tr>
-
-              <div class="margin-mood"></div>
-              <tr>
-                <td style="width: 18rem;"></td>
-                <td data-table-header="Nombres y apellidos"  style="text-align: center;">Invitado</td>
-                <td data-table-header=" " style="text-align: right;">
-                  <button
-                    pButton
-                    pRipple
-                    type="button"
-                    icon="pi pi-ellipsis-v"
-                    class="p-button-rounded p-button-info p-button-text icon-size"
-                    styleClass="icon-size"
-                    (click)="menu.toggle($event)"
-                  ></button>
-                  <p-menu #menu [popup]="true" [model]="items"></p-menu>
-                </td>
-              </tr>
-
-              <div class="margin-mood"></div>
-            </tbody>
-          </table>
+        <div class="tab-content">
+          <!-- tableeee -->
+          <app-table-empresa></app-table-empresa>
         </div>
       </p-tabPanel>
     </p-tabView>

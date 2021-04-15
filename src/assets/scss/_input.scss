@@ -10,7 +10,7 @@
     box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
   appearance: none;
   border-radius: 0px;
-  // width: 100%;
+  width: 100%;
 
   &:enabled:hover {
     border-color: #babcbe;
@@ -80,7 +80,11 @@
   }
 
   .p-float-label input:focus ~ label,
-  .p-float-label .p-inputwrapper-focus ~ label {
+  .p-float-label input.p-filled ~ label,
+  .p-float-label textarea:focus ~ label,
+  .p-float-label textarea.p-filled ~ label,
+  .p-float-label .p-inputwrapper-focus ~ label,
+  .p-float-label .p-inputwrapper-filled ~ label {
     background: transparent;
   }
 
