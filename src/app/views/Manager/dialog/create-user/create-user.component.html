@@ -18,8 +18,25 @@
         <input type="text" pInputText>
     </div>
     <div class="p-field p-col-12 p-md-6">
-        <label>Empresa</label>
-        <input type="text" pInputText>
+        <label>Pais</label>
+
+        <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" [showClear]="false"
+            placeholder="" dropdownIcon="">
+            <ng-template pTemplate="selectedItem">
+                <div class="p-d-flex p-ai-center">
+                    <img style="width: 20px;" src="assets/images/flag/PE.svg" />
+                    <!-- <span class="p-ml-2" style="line-height: 0; margin-bottom: 5px;">{{selectedCountry.name}}</span> -->
+                    <span class="p-ml-2" style="line-height: 0; margin-bottom: 5px;">PERÚ</span>
+                </div>
+            </ng-template>
+            <ng-template let-country pTemplate="item">
+                <div class="p-d-flex p-ai-center">
+                    <img style="width: 20px;" src="assets/images/flag/PE.svg" />
+                    <span class="p-ml-2" style="line-height: 0; margin-bottom: 5px;">{{country.name}}</span>
+                </div>
+            </ng-template>
+        </p-dropdown>
+
     </div>
 
     <div class="p-field p-col-12 p-md-6">
