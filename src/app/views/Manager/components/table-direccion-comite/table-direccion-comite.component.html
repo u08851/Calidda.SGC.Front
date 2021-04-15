@@ -1,4 +1,35 @@
-<div class="br-05">
+<div class="tab-pd">
+  <div class="tab-content-label">
+    <label> Dirección del comité </label>
+
+    <!-- boton CREAR DIRECCION DEL COMITE -->
+    <p-button
+      label="Crear dirección del comité"
+      icon="pi pi-plus-circle"
+    ></p-button>
+  </div>
+  <p class="tab-content-p">Filtrar por</p>  
+  <!-- form -->
+  <form>
+    <div class="p-grid p-style-input-fill p-mt-3">
+      <!-- Nombre de dirección del comité -->
+      <div class="p-col-12 p-md-6 p-lg-6">
+        <span class="p-float-label">
+          <input
+            type="text"
+            id="inputtext"
+            pInputText
+            styleClass="style-input-1"
+          />
+          <label for="inputtext">Nombre de dirección del comité</label>
+        </span>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Table -->
+<div class="p-card p-px-3 br-05">
   <p-table
     [columns]="cols"
     [value]="products"

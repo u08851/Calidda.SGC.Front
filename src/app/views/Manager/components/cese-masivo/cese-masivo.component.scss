@@ -1,0 +1,23 @@
+::ng-deep.StyleChips.p-chips .p-chips-multiple-container {
+    background: #ffffff;
+}
+
+
+.stylebtn {
+    background: #cde8f2;
+    color: #00a1de;
+}
+
+.stylebtn:enabled:hover {
+    background: aliceblue;
+    color: #00a1de;
+    border-color: transparent;
+}
+.stylebtn:enabled:active {
+    background: aliceblue;
+    color: #ffffff;
+}
+.p-button:enabled:focus {
+    background: aliceblue;
+    color: #00a1de;
+}
