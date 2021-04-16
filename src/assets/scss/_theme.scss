@@ -3522,9 +3522,12 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   margin-right: 0.5rem;
 }
 .p-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover {
-  color: rgba(0, 0, 0, 0.6);
-  border-color: transparent;
-  background: rgba(0, 0, 0, 0.04);
+  // color: rgba(0, 0, 0, 0.6);
+  color: #ffff;
+  // border-color: transparent;
+  // background: rgba(0, 0, 0, 0.04);
+  background: #00a1de;
+  opacity: 0.8;
 }
 .p-dialog .p-dialog-header .p-dialog-header-icon:focus {
   outline: 0 none;

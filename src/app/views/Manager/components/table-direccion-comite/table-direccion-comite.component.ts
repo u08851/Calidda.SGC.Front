@@ -35,7 +35,7 @@ export class TableDireccionComiteComponent implements OnInit {
   showCreateDireccion() {
     this.ref = this.dialogService.open(CrearDireccionComponent, {
       header: 'Creación de nueva Dirección de Comité',
-      width: '33%',
+      width: '40%',
       contentStyle: { "max-height": "500px", "overflow": "auto" },
       baseZIndex: 10000
     });
@@ -44,7 +44,7 @@ export class TableDireccionComiteComponent implements OnInit {
   showEditDireccion() {
     this.ref = this.dialogService.open(CrearDireccionComponent, {
       header: 'Editar Dirección de Comité',
-      width: '33%',
+      width: '40%',
       contentStyle: { "max-height": "500px", "overflow": "auto" },
       baseZIndex: 10000
     });

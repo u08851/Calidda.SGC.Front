@@ -1,19 +1,39 @@
 .p-dialog {
     .p-dialog-content {
         max-height: 90% !important;
+        font-size: 13px;
 
         .p-inputgroup-addon {
             padding: 0.2rem;
             background: #F6F7F9;
         }
+        .p-field > label {
+          color: var(--dark-blue);
+          opacity: 0.8;
+        }
     }
     .p-dialog-header {
-        align-items: start;
+      
+      padding: 1rem;
+      align-items: start;
+
+        .p-dialog-header-icon {
+          border: 2px solid var(--primary-color);
+          color: var(--primary-color);
+          width: 1.6rem;
+          height: 1.6rem;
+          font-size: 13px;
+          &:hover {
+            border: 2px solid var(--primary-color);
+          // color: var(--primary-color);
+          }
+        }
+
     }
     .p-dialog-header .p-dialog-title {
         width: 100%;
         text-align: center;
-        padding: 1.5rem 0;
+        padding: 0.5rem 0;
         color: var(--info);
     }
 }
