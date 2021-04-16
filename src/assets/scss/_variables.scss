@@ -17,6 +17,7 @@
   --background: transparent linear-gradient(180deg, #f3f7fd 0%, #cde8f2 100%) 0%
     0% no-repeat padding-box;
   width: 100%;
+  height: 100%;
 
   @media screen and (min-width: 1025px) {
     height: -webkit-fill-available;
@@ -24,8 +25,7 @@
 }
 
 body {
-  background: transparent linear-gradient(180deg, #f3f7fd 0%, #cde8f2 100%) 0%
-    0% no-repeat padding-box;
+  background: #f3f7fd;
 }
 
 

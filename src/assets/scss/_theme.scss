@@ -24,6 +24,12 @@
   --surface-900: #212121;
   --content-padding:1rem;
   --inline-spacing:0.5rem;
+
+
+  background: transparent linear-gradient(180deg, #f3f7fd 0%, #cde8f2 100%) 0%
+    0% no-repeat padding-box;
+    width: 100%;
+    height: 100%;
 }
 
 /* roboto-regular - latin-ext_latin */
