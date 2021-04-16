@@ -22,10 +22,7 @@ export class CreateUserComponent implements OnInit {
       {name: 'PERÚ', code: 'PE'},
     ];
 
-
   }
-
-  
     showModalDialog() {
       this.displayModal = true;
     } 

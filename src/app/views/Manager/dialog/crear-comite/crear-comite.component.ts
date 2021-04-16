@@ -16,18 +16,16 @@ interface Demo2 {
   styleUrls: ['./crear-comite.component.scss'],
 })
 export class CrearComiteComponent implements OnInit {
-  // Tabs
+  
   activeIndex: number = 0;
 
   // dropdown demo
   empresa: Demo[];
   selectedDemo1: Demo;
 
-  pais: Demo2[];
-  selectedPais: Demo2;
-
-// dialog crear
-displayModal: boolean;
+  selectedCountry:string;
+  countries:any[];
+  displayModal: boolean;
 
   constructor() {}
 
@@ -38,10 +36,11 @@ displayModal: boolean;
       { name: 'Calidda 3', code: 'LDN' },
     ];
 
-    this.pais = [
-      { name2: 'Peru', code2: 'PE' },
-      { name2: 'Brazil', code2: 'BR' },
+  
+    this.countries = [
+      {name: 'PERÚ', code: 'PE'},
     ];
+
   }
 
   // dialog crear

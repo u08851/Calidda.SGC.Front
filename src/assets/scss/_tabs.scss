@@ -94,19 +94,22 @@ $primary: var(--primary-color);
     background: transparent;
     border: none;
     border-width: 0 0 1px 0;
+    justify-content: flex-end;
   }
   .p-tabview-nav li {
     margin-right: 0;
   }
   .p-tabview-nav li .p-tabview-nav-link {
-    border: solid;
+    // border: solid;
     border-width: 1px;
-    border-color: $primary;
+    // border-color: $primary;
     background: transparent;
     color: $primary;
     padding: 0.75rem 1rem;
     font-weight: 500;
-    border-radius: 20px;
+    height: 100%;
+    // border-radius: 20px;
+    border-radius: 5px 5px 0 0;
     transition: box-shadow 0.15s;
     margin: 0;
   }
@@ -134,9 +137,11 @@ $primary: var(--primary-color);
     color: $primary;
   }
   .p-tabview-nav li.p-highlight .p-tabview-nav-link {
-    background: $primary;
-    color: #fff;
-    border-radius: 5px 5px 0 0;
+    // background: $primary;
+    background: #ffffff;
+    // color: #fff;
+    // border-radius: 5px 5px 0 0;
+
   }
   .p-tabview-left-icon {
     margin-right: 0.5rem;
@@ -177,6 +182,8 @@ $primary: var(--primary-color);
 }
 
 .p-tab-style-2 {
+  position: relative;
+  top: -25px;
   @extend .p-tab-2;
 }
 

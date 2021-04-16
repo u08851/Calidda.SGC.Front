@@ -55,3 +55,15 @@
   vertical-align: middle;
   margin-top: -1px;
 }
+
+.tab-title::before {
+   content: '';
+   display: inline-block;
+   width: 10px;
+   height: 10px;
+   -moz-border-radius: 7.5px;
+   -webkit-border-radius: 7.5px;
+   border-radius: 7.5px;
+   background-color: var(--primary-color);
+   margin-right: 2px;
+}

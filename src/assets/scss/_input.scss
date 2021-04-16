@@ -1,6 +1,6 @@
 // custom input
 .style-input-1 .p-inputtext {
-  font-size: 14px;
+  font-size: 13px;
   color: rgba(0, 0, 0, 0.87);
   background: transparent;
   padding: 0.6rem 0rem 0.5rem;
@@ -70,16 +70,22 @@
 
   .p-datepicker-trigger.p-button {
     background-color: transparent;
-    border-bottom: 1px solid #ced3d9;
+    border-bottom: 3px solid var(--primary-color);
+  }
+  .p-datepicker-trigger.p-button span {
+    color: var(--primary-color);
   }
 }
 
 .p-style-input-fill {
   .p-float-label > label {
+    font-size: 13px;
     left: 0rem !important;
     transition-duration: 0.2s;
   }
-
+  .p-input-icon-right > i:last-of-type {
+    color: var(--primary-color);
+  }
   .p-float-label input:focus ~ label,
   .p-float-label input.p-filled ~ label,
   .p-float-label textarea:focus ~ label,

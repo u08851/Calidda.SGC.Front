@@ -10,14 +10,14 @@
       <ng-template pTemplate="selectedItem">
         <div class="country-item country-item-value">
           <img src="assets/images/flag/PE.svg" alt="flag PE" />
-          PERU
+          <span style="line-height: 0; margin-bottom: 5px;">PERU</span> 
           <!-- <div>{{ selectedCountry.name }}</div> -->
         </div>
       </ng-template>
       <ng-template let-country pTemplate="item">
         <div class="country-item">
           <img src="assets/images/flag/PE.svg" alt="flag PE" />
-          <div>{{ country.name }}</div>
+          <span style="line-height: 0; margin-bottom: 5px;">{{ country.name }}</span>
         </div>
       </ng-template>
     </p-dropdown>
