@@ -931,7 +931,7 @@ p-inputnumber.ng-dirty.ng-invalid > .p-inputnumber > .p-inputtext {
 }
 
 .p-inputswitch {
-  width: 2.5rem;
+  width: 2rem;
   height: 0.8rem;
 }
 .p-inputswitch .p-inputswitch-slider {
@@ -943,13 +943,13 @@ p-inputnumber.ng-dirty.ng-invalid > .p-inputnumber > .p-inputtext {
   background: #ffffff;
   width: 1.2rem;
   height: 1.2rem;
-  left: -1px;
+  left: -2px;
   margin-top: -0.6rem;
   border-radius: 50%;
   transition-duration: 0.2s;
 }
 .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider:before {
-  transform: translateX(1.5rem);
+  transform: translateX(1rem);
 }
 .p-inputswitch.p-focus .p-inputswitch-slider {
   outline: 0 none;
