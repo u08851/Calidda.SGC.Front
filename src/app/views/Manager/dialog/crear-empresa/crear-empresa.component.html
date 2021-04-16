@@ -5,30 +5,18 @@
   </div>
   <div class="p-field p-col-12 p-md-6">
     <label>País</label>
-    <p-dropdown
-      [options]="countries"
-      [(ngModel)]="selectedCountry"
-      optionLabel="name"
-      [filter]="true"
-      filterBy="name"
-      [showClear]="true"
-      placeholder="Select a Country"
-    >
+    <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" [filter]="true" filterBy="name"
+      [showClear]="true">
       <ng-template pTemplate="selectedItem">
-        <div class="country-item country-item-value" *ngIf="selectedCountry">
-          <img
-            src="assets/images/flag/PE.svg"
-            [class]="'flag flag-' + selectedCountry.code.toLowerCase()" alt="flag PE"
-          />
-          <div>{{ selectedCountry.name }}</div>
+        <div class="country-item country-item-value">
+          <img src="assets/images/flag/PE.svg" alt="flag PE" />
+          PERU
+          <!-- <div>{{ selectedCountry.name }}</div> -->
         </div>
       </ng-template>
       <ng-template let-country pTemplate="item">
         <div class="country-item">
-          <img
-            src="assets/images/flag/PE.svg"
-            [class]="'flag flag-' + country.code.toLowerCase()" alt="flag PE"
-          />
+          <img src="assets/images/flag/PE.svg" alt="flag PE" />
           <div>{{ country.name }}</div>
         </div>
       </ng-template>
@@ -36,6 +24,6 @@
   </div>
 </div>
 
-<div class="p-d-flex p-jc-center w-100 p-mb-3">
+<div class="p-d-flex p-jc-center w-100">
   <button pButton type="button" label="Crear"></button>
 </div>
