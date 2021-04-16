@@ -8,7 +8,28 @@
         </div>
     </div>
     <div class="p-d-flex p-jc-center btn-group w-100">
-        <button pButton type="button" label="Cesar"></button>
+        <button (click)="showModalDialog()" pButton type="button" label="Cesar"></button>
         <button pButton type="button" label="Cancelar" class="stylebtn"></button>
     </div>
 </div>
+
+<!-- Dialog -->
+<p-dialog [(visible)]="displayModal" [modal]="true" [style]="{ width: '400px' }" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false" [closable]="false" styleClass="style-dialog-confirmation">
+    <div class="dialog-content">
+        <i class="material-icons red op-8">error_outline</i>
+        <h3>Confirmación</h3>
+        <p class="p-mb-4">
+            ¿Estás seguro de dar de baja a estos usuarios?
+        </p>
+        <div class="p-fluid p-formgrid p-grid p-mb-">
+            <div class="p-col-12">
+                <p-chips [(ngModel)]="values" separator="," styleClass="StyleChips"></p-chips>
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <button (click)="displayModal = false" pButton type="button" label="Sí"></button>
+        <button (click)="displayModal = false" pButton type="button" label="No" class="stylebtn"></button>
+    </ng-template>
+</p-dialog>
