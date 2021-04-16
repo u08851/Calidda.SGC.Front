@@ -9,19 +9,23 @@
 }
 //colors
 .red {   
-    color: #E31919
+    color: #E31919 !important;
 }
 .green {
-    color: #00A34B
+    color: #00A34B !important;
 }
 .orange {
-    color: #FAB200
+    color: #FAB200 !important;
 }
 .info {
-    color: #00A1DE
+    color: #00A1DE !important;
 }
 
 //
 .color-primary {
     color: var(--primary-color) !important;
+}
+
+.op-8 {
+    opacity: 0.8;
 }

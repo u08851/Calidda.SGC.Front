@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CeseMasivoComponent implements OnInit {
   values:string;
+  displayModal:boolean;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  showModalDialog() {
+    this.displayModal = true;
+  } 
 }
