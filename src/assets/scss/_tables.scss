@@ -1,20 +1,30 @@
-.br-05 {
-  border-radius: 0.5rem !important;
-}
 
+// style base table
 %style-table-base {
-
+  
   table {
       border-collapse: separate !important;
       border-spacing: 0px 10px;
       font-size: 13px;
   }
+  
   .p-datatable-thead > tr > th {
     color: #00A1DE;
   }
-  .p-datatable-tbody > tr > td {
-    padding: 0.5rem 1rem;
+
+  .p-datatable-tbody > tr {
+    background: #F6F7F9;
   }
+
+  .p-datatable-tbody > tr > td { 
+    padding: 0.5rem 1rem;
+    border: 1px solid #F6F7F9;
+
+    .pi-ellipsis-v::before {
+      font-size: 20px;
+    }
+  }
+  
   .p-datatable-tbody > tr td:first-child {
     border-bottom-left-radius: 0.5rem;
     border-top-left-radius: 0.5rem;
@@ -27,7 +37,39 @@
 
 }
 
-.stripeed {
+//paginator
+%style-paginator {
+
+  .p-paginator {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    border: 0;
+  }
+  .p-paginator .p-paginator-first {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    display: none;
+  }
+  .p-paginator .p-paginator-last {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    display: none;
+  }
+  .p-paginator .p-paginator-first,
+  .p-paginator .p-paginator-prev,
+  .p-paginator .p-paginator-next,
+  .p-paginator .p-paginator-last {
+    min-width: 1rem;
+  }
+  .p-paginator .p-paginator-pages .p-paginator-page {
+    display: none;
+  }
+}
+
+//table striped
+%style-stripeed {
   tbody > tr:nth-child(odd) {
     background: #f4f4f4;
   }
@@ -36,99 +78,46 @@
       color: #3c3c3c;
     }
   }
-  .p-paginator-bottom {
-    .p-paginator-current {
-      flex: 1;
-      justify-content: flex-end;
-      padding: 0;
-    }
-  }
-}
-
-.style-table-users {
-  @extend %style-table-base;
 }
 
 .style-table-comite {
   @extend %style-table-base;
 
+  .p-datatable-tbody > tr > td {
+    padding: 0.1rem 1rem;
+  }
   .p-datatable-tbody > tr > td:first-child {
     border-left: 0.5em solid;
-  }
-  
-}
+  } 
 
-.style-panel.p-menu {
-  top: 46px !important;
-  left: -139px !important;
+  @extend %style-paginator; 
 }
 
 // table Mantenimiento - direccion del comite
 .style-table-direccion {
-  table {
-    border-collapse: separate !important;
-    border-spacing: 0px 10px;
-    font-size: 13px;
-  }
-  thead {
-    border: none;
-  }
-  .p-datatable-thead > tr > th {
-    color: var(--primary-color);
-    text-align: center;
-    border: none;
-  }
-  .p-datatable-tbody > tr {
-    background: #f6f7f9;
-    padding: 0.5rem 0;
-  }
+
+  @extend %style-table-base;
+
   .p-datatable-tbody > tr > td {
     padding: 0.5rem 1rem;
     border: none;
     text-align: center;
   }
-  .p-datatable-tbody > tr td:first-child {
-    border-bottom-left-radius: 0.5rem;
-    border-top-left-radius: 0.5rem;
-  }
   .p-datatable-tbody > tr td:nth-child(2) {
     text-align: center;
   }
   .p-datatable-tbody > tr td:last-child {
-    border-bottom-right-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
     text-align: right;
   }
+
+  @extend %style-paginator;
+  
 }
 
-// Paginator
-.style-table-direccion {
-    .p-paginator {
-        align-items: center;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-    }
-    
-    .p-paginator .p-paginator-first {
-      border-top-left-radius: 4px;
-      border-bottom-left-radius: 4px;
-      display: none;
-    }
-    .p-paginator .p-paginator-last {
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-      display: none;
-    }
-    .p-paginator .p-paginator-first,
-    .p-paginator .p-paginator-prev,
-    .p-paginator .p-paginator-next,
-    .p-paginator .p-paginator-last {
-      min-width: 1rem;
-    }
-    .p-paginator .p-paginator-pages .p-paginator-page {
-      display: none;
-    }
+//panel de opcioones
+.style-panel.p-menu {
+  top: 46px !important;
+  left: -139px !important;
 }
 
 ::ng-deep.icon-table-size {
@@ -136,6 +125,7 @@
     font-size: 20px !important;
   }
 }
+
 
 
 
