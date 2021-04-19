@@ -9,6 +9,7 @@ import { CrearDireccionComponent } from '../../dialog/crear-direccion/crear-dire
 })
 export class TableDireccionComiteComponent implements OnInit {
   checked: boolean = true;
+  displayModal:boolean;
 
   products: any[] = [
     {
@@ -49,4 +50,9 @@ export class TableDireccionComiteComponent implements OnInit {
       baseZIndex: 10000
     });
   }
+
+    
+    showConfirmation() {
+      this.displayModal = true;
+    }
 }

@@ -9,6 +9,8 @@ import { CrearEmpresaComponent } from '../../dialog/crear-empresa/crear-empresa.
 })
 export class TableEmpresaComponent implements OnInit {
 
+  displayModal:boolean;
+
   products2: any[] = [
     {
       empresa: 'empresa',
@@ -37,7 +39,7 @@ export class TableEmpresaComponent implements OnInit {
     this.ref = this.dialogService.open(CrearEmpresaComponent, {
       header: 'Creación nueva Empresa',
       width: '38%',
-      contentStyle: { "max-height": "500px", "overflow": "auto" },
+      contentStyle: { "max-height": "500px", "overflow": "initial" },
       baseZIndex: 10000
     });
   }
@@ -46,9 +48,14 @@ export class TableEmpresaComponent implements OnInit {
     this.ref = this.dialogService.open(CrearEmpresaComponent, {
       header: 'Editar Empresa',
       width: '38%',
-      contentStyle: { "max-height": "500px", "overflow": "auto" },
+      contentStyle: { "max-height": "500px", "overflow": "initial" },
       baseZIndex: 10000
     });
   }
+
+     // dialog crear
+     showModalDialog() {
+      this.displayModal = true;
+    }
 
 }

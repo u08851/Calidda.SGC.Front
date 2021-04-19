@@ -5,7 +5,7 @@
   </div>
   <div class="p-field p-col-12 p-md-6">
     <label>País</label>
-    <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" [filter]="true" filterBy="name"
+    <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" [filter]="false" filterBy="name"
       [showClear]="true">
       <ng-template pTemplate="selectedItem">
         <div class="country-item country-item-value">

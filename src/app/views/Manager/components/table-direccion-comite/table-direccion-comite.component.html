@@ -66,6 +66,7 @@
               pRipple
               type="button"
               icon="pi pi-trash"
+              (click)="showConfirmation()"
               class="p-button-rounded p-button-info p-button-text icon-table-size"
             ></button>
             <button
@@ -82,3 +83,19 @@
     </ng-template>
   </p-table>
 </div>
+
+<!-- Dialog confirmacón -->
+<p-dialog [(visible)]="displayModal" [modal]="true" [style]="{ width: '400px' }" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false" [closable]="false" styleClass="style-dialog-confirmation">
+    <div class="dialog-content">
+        <i class="material-icons red">error_outline</i>
+        <h3>Confirmación</h3>
+        <p class="p-m-0">
+            ¿Esta seguro de realizar esta operación?
+        </p>
+    </div>
+    <ng-template pTemplate="footer">
+      <button class="stylebtn" (click)="displayModal = false" pButton  label="Si"></button>
+        <button  (click)="displayModal = false" pButton  label="No"></button>
+    </ng-template>
+</p-dialog>
