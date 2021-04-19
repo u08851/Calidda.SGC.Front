@@ -1,8 +1,11 @@
 .box {
+  width: 100%;
   background: #ffffff;
   border-radius: 5px;
   padding: 20px;
   color: #2e4259;
+  border: none;
+  cursor: pointer;
 
   &-detalle {
     display: flex;
@@ -18,40 +21,20 @@
       font-size: 45px;
     }
 
-    .yellow {
-      color: #fab200;
-    }
-    .blue {
-      color: #00a1de;
-    }
-    .dark {
-      color: #435468;
-    }
-    .gray {
-      color: #6e6e6e;
-    }
+
   }
 
   &-info {
-    p:first-of-type {
+    p {
       font-size: 13px;
       font-weight: 500;
+      text-align: left;
     }
+  }
 
-    p:nth-of-type(2) {
-      color: #69da00;
-      display: flex;
-      align-items: center;
-      font-size: 11px;
-
-      i {
-        font-size: 12px;
-        font-weight: 600;
-      }
-    }
-    .red {
-      color: #ff4141 !important;
-    }
+  &:focus {
+    border: aliceblue;
+    outline: aliceblue;
   }
 }
 
@@ -63,7 +46,7 @@
 
   p {
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 500;
   }
 
 

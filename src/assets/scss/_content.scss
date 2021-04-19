@@ -59,3 +59,24 @@
     }
   }
 }
+
+
+// INDICADORES DASHBOARD
+.indicadores {
+  font-weight: 600;
+  padding: 0.5rem 0 1.5rem 1.2rem;
+
+  &-p {
+      color: var(--primary-color);
+  }
+
+  &-span {
+      color: #435468;
+      display: inline-flex;
+      align-items: center;
+
+      i {
+          font-size: 40px;
+      }
+  }
+}

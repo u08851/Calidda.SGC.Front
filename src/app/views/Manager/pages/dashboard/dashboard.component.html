@@ -4,12 +4,12 @@
     <p>Filtrar por:</p>
   </div>
 
-  <div class="card">    
+  <div class="card">
     <p-tabView styleClass="p-tab-style-1">
       <!-- TAB-1 TODOS -->
       <p-tabPanel header="Todos">
         <!-- Form -->
-        <div class="p-grid p-style-input-fill p-mt-4 p-mb-4">
+        <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
           <!-- Buscar nombre -->
           <div class="p-col-12 p-md-6 p-lg-3">
             <span class="p-float-label p-input-icon-right">
@@ -54,17 +54,13 @@
         <div class="p-grid">
           <!-- Comités activos -->
           <div class="p-col-12 p-md-6 p-lg-3">
-            <div class="box">
+            <div class="box" (click)="goToTableActive()">
               <div class="box-detalle">
-                <p>16</p>
+                <p>3</p>
                 <i class="material-icons yellow"> bar_chart </i>
               </div>
               <div class="box-info">
                 <p>Comités activos</p>
-                <p>
-                  <i class="material-icons"> arrow_upward </i>
-                  13.8%
-                </p>
               </div>
             </div>
           </div>
@@ -77,11 +73,7 @@
                 <i class="material-icons blue"> bar_chart </i>
               </div>
               <div class="box-info">
-                <p>Comités activos</p>
-                <p class="red">
-                  <i class="material-icons"> arrow_downward </i>
-                  0.8%
-                </p>
+                <p>Comités en configuración</p>
               </div>
             </div>
           </div>
@@ -94,11 +86,7 @@
                 <i class="material-icons dark"> bar_chart </i>
               </div>
               <div class="box-info">
-                <p>Comités activos</p>
-                <p>
-                  <i class="material-icons"> arrow_upward </i>
-                  10.8%
-                </p>
+                <p>Comités de baja</p>
               </div>
             </div>
           </div>
@@ -111,11 +99,7 @@
                 <i class="material-icons gray"> bar_chart </i>
               </div>
               <div class="box-info">
-                <p>Comités activos</p>
-                <p>
-                  <i class="material-icons"> arrow_upward </i>
-                  13.8%
-                </p>
+                <p>Total de comités</p>
               </div>
             </div>
           </div>
@@ -125,27 +109,211 @@
         <div class="p-grid graphic-box">
           <p>Reporte (Últimos 6 meses)</p>
           <div class="p-col-12">
-            <app-bar></app-bar>
+            <app-bar-todos></app-bar-todos>
           </div>
         </div>
       </p-tabPanel>
 
       <!-- TAB-2 PAÍS -->
       <p-tabPanel header="País">
+        <!-- Form -->
+        <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
+          <!-- Buscar país -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <p-dropdown
+              [options]="countries"
+              [(ngModel)]="selectedCountry"
+              optionLabel="name"
+              [filter]="true"
+              filterBy="name"
+              [showClear]="true"
+              placeholder="Buscar país"
+            >
+              <ng-template pTemplate="selectedItem">
+                <div
+                  class="country-item country-item-value"
+                  *ngIf="selectedCountry"
+                >
+                  <img
+                    src="assets/images/flag/PE.svg"
+                    [class]="'flag flag-' + selectedCountry.code.toLowerCase()"
+                  />
+                  <div>{{ selectedCountry.name }}</div>
+                </div>
+              </ng-template>
+              <ng-template let-country pTemplate="item">
+                <div class="country-item">
+                  <img
+                    src="assets/images/flag/PE.svg"
+                    [class]="'flag flag-' + country.code.toLowerCase()"
+                  />
+                  <div>{{ country.name }}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </div>
+
+          <!-- calendario DESDE -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <span class="p-float-label">
+              <p-calendar
+                [(ngModel)]="date3"
+                [locale]="es"
+                [showIcon]="true"
+                inputId="icon"
+              ></p-calendar>
+              <label for="inputtext">Desde</label>
+            </span>
+          </div>
+
+          <!-- calendario HASTA -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <span class="p-float-label">
+              <p-calendar
+                [(ngModel)]="date4"
+                [locale]="es"
+                [showIcon]="true"
+                inputId="icon"
+              ></p-calendar>
+              <label for="inputtext">Hasta</label>
+            </span>
+          </div>
+
+          <div class="p-col-12 p-md-6 p-lg-3 p-text-right">
+            <p-button label="Exportar" icon="pi pi-cloud-download"></p-button>
+          </div>
+        </div>
+
+        <!-- INDICADORES -->
         <div class="p-grid">
           <!-- Comités activos -->
           <div class="p-col-12 p-md-6 p-lg-3">
-            <div class="box">
+            <div class="box" (click)="goToTableActivePais()">
               <div class="box-detalle">
-                <p>16</p>
+                <p>53</p>
                 <i class="material-icons yellow"> bar_chart </i>
               </div>
               <div class="box-info">
                 <p>Comités activos</p>
-                <p>
-                  <i class="material-icons"> arrow_upward </i>
-                  13.8%
-                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comités en configuración -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box">
+              <div class="box-detalle">
+                <p>30</p>
+                <i class="material-icons blue"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Comités en configuración</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comités de baja -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box">
+              <div class="box-detalle">
+                <p>21</p>
+                <i class="material-icons dark"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Comités de baja</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Total de comités -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box">
+              <div class="box-detalle">
+                <p>4</p>
+                <i class="material-icons gray"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Total de comités</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grafico -->
+        <div class="p-grid graphic-box">
+          <p>Reporte (Últimos 6 meses)</p>
+          <div class="p-col-12">
+            <app-bar-pais></app-bar-pais>
+          </div>
+        </div>
+      </p-tabPanel>
+
+      <!-- TAB-3 EMPRESA -->
+      <p-tabPanel header="Empresa y Dirección">
+        <!-- Form -->
+        <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
+          <!-- Buscar empresa -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <p-dropdown
+              [options]="cities"
+              [(ngModel)]="selectedCity1"
+              placeholder="Buscar empresa"
+              optionLabel="name"
+              [showClear]="true"
+            ></p-dropdown>
+          </div>
+
+          <!-- Buscar direccion del comite -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <span class="p-float-label p-input-icon-right">
+              <i class="pi pi-search"></i>
+              <input type="text" pInputText />
+              <label for="inputtext">Buscar Dirección del Comité</label>
+            </span>
+          </div>
+
+          <!-- calendario DESDE -->
+          <div class="p-col-12 p-md-6 p-lg-2">
+            <span class="p-float-label">
+              <p-calendar
+                [(ngModel)]="date3"
+                [locale]="es"
+                [showIcon]="true"
+                inputId="icon"
+              ></p-calendar>
+              <label for="inputtext">Desde</label>
+            </span>
+          </div>
+
+          <!-- calendario HASTA -->
+          <div class="p-col-12 p-md-6 p-lg-2">
+            <span class="p-float-label">
+              <p-calendar
+                [(ngModel)]="date4"
+                [locale]="es"
+                [showIcon]="true"
+                inputId="icon"
+              ></p-calendar>
+              <label for="inputtext">Hasta</label>
+            </span>
+          </div>
+
+          <div class="p-col-12 p-md-6 p-lg-2 p-text-right">
+            <p-button label="Exportar" icon="pi pi-cloud-download"></p-button>
+          </div>
+        </div>
+
+        <!-- INDICADORES -->
+        <div class="p-grid">
+          <!-- Comités activos -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box" (click)="goToTableActiveEmpresa()">
+              <div class="box-detalle">
+                <p>3</p>
+                <i class="material-icons yellow"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Comités activos</p>
               </div>
             </div>
           </div>
@@ -158,11 +326,7 @@
                 <i class="material-icons blue"> bar_chart </i>
               </div>
               <div class="box-info">
-                <p>Comités activos</p>
-                <p class="red">
-                  <i class="material-icons"> arrow_downward </i>
-                  0.8%
-                </p>
+                <p>Comités en configuración</p>
               </div>
             </div>
           </div>
@@ -175,11 +339,7 @@
                 <i class="material-icons dark"> bar_chart </i>
               </div>
               <div class="box-info">
-                <p>Comités activos</p>
-                <p>
-                  <i class="material-icons"> arrow_upward </i>
-                  10.8%
-                </p>
+                <p>Comités de baja</p>
               </div>
             </div>
           </div>
@@ -192,11 +352,7 @@
                 <i class="material-icons gray"> bar_chart </i>
               </div>
               <div class="box-info">
-                <p>Comités activos</p>
-                <p>
-                  <i class="material-icons"> arrow_upward </i>
-                  13.8%
-                </p>
+                <p>Total de comités</p>
               </div>
             </div>
           </div>
@@ -206,22 +362,245 @@
         <div class="p-grid graphic-box">
           <p>Reporte (Últimos 6 meses)</p>
           <div class="p-col-12">
-           
+            <app-bar-empresa-direccion></app-bar-empresa-direccion>
           </div>
         </div>
       </p-tabPanel>
 
-      <!-- TAB-3 EMPRESA -->
-      <p-tabPanel header="Empresa"></p-tabPanel>
-
       <!-- TAB-4 RESPONSABLE -->
-      <p-tabPanel header="Responsable"></p-tabPanel>
+      <p-tabPanel header="Secretaria de Comité">
+        <!-- Form -->
+        <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
+          <!-- Buscar secretaria de comité -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <span class="p-float-label p-input-icon-right">
+              <i class="pi pi-search"></i>
+              <input type="text" pInputText />
+              <label for="inputtext">Buscar secretaria de comité</label>
+            </span>
+          </div>
 
-      <!-- TAB-5 DIRECCIÓN DEL COMITÉ -->
-      <p-tabPanel header="Dirección del Comité"></p-tabPanel>
+          <!-- calendario DESDE -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <span class="p-float-label">
+              <p-calendar
+                [(ngModel)]="date3"
+                [locale]="es"
+                [showIcon]="true"
+                inputId="icon"
+              ></p-calendar>
+              <label for="inputtext">Desde</label>
+            </span>
+          </div>
+
+          <!-- calendario HASTA -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <span class="p-float-label">
+              <p-calendar
+                [(ngModel)]="date4"
+                [locale]="es"
+                [showIcon]="true"
+                inputId="icon"
+              ></p-calendar>
+              <label for="inputtext">Hasta</label>
+            </span>
+          </div>
+
+          <div class="p-col-12 p-md-6 p-lg-3 p-text-right">
+            <p-button label="Exportar" icon="pi pi-cloud-download"></p-button>
+          </div>
+        </div>
+
+        <!-- INDICADORES -->
+        <div class="p-grid">
+          <!-- Comités activos -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box" (click)="goToTableActiveSecretaria()">
+              <div class="box-detalle">
+                <p>45</p>
+                <i class="material-icons yellow"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Comités activos</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comités en configuración -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box">
+              <div class="box-detalle">
+                <p>21</p>
+                <i class="material-icons blue"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Comités en configuración</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comités de baja -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box">
+              <div class="box-detalle">
+                <p>15</p>
+                <i class="material-icons dark"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Comités de baja</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Total de comités -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box">
+              <div class="box-detalle">
+                <p>7</p>
+                <i class="material-icons gray"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Total de comités</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grafico -->
+        <div class="p-grid graphic-box">
+          <p>Reporte (Últimos 6 meses)</p>
+          <div class="p-col-12">
+            <app-bar-secretaria></app-bar-secretaria>
+          </div>
+        </div>
+      </p-tabPanel>
 
       <!-- TAB-5 FRECUENCIA -->
-      <p-tabPanel header="Frecuencia"></p-tabPanel>
+      <p-tabPanel header="Frecuencia">
+        <!-- Form -->
+        <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
+          <!-- Buscar secretaria de comité -->
+
+          <!-- calendario DESDE -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <span class="p-float-label">
+              <p-calendar
+                [(ngModel)]="date3"
+                [locale]="es"
+                [showIcon]="true"
+                inputId="icon"
+              ></p-calendar>
+              <label for="inputtext">Desde</label>
+            </span>
+          </div>
+
+          <!-- calendario HASTA -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <span class="p-float-label">
+              <p-calendar
+                [(ngModel)]="date4"
+                [locale]="es"
+                [showIcon]="true"
+                inputId="icon"
+              ></p-calendar>
+              <label for="inputtext">Hasta</label>
+            </span>
+          </div>
+
+          <div class="p-col-12 p-md-6 p-lg-6 p-text-right">
+            <p-button label="Exportar" icon="pi pi-cloud-download"></p-button>
+          </div>
+        </div>
+
+        <!-- INDICADORES -->
+        <div class="p-grid">
+          <!-- Semanal -->
+          <div class="p-col-12 p-md-6 p-lg-2">
+            <div class="box" (click)="goToTableActiveFrecuencia()">
+              <div class="box-detalle">
+                <p>45</p>
+                <i class="material-icons purple"> data_saver_off </i>
+              </div>
+              <div class="box-info">
+                <p>Semanal</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quincenal -->
+          <div class="p-col-12 p-md-6 p-lg-2">
+            <div class="box">
+              <div class="box-detalle">
+                <p>21</p>
+                <i class="material-icons darkblue"> data_saver_off </i>
+              </div>
+              <div class="box-info">
+                <p>Quincenal</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trimestral -->
+          <div class="p-col-12 p-md-6 p-lg-2">
+            <div class="box">
+              <div class="box-detalle">
+                <p>15</p>
+                <i class="material-icons green"> data_saver_off </i>
+              </div>
+              <div class="box-info">
+                <p>Trimestral</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mensual -->
+          <div class="p-col-12 p-md-6 p-lg-2">
+            <div class="box">
+              <div class="box-detalle">
+                <p>7</p>
+                <i class="material-icons lightblue"> data_saver_off </i>
+              </div>
+              <div class="box-info">
+                <p>Mensual</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Semanal -->
+          <div class="p-col-12 p-md-6 p-lg-2">
+            <div class="box">
+              <div class="box-detalle">
+                <p>7</p>
+                <i class="material-icons limon"> data_saver_off </i>
+              </div>
+              <div class="box-info">
+                <p>Semanal</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Anual -->
+          <div class="p-col-12 p-md-6 p-lg-2">
+            <div class="box">
+              <div class="box-detalle">
+                <p>7</p>
+                <i class="material-icons oranges"> data_saver_off </i>
+              </div>
+              <div class="box-info">
+                <p>Anual</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grafico -->
+        <div class="p-grid graphic-box">
+          <p>Reporte (Últimos 6 meses)</p>
+          <div class="p-col-12">
+            <app-donut></app-donut>
+          </div>
+        </div>
+      </p-tabPanel>
     </p-tabView>
   </div>
 </div>
