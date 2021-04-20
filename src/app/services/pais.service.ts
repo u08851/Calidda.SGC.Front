@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { PaisModel } from '../models/pais.model';
 
 
@@ -9,7 +10,7 @@ import { PaisModel } from '../models/pais.model';
 export class PaisServices {
 
   private BaseController = "Pais"
-  private BASE_URL = "http://localhost:52511/api/" + this.BaseController;
+  private BASE_URL = environment.apiComiteUrl + this.BaseController;
 
   constructor(
     private _http:HttpClient,

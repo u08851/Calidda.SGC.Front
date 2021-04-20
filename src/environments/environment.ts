@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiComiteUrl: "http://sigcomt-dc.novaltek.pe:8033/back/api/"
 };
 
 /*

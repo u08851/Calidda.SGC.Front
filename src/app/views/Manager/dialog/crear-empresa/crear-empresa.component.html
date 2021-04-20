@@ -1,31 +1,37 @@
-<div class="p-fluid p-formgrid p-grid form-input-sm p-mb-3">
-    <div class="p-field p-col-12 p-md-6">
-        <label>Nombre</label>
-        <input type="text" pInputText formControlName="nombre" [ngClass]="{ 'is-invalid-input': submitted && g.nombre.errors }" oninput="this.value=this.value.trim()==''?'':this.value" />
-        <span *ngIf="submitted && g.nombre.invalid">El nombre presenta datos inválidos</span>
-        <span *ngIf="submitted && g.nombre.errors.minlength">El nombre debe contener al menos un carácter</span>
+<form [formGroup]="empresaForm" autocomplete="offs">
+    <div class="p-fluid p-formgrid p-grid form-input-sm p-mb-3">
+        <div class="p-field p-col-12 p-md-6">
+            <label for="nombre" [ngClass]="{ 'is-invalid-text': submitted && g.nombre.errors }">Nombre</label>
+            <input type="text" pInputText formControlName="nombre" [ngClass]="{ 'is-invalid-input': submitted && g.nombre.errors }" oninput="this.value=this.value.trim()==''?'':this.value" />
+            <div *ngIf="submitted && g.nombre.errors != null">
+                <span class="p-error" *ngIf="g.nombre.errors.minlength">El nombre debe contener al menos un carácter.<br></span>
+                <span class="p-error" *ngIf="g.nombre.errors.required">El nombre es requerido.<br></span>
+            </div>
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+            <label for="paisId" [ngClass]="{ 'is-invalid-text': submitted && g.paisId.errors }">País</label>
+            <p-dropdown [options]="countries" formControlName="paisId" [(ngModel)]="selectedCountry" [ngClass]="{ 'p-error': submitted && g.paisId.errors }" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true">
+                <ng-template pTemplate="selectedItem">
+                    <div class="country-item country-item-value">
+                        <img src="assets/images/flag/.svg" alt="flag PE" />
+                        <span style="line-height: 0; margin-bottom: 5px;">PERU</span>
+                        <!-- <div>{{ selectedCountry.name }}</div> -->
+                    </div>
+                </ng-template>
+                <ng-template let-country pTemplate="item">
+                    <div class="country-item">
+                        <img src="assets/images/flag/PE.svg" alt="flag PE" />
+                        <span style="line-height: 0; margin-bottom: 5px;">{{ country.name }}</span>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+            <div *ngIf="submitted && g.paisId.errors != null">
+                <span class="p-error" *ngIf="g.paisId.errors.required">El país es requerido.<br></span>
+            </div>
+        </div>
     </div>
-    <div class="p-field p-col-12 p-md-6">
-        <label>País</label>
-        <p-dropdown [options]="countries" formControlName="paisId" [(ngModel)]="selectedCountry" [ngClass]="{ 'is-invalid-input': submitted && g.paisId.errors }" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true">
-            <ng-template pTemplate="selectedItem">
-                <div class="country-item country-item-value">
-                    <img src="assets/images/flag/.svg" alt="flag PE" />
-                    <span style="line-height: 0; margin-bottom: 5px;">PERU</span>
-                    <!-- <div>{{ selectedCountry.name }}</div> -->
-                </div>
-            </ng-template>
-            <ng-template let-country pTemplate="item">
-                <div class="country-item">
-                    <img src="assets/images/flag/PE.svg" alt="flag PE" />
-                    <span style="line-height: 0; margin-bottom: 5px;">{{ country.name }}</span>
-                </div>
-            </ng-template>
-        </p-dropdown>
-        <small class="p-error" *ngIf="g.paisId.invalid">El pais es requerido</small>
+    
+    <div class="p-d-flex p-jc-center w-100">
+        <button pButton type="button" (click)="send()" label="Crear"></button>
     </div>
-</div>
-
-<div class="p-d-flex p-jc-center w-100">
-    <button pButton type="button" label="Crear"></button>
-</div>
+</form>

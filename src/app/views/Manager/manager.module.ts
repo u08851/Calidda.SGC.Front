@@ -29,7 +29,7 @@ import { EmpresaDireccionTableComponent } from './components/indicadores-inicio-
 import { SecretariaTableComponent } from './components/indicadores-inicio-tables/secretaria-table/secretaria-table.component';
 import { FrecuenciaTableComponent } from './components/indicadores-inicio-tables/frecuencia-table/frecuencia-table.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { TableDocumentosComponent } from './components/table-documentos/table-documentos.component';
 @NgModule({
   declarations: [
     MaintenanceComponent,
@@ -53,7 +53,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PaisTableComponent,
     EmpresaDireccionTableComponent,
     SecretariaTableComponent,
-    FrecuenciaTableComponent
+    FrecuenciaTableComponent,
+    TableDocumentosComponent
   ],
   imports: [
     CommonModule,
