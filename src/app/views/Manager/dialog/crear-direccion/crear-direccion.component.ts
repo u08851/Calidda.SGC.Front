@@ -29,7 +29,7 @@ export class CrearDireccionComponent implements OnInit {
   crearFormulario()
   {
     this.direccionForm = this.fb.group({
-      nombre: ['', [Validators.required,  Validators.minLength(1)]],
+      nombre: ['', [Validators.required, Validators.minLength(1)]],
     });
   }
 
@@ -40,7 +40,6 @@ export class CrearDireccionComponent implements OnInit {
     this.submitted = true;
 
     if (this.direccionForm.valid) {
-
       if (!this.direccionForm.controls.nombre.valid) {
         alert("error");
         return false;
@@ -73,10 +72,10 @@ export class CrearDireccionComponent implements OnInit {
         )
       }
 
-
     } else {
       this.direccionForm.markAllAsTouched();
     }
+    
   }
 
 }
