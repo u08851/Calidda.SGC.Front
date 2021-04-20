@@ -7,10 +7,10 @@
   --info-color: #00a1de;
   --dark-blue: #2e4259;
 
-  --red:   #E31919;
-  --green:  #87D741;
-  --orange:#FAB200;
-  --info:  #00A1DE;
+  --red: #e31919;
+  --green: #87d741;
+  --orange: #fab200;
+  --info: #00a1de;
 
   --text-color: #7a7a7a !important;
   font-family: "Galano Grotesque", sans-serif;
@@ -25,21 +25,21 @@
 }
 
 body {
-  // background: #f3f7fd;
   background: transparent linear-gradient(180deg, #f3f7fd 0%, #cde8f2 100%) 0%
     0% no-repeat padding-box;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
-
-.red {   
-  color: #E31919
+.red {
+  color: #e31919;
 }
 .green {
-  color: #00A34B
+  color: #00a34b;
 }
 .orange {
-  color: #FAB200
+  color: #fab200;
 }
 .info {
-  color: #00A1DE
+  color: #00a1de;
 }

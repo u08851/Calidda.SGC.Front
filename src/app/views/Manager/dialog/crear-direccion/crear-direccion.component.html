@@ -1,11 +1,18 @@
-<div class="p-fluid p-formgrid p-grid form-input-sm p-mb-3 p-p-3">
-    <div class="p-field p-col-12">
-        <label>Nombre</label>
-        <input type="text" pInputText>
+<form *ngIf="direccionForm" [formGroup]="direccionForm" autocomplete="offs">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="p-fluid p-formgrid p-grid form-input-sm p-mb-3 p-p-3">
+        <div class="p-field p-col-12">
+            <label for="nombre">Nombre</label>
+            <input type="text" pInputText class="form-control" formControlName="nombre" [ngClass]="{ 'is-invalid-input': submitted && g.nombre.errors }" oninput="this.value=this.value.trim()==''?'':this.value" />
+            <span *ngIf="submitted && g.nombre.errors.required">El nombre es requerido</span>
+            <!---<span *ngIf="submitted && g.nombre.invalid">El nombre presenta datos inválidos</span>-->
+            <span *ngIf="submitted && g.nombre.errors.minlength">El nombre debe contener al menos un carácter</span>
+        </div>
     </div>
-</div>
 
 
-<div class="p-d-flex p-jc-center w-100">
-    <button pButton type="button" label="Crear"></button>
-</div>
+    <div class="p-d-flex p-jc-center w-100">
+        <button pButton type="button" (click)="send()" label="Crear"></button>
+    </div>
+
+</form>

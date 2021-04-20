@@ -1,13 +1,7 @@
 export class DireccionModel {
 
-  id: string;
+  direccionId: number;
   nombre: string;
   estado: number;
-
-
-  public constructor() {
-
-
-  }
 
 }

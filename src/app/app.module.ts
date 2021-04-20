@@ -3,11 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
-import {FormsModule} from '@angular/forms'
+
 
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { SidenavService } from './back/services/sidenav.service';
+import { HttpClientModule } from '@angular/common/http';
+import { DirectionServices } from './services/direccion.service';
+import { EmpresaServices } from './services/empresa.service';
+import { PaisServices } from './services/pais.service';
 @NgModule({
   declarations: [
     AppComponent
@@ -18,12 +22,12 @@ import { SidenavService } from './back/services/sidenav.service';
     BrowserAnimationsModule,
     RouterModule,
     SharedModule,
-    FormsModule
+    HttpClientModule
   ],
    exports: [
     RouterModule
   ],
-  providers: [SidenavService],
+  providers: [SidenavService,DirectionServices,EmpresaServices,PaisServices],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DireccionModel } from 'src/app/models/direccion.model';
+import { DirectionServices } from 'src/app/services/direccion.service';
 import { CrearDireccionComponent } from '../../dialog/crear-direccion/crear-direccion.component';
 
 @Component({
@@ -8,28 +10,26 @@ import { CrearDireccionComponent } from '../../dialog/crear-direccion/crear-dire
   styleUrls: ['./table-direccion-comite.component.scss'],
 })
 export class TableDireccionComiteComponent implements OnInit {
+
   checked: boolean = true;
-  displayModal:boolean;
-
-  products: any[] = [
-    {
-      direccionComite: 'direccionComite'
-    },
-    {
-      direccionComite: 'direccionComite'
-    },
-  ];
-
+  products: DireccionModel[];
+  term: string = "ALL0";
+  page: number = 0;
+  size: number = 5;
   cols: any[];
-
   ref: DynamicDialogRef;
+  displayModal: boolean;
 
-  constructor(public dialogService: DialogService) {}
+  constructor(
+    public dialogService: DialogService,
+    private directionServices: DirectionServices
+    ) {}
 
   ngOnInit(): void {
     this.cols = [
       { header: 'Dirección del comité', field: 'direccionComite' }
     ];
+    this.getListDirection();
   }
 
 
@@ -51,8 +51,17 @@ export class TableDireccionComiteComponent implements OnInit {
     });
   }
 
-    
-    showConfirmation() {
-      this.displayModal = true;
-    }
+
+  getListDirection(){
+    this.directionServices.getListDirection(this.term,this.page,this.size).subscribe(
+      (result: any) => {
+        this.products = result.data
+      }
+    )
+  }
+
+  showConfirmation() {
+    this.displayModal = true;
+  }
+
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { EmpresaModel } from 'src/app/models/empresa.model';
+import { EmpresaServices } from 'src/app/services/empresa.service';
 import { CrearEmpresaComponent } from '../../dialog/crear-empresa/crear-empresa.component';
 
 @Component({
@@ -9,30 +11,27 @@ import { CrearEmpresaComponent } from '../../dialog/crear-empresa/crear-empresa.
 })
 export class TableEmpresaComponent implements OnInit {
 
-  displayModal:boolean;
+  //products2: any[];
 
-  products2: any[] = [
-    {
-      empresa: 'empresa',
-      pais: 'pais'
-    },
-    {
-      empresa: 'empresa',
-      pais: 'pais'
-    },
-  ];
+  products2: EmpresaModel[];
 
   cols2: any[];
-
   ref: DynamicDialogRef;
 
-  constructor(public dialogService: DialogService) { }
+  term: string = "ALL0";
+  page: number = 0;
+  size: number = 5;
+  displayModal:boolean;
+
+  constructor(public dialogService: DialogService,
+    private empresaServices:EmpresaServices) { }
 
   ngOnInit(): void {
     this.cols2 = [
       { header: 'Empresa', field: 'empresa' },
       { header: 'País', field: 'pais' },
     ];
+    this.getListEmpresa();
   }
 
   showCreateEmpresa() {
@@ -53,9 +52,15 @@ export class TableEmpresaComponent implements OnInit {
     });
   }
 
-     // dialog crear
-     showModalDialog() {
-      this.displayModal = true;
-    }
+  getListEmpresa(){
+    this.empresaServices.getListEmpresa(this.term,this.page,this.size).subscribe(
+      (result: any) => {
+        this.products2 = result.data
+      }
+    )
+  }
 
+  showConfirmation() {
+    this.displayModal = true;
+  }
 }
