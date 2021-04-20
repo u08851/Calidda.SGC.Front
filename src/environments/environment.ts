@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiComiteUrl: "http://sigcomt-dc.novaltek.pe:8033/back/api/"
+  //apiComiteUrl: "http://sigcomt-dc.novaltek.pe:8033/back/api/"
+  apiComiteUrl: "http://localhost:52511/api/"
 };
 
 /*
