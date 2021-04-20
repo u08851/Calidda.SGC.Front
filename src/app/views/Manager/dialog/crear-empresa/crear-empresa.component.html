@@ -1,29 +1,31 @@
 <div class="p-fluid p-formgrid p-grid form-input-sm p-mb-3">
-  <div class="p-field p-col-12 p-md-6">
-    <label>Nombre</label>
-    <input type="text" pInputText />
-  </div>
-  <div class="p-field p-col-12 p-md-6">
-    <label>País</label>
-    <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" [filter]="true" filterBy="name"
-      [showClear]="true">
-      <ng-template pTemplate="selectedItem">
-        <div class="country-item country-item-value">
-          <img src="assets/images/flag/PE.svg" alt="flag PE" />
-          <span style="line-height: 0; margin-bottom: 5px;">PERU</span> 
-          <!-- <div>{{ selectedCountry.name }}</div> -->
-        </div>
-      </ng-template>
-      <ng-template let-country pTemplate="item">
-        <div class="country-item">
-          <img src="assets/images/flag/PE.svg" alt="flag PE" />
-          <span style="line-height: 0; margin-bottom: 5px;">{{ country.name }}</span>
-        </div>
-      </ng-template>
-    </p-dropdown>
-  </div>
+    <div class="p-field p-col-12 p-md-6">
+        <label>Nombre</label>
+        <input type="text" pInputText formControlName="nombre" [ngClass]="{ 'is-invalid-input': submitted && g.nombre.errors }" oninput="this.value=this.value.trim()==''?'':this.value" />
+        <span *ngIf="submitted && g.nombre.invalid">El nombre presenta datos inválidos</span>
+        <span *ngIf="submitted && g.nombre.errors.minlength">El nombre debe contener al menos un carácter</span>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+        <label>País</label>
+        <p-dropdown [options]="countries" formControlName="paisId" [(ngModel)]="selectedCountry" [ngClass]="{ 'is-invalid-input': submitted && g.paisId.errors }" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true">
+            <ng-template pTemplate="selectedItem">
+                <div class="country-item country-item-value">
+                    <img src="assets/images/flag/.svg" alt="flag PE" />
+                    <span style="line-height: 0; margin-bottom: 5px;">PERU</span>
+                    <!-- <div>{{ selectedCountry.name }}</div> -->
+                </div>
+            </ng-template>
+            <ng-template let-country pTemplate="item">
+                <div class="country-item">
+                    <img src="assets/images/flag/PE.svg" alt="flag PE" />
+                    <span style="line-height: 0; margin-bottom: 5px;">{{ country.name }}</span>
+                </div>
+            </ng-template>
+        </p-dropdown>
+        <span *ngIf="g.paisId.invalid">El pais es requerido</span>
+    </div>
 </div>
 
 <div class="p-d-flex p-jc-center w-100">
-  <button pButton type="button" label="Crear"></button>
+    <button pButton type="button" label="Crear"></button>
 </div>
