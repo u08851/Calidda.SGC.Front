@@ -36,6 +36,9 @@
         padding: 0.5rem 0;
         color: var(--info);
     }
+    .p-dialog-footer {
+      text-align: center;
+    }
 }
 .p-dialog-mask.p-component-overlay {
     background-color: rgb(0 0 0 / 83%);
@@ -63,8 +66,5 @@
           color: #2e4259;
         }
       
-      }
-      .p-dialog-footer {
-        text-align: center;
       }
 }

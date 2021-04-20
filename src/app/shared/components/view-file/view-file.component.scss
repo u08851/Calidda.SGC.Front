@@ -1,0 +1,16 @@
+.content-file{
+    background: #fff;
+    padding: 15px;
+ }
+ .file-view {
+    width: 100%;  
+    height: 70vh;
+}
+
+ @media screen and (min-width: 720px) {
+     .content-file{
+         width: 75vw;
+      }
+ }
+ 
+ 

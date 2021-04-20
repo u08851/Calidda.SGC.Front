@@ -3,15 +3,17 @@ import { CommonModule } from '@angular/common';
 import { PrimengModule } from '../primeng.module';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ViewFileComponent } from './view-file/view-file.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    ViewFileComponent
   ],
   imports: [CommonModule, PrimengModule],
   exports: [
-    HeaderComponent, SidebarComponent
+    HeaderComponent, SidebarComponent, ViewFileComponent
   ],
   entryComponents: []
 })
