@@ -28,6 +28,7 @@ import { PaisTableComponent } from './components/indicadores-inicio-tables/pais-
 import { EmpresaDireccionTableComponent } from './components/indicadores-inicio-tables/empresa-direccion-table/empresa-direccion-table.component';
 import { SecretariaTableComponent } from './components/indicadores-inicio-tables/secretaria-table/secretaria-table.component';
 import { FrecuenciaTableComponent } from './components/indicadores-inicio-tables/frecuencia-table/frecuencia-table.component';
+import { TableDocumentosComponent } from './components/table-documentos/table-documentos.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { FrecuenciaTableComponent } from './components/indicadores-inicio-tables
     PaisTableComponent,
     EmpresaDireccionTableComponent,
     SecretariaTableComponent,
-    FrecuenciaTableComponent
+    FrecuenciaTableComponent,
+    TableDocumentosComponent
   ],
   imports: [
     CommonModule,
