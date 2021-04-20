@@ -43,8 +43,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TableDireccionComiteComponent,
     TableEmpresaComponent,
     TableUsuariosComponent,
-    FormsModule,
-    ReactiveFormsModule,
     CrearDireccionComponent,
     CrearEmpresaComponent,
     DonutComponent,
@@ -60,6 +58,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(ManagerRoutes),
   ],
   entryComponents: [ ],
