@@ -1,11 +1,18 @@
-<div class="p-fluid p-formgrid p-grid form-input-sm p-mb-3 p-p-3">
-    <div class="p-field p-col-12">
-        <label>Nombre</label>
-        <input type="text" pInputText>
+<form [formGroup]="direccionForm" autocomplete="offs">
+    <div class="p-fluid p-formgrid p-grid form-input-sm p-mb-3 p-p-3">
+        <div class="p-field p-col-12">
+            <label for="nombre" [ngClass]="{ 'is-invalid-text': submitted && g.nombre.errors }">Nombre</label>
+            <input type="text" pInputText class="form-control" formControlName="nombre" [ngClass]="{ 'is-invalid-input': submitted && g.nombre.errors }" oninput="this.value=this.value.trim()==''?'':this.value" />
+            <div *ngIf="submitted && g.nombre.errors != null">
+                <span class="p-error" *ngIf="g.nombre.errors.minlength">El nombre debe contener al menos un carácter.<br></span>
+                <span class="p-error" *ngIf="g.nombre.errors.required">El nombre es requerido.<br></span>
+            </div>
+        </div>
     </div>
-</div>
 
 
-<div class="p-d-flex p-jc-center w-100">
-    <button pButton type="button" label="Crear"></button>
-</div>
+    <div class="p-d-flex p-jc-center w-100">
+        <button pButton type="button" (click)="send()" label="Crear"></button>
+    </div>
+
+</form>

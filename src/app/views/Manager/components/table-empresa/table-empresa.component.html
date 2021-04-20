@@ -1,20 +1,16 @@
 <div class="tab-pd">
-  <div class="tab-content-label">
-    <label> Empresa </label>
+    <div class="tab-content-label">
+        <label> Empresa </label>
 
-    <p-button
-      label="Crear Empresa"
-      icon="pi pi-plus-circle"
-      (click)="showCreateEmpresa()"
-    ></p-button>
-  </div>
-  <p class="tab-content-p">Filtrar por</p>
-  <!-- form -->
-  <form>
-    <div class="p-grid p-style-input-fill p-mt-3">
-      <!-- Nombre de Empresa -->
-      <div class="p-col-12 p-md-6 p-lg-6">
-        <span class="p-float-label">
+        <p-button label="Crear Empresa" icon="pi pi-plus-circle" (click)="showCreateEmpresa()"></p-button>
+    </div>
+    <p class="tab-content-p">Filtrar por</p>
+    <!-- form -->
+    <form>
+        <div class="p-grid p-style-input-fill p-mt-3">
+            <!-- Nombre de Empresa -->
+            <div class="p-col-12 p-md-6 p-lg-6">
+                <span class="p-float-label">
           <input
             type="text"
             id="inputtext"
@@ -23,68 +19,60 @@
           />
           <label for="inputtext">Nombre de empresa</label>
         </span>
-      </div>
-    </div>
-  </form>
+            </div>
+        </div>
+    </form>
 </div>
 
 <!-- tablee -->
 <div class="p-card p-px-3 br-05">
-  <p-table
-    [columns]="cols2"
-    [value]="products2"
-    styleClass="style-table-direccion"
-    [paginator]="true"
-    [rows]="3"
-    [showCurrentPageReport]="true"
-    currentPageReportTemplate="{first} - {last} of {totalRecords}"
-  >
-    <ng-template pTemplate="colgroup" let-columns>
-      <colgroup>
-        <col [style.width]="33 + '%'" />
-        <col [style.width]="33 + '%'" />
-        <col [style.width]="33 + '%'" />
-      </colgroup>
-    </ng-template>
-    <ng-template pTemplate="header" let-columns>
-      <tr>
-        <th *ngFor="let col of columns" class="p-text-center">
-          {{ col.header }}
-        </th>
-        <th></th>
-        <th></th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-      <tr>
-        <td>Cálidda</td>
-        <td>
-          <img
-            [style.width]="'25px'"
-            src="assets/images/flag/PE.svg"
-            alt="flag PE"
-          />
-        </td>
-        <td>
-          <div>
-            <button
-              pButton
-              pRipple
-              type="button"
-              icon="pi pi-trash"
-              class="p-button-rounded p-button-info p-button-text icon-table-size"
-            ></button>
-            <button
-              pButton
-              pRipple
-              type="button"
-              icon="icon-edit"
-              class="p-button-rounded p-button-info p-button-text icon-table-size"
-              (click)="showEditEmpresa()"
-            ></button>
-          </div>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
+    <p-table [columns]="cols2" [value]="products2" styleClass="style-table-direccion" [paginator]="true" [rows]="size" [showCurrentPageReport]="true" currentPageReportTemplate="{first} - {last} of {totalRecords}">
+        <ng-template pTemplate="colgroup" let-columns>
+            <colgroup>
+                <col [style.width]="33 + '%'" />
+                <col [style.width]="33 + '%'" />
+                <col [style.width]="33 + '%'" />
+            </colgroup>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns" class="p-text-center">
+                    {{ col.header }}
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                <td>{{rowData.nombre}}</td>
+                <td>
+                    <img [style.width]="'25px'" [src]="'assets/images/flag/' +rowData.paisDto.sigla+'.svg'" alt="flag PE" />
+                </td>
+                <td>
+                    <div>
+                        <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-info p-button-text icon-table-size" (click)="showConfirmation()"></button>
+                        <button pButton pRipple type="button" icon="icon-edit" class="p-button-rounded p-button-info p-button-text icon-table-size" (click)="showEditEmpresa()"></button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
 </div>
+
+<!-- Dialog confirmacón -->
+<p-dialog [(visible)]="displayModal" [modal]="true" [style]="{ width: '400px' }" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false" [closable]="false" styleClass="style-dialog-confirmation">
+    <div class="dialog-content">
+        <i class="material-icons red">error_outline</i>
+        <h3>Confirmación</h3>
+        <p class="p-m-0">
+            ¿Esta seguro de realizar esta operación?
+        </p>
+    </div>
+    <ng-template pTemplate="footer">
+      <button  (click)="displayModal = false" pButton  label="Si"></button>
+       <button class="stylebtn"  (click)="displayModal = false" pButton  label="No"></button>
+    </ng-template>
+</p-dialog>
+

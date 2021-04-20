@@ -29,7 +29,7 @@ export class TableUsuariosComponent implements OnInit {
   items: any[];
   checked: boolean;
   ref: DynamicDialogRef;
-  
+
   constructor(
     public dialogService: DialogService
   ) { }
@@ -64,7 +64,7 @@ export class TableUsuariosComponent implements OnInit {
     });
   }
 
-  
+
   showEditeUser() {
     this.ref = this.dialogService.open(CreateUserComponent, {
       header: 'Editar Usuario',
