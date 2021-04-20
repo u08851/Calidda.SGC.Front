@@ -51,7 +51,7 @@ export class BarTodosComponent implements OnInit {
         value1: 15,
         value2: 3,
         value3: 7,
-      }
+      },
     ];
 
     let xAxes1 = chart.xAxes.push(new am4charts.CategoryAxis());
@@ -64,7 +64,6 @@ export class BarTodosComponent implements OnInit {
     let yAxes1 = chart.yAxes.push(new am4charts.ValueAxis());
     yAxes1.renderer.maxLabelPosition = 1;
 
-    
     // SERIES 1 - Comités activos
     let series1 = chart.series.push(new am4charts.ColumnSeries());
     series1.name = 'Comités activos';
@@ -78,15 +77,17 @@ export class BarTodosComponent implements OnInit {
     series1.dataFields.valueY = 'value1';
     series1.dataFields.categoryX = 'category';
 
-    series1.fill = am4core.color('#FAB200');
-    series1.fillModifier = new am4core.LinearGradientModifier();
-    series1.stroke = am4core.color('#FAB200');
-
+    let gradient = new am4core.LinearGradient();
+    gradient.addColor(am4core.color('#FAB20080'));
+    gradient.addColor(am4core.color('#FAB200'));
+    gradient.rotation = 270;
+    series1.columns.template.fill = gradient;
+    
     series1.sequencedInterpolation = true;
     series1.sequencedInterpolationDelay = 100;
 
     let bullet1 = series1.bullets.push(new am4charts.LabelBullet());
-    bullet1.label.verticalCenter = "bottom";
+    bullet1.label.verticalCenter = 'bottom';
     bullet1.label.dy = 2;
     bullet1.label.text = '{valueY}';
     bullet1.label.fontWeight = 'bold';
@@ -106,15 +107,17 @@ export class BarTodosComponent implements OnInit {
     series2.dataFields.valueY = 'value2';
     series2.dataFields.categoryX = 'category';
 
-    series2.fill = am4core.color('#00A1DE');
-    series2.fillModifier = new am4core.LinearGradientModifier();
-    series2.stroke = am4core.color('#00A1DE');
-
+    let gradient2 = new am4core.LinearGradient();
+    gradient2.addColor(am4core.color('#00A1DE99'));
+    gradient2.addColor(am4core.color('#00A1DE'));
+    gradient2.rotation = 270;
+    series2.columns.template.fill = gradient2;
+    
     series2.sequencedInterpolation = true;
     series2.sequencedInterpolationDelay = 100;
 
     let bullet2 = series2.bullets.push(new am4charts.LabelBullet());
-    bullet2.label.verticalCenter = "bottom";
+    bullet2.label.verticalCenter = 'bottom';
     bullet2.label.dy = 2;
     bullet2.label.text = '{valueY}';
     bullet2.label.fontWeight = 'bold';
@@ -134,15 +137,17 @@ export class BarTodosComponent implements OnInit {
     series3.dataFields.valueY = 'value2';
     series3.dataFields.categoryX = 'category';
 
-    series3.fill = am4core.color('#435468');
-    series3.fillModifier = new am4core.LinearGradientModifier();
-    series3.stroke = am4core.color('#435468');
+    let gradient3 = new am4core.LinearGradient();
+    gradient3.addColor(am4core.color('#435468BF'));
+    gradient3.addColor(am4core.color('#435468'));
+    gradient3.rotation = 270;
+    series3.columns.template.fill = gradient3;
 
     series3.sequencedInterpolation = true;
     series3.sequencedInterpolationDelay = 100;
 
     let bullet3 = series3.bullets.push(new am4charts.LabelBullet());
-    bullet3.label.verticalCenter = "bottom";
+    bullet3.label.verticalCenter = 'bottom';
     bullet3.label.dy = 2;
     bullet3.label.text = '{valueY}';
     bullet3.label.fontWeight = 'bold';
