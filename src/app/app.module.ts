@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DirectionServices } from './services/direccion.service';
 import { EmpresaServices } from './services/empresa.service';
 import { PaisServices } from './services/pais.service';
+import { MessageService } from 'primeng/api';
 @NgModule({
   declarations: [
     AppComponent
@@ -27,7 +28,7 @@ import { PaisServices } from './services/pais.service';
    exports: [
     RouterModule
   ],
-  providers: [SidenavService,DirectionServices,EmpresaServices,PaisServices],
+  providers: [SidenavService,DirectionServices,EmpresaServices,PaisServices, MessageService ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
