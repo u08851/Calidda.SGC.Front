@@ -109,8 +109,8 @@
         <td class="p-text-left">
           <div class="p-d-flex p-ai-center">
             <!-- variables:  --red --green --info  -->
-            <i *ngIf="rowData.estado == 1" class="pi pi-circle-on icon-mood p-mr-2" [style.color]="'var(--info)'"></i>
-            <i *ngIf="rowData.estado == 0" class="pi pi-circle-on icon-mood p-mr-2" [style.color]="'var(--green)'"></i>
+            <i *ngIf="rowData.estado == 1" class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--info)'"></i>
+            <i *ngIf="rowData.estado == 0" class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--green)'"></i>
             {{rowData.estado == 1 ? 'Activo': 'Desactivado'}}
           </div>
         </td>
