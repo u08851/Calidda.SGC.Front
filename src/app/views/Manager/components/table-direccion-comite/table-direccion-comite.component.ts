@@ -41,7 +41,7 @@ export class TableDireccionComiteComponent implements OnInit {
       width: '40%',
       contentStyle: { "max-height": "500px", "overflow": "auto" },
       baseZIndex: 10000,
-      data:null
+      data: { type: 'create' }
     });
   }
 
@@ -51,7 +51,7 @@ export class TableDireccionComiteComponent implements OnInit {
       width: '40%',
       contentStyle: { "max-height": "500px", "overflow": "auto" },
       baseZIndex: 10000,
-      data:data
+      data: { data, type: 'edit' }
     });
   }
 

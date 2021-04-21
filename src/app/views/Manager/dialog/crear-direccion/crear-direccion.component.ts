@@ -16,6 +16,7 @@ export class CrearDireccionComponent implements OnInit {
   submitted: boolean = false;
   direccionForm:FormGroup;
   valida:boolean=false;
+  type:string;
 
   constructor(
     private fb :FormBuilder,
@@ -40,8 +41,9 @@ export class CrearDireccionComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.type = this.config.data.type;
     this.crearFormulario();
-    if(this.config.data == null){
+    if(this.config.data.data == null){
       this.valida = true;
     }else{
       this.valida = false;
@@ -58,7 +60,7 @@ export class CrearDireccionComponent implements OnInit {
 
   UpdateFormulario(){
     this.direccionForm.patchValue({
-      nombre: this.config.data.nombre
+      nombre: this.config.data.data.nombre
     })
   }
 
@@ -92,8 +94,8 @@ export class CrearDireccionComponent implements OnInit {
         let data = this.direccionForm.value;
         var odata = new DireccionModel();
         odata.nombre = data.nombre;
-        odata.estado = this.config.data.estado;
-        odata.direccionId  = this.config.data.direccionId;
+        odata.estado = this.config.data.data.estado;
+        odata.direccionId  = this.config.data.data.direccionId;
 
         this.directionServices.updateDirection(odata).subscribe(
           (response: any) => {

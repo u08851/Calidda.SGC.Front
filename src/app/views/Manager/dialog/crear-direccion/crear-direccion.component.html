@@ -12,7 +12,7 @@
 
 
     <div class="p-d-flex p-jc-center w-100">
-        <button pButton type="button" (click)="send()" label="Crear"></button>
+        <button pButton type="button" (click)="send()" [label]="type === 'create'?  'Crear' : 'Editar' "></button>
     </div>
 
 </form>
