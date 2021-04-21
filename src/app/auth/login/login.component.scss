@@ -1,87 +1,76 @@
 $background-wallpaper: url(../../../assets/images/wallpaper.png);
 $color-text: #2e4259;
 $color-white: var(--surface-a);
-
 .wallpaper {
-  background-image: $background-wallpaper;
-  height: 100vh;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: rgb(0, 187, 255);
-
-  .custom_grid {
-    display: flex;
-    flex-wrap: wrap;
-    height: 100%;
-    align-items: center;
-    background: #00b8fe7d;
-
-    &_login {
-      border-radius: 5px;
-      // margin: 4rem auto;
-      padding: 2rem 35px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
-      background: transparent
-        linear-gradient(
-          180deg,
-          var($color-white) 0%,
-          var($color-white) 0%,
-          #cde8f2 100%
-        )
-        0% 0% no-repeat padding-box;
-      background: transparent
-        linear-gradient(180deg, #ffffff 0%, #ffffff 0%, #cde8f2 100%) 0% 0%
-        no-repeat padding-box;
-      box-shadow: 0px 5px 12px #0000001a;
-      opacity: 1;
-
-      img {
-        width: 135px;
-        margin: 0 auto;
-      }
-
-      p {
-        color: $color-text;
-        font-weight: 600;
-        font-size: 20px;
-        margin-top: 1.5rem;
-        margin-bottom: 0.7rem;
-      }
-
-      span {
-        color: $color-text;
-        font-size: 12px;
-        font-weight: normal;
-        margin: 0 0 1.5rem;
-        opacity: 0.8;
-      }
-
-      label {
-        display: block;
-        text-align: left;
-        font-size: 12px;
-        color: $color-text;
-        // font: normal normal normal 12px/16px Galano Grotesque;
-        letter-spacing: 0px;
-        opacity: 0.8;
-      }
-
-      .link-password {
-        color: #435468;
-        font-size: 12px;
-      }
-      .p-inputtext  {
-        padding: 0.6rem 0.7rem !important;
-      }
-      input {
-          margin-bottom: 0.5rem;
-      }
-
+    background-image: $background-wallpaper;
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: rgb(0, 187, 255);
+    .custom_grid {
+        display: flex;
+        flex-wrap: wrap;
+        height: 100%;
+        align-items: center;
+        background: #00b8fe7d;
+        &_login {
+            border-radius: 5px;
+            // margin: 4rem auto;
+            padding: 2rem 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            background: transparent linear-gradient( 180deg, var($color-white) 0%, var($color-white) 0%, #cde8f2 100%) 0% 0% no-repeat padding-box;
+            background: transparent linear-gradient(180deg, #ffffff 0%, #ffffff 0%, #cde8f2 100%) 0% 0% no-repeat padding-box;
+            box-shadow: 0px 5px 12px #0000001a;
+            opacity: 1;
+            img {
+                width: 135px;
+                margin: 0 auto;
+            }
+            p {
+                color: $color-text;
+                font-weight: 600;
+                font-size: 20px;
+                margin-top: 1.5rem;
+                margin-bottom: 0.7rem;
+            }
+            span {
+                color: $color-text;
+                font-size: 12px;
+                font-weight: normal;
+                margin: 0 0 1.5rem;
+                opacity: 0.8;
+            }
+            label {
+                display: block;
+                text-align: left;
+                font-size: 12px;
+                color: $color-text;
+                // font: normal normal normal 12px/16px Galano Grotesque;
+                letter-spacing: 0px;
+                opacity: 0.8;
+            }
+            .link-password {
+                color: #435468;
+                font-size: 12px;
+            }
+            .p-inputtext {
+                padding: 0.6rem 0.7rem !important;
+            }
+            input {
+                margin-bottom: 0.5rem;
+            }
+        }
     }
-  }
+    .is-invalid-input {
+        border-color: #FF0000 !important;
+        box-shadow: 0px 0px 2px 2px #ffa8a8;
+    }
+    .is-invalid-text {
+        color: #FF0000 !important;
+    }
 }

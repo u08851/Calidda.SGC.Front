@@ -17,7 +17,6 @@ export class TableDireccionComiteComponent implements OnInit {
   page: number = 0;
   size: number = 5;
   cols: any[];
-  ref: DynamicDialogRef;
   displayModal: boolean;
   textFilter: string = "";
   dataDelete: any;
@@ -26,7 +25,7 @@ export class TableDireccionComiteComponent implements OnInit {
   constructor(
     public dialogService: DialogService,
     private directionServices: DirectionServices,
-
+    public  ref: DynamicDialogRef
     ) {}
 
   ngOnInit(): void {
@@ -46,7 +45,24 @@ export class TableDireccionComiteComponent implements OnInit {
       data:null
     });
 
-
+    this.ref.onClose.subscribe( data => {
+      console.log(data);
+      if (data) {
+        if(this.textFilter.length == 0){
+          this.directionServices.getListDirection(this.term,this.page,this.size).subscribe(
+            (result: any) => {
+              this.products = result.data
+            }
+          )
+        }else{
+          this.directionServices.getListDirection(this.textFilter,this.page,this.size).subscribe(
+            (result: any) => {
+              this.products = result.data
+            }
+          )
+        }
+      }
+    })
   }
 
   showEditDireccion(data) {
@@ -83,6 +99,19 @@ export class TableDireccionComiteComponent implements OnInit {
     this.directionServices.updateDirection(odata).subscribe(
       (response: any) => {
         alert("elimino");
+        if(this.textFilter.length == 0){
+          this.directionServices.getListDirection(this.term,this.page,this.size).subscribe(
+            (result: any) => {
+              this.products = result.data
+            }
+          )
+        }else{
+          this.directionServices.getListDirection(this.textFilter,this.page,this.size).subscribe(
+            (result: any) => {
+              this.products = result.data
+            }
+          )
+        }
         this.displayModal = false;
       }
     )

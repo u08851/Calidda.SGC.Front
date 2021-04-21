@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { PrimengModule } from '../shared/primeng.module';
 import { RolComponent } from './rol/rol.component';
 import { ResetComponent } from './reset/reset.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,9 @@ import { ResetComponent } from './reset/reset.component';
   ],
   imports: [
     CommonModule,
-    PrimengModule
+    PrimengModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

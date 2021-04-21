@@ -81,10 +81,8 @@ export class CrearDireccionComponent implements OnInit {
         this.directionServices.addDirection(odata).subscribe(
           (response: any) => {
             this.showSuccess("Se registró correctamente");
-            this.ref.close();
+            this.ref.close(true);
           }
-
-
         )
       }else{
         //UPDATE
@@ -97,7 +95,7 @@ export class CrearDireccionComponent implements OnInit {
         this.directionServices.updateDirection(odata).subscribe(
           (response: any) => {
             this.showSuccess("Se editó correctamente");
-            this.ref.close();
+            this.ref.close(true);
           }
         )
       }

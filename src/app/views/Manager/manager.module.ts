@@ -15,7 +15,7 @@ import { TableDireccionComiteComponent } from './components/table-direccion-comi
 import { TableEmpresaComponent } from './components/table-empresa/table-empresa.component';
 import { TableUsuariosComponent } from './components/table-usuarios/table-usuarios.component';
 
-import { DialogService } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ConfirmationService } from 'primeng/api';
 import { CrearDireccionComponent } from './dialog/crear-direccion/crear-direccion.component';
 import { CrearEmpresaComponent } from './dialog/crear-empresa/crear-empresa.component';
@@ -66,6 +66,7 @@ import { ImportDocumentComponent } from './dialog/import-document/import-documen
     RouterModule.forChild(ManagerRoutes),
   ],
   entryComponents: [ ],
-  providers: [DialogService, ConfirmationService ]
+  providers: [DialogService, ConfirmationService,
+    DynamicDialogRef, ]
 })
 export class ManagerModule { }
