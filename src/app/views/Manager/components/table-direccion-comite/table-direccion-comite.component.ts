@@ -42,7 +42,7 @@ export class TableDireccionComiteComponent implements OnInit {
       width: '40%',
       contentStyle: { "max-height": "500px", "overflow": "auto" },
       baseZIndex: 10000,
-      data: { type: 'create' }
+      data: null
     });
 
     this.ref.onClose.subscribe( data => {
@@ -71,7 +71,7 @@ export class TableDireccionComiteComponent implements OnInit {
       width: '40%',
       contentStyle: { "max-height": "500px", "overflow": "auto" },
       baseZIndex: 10000,
-      data: { data, type: 'edit' }
+      data: data
     });
   }
 
