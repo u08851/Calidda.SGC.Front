@@ -15,7 +15,7 @@
     </div>
     <div class="p-field p-col-12 p-md-6">
         <label>Empresa</label>
-        <input type="text" pInputText  class="ng-invalid ng-dirty">
+        <p-dropdown [options]="dataEmpresa" [(ngModel)]="selectedEmpresa" optionLabel="name" optionDisabled="inactive"></p-dropdown>
     </div>
     <div class="p-field p-col-12 p-md-6">
         <label>Pais</label>
@@ -58,7 +58,7 @@
         <!-- <input type="text" pInputText> -->
     </div>
     <div class="p-field p-col-12 p-md-12">
-        <label>Correo Electronico</label>
+        <label>Correo Electronico ss</label>
         <input type="text" pInputText>
     </div>
 
@@ -69,7 +69,7 @@
     </div>
     <div class="p-field p-col-12 p-md-6">
         <label>Rol</label>
-        <input type="text" pInputText>
+        <p-dropdown [options]="dataRol" [(ngModel)]="selectedRol" optionLabel="name" optionDisabled="inactive"></p-dropdown>
     </div>
 
 </div>

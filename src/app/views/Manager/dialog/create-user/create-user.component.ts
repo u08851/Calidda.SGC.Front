@@ -13,6 +13,11 @@ export class CreateUserComponent implements OnInit {
   displayModal:boolean;
   selectedCountry:string;
   countries:any[];
+
+  dataRol: any[];
+  selectedRol:string;
+  dataEmpresa:any[];
+  selectedEmpresa:string;
   
   constructor(private confirmationService: ConfirmationService) {}
   
@@ -20,6 +25,12 @@ export class CreateUserComponent implements OnInit {
 
     this.countries = [
       {name: 'PERÚ', code: 'PE'},
+    ];
+    this.dataRol = [
+      {name: 'Admin', code: 'AD'}
+    ];
+    this.dataEmpresa = [
+      {name: 'SGS', code: 'SGC'}
     ];
 
   }
