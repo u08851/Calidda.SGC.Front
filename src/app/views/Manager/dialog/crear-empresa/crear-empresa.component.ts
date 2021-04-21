@@ -4,6 +4,7 @@ import { EmpresaModel } from 'src/app/models/empresa.model';
 import { EmpresaServices } from 'src/app/services/empresa.service';
 import { PaisServices } from 'src/app/services/pais.service';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-crear-empresa',
@@ -25,8 +26,19 @@ export class CrearEmpresaComponent implements OnInit {
     private empresaServices:EmpresaServices,
     private paisServices:PaisServices,
     public config: DynamicDialogConfig,
+    public messageService:MessageService
     ) {
    }
+
+   showSuccess(mensaje :string) {
+    this.messageService.add({severity:'success', summary: 'Success', detail: mensaje});
+  }
+
+  showWarn(mensaje :string) {
+    this.messageService.add({severity:'warn', summary: 'Warn', detail: mensaje});
+  }
+
+
 
    crearFormulario()
    {
@@ -71,6 +83,7 @@ export class CrearEmpresaComponent implements OnInit {
     if (this.empresaForm.valid) {
 
       if (!this.empresaForm.controls.nombre.valid) {
+        this.showWarn("Datos incorrectos");
         return false;
       }
 
@@ -85,6 +98,7 @@ export class CrearEmpresaComponent implements OnInit {
 
         this.empresaServices.addEmpresa(odata).subscribe(
           (response: any) => {
+            this.showSuccess("Se registró correctamente");
           }
         )
       }else{
@@ -98,7 +112,7 @@ export class CrearEmpresaComponent implements OnInit {
 
         this.empresaServices.updateEmpresa(odata).subscribe(
           (response: any) => {
-
+            this.showSuccess("Se editó correctamente");
           }
         )
       }

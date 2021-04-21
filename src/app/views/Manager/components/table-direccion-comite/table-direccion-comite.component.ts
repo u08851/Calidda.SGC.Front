@@ -75,7 +75,7 @@ export class TableDireccionComiteComponent implements OnInit {
     odata.nombre = data.nombre;
     odata.estado = 2;
     odata.direccionId  = data.direccionId;
-    
+
     this.directionServices.updateDirection(odata).subscribe(
       (response: any) => {
         alert("elimino");
@@ -98,7 +98,7 @@ export class TableDireccionComiteComponent implements OnInit {
             this.products = result.data
           }
         )
-      }   
+      }
     }
   }
 
