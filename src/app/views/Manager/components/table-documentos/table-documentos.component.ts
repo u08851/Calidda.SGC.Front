@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ViewFileComponent } from 'src/app/shared/components/view-file/view-file.component';
+import { ImportDocumentComponent } from '../../dialog/import-document/import-document.component';
 
 @Component({
   selector: 'app-table-documentos',
@@ -6,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./table-documentos.component.scss'],
 })
 export class TableDocumentosComponent implements OnInit {
+  displayMaximizable: boolean;
+  displayModal: boolean;
   checked: boolean;
+  document: string = 'assets/doc/prueba.pdf';
+  ref: DynamicDialogRef;
+
   // Calendar
   date3: Date;
   date4: Date;
@@ -34,11 +42,13 @@ export class TableDocumentosComponent implements OnInit {
   tipo: any[];
   selectedTipo: string;
 
-  constructor() {
+  constructor(
+    public dialogService: DialogService
+  ) {
     this.tipo = [
-      {name: 'Miembro', code: 'MB'},
-      {name: 'Invitados', code: 'IV'}
-  ];
+      { name: 'Miembro', code: 'MB' },
+      { name: 'Invitados', code: 'IV' }
+    ];
   }
 
   ngOnInit(): void {
@@ -94,5 +104,22 @@ export class TableDocumentosComponent implements OnInit {
       { header: 'Tipo', field: 'tipo' },
       { header: 'Estado', field: 'estado' },
     ];
+  }
+
+  showImportDocument() {
+    this.ref = this.dialogService.open(ImportDocumentComponent, {
+      header: 'Importar Documento',
+      width: '50%',
+      contentStyle: { "max-height": "500px", "overflow": "auto" },
+      baseZIndex: 10000
+    });
+  }
+
+  showMaximizableDialog() {
+    this.displayMaximizable = true;
+  }
+
+  showConfirmation() {
+    this.displayModal = true;
   }
 }
