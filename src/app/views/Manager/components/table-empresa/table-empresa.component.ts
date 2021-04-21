@@ -24,8 +24,10 @@ export class TableEmpresaComponent implements OnInit {
   displayModal:boolean;
   textFilter: string = "";
 
-  constructor(public dialogService: DialogService,
-    private empresaServices:EmpresaServices) { }
+  constructor(
+    public dialogService: DialogService,
+    private empresaServices:EmpresaServices,
+  ) { }
 
   ngOnInit(): void {
     this.cols2 = [

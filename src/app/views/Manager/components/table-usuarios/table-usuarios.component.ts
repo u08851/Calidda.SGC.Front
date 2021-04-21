@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { UserModel } from 'src/app/models/user.model';
 import { CreateUserComponent } from '../../dialog/create-user/create-user.component';
+import { UserServices } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-table-usuarios',
@@ -8,30 +10,21 @@ import { CreateUserComponent } from '../../dialog/create-user/create-user.compon
   styleUrls: ['./table-usuarios.component.scss'],
 })
 export class TableUsuariosComponent implements OnInit {
-  products: any[] = [
-    {
-      nombre: 'nombre',
-      correo: 'correo',
-      rol: 'rol',
-      empresa: 'empresa',
-      estado: 'estado'
-    },
-    {
-      nombre: 'nombre',
-      correo: 'correo',
-      rol: 'rol',
-      empresa: 'empresa',
-      estado: 'estado'
-    },
-  ];
+
+  products: UserModel[];
 
   cols: any[];
   items: any[];
   checked: boolean;
   ref: DynamicDialogRef;
+  textFilter: string = "";
+  term: string = "ALL0";
+  page: number = 0;
+  size: number = 5;
 
   constructor(
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    private userServices:UserServices
   ) { }
 
   ngOnInit(): void {
@@ -53,6 +46,7 @@ export class TableUsuariosComponent implements OnInit {
         icon: 'pi pi-trash',
       },
     ];
+    this.getListUser();
   }
 
   showCreateUser() {
@@ -60,17 +54,45 @@ export class TableUsuariosComponent implements OnInit {
       header: 'Creación de nuevo Usuario',
       width: '33%',
       contentStyle: { "max-height": "500px", "overflow": "auto" },
-      baseZIndex: 10000
+      baseZIndex: 10000,
+      data:null
     });
   }
 
-
-  showEditeUser() {
+  showEditeUser(data) {
     this.ref = this.dialogService.open(CreateUserComponent, {
       header: 'Editar Usuario',
       width: '33%',
       contentStyle: { "max-height": "500px", "overflow": "auto" },
-      baseZIndex: 10000
+      baseZIndex: 10000,
+      data:data
     });
   }
+
+  onKeydown(event) {
+    if (event.key === "Enter") {
+      if(this.textFilter.length == 0){
+        this.userServices.getListUser(this.term,this.page,this.size).subscribe(
+          (result: any) => {
+            this.products = result.data
+          }
+        )
+      }else{
+        this.userServices.getListUser(this.textFilter,this.page,this.size).subscribe(
+          (result: any) => {
+            this.products = result.data
+          }
+        )
+      }      
+    }
+  }
+
+  getListUser(){
+    this.userServices.getListUser(this.term,this.page,this.size).subscribe(
+      (result: any) => {
+        this.products = result.data
+      }
+    )
+  }
+
 }
