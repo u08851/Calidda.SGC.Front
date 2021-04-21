@@ -19,6 +19,8 @@ export class TableDireccionComiteComponent implements OnInit {
   cols: any[];
   ref: DynamicDialogRef;
   displayModal: boolean;
+  textFilter: string = "";
+  dataDelete: any;
 
   constructor(
     public dialogService: DialogService,
@@ -38,16 +40,18 @@ export class TableDireccionComiteComponent implements OnInit {
       header: 'Creación de nueva Dirección de Comité',
       width: '40%',
       contentStyle: { "max-height": "500px", "overflow": "auto" },
-      baseZIndex: 10000
+      baseZIndex: 10000,
+      data:null
     });
   }
 
-  showEditDireccion() {
+  showEditDireccion(data) {
     this.ref = this.dialogService.open(CrearDireccionComponent, {
       header: 'Editar Dirección de Comité',
       width: '40%',
       contentStyle: { "max-height": "500px", "overflow": "auto" },
-      baseZIndex: 10000
+      baseZIndex: 10000,
+      data:data
     });
   }
 
@@ -60,8 +64,42 @@ export class TableDireccionComiteComponent implements OnInit {
     )
   }
 
-  showConfirmation() {
+  showConfirmation(data) {
     this.displayModal = true;
+    this.dataDelete = data;
+  }
+
+  delete(){
+    let data = this.dataDelete;
+    var odata = new DireccionModel();
+    odata.nombre = data.nombre;
+    odata.estado = 2;
+    odata.direccionId  = data.direccionId;
+    
+    this.directionServices.updateDirection(odata).subscribe(
+      (response: any) => {
+        alert("elimino");
+        this.displayModal = false;
+      }
+    )
+  }
+
+  onKeydown(event) {
+    if (event.key === "Enter") {
+      if(this.textFilter.length == 0){
+        this.directionServices.getListDirection(this.term,this.page,this.size).subscribe(
+          (result: any) => {
+            this.products = result.data
+          }
+        )
+      }else{
+        this.directionServices.getListDirection(this.textFilter,this.page,this.size).subscribe(
+          (result: any) => {
+            this.products = result.data
+          }
+        )
+      }   
+    }
   }
 
 }

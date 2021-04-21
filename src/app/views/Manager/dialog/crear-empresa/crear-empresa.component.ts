@@ -1,9 +1,9 @@
-import { PieChartDataItem } from '@amcharts/amcharts4/charts';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmpresaModel } from 'src/app/models/empresa.model';
 import { EmpresaServices } from 'src/app/services/empresa.service';
 import { PaisServices } from 'src/app/services/pais.service';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-crear-empresa',
@@ -18,11 +18,13 @@ export class CrearEmpresaComponent implements OnInit {
   empresa= new  EmpresaModel();
   submitted: boolean = false;
   empresaForm:FormGroup;
+  valida:boolean=false;
 
   constructor(
     private fb :FormBuilder,
     private empresaServices:EmpresaServices,
-    private paisServices:PaisServices
+    private paisServices:PaisServices,
+    public config: DynamicDialogConfig,
     ) {
    }
 
@@ -34,13 +36,24 @@ export class CrearEmpresaComponent implements OnInit {
      });
    }
 
+   UpdateFormulario(){
+    this.empresaForm.patchValue({
+      nombre: this.config.data.nombre,
+      paisId: this.config.data.paisId
+    })
+  }
+
    get g() { return this.empresaForm.controls; }
 
   ngOnInit(): void {
-
-    this.crearFormulario();
     this.listarPais();
-
+    this.crearFormulario();
+    if(this.config.data == null){
+      this.valida = true;
+    }else{
+      this.valida = false;
+      this.UpdateFormulario();
+    }
   }
 
   listarPais()
@@ -51,8 +64,6 @@ export class CrearEmpresaComponent implements OnInit {
       }
     )
   }
-
-
 
   send() {
     this.submitted = true;

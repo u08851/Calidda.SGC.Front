@@ -11,14 +11,17 @@
             <!-- Nombre de Empresa -->
             <div class="p-col-12 p-md-6 p-lg-6">
                 <span class="p-float-label">
-          <input
-            type="text"
-            id="inputtext"
-            pInputText
-            styleClass="style-input-1"
-          />
-          <label for="inputtext">Nombre de empresa</label>
-        </span>
+                    <input
+                        type="text"
+                        id="inputtext"
+                        pInputText
+                        styleClass="style-input-1"
+                        (keydown)="onKeydown($event)"
+                        [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]="textFilter"
+                    />
+                    <label for="inputtext">Nombre de empresa</label>
+                </span>
             </div>
         </div>
     </form>
@@ -51,8 +54,8 @@
                 </td>
                 <td>
                     <div>
-                        <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-info p-button-text icon-table-size" (click)="showConfirmation()"></button>
-                        <button pButton pRipple type="button" icon="icon-edit" class="p-button-rounded p-button-info p-button-text icon-table-size" (click)="showEditEmpresa()"></button>
+                        <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-info p-button-text icon-table-size" (click)="showConfirmation(rowData)"></button>
+                        <button pButton pRipple type="button" icon="icon-edit" class="p-button-rounded p-button-info p-button-text icon-table-size" (click)="showEditEmpresa(rowData)"></button>
                     </div>
                 </td>
             </tr>
@@ -71,8 +74,8 @@
         </p>
     </div>
     <ng-template pTemplate="footer">
-      <button  (click)="displayModal = false" pButton  label="Si"></button>
-       <button class="stylebtn"  (click)="displayModal = false" pButton  label="No"></button>
+        <button  (click)="delete()" pButton  label="Si"></button>
+        <button class="stylebtn"  (click)="displayModal = false" pButton  label="No"></button>
     </ng-template>
 </p-dialog>
 

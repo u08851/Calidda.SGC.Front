@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { DireccionModel } from 'src/app/models/direccion.model';
 import { DirectionServices } from 'src/app/services/direccion.service';
 
@@ -13,17 +14,24 @@ export class CrearDireccionComponent implements OnInit {
   direccion= new  DireccionModel();
   submitted: boolean = false;
   direccionForm:FormGroup;
-
+  valida:boolean=false;
 
   constructor(
     private fb :FormBuilder,
     private directionServices:DirectionServices,
+    public config: DynamicDialogConfig,
     ) {
 
    }
 
   ngOnInit(): void {
     this.crearFormulario();
+    if(this.config.data == null){
+      this.valida = true;
+    }else{
+      this.valida = false;
+      this.UpdateFormulario();
+    }
   }
 
   crearFormulario()
@@ -31,6 +39,12 @@ export class CrearDireccionComponent implements OnInit {
     this.direccionForm = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(1)]],
     });
+  }
+
+  UpdateFormulario(){
+    this.direccionForm.patchValue({
+      nombre: this.config.data.nombre
+    })
   }
 
   get g() { return this.direccionForm.controls; }
@@ -45,7 +59,7 @@ export class CrearDireccionComponent implements OnInit {
         return false;
       }
 
-      if(1 > 0){
+      if(this.valida){
         //CREATE
         let data = this.direccionForm.value;
         var odata = new DireccionModel();
@@ -55,6 +69,7 @@ export class CrearDireccionComponent implements OnInit {
 
         this.directionServices.addDirection(odata).subscribe(
           (response: any) => {
+            alert("guardo");
           }
         )
       }else{
@@ -62,12 +77,12 @@ export class CrearDireccionComponent implements OnInit {
         let data = this.direccionForm.value;
         var odata = new DireccionModel();
         odata.nombre = data.nombre;
-        odata.estado = 1 ;
-        odata.direccionId  = 0;
+        odata.estado = this.config.data.estado;
+        odata.direccionId  = this.config.data.direccionId;
 
         this.directionServices.updateDirection(odata).subscribe(
           (response: any) => {
-
+            alert("edito");
           }
         )
       }
@@ -79,3 +94,4 @@ export class CrearDireccionComponent implements OnInit {
   }
 
 }
+
