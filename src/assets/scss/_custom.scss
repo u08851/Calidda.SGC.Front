@@ -106,3 +106,61 @@
 .p-chips .p-chips-multiple-container .p-chips-token {
   font-family: sans-serif;
 }
+
+//messages
+
+.style-message {
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+
+  .p-message {
+    margin: 0;
+    border-radius: unset;
+
+    .p-message-wrapper {
+      padding: 0.5rem 1.5rem;
+    }
+
+    .p-message-icon {
+      flex: 0.5;
+      text-align: end;
+      color: #fff;
+    }
+    .p-message-summary {
+      color: #fff;
+      font-weight: 400;
+    }
+    .p-message-detail {
+      color: #fff;
+      font-weight: 500;
+    }
+    .p-message-close {
+      color: #fff;
+    }
+
+    &.p-message-success {
+      background: #2ecc71;
+      opacity: 0.9;
+      border-width: 0 0 0 0;
+    }
+    &.p-message-error {
+      background: #f00248;
+      opacity: 0.9;
+      border-width: 0 0 0 0;
+    }
+    &.p-message-info {
+      background: #1c9cfc;
+      opacity: 0.9;
+      border-width: 0 0 0 0;
+    }
+    &.p-message-warning {
+      background: #ffa602;
+      opacity: 0.9;
+      border-width: 0 0 0 0;
+    }
+  }
+}
+//end messages

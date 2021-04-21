@@ -20,34 +20,48 @@ export class HeaderComponent implements OnInit {
   }
 
   constructor(
-    public sidenav: SidenavService
-  ) {}
+    public sidenav: SidenavService,
+    private messageService: MessageService
+  ) { }
 
   ngOnInit(): void {
-    
 
     this.items = [
       {
         label: 'Administrador de Sistema',
         icon: 'pi pi-cog',
+        command: () => {
+          this.message('success', 'Has iniciado el perfil', 'Aministrador de Sistema');
+        },
       },
       {
         label: 'Responsable del Comité',
         icon: 'pi pi-bookmark',
+        command: () => {
+          this.message('success', 'Has iniciado el perfil', 'Responsable de Comité');
+        },
       },
       {
         label: 'Miembro del Comité',
         icon: 'pi pi-briefcase',
+        command: () => {
+          this.message('success', 'Has iniciado el perfil', 'Miembro de Comité');
+        },
       },
     ];
   }
 
-
-  
   sideToogle() {
     this.sidenav.toggle();
   }
-  
 
-  
+  message(severity, summary, detail) {
+    this.messageService.add({
+      key: 'rol',
+      severity: severity,
+      summary: summary,
+      detail: detail
+    });
+  }
+
 }
