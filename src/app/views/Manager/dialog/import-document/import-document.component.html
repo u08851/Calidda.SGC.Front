@@ -1,0 +1,37 @@
+<div class="p-formgrid p-p-3">
+
+    <div class="p-d-flex p-jc-center btn-group p-mb-5 p-mt-2">
+        <button pButton class="p-button-outlined p-button-rounded active w-100" label="Acta de condifencialidad de Miembros"></button>
+        <button pButton class="p-button-outlined p-button-rounded w-100" label="Acta de condifencialidad de Invitados"></button>
+    </div>
+
+    <p-fileUpload #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize="1000000"
+        (onUpload)="uploadDocument($event)" [auto]="true" chooseLabel="Browse"></p-fileUpload>
+    <br>
+    <div class="p-fluid p-formgrid p-grid p-style-input-fill p-mb-4">
+        <div class="p-field p-col-12 p-md-12">
+            <p class="color-primary">Ingresar Detalles del documento</p>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+            <span class="p-float-label">
+                <input id="lastname" type="text" pInputText styleClass="style-input-1">
+                <label for="firstname">Ingresar Nombre del documento</label>
+            </span>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+            <!-- variables:  --red --green --info  -->
+            <label for="firstname">Estado</label>
+            <div>
+                <i class="pi pi-circle-on icon-mood p-mr-2" [style.color]="'var(--green)'"></i>
+                <span class="p-mr-2">Activo</span>
+                <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-d-flex p-jc-center btn-group">
+        <button pButton label="Guardar"></button>
+    </div>
+</div>

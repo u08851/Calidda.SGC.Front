@@ -77,6 +77,29 @@
   background: aliceblue;
   color: #00a1de;
 }
+.p-button.p-fileupload-choose {
+  width: 100%;
+  background: transparent;
+  color: black;
+  border: 1px solid var(--info-color);
+  padding: 2rem 1rem;
+  border-radius: 1rem;
+  justify-content:center;
+  color: var(--info-color);
+  &:hover {
+    background: #0d90cb05;
+    border: 1px solid var(--info-color);
+    color: var(--info-color);
+  }
+  .p-button-label {
+    flex: inherit;
+  }
+}
+.p-button-outlined.active {
+  background:var(--info-color);
+  color: #ffffff;
+}
+//end buttons
 
 .p-chips .p-chips-multiple-container .p-chips-token {
   font-family: sans-serif;
