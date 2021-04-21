@@ -61,6 +61,8 @@ export class TableEmpresaComponent implements OnInit {
     this.empresaServices.getListEmpresa(this.term,this.page,this.size).subscribe(
       (result: any) => {
         this.products2 = result.data
+
+        console.log(this.products2);
       }
     )
   }
@@ -100,7 +102,7 @@ export class TableEmpresaComponent implements OnInit {
             this.products2 = result.data
           }
         )
-      }      
+      }
     }
   }
 

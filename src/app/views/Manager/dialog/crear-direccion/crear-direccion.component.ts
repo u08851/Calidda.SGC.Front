@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { DireccionModel } from 'src/app/models/direccion.model';
 import { DirectionServices } from 'src/app/services/direccion.service';
@@ -20,9 +21,23 @@ export class CrearDireccionComponent implements OnInit {
     private fb :FormBuilder,
     private directionServices:DirectionServices,
     public config: DynamicDialogConfig,
+    public messageService:MessageService
     ) {
 
+
    }
+
+  showSuccess(mensaje :string) {
+    this.messageService.add({severity:'success', summary: 'Success', detail: mensaje});
+  }
+
+  showWarn(mensaje :string) {
+    this.messageService.add({severity:'warn', summary: 'Warn', detail: mensaje});
+  }
+
+
+
+
 
   ngOnInit(): void {
     this.crearFormulario();
@@ -55,7 +70,7 @@ export class CrearDireccionComponent implements OnInit {
 
     if (this.direccionForm.valid) {
       if (!this.direccionForm.controls.nombre.valid) {
-        alert("error");
+        this.showWarn("Datos incorrectos");
         return false;
       }
 
@@ -69,7 +84,7 @@ export class CrearDireccionComponent implements OnInit {
 
         this.directionServices.addDirection(odata).subscribe(
           (response: any) => {
-            alert("guardo");
+            this.showSuccess("Se registró correctamente");
           }
         )
       }else{
@@ -82,7 +97,7 @@ export class CrearDireccionComponent implements OnInit {
 
         this.directionServices.updateDirection(odata).subscribe(
           (response: any) => {
-            alert("edito");
+            this.showSuccess("Se editó correctamente");
           }
         )
       }
@@ -90,8 +105,11 @@ export class CrearDireccionComponent implements OnInit {
     } else {
       this.direccionForm.markAllAsTouched();
     }
-    
+
   }
+
+
+
 
 }
 
