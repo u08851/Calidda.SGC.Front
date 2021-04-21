@@ -50,16 +50,18 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
 
     if (this.loginForm.valid) {
-      if (!this.loginForm.controls.nombre.valid) {
+      if (!this.loginForm.controls.login.valid) {
         this.showWarn("Faltan datos por completar");
         return false;
       }
         //LOGIN
         let data = this.loginForm.value;
         var odata = new LoginModel();
-        odata.login = data.nombre;
-        odata.password = "asdasd" ;
-        odata.email  =  data.nombre;
+
+        console.log(data);
+        odata.login = data.login;
+        odata.password = data.password ;
+        odata.email  =  "";
 
         this.loginServices.getLogin(odata).subscribe(
           (response: any) => {
