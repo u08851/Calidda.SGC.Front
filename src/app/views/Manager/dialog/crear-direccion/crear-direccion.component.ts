@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import {  DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DireccionModel } from 'src/app/models/direccion.model';
 import { DirectionServices } from 'src/app/services/direccion.service';
 
@@ -21,22 +21,18 @@ export class CrearDireccionComponent implements OnInit {
     private fb :FormBuilder,
     private directionServices:DirectionServices,
     public config: DynamicDialogConfig,
-    public messageService:MessageService
+    public messageService:MessageService,
+    public ref: DynamicDialogRef
     ) {
-
-
    }
 
   showSuccess(mensaje :string) {
-    this.messageService.add({severity:'success', summary: 'Success', detail: mensaje});
+    this.messageService.add({severity:'success', summary: 'Exitoso', detail: mensaje});
   }
 
   showWarn(mensaje :string) {
-    this.messageService.add({severity:'warn', summary: 'Warn', detail: mensaje});
+    this.messageService.add({severity:'warn', summary: 'Advertencia', detail: mensaje});
   }
-
-
-
 
 
   ngOnInit(): void {
@@ -85,7 +81,10 @@ export class CrearDireccionComponent implements OnInit {
         this.directionServices.addDirection(odata).subscribe(
           (response: any) => {
             this.showSuccess("Se registró correctamente");
+            this.ref.close();
           }
+
+
         )
       }else{
         //UPDATE
@@ -98,6 +97,7 @@ export class CrearDireccionComponent implements OnInit {
         this.directionServices.updateDirection(odata).subscribe(
           (response: any) => {
             this.showSuccess("Se editó correctamente");
+            this.ref.close();
           }
         )
       }

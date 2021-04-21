@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DireccionModel } from 'src/app/models/direccion.model';
 import { DirectionServices } from 'src/app/services/direccion.service';
 import { CrearDireccionComponent } from '../../dialog/crear-direccion/crear-direccion.component';
@@ -22,9 +22,11 @@ export class TableDireccionComiteComponent implements OnInit {
   textFilter: string = "";
   dataDelete: any;
 
+   confi: DynamicDialogConfig;
   constructor(
     public dialogService: DialogService,
-    private directionServices: DirectionServices
+    private directionServices: DirectionServices,
+
     ) {}
 
   ngOnInit(): void {
@@ -43,6 +45,8 @@ export class TableDireccionComiteComponent implements OnInit {
       baseZIndex: 10000,
       data:null
     });
+
+
   }
 
   showEditDireccion(data) {
