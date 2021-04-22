@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import {  DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DireccionModel } from 'src/app/models/direccion.model';
 import { DirectionServices } from 'src/app/services/direccion.service';
+import { AppConstants } from 'src/app/shared/constants/app.constants';
 
 @Component({
   selector: 'app-crear-direccion',
@@ -28,11 +29,11 @@ export class CrearDireccionComponent implements OnInit {
    }
 
   showSuccess(mensaje :string) {
-    this.messageService.add({severity:'success', summary: 'Exitoso', detail: mensaje});
+    this.messageService.add({severity:'success', summary: AppConstants.TitleModal.Success, detail: mensaje});
   }
 
   showWarn(mensaje :string) {
-    this.messageService.add({severity:'warn', summary: 'Advertencia', detail: mensaje});
+    this.messageService.add({severity:'warn', summary: AppConstants.TitleModal.Warning, detail: mensaje});
   }
 
 
@@ -69,7 +70,7 @@ export class CrearDireccionComponent implements OnInit {
 
     if (this.direccionForm.valid) {
       if (!this.direccionForm.controls.nombre.valid) {
-        this.showWarn("Datos incorrectos");
+        this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
         return false;
       }
 
@@ -83,7 +84,7 @@ export class CrearDireccionComponent implements OnInit {
 
         this.directionServices.addDirection(odata).subscribe(
           (response: any) => {
-            this.showSuccess("Se registró correctamente");
+            this.showSuccess(AppConstants.MessageModal.CREATE_SUCCESS);
             this.ref.close(true);
           }
         )
@@ -97,7 +98,7 @@ export class CrearDireccionComponent implements OnInit {
 
         this.directionServices.updateDirection(odata).subscribe(
           (response: any) => {
-            this.showSuccess("Se editó correctamente");
+            this.showSuccess(AppConstants.MessageModal.EDIT_SUCCESS);
             this.ref.close(true);
           }
         )
@@ -105,6 +106,7 @@ export class CrearDireccionComponent implements OnInit {
 
     } else {
       this.direccionForm.markAllAsTouched();
+      this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
     }
 
   }

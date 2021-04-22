@@ -3,6 +3,7 @@ import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DireccionModel } from 'src/app/models/direccion.model';
 import { DirectionServices } from 'src/app/services/direccion.service';
+import { AppConstants } from 'src/app/shared/constants/app.constants';
 import { CrearDireccionComponent } from '../../dialog/crear-direccion/crear-direccion.component';
 
 @Component({
@@ -70,7 +71,6 @@ export class TableDireccionComiteComponent implements OnInit {
     });
 
     this.ref.onClose.subscribe( data => {
-      console.log(data);
       if (data) {
         this.refrescarLista();
       }
@@ -119,20 +119,14 @@ export class TableDireccionComiteComponent implements OnInit {
 
     this.directionServices.updateDirection(odata).subscribe(
       (response: any) => {
-        if(this.textFilter.length == 0){
-          this.directionServices.getListDirection(this.term,this.page,this.size).subscribe(
-            (result: any) => {
-              this.products = result.data
-              this.showSuccess("Se eliminó correctamente");
-            }
-          )
-        }else{
-          this.directionServices.getListDirection(this.textFilter,this.page,this.size).subscribe(
-            (result: any) => {
-              this.products = result.data
-            }
-          )
-        }
+        this.messageService.add(
+          {
+            severity:'success',
+            summary: AppConstants.TitleModal.Success,
+            detail: AppConstants.MessageModal.DELETE_SUCCESS
+          }
+        );
+        this.refrescarLista();
         this.displayModal = false;
       }
     )
@@ -140,19 +134,7 @@ export class TableDireccionComiteComponent implements OnInit {
 
   onKeydown(event) {
     if (event.key === "Enter") {
-      if(this.textFilter.length == 0){
-        this.directionServices.getListDirection(this.term,this.page,this.size).subscribe(
-          (result: any) => {
-            this.products = result.data
-          }
-        )
-      }else{
-        this.directionServices.getListDirection(this.textFilter,this.page,this.size).subscribe(
-          (result: any) => {
-            this.products = result.data
-          }
-        )
-      }
+      this.refrescarLista();
     }
   }
 

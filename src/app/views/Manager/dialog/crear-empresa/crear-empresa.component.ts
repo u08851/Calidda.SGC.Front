@@ -5,6 +5,7 @@ import { EmpresaServices } from 'src/app/services/empresa.service';
 import { PaisServices } from 'src/app/services/pais.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
+import { AppConstants } from 'src/app/shared/constants/app.constants';
 
 @Component({
   selector: 'app-crear-empresa',
@@ -32,11 +33,11 @@ export class CrearEmpresaComponent implements OnInit {
    }
 
    showSuccess(mensaje :string) {
-    this.messageService.add({severity:'success', summary: 'Success', detail: mensaje});
+    this.messageService.add({severity:'success', summary: AppConstants.TitleModal.Success, detail: mensaje});
   }
 
   showWarn(mensaje :string) {
-    this.messageService.add({severity:'warn', summary: 'Warn', detail: mensaje});
+    this.messageService.add({severity:'warn', summary: AppConstants.TitleModal.Warning, detail: mensaje});
   }
 
 
@@ -84,7 +85,7 @@ export class CrearEmpresaComponent implements OnInit {
     if (this.empresaForm.valid) {
 
       if (!this.empresaForm.controls.nombre.valid) {
-        this.showWarn("Datos incorrectos");
+        this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
         return false;
       }
 
@@ -99,7 +100,7 @@ export class CrearEmpresaComponent implements OnInit {
 
         this.empresaServices.addEmpresa(odata).subscribe(
           (response: any) => {
-            this.showSuccess("Se registró correctamente");
+            this.showSuccess(AppConstants.MessageModal.CREATE_SUCCESS);
             this.ref.close(true);
           }
         )
@@ -114,7 +115,7 @@ export class CrearEmpresaComponent implements OnInit {
 
         this.empresaServices.updateEmpresa(odata).subscribe(
           (response: any) => {
-            this.showSuccess("Se editó correctamente");
+            this.showSuccess(AppConstants.MessageModal.EDIT_SUCCESS);
             this.ref.close(true);
           }
         )
@@ -123,6 +124,7 @@ export class CrearEmpresaComponent implements OnInit {
 
     } else {
       this.empresaForm.markAllAsTouched();
+      this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
     }
   }
 

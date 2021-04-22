@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { LoginModel } from 'src/app/models/login.model';
 import { LoginServices } from 'src/app/services/login.service';
+import { AppConstants } from 'src/app/shared/constants/app.constants';
 
 @Component({
   selector: 'app-login',
@@ -17,10 +17,12 @@ export class LoginComponent implements OnInit {
 
   loginForm:FormGroup;
   submitted: boolean = false;
-  constructor(private messageService: MessageService,
+  constructor(
+    private messageService: MessageService,
     private fb :FormBuilder,
     private loginServices:LoginServices,
-    public router:Router) {}
+    public router:Router
+  ) {}
 
   ngOnInit(): void {
 
@@ -38,15 +40,14 @@ export class LoginComponent implements OnInit {
   }
 
   showResponse(event) {
-    this.messageService.add({severity:'info', summary:'Succees', detail: 'User Responded', sticky: true});
+    this.messageService.add({severity:'info', summary:AppConstants.TitleModal.Success, detail: 'User Responded', sticky: true});
   }
-
   showWarn(mensaje :string) {
-    this.messageService.add({severity:'warn', summary: 'Advertencia', detail: mensaje});
+    this.messageService.add({severity:'warn', summary: AppConstants.TitleModal.Warning, detail: mensaje});
   }
 
   showSuccess(mensaje :string) {
-    this.messageService.add({severity:'success', summary: 'Bienvenido', detail: mensaje});
+    this.messageService.add({severity:'success', summary: AppConstants.TitleModal.Login, detail: mensaje});
   }
 
   send() {
@@ -54,7 +55,7 @@ export class LoginComponent implements OnInit {
 
     if (this.loginForm.valid) {
       if (!this.loginForm.controls.login.valid) {
-        this.showWarn("Faltan datos por completar");
+        this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
         return false;
       }
         //LOGIN
@@ -69,13 +70,16 @@ export class LoginComponent implements OnInit {
         this.loginServices.getLogin(odata).subscribe(
           (response: any) => {
             this.router.navigate(['/manager']);
+            alert("HOLA")
+            this.showSuccess(AppConstants.MessageModal.LOGIN_SUCCESS);
           }
 
         )
       }
       else {
         this.loginForm.markAllAsTouched();
-        this.showWarn("Faltan datos por completar");
+        this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
+        alert("ERROR");
       }
     }
 }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { EmpresaModel } from 'src/app/models/empresa.model';
 import { EmpresaServices } from 'src/app/services/empresa.service';
+import { AppConstants } from 'src/app/shared/constants/app.constants';
 import { CrearEmpresaComponent } from '../../dialog/crear-empresa/crear-empresa.component';
 
 @Component({
@@ -27,6 +29,7 @@ export class TableEmpresaComponent implements OnInit {
   constructor(
     public dialogService: DialogService,
     private empresaServices:EmpresaServices,
+    public messageService:MessageService,
   ) { }
 
   ngOnInit(): void {
@@ -47,7 +50,6 @@ export class TableEmpresaComponent implements OnInit {
     });
 
     this.ref.onClose.subscribe( data => {
-      console.log(data);
       if (data) {
         this.refrescarLista();
       }
@@ -76,8 +78,6 @@ export class TableEmpresaComponent implements OnInit {
     this.empresaServices.getListEmpresa(this.term,this.page,this.size).subscribe(
       (result: any) => {
         this.products2 = result.data
-
-        console.log(this.products2);
       }
     )
   }
@@ -97,7 +97,14 @@ export class TableEmpresaComponent implements OnInit {
 
     this.empresaServices.updateEmpresa(odata).subscribe(
       (response: any) => {
-        alert("elimino");
+        this.messageService.add(
+          {
+            severity:'success',
+            summary: AppConstants.TitleModal.Success,
+            detail: AppConstants.MessageModal.DELETE_SUCCESS
+          }
+        );
+        this.refrescarLista();
         this.displayModal = false;
       }
     )
@@ -105,19 +112,7 @@ export class TableEmpresaComponent implements OnInit {
 
   onKeydown(event) {
     if (event.key === "Enter") {
-      if(this.textFilter.length == 0){
-        this.empresaServices.getListEmpresa(this.term,this.page,this.size).subscribe(
-          (result: any) => {
-            this.products2 = result.data
-          }
-        )
-      }else{
-        this.empresaServices.getListEmpresa(this.textFilter,this.page,this.size).subscribe(
-          (result: any) => {
-            this.products2 = result.data
-          }
-        )
-      }
+      this.refrescarLista();
     }
   }
 
