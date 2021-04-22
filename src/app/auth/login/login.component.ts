@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { LoginModel } from 'src/app/models/login.model';
 import { LoginServices } from 'src/app/services/login.service';
 
@@ -17,7 +19,8 @@ export class LoginComponent implements OnInit {
   submitted: boolean = false;
   constructor(private messageService: MessageService,
     private fb :FormBuilder,
-    private loginServices:LoginServices) {}
+    private loginServices:LoginServices,
+    public router:Router) {}
 
   ngOnInit(): void {
 
@@ -58,14 +61,14 @@ export class LoginComponent implements OnInit {
         let data = this.loginForm.value;
         var odata = new LoginModel();
 
-        console.log(data);
+
         odata.login = data.login;
         odata.password = data.password ;
         odata.email  =  "";
 
         this.loginServices.getLogin(odata).subscribe(
           (response: any) => {
-            this.showSuccess("Bienvenido al Sistema ...");
+            this.router.navigate(['/manager']);
           }
 
         )

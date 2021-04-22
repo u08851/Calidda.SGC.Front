@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DireccionModel } from 'src/app/models/direccion.model';
 import { DirectionServices } from 'src/app/services/direccion.service';
@@ -25,8 +26,14 @@ export class TableDireccionComiteComponent implements OnInit {
   constructor(
     public dialogService: DialogService,
     private directionServices: DirectionServices,
-    public  ref: DynamicDialogRef
+    public  ref: DynamicDialogRef,
+    public messageService:MessageService
     ) {}
+
+
+    showSuccess(mensaje :string) {
+      this.messageService.add({severity:'success', summary: 'Exitoso', detail: mensaje});
+    }
 
   ngOnInit(): void {
     this.cols = [
@@ -48,19 +55,7 @@ export class TableDireccionComiteComponent implements OnInit {
     this.ref.onClose.subscribe( data => {
       console.log(data);
       if (data) {
-        if(this.textFilter.length == 0){
-          this.directionServices.getListDirection(this.term,this.page,this.size).subscribe(
-            (result: any) => {
-              this.products = result.data
-            }
-          )
-        }else{
-          this.directionServices.getListDirection(this.textFilter,this.page,this.size).subscribe(
-            (result: any) => {
-              this.products = result.data
-            }
-          )
-        }
+        this.refrescarLista();
       }
     })
   }
@@ -73,6 +68,14 @@ export class TableDireccionComiteComponent implements OnInit {
       baseZIndex: 10000,
       data: data
     });
+
+    this.ref.onClose.subscribe( data => {
+      console.log(data);
+      if (data) {
+        this.refrescarLista();
+      }
+    })
+
   }
 
 
@@ -82,6 +85,24 @@ export class TableDireccionComiteComponent implements OnInit {
         this.products = result.data
       }
     )
+  }
+
+
+  refrescarLista()
+  {
+    if(this.textFilter.length == 0){
+      this.directionServices.getListDirection(this.term,this.page,this.size).subscribe(
+        (result: any) => {
+          this.products = result.data
+        }
+      )
+    }else{
+      this.directionServices.getListDirection(this.textFilter,this.page,this.size).subscribe(
+        (result: any) => {
+          this.products = result.data
+        }
+      )
+    }
   }
 
   showConfirmation(data) {
@@ -98,11 +119,11 @@ export class TableDireccionComiteComponent implements OnInit {
 
     this.directionServices.updateDirection(odata).subscribe(
       (response: any) => {
-        alert("elimino");
         if(this.textFilter.length == 0){
           this.directionServices.getListDirection(this.term,this.page,this.size).subscribe(
             (result: any) => {
               this.products = result.data
+              this.showSuccess("Se eliminó correctamente");
             }
           )
         }else{

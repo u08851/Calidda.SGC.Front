@@ -45,6 +45,14 @@ export class TableEmpresaComponent implements OnInit {
       baseZIndex: 10000,
       data:null
     });
+
+    this.ref.onClose.subscribe( data => {
+      console.log(data);
+      if (data) {
+        this.refrescarLista();
+      }
+    })
+
   }
 
   showEditEmpresa(data) {
@@ -55,6 +63,13 @@ export class TableEmpresaComponent implements OnInit {
       baseZIndex: 10000,
       data:data
     });
+
+    this.ref.onClose.subscribe( data => {
+      console.log(data);
+      if (data) {
+        this.refrescarLista();
+      }
+    })
   }
 
   getListEmpresa(){
@@ -103,6 +118,22 @@ export class TableEmpresaComponent implements OnInit {
           }
         )
       }
+    }
+  }
+
+  refrescarLista(){
+    if(this.textFilter.length == 0){
+      this.empresaServices.getListEmpresa(this.term,this.page,this.size).subscribe(
+        (result: any) => {
+          this.products2 = result.data
+        }
+      )
+    }else{
+      this.empresaServices.getListEmpresa(this.textFilter,this.page,this.size).subscribe(
+        (result: any) => {
+          this.products2 = result.data
+        }
+      )
     }
   }
 
