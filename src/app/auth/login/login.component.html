@@ -14,13 +14,20 @@
                         <div class="p-field">
                             <label for="login" [ngClass]="{ 'is-invalid-text': submitted && g.login.errors }">Usuario</label>
                             <input type="text" pInputText class="form-control" formControlName="login" [ngClass]="{ 'is-invalid-input': submitted && g.login.errors }" oninput="this.value=this.value.trim()==''?'':this.value" />
+                            <div *ngIf="submitted && g.login.errors != null">
+                                <span class="p-error" *ngIf="g.login.errors.minlength">El usuario debe contener al menos un carácter.<br></span>
+                                <span class="p-error" *ngIf="g.login.errors.required">El usuario es requerido.<br></span>
+                            </div>
                         </div>
 
                         <!-- contraseña -->
                         <div class="p-field">
                             <label for="password" [ngClass]="{ 'is-invalid-text': submitted && g.password.errors }">Contraseña</label>
                             <input type="password" pInputText class="form-control" formControlName="password" [ngClass]="{ 'is-invalid-input': submitted && g.password.errors }" oninput="this.value=this.value.trim()==''?'':this.value" />
-
+                            <div *ngIf="submitted && g.password.errors != null">
+                                <span class="p-error" *ngIf="g.password.errors.minlength">La contraseña debe contener al menos un carácter.<br></span>
+                                <span class="p-error" *ngIf="g.password.errors.required">La contraseña es requerido.<br></span>
+                            </div>
                         </div>
 
                         <!-- captcha -->

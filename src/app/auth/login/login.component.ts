@@ -72,7 +72,6 @@ export class LoginComponent implements OnInit {
           (response: any) => {
             if(response.valid){
               this.router.navigate(['/manager']);
-              alert("BIENVENIDO AL SISTEMA")
               this.showSuccess(AppConstants.MessageModal.LOGIN_SUCCESS);
             }
           }
@@ -81,7 +80,6 @@ export class LoginComponent implements OnInit {
       else {
         this.loginForm.markAllAsTouched();
         this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
-        alert("ERROR");
       }
     }
 }
