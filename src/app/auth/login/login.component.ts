@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
   showResponse(event) {
     this.messageService.add({severity:'info', summary:AppConstants.TitleModal.Success, detail: 'User Responded', sticky: true});
   }
+  
   showWarn(mensaje :string) {
     this.messageService.add({severity:'warn', summary: AppConstants.TitleModal.Warning, detail: mensaje});
   }
@@ -69,11 +70,12 @@ export class LoginComponent implements OnInit {
 
         this.loginServices.getLogin(odata).subscribe(
           (response: any) => {
-            this.router.navigate(['/manager']);
-            alert("HOLA")
-            this.showSuccess(AppConstants.MessageModal.LOGIN_SUCCESS);
+            if(response.valid){
+              this.router.navigate(['/manager']);
+              alert("BIENVENIDO AL SISTEMA")
+              this.showSuccess(AppConstants.MessageModal.LOGIN_SUCCESS);
+            }
           }
-
         )
       }
       else {

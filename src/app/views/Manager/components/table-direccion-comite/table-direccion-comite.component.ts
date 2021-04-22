@@ -54,7 +54,6 @@ export class TableDireccionComiteComponent implements OnInit {
     });
 
     this.ref.onClose.subscribe( data => {
-      console.log(data);
       if (data) {
         this.refrescarLista();
       }
