@@ -31,6 +31,7 @@ import { FrecuenciaTableComponent } from './components/indicadores-inicio-tables
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableDocumentosComponent } from './components/table-documentos/table-documentos.component';
 import { ImportDocumentComponent } from './dialog/import-document/import-document.component';
+import { ReportTableComponent } from './components/report-table/report-table.component';
 @NgModule({
   declarations: [
     MaintenanceComponent,
@@ -56,7 +57,8 @@ import { ImportDocumentComponent } from './dialog/import-document/import-documen
     SecretariaTableComponent,
     FrecuenciaTableComponent,
     TableDocumentosComponent,
-    ImportDocumentComponent
+    ImportDocumentComponent,
+    ReportTableComponent
   ],
   imports: [
     CommonModule,

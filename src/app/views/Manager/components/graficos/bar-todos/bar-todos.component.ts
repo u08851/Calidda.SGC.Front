@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
+import { ReportTableComponent } from '../../report-table/report-table.component';
+import { Router } from '@angular/router';
+
 
 // Themes begin
 am4core.useTheme(am4themes_animated);
@@ -13,7 +16,10 @@ am4core.useTheme(am4themes_animated);
   styleUrls: ['./bar-todos.component.scss'],
 })
 export class BarTodosComponent implements OnInit {
-  constructor() {}
+  
+  constructor(
+    private routing: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -164,5 +170,9 @@ export class BarTodosComponent implements OnInit {
     chart.legend.markers.template.height = 8;
     chart.legend.visible = true;
     chart.legend.fill = am4core.color('series1' && 'series2' && 'series3');
+
+    series1.columns.template.events.on("hit", function(ev) {
+      this.routing.navigateByUrl("/manager/report");
+    }, this);
   }
 }

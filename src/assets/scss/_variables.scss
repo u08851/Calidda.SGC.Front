@@ -43,3 +43,13 @@ body {
 .info {
   color: #00a1de;
 }
+
+
+//Material Icons Class
+.exit_to_app {
+  position:relative;
+  display:inline-block;
+}
+.exit_to_app:after {
+  content: "exit_to_app";
+}

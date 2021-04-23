@@ -110,6 +110,10 @@
   
 }
 
+.style-table {
+  @extend %style-table-base;
+  @extend %style-paginator;
+}
 //panel de opcioones
 .style-panel.p-menu {
   top: 46px !important;
@@ -121,16 +125,3 @@
     font-size: 20px !important;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

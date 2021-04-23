@@ -9,6 +9,7 @@ import { PaisTableComponent } from './components/indicadores-inicio-tables/pais-
 import { EmpresaDireccionTableComponent } from './components/indicadores-inicio-tables/empresa-direccion-table/empresa-direccion-table.component';
 import { SecretariaTableComponent } from './components/indicadores-inicio-tables/secretaria-table/secretaria-table.component';
 import { FrecuenciaTableComponent } from './components/indicadores-inicio-tables/frecuencia-table/frecuencia-table.component';
+import { ReportTableComponent } from './components/report-table/report-table.component';
 
 export const ManagerRoutes: Routes = [
     {
@@ -16,7 +17,7 @@ export const ManagerRoutes: Routes = [
         children: [
             {
                 path: '',
-                component: DashboardComponent,
+                component: DashboardComponent
             },
             {
                 path: 'dashboard',
@@ -57,6 +58,10 @@ export const ManagerRoutes: Routes = [
             {
                 path: 'frecuencia-table',
                 component: FrecuenciaTableComponent
+            },
+            {
+                path: 'report',
+                component: ReportTableComponent
             }
         ],
     },
