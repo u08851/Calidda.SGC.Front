@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { FileUpload, FileUploadModule } from 'primeng/fileupload';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { FileUpload } from 'primeng/fileupload';
+import { AddProfileComponent } from '../dialog/add-profile/add-profile.component';
 
 @Component({
   selector: 'app-profile',
@@ -9,20 +11,20 @@ import { FileUpload, FileUploadModule } from 'primeng/fileupload';
 })
 export class ProfileComponent implements OnInit {
   value: string;
-
   uploadedFiles: any[] = [];
   @ViewChild('fileInput') fileInput: FileUpload;
+  ref: DynamicDialogRef;
 
 
   constructor(
     private messageService: MessageService,
-    private fileUploadModule: FileUploadModule
+    public dialogService: DialogService
   ) { }
 
   ngOnInit(): void {
   }
 
-  cargar(){
+  cargar() {
     this.fileInput.choose();
   }
 
@@ -35,5 +37,17 @@ export class ProfileComponent implements OnInit {
   onBeforeUpload() {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Ocurrio un Error al cargar la imagen' });
   }
+
+
+
+  showEditUser() {
+    this.ref = this.dialogService.open(AddProfileComponent, {
+      header: 'Información General',
+      width: '45%',
+      contentStyle: { "max-height": "500px", "overflow": "auto" },
+      baseZIndex: 10000
+    });
+  }
+
 
 }
