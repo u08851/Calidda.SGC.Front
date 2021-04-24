@@ -7,6 +7,7 @@
 .bl-0 {
   border-left: 0 !important;
 }
+
 //colors
 .red {
   color: #e31919 !important;
@@ -70,7 +71,7 @@
 }
 
 .op-8 {
-    opacity: 0.8;
+    opacity: 0.8 !important;
 }
 
 
@@ -91,4 +92,20 @@
 }
 .fz-14 {
   font-size: 14px;
+}
+
+//texts
+.fw-bold {
+  font-weight: bold;
+}
+.fw-500 {
+  font-weight: 500;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.cPointer{
+  cursor: pointer;
 }

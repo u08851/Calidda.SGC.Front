@@ -1,7 +1,7 @@
 <p-sidebar class="p-sidebar-half" [(visible)]="visibleSidebar" [modal]="false" [showCloseIcon]="false" [baseZIndex]="1002">
     <div class="custom-card">
-        <div class="custom-card-header">
-            <img src="assets/images/img-perfil-test.jpg" alt="foto_perfil" />
+        <div class="custom-card-header" (click)="profile()">
+            <img class="cPointer" src="assets/images/img-perfil-test.jpg" alt="foto_perfil" />
             <p>Simy Benzaquen</p>
             <p>Miembro del Comité</p>
             <p>Cálidda</p>

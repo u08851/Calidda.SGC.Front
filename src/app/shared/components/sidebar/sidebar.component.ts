@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faCoffee, faReply } from '@fortawesome/free-solid-svg-icons';
 import { SidenavService } from 'src/app/back/services/sidenav.service';
 
@@ -14,7 +15,8 @@ export class SidebarComponent implements OnInit {
   visibleSidebar:boolean = true;
 
   constructor(
-    public sidevar: SidenavService
+    public sidevar: SidenavService,
+    public routing: Router
   ) { }
 
   ngOnInit(): void {
@@ -22,5 +24,10 @@ export class SidebarComponent implements OnInit {
       this.visibleSidebar = res;      
    });
   }
+
+  profile() {
+    this.routing.navigate(['manager/profile']);
+  }
+
 
 }

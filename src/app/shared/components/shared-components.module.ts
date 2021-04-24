@@ -4,16 +4,21 @@ import { PrimengModule } from '../primeng.module';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ViewFileComponent } from './view-file/view-file.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     SidebarComponent,
-    ViewFileComponent
+    ViewFileComponent,
+    ProfileComponent
   ],
   imports: [CommonModule, PrimengModule],
   exports: [
-    HeaderComponent, SidebarComponent, ViewFileComponent
+    HeaderComponent,
+    SidebarComponent,
+    ViewFileComponent,
+    ProfileComponent
   ],
   entryComponents: []
 })

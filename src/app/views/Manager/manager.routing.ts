@@ -10,6 +10,7 @@ import { EmpresaDireccionTableComponent } from './components/indicadores-inicio-
 import { SecretariaTableComponent } from './components/indicadores-inicio-tables/secretaria-table/secretaria-table.component';
 import { FrecuenciaTableComponent } from './components/indicadores-inicio-tables/frecuencia-table/frecuencia-table.component';
 import { ReportTableComponent } from './components/report-table/report-table.component';
+import { ProfileComponent } from 'src/app/shared/components/profile/profile.component';
 
 export const ManagerRoutes: Routes = [
     {
@@ -62,6 +63,10 @@ export const ManagerRoutes: Routes = [
             {
                 path: 'report',
                 component: ReportTableComponent
+            },
+            {
+                path: 'profile',
+                component: ProfileComponent
             }
         ],
     },
