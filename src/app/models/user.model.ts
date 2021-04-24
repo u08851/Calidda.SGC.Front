@@ -27,3 +27,15 @@ export class PersonModel{
   empresaId: number;
 
 }
+
+export class UserRequestModel{
+
+  nombre: string;
+  correo: string;
+  estado: number;
+  personaId: number;
+  empresaId: number;
+  celular: string;
+  usuarioId: number;
+  
+}

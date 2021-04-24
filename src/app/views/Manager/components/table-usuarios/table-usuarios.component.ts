@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { UserModel } from 'src/app/models/user.model';
+import { UserModel, UserRequestModel } from 'src/app/models/user.model';
 import { CreateUserComponent } from '../../dialog/create-user/create-user.component';
 import { UserServices } from 'src/app/services/user.service';
+import { AppConstants } from 'src/app/shared/constants/app.constants';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-table-usuarios',
@@ -28,7 +30,8 @@ export class TableUsuariosComponent implements OnInit {
 
   constructor(
     public dialogService: DialogService,
-    private userServices:UserServices
+    private userServices:UserServices,
+    public messageService:MessageService,
   ) { }
 
   ngOnInit(): void {
@@ -73,8 +76,27 @@ export class TableUsuariosComponent implements OnInit {
     });
   }
 
+  showSuccess(mensaje :string) {
+    this.messageService.add({severity:'success', summary: AppConstants.TitleModal.Success, detail: mensaje});
+  }
+
   updateStatus(data){
-    alert("entro");
+
+    var odata = new UserRequestModel();
+    odata.nombre = data.personaDto.nombre;
+    odata.estado = 0;
+    odata.celular  = "";
+    odata.correo = data.correo;
+    odata.empresaId = data.personaDto.empresaId;
+    odata.personaId = data.personaDto.personaId;
+    odata.usuarioId = data.usuarioId;
+
+    this.userServices.editUser(odata).subscribe(
+      (result: any) => {
+        this.showSuccess(AppConstants.MessageModal.DESAC_SUCCESS);
+        this.getListUser();
+      }
+    )
   }
 
   onKeydown(event) {
