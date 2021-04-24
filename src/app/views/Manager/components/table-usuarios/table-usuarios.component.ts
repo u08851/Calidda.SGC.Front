@@ -18,7 +18,11 @@ export class TableUsuariosComponent implements OnInit {
   checked: boolean;
   ref: DynamicDialogRef;
   textFilter: string = "";
-  term: string = "ALL0";
+  textFilter1: string = "";
+  textFilter2: string = "";
+  term: string = "ALL1";
+  term1: string = "ALL1";
+  term2: string = "ALL1";
   page: number = 0;
   size: number = 5;
 
@@ -69,26 +73,72 @@ export class TableUsuariosComponent implements OnInit {
     });
   }
 
+  updateStatus(data){
+    alert("entro");
+  }
+
   onKeydown(event) {
     if (event.key === "Enter") {
-      if(this.textFilter.length == 0){
-        this.userServices.getListUser(this.term,this.page,this.size).subscribe(
+      if(this.textFilter.length == 0 && this.textFilter1.length == 0 && this.textFilter2.length == 0){
+        this.userServices.getListUser(this.term,this.term1,this.term2,this.page,this.size).subscribe(
           (result: any) => {
             this.products = result.data
           }
         )
       }else{
-        this.userServices.getListUser(this.textFilter,this.page,this.size).subscribe(
-          (result: any) => {
-            this.products = result.data
+        if(this.textFilter.length == 0 && this.textFilter1.length == 0){
+          this.userServices.getListUser(this.term,this.term1,this.textFilter2,this.page,this.size).subscribe(
+            (result: any) => {
+              this.products = result.data
+            }
+          )
+        }else{
+          if(this.textFilter2.length == 0 && this.textFilter1.length == 0){
+            this.userServices.getListUser(this.textFilter,this.term1,this.term2,this.page,this.size).subscribe(
+              (result: any) => {
+                this.products = result.data
+              }
+            )
+          }else{
+            if(this.textFilter2.length == 0 && this.textFilter.length == 0){
+              this.userServices.getListUser(this.term,this.textFilter1,this.term2,this.page,this.size).subscribe(
+                (result: any) => {
+                  this.products = result.data
+                }
+              )
+            }else{
+              if(this.textFilter.length == 0){
+                this.userServices.getListUser(this.term,this.textFilter1,this.textFilter2,this.page,this.size).subscribe(
+                  (result: any) => {
+                    this.products = result.data
+                  }
+                )
+              }else{
+                if(this.textFilter2.length == 0){
+                  this.userServices.getListUser(this.textFilter,this.textFilter1,this.term2,this.page,this.size).subscribe(
+                    (result: any) => {
+                      this.products = result.data
+                    }
+                  )
+                }else{
+                  if(this.textFilter1.length == 0){
+                    this.userServices.getListUser(this.textFilter,this.term1,this.textFilter2,this.page,this.size).subscribe(
+                      (result: any) => {
+                        this.products = result.data
+                      }
+                    )
+                  }
+                }
+              }
+            }
           }
-        )
+        }
       }      
     }
   }
 
   getListUser(){
-    this.userServices.getListUser(this.term,this.page,this.size).subscribe(
+    this.userServices.getListUser(this.term,this.term1,this.term2,this.page,this.size).subscribe(
       (result: any) => {
         this.products = result.data
       }

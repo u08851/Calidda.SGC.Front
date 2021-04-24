@@ -46,7 +46,7 @@
               styleClass="style-input-1"
               (keydown)="onKeydown($event)"
               [ngModelOptions]="{standalone: true}"
-              [(ngModel)]="textFilter"
+              [(ngModel)]="textFilter1"
             />
             <label for="inputtext">Empresa</label>
           </span>
@@ -62,7 +62,7 @@
               styleClass="style-input-1"
               (keydown)="onKeydown($event)"
               [ngModelOptions]="{standalone: true}"
-              [(ngModel)]="textFilter"
+              [(ngModel)]="textFilter2"
             />
             <label for="inputtext">Correo electronico</label>
           </span>
@@ -109,14 +109,14 @@
         <td class="p-text-left">
           <div class="p-d-flex p-ai-center">
             <!-- variables:  --red --green --info  -->
-            <i *ngIf="rowData.estado == 1" class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--info)'"></i>
-            <i *ngIf="rowData.estado == 0" class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--green)'"></i>
+            <i *ngIf="rowData.estado == 1" class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--green)'"></i>
+            <i *ngIf="rowData.estado == 0" class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--red)'"></i>
             {{rowData.estado == 1 ? 'Activo': 'Desactivado'}}
           </div>
         </td>
         <td>
           <div class="p-d-flex p-ai-center p-jc-around">
-            <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+            <p-inputSwitch (click)="updateStatus(rowData)" [(ngModel)]="rowData.estado"></p-inputSwitch>
             <button pButton pRipple type="button" icon="icon-edit"
             (click)="showEditeUser(rowData)"
               class="p-button-rounded p-button-info p-button-text icon-table-size"></button>

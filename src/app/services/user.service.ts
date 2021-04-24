@@ -20,8 +20,8 @@ export class UserServices {
 
   }
 
-  getListUser(term:string,page:number,size:number){
-    return this._http.get<UserModel>(`${this.BASE_URL}/searchAll/${term}/${page}/${size}`);
+  getListUser(term:string,term1:string,term2:string,page:number,size:number){
+    return this._http.get<UserModel>(`${this.BASE_URL}/searchAll/${term}/${term1}/${term2}/${page}/${size}`);
   }
 
 }

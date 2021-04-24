@@ -15,8 +15,7 @@ import { AppConstants } from 'src/app/shared/constants/app.constants';
 export class CrearEmpresaComponent implements OnInit {
 
   countries: any[];
-  selectedCountry: string;
-
+  selectedCountry: number = 3;
   empresa= new  EmpresaModel();
   submitted: boolean = false;
   empresaForm:FormGroup;
@@ -67,6 +66,7 @@ export class CrearEmpresaComponent implements OnInit {
     }else{
       this.valida = false;
       this.UpdateFormulario();
+      console.log(this.empresaForm);
     }
   }
 
@@ -84,18 +84,19 @@ export class CrearEmpresaComponent implements OnInit {
 
     if (this.empresaForm.valid) {
 
-      if (!this.empresaForm.controls.nombre.valid) {
+      if (!this.empresaForm.controls.nombre.valid ||
+        !this.empresaForm.controls.paisId.valid) {
         this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
         return false;
       }
 
-      if(1 > 0){
+      if(this.valida){
         //CREATE
         let data = this.empresaForm.value;
         var odata = new EmpresaModel();
         odata.nombre = data.nombre;
         odata.estado = 1 ;
-        odata.paisId=data.paisId;
+        odata.paisId= data.paisId.paisId;
         odata.empresaId  = 0;
 
         this.empresaServices.addEmpresa(odata).subscribe(
@@ -109,9 +110,9 @@ export class CrearEmpresaComponent implements OnInit {
         let data = this.empresaForm.value;
         var odata = new EmpresaModel();
         odata.nombre = data.nombre;
-        odata.paisId=data.paisId;
-        odata.estado = 1 ;
-        odata.empresaId  = 0;
+        odata.paisId = data.paisId.paisId;
+        odata.estado = this.config.data.estado;
+        odata.empresaId  = this.config.data.empresaId;
 
         this.empresaServices.updateEmpresa(odata).subscribe(
           (response: any) => {
