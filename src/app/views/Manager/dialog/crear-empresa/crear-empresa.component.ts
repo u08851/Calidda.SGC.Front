@@ -81,7 +81,7 @@ export class CrearEmpresaComponent implements OnInit {
       (response: any) => {
         this.countries = response.data;
         if(this.config.data == null){
-          this.selectedCountry = {paisId: this.countries[0].paisId,nombre: this.countries[0].nombre,sigla: "http://127.0.0.1:8887/PE.svg"}
+          this.selectedCountry = {paisId: this.countries[0].paisId,nombre: this.countries[0].nombre,sigla: this.countries[0].sigla}
         }
       }
     )

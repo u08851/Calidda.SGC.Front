@@ -25,6 +25,7 @@ export class PersonModel{
   apePaterno: string;
   apeMaterno: string;
   empresaId: number;
+  paisId: number;
 
 }
 
@@ -37,5 +38,6 @@ export class UserRequestModel{
   empresaId: number;
   celular: string;
   usuarioId: number;
+  paisId: number;
   
 }

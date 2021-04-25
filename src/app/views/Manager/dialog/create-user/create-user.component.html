@@ -17,14 +17,20 @@
         </div>
         <div class="p-field p-col-12 p-md-6">
             <label for="empresaId" [ngClass]="{ 'is-invalid-text': submitted && g.empresaId.errors }">Empresa</label>
-            <p-dropdown formControlName="empresaId" [ngClass]="{ 'p-error': submitted && g.empresaId.errors }" oninput="this.value=this.value.trim()==''?'':this.value" [options]="dataEmpresa" [(ngModel)]="selectedEmpresa" optionLabel="nombre" optionDisabled="inactive"></p-dropdown>
+            <p-dropdown formControlName="empresaId" [ngClass]="{ 'p-error': submitted && g.empresaId.errors }" oninput="this.value=this.value.trim()==''?'':this.value" [options]="dataEmpresa" [(ngModel)]="selectedEmpresa" optionLabel="nombre" optionDisabled="inactive">
+                <ng-template pTemplate="selectedItem">
+                    
+                        
+                        <span class="p-ml-2" style="line-height: 0; margin-bottom: 5px;">{{selectedEmpresa.nombre}}</span>
+                   
+                </ng-template>
+            </p-dropdown>
             <div *ngIf="submitted && g.empresaId.errors != null">
                 <span class="p-error" *ngIf="g.empresaId.errors.required">La empresa es requerido.<br></span>
             </div>
         </div>
         <div class="p-field p-col-12 p-md-6">
             <label for="paisId" [ngClass]="{ 'is-invalid-text': submitted && g.paisId.errors }">Pais</label>
-
             <p-dropdown formControlName="paisId" [ngClass]="{ 'is-invalid-input': submitted && g.paisId.errors }" oninput="this.value=this.value.trim()==''?'':this.value" [options]="countries" [(ngModel)]="selectedCountry" optionLabel="nombre" [showClear]="false"
                 placeholder="" dropdownIcon="">
                 <ng-template pTemplate="selectedItem">
@@ -36,7 +42,7 @@
                 </ng-template>
                 <ng-template let-country pTemplate="item">
                     <div class="p-d-flex p-ai-center">
-                        <img style="width: 20px;" src="assets/images/flag/PE.svg" />
+                        <img style="width: 20px;" [src]="selectedCountry.sigla" />
                         <span class="p-ml-2" style="line-height: 0; margin-bottom: 5px;">{{country.nombre}}</span>
                     </div>
                 </ng-template>

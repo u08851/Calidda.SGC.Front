@@ -24,7 +24,7 @@ export class CreateUserComponent implements OnInit {
   dataRol: any[];
   selectedRol:string;
   dataEmpresa:any[];
-  selectedEmpresa:string;
+  selectedEmpresa = {};
   userForm:FormGroup;
   submitted: boolean = false;
   
@@ -58,7 +58,7 @@ export class CreateUserComponent implements OnInit {
     this.userForm = this.fb.group({
       empresaId: ['', [Validators.required]],
       nombre: ['', [Validators.required,  Validators.minLength(1)]],
-      paisId: ['', ],
+      paisId: ['', [Validators.required,  Validators.minLength(1)]],
       rolId: ['', ],
       statusId: [false, ],
       correo: ['', [Validators.required,  Validators.minLength(1)]],
@@ -74,10 +74,12 @@ export class CreateUserComponent implements OnInit {
       nombre: this.config.data.personaDto.nombre,
       empresaId: this.config.data.personaDto.empresaId,
       celular: this.config.data.personaDto.celular,
-      statusId: this.config.data.estado == 1 ? true:false
+      statusId: this.config.data.estado == 1 ? true:false,
+      paisId: this.config.data.paisId
     })
     this.checked = this.config.data.estado == 1 ? true:false;
-    //this.selectedCountry = {paisId: this.config.data.paisId,nombre: this.config.data.paisDto.nombre}
+    this.selectedCountry = {paisId: this.config.data.personaDto.paisId,nombre: this.config.data.paisDto.nombre,sigla: this.config.data.paisDto.sigla}
+    this.selectedEmpresa = {empresaId: this.config.data.empresaDto.empresaId,nombre: this.config.data.empresaDto.nombre}
   }
 
   showWarn(mensaje :string) {
@@ -109,6 +111,7 @@ export class CreateUserComponent implements OnInit {
         odata.correo  = data.correo;
         odata.personaId  = 0;
         odata.usuarioId  = 0;
+        odata.paisId= data.paisId.paisId;
         
         this.userServices.addUser(odata).subscribe(
           (response: any) => {
@@ -126,6 +129,7 @@ export class CreateUserComponent implements OnInit {
         odata.correo  = data.correo;
         odata.personaId  = this.config.data.personaId;
         odata.usuarioId  = this.config.data.usuarioId;
+        odata.paisId= data.paisId.paisId;
         
         this.userServices.editUser(odata).subscribe(
           (response: any) => {
@@ -143,6 +147,9 @@ export class CreateUserComponent implements OnInit {
     this.empresaServices.getListEmpresa("ALL1",0,0).subscribe(
       (response: any) => {
         this.dataEmpresa = response.data
+        if(this.config.data == null){
+          this.selectedEmpresa = {empresaId: this.dataEmpresa[1].empresaId,nombre: this.dataEmpresa[1].nombre}
+        }
       }
     )
   }
@@ -157,7 +164,7 @@ export class CreateUserComponent implements OnInit {
       (response: any) => {
         this.countries = response.data;
         if(this.config.data == null){
-          this.selectedCountry = {paisId: this.countries[0].paisId,nombre: this.countries[0].nombre,sigla: "http://127.0.0.1:8887/PE.svg"}
+          this.selectedCountry = {paisId: this.countries[0].paisId,nombre: this.countries[0].nombre,sigla: this.countries[0].sigla}
         }
       }
     )
