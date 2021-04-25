@@ -6,6 +6,7 @@ import { PaisServices } from 'src/app/services/pais.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
 import { AppConstants } from 'src/app/shared/constants/app.constants';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-crear-empresa',
@@ -20,6 +21,7 @@ export class CrearEmpresaComponent implements OnInit {
   submitted: boolean = false;
   empresaForm:FormGroup;
   valida:boolean=false;
+  image:boolean=true;
 
   constructor(
     private fb :FormBuilder,
@@ -27,9 +29,16 @@ export class CrearEmpresaComponent implements OnInit {
     private paisServices:PaisServices,
     public config: DynamicDialogConfig,
     public messageService:MessageService,
-    public ref: DynamicDialogRef
+    public ref: DynamicDialogRef,
+    private sanitizer: DomSanitizer,
     ) {
    }
+
+  getSantizeUrl(url : string) {
+    if(url !== undefined){
+      return this.sanitizer.bypassSecurityTrustUrl(url);
+    }
+  }
 
   showSuccess(mensaje :string) {
     this.messageService.add({severity:'success', summary: AppConstants.TitleModal.Success, detail: mensaje});
@@ -51,7 +60,7 @@ export class CrearEmpresaComponent implements OnInit {
       nombre: this.config.data.nombre,
       paisId: this.config.data.paisId
     })
-    this.selectedCountry = {paisId: this.config.data.paisId,nombre: this.config.data.paisDto.nombre}
+    this.selectedCountry = {paisId: this.config.data.paisId,nombre: this.config.data.paisDto.nombre,sigla: this.config.data.imagen}
   }
 
   get g() { return this.empresaForm.controls; }
@@ -71,6 +80,9 @@ export class CrearEmpresaComponent implements OnInit {
     this.paisServices.getListPais().subscribe(
       (response: any) => {
         this.countries = response.data;
+        if(this.config.data == null){
+          this.selectedCountry = {paisId: this.countries[0].paisId,nombre: this.countries[0].nombre,sigla: "http://127.0.0.1:8887/PE.svg"}
+        }
       }
     )
   }

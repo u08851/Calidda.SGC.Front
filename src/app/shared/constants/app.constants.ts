@@ -15,6 +15,7 @@ export const AppConstants = {
         CREATE_SUCCESS: "Se registró correctamente.",
         EDIT_SUCCESS: "Se editó correctamente.",
         DESAC_SUCCESS: "Se desactivó correctamente",
+        AC_SUCCESS: "Se activó correctamente",
         DELETE_SUCCESS: "Se eliminó correctamente.",
         FIELD_ERROR: "Faltan datos por completar.",
         LOGIN_SUCCESS: "Bienvenido al sistema.",

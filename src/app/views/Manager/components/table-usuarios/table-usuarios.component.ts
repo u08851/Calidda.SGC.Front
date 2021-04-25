@@ -5,6 +5,7 @@ import { CreateUserComponent } from '../../dialog/create-user/create-user.compon
 import { UserServices } from 'src/app/services/user.service';
 import { AppConstants } from 'src/app/shared/constants/app.constants';
 import { MessageService } from 'primeng/api';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-table-usuarios',
@@ -27,14 +28,17 @@ export class TableUsuariosComponent implements OnInit {
   term2: string = "ALL1";
   page: number = 0;
   size: number = 5;
+  formForm:FormGroup;
 
   constructor(
     public dialogService: DialogService,
     private userServices:UserServices,
     public messageService:MessageService,
+    private fb :FormBuilder,
   ) { }
 
   ngOnInit(): void {
+    this.crearFormulario();
     this.cols = [
       { header: 'Nombre y apellidos', field: 'nombre' },
       { header: 'Correo eletrónico', field: 'correo' },
@@ -56,6 +60,14 @@ export class TableUsuariosComponent implements OnInit {
     this.getListUser();
   }
 
+  crearFormulario(){
+    this.formForm = this.fb.group({
+      usuario: [],
+      empresa: [],
+      correo: [],
+    });
+  }
+
   showCreateUser() {
     this.ref = this.dialogService.open(CreateUserComponent, {
       header: 'Creación de nuevo Usuario',
@@ -64,6 +76,13 @@ export class TableUsuariosComponent implements OnInit {
       baseZIndex: 10000,
       data:null
     });
+
+    this.ref.onClose.subscribe( data => {
+      if (data) {
+        this.getListUser();
+      }
+    })
+
   }
 
   showEditeUser(data) {
@@ -74,6 +93,12 @@ export class TableUsuariosComponent implements OnInit {
       baseZIndex: 10000,
       data:data
     });
+
+    this.ref.onClose.subscribe( data => {
+      if (data) {
+        this.getListUser();
+      }
+    })
   }
 
   showSuccess(mensaje :string) {
@@ -83,7 +108,7 @@ export class TableUsuariosComponent implements OnInit {
   updateStatus(data){
 
     var odata = new UserRequestModel();
-    var status: number = data.estado == 0 || data.estado == true ? 1:0;
+    var status: number = data.estado == false ? 0:1;
     odata.nombre = data.personaDto.nombre;
     odata.estado = status;
     odata.celular  = data.personaDto.celular;
@@ -94,7 +119,11 @@ export class TableUsuariosComponent implements OnInit {
 
     this.userServices.editUser(odata).subscribe(
       (result: any) => {
-        this.showSuccess(AppConstants.MessageModal.DESAC_SUCCESS);
+        if(!status){
+          this.showSuccess(AppConstants.MessageModal.DESAC_SUCCESS);
+        }else{
+          this.showSuccess(AppConstants.MessageModal.AC_SUCCESS);
+        }
         this.getListUser();
       }
     )

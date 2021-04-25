@@ -13,13 +13,13 @@
             <p-dropdown [options]="countries" formControlName="paisId" [(ngModel)]="selectedCountry" [ngClass]="{ 'p-error': submitted && g.paisId.errors }" optionLabel="nombre" [filter]="true" filterBy="nombre" [showClear]="false">
                 <ng-template pTemplate="selectedItem">
                     <div class="country-item country-item-value">
-                        <img [src]="selectedCountry.sigla" alt="pais" />
+                        <img [src]="getSantizeUrl(selectedCountry.sigla)" alt="pais" />
                         <span style="line-height: 0; margin-bottom: 5px;">{{ selectedCountry.nombre }}</span>
                     </div>
                 </ng-template>
                 <ng-template let-country pTemplate="item">
                     <div class="country-item country-item-value">
-                        <img [src]="country.sigla" alt="pais" />
+                        <img [src]="getSantizeUrl(country.sigla)" alt="pais" />
                         <span style="line-height: 0; margin-bottom: 5px;">{{ country.nombre }}</span>
                     </div>
                 </ng-template>

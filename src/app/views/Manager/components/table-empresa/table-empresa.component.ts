@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { EmpresaModel } from 'src/app/models/empresa.model';
@@ -16,7 +18,7 @@ export class TableEmpresaComponent implements OnInit {
   //products2: any[];
 
   products2: EmpresaModel[];
-
+  formForm:FormGroup;
   cols2: any[];
   ref: DynamicDialogRef;
   dataDelete: any;
@@ -30,14 +32,27 @@ export class TableEmpresaComponent implements OnInit {
     public dialogService: DialogService,
     private empresaServices:EmpresaServices,
     public messageService:MessageService,
+    private fb :FormBuilder,
+    private sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit(): void {
+    this.crearFormulario();
     this.cols2 = [
       { header: 'Empresa', field: 'empresa' },
       { header: 'País', field: 'pais' },
     ];
     this.getListEmpresa();
+  }
+
+  getSantizeUrl(url : string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
+  }
+
+  crearFormulario(){
+    this.formForm = this.fb.group({
+      nombre: [],
+    });
   }
 
   showCreateEmpresa() {

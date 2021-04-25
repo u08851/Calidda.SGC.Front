@@ -58,7 +58,9 @@ export class CreateUserComponent implements OnInit {
     this.userForm = this.fb.group({
       empresaId: ['', [Validators.required]],
       nombre: ['', [Validators.required,  Validators.minLength(1)]],
-      paisId: ['', [Validators.required]],
+      paisId: ['', ],
+      rolId: ['', ],
+      statusId: [false, ],
       correo: ['', [Validators.required,  Validators.minLength(1)]],
       celular: ['', [Validators.required,  Validators.minLength(9)]],
     });
@@ -68,10 +70,14 @@ export class CreateUserComponent implements OnInit {
 
   UpdateFormulario(){
     this.userForm.patchValue({
-      nombre: this.config.data.nombre,
-      paisId: this.config.data.paisId
+      correo: this.config.data.correo,
+      nombre: this.config.data.personaDto.nombre,
+      empresaId: this.config.data.personaDto.empresaId,
+      celular: this.config.data.personaDto.celular,
+      statusId: this.config.data.estado == 1 ? true:false
     })
-    this.selectedCountry = {paisId: this.config.data.paisId,nombre: this.config.data.paisDto.nombre}
+    this.checked = this.config.data.estado == 1 ? true:false;
+    //this.selectedCountry = {paisId: this.config.data.paisId,nombre: this.config.data.paisDto.nombre}
   }
 
   showWarn(mensaje :string) {
@@ -97,7 +103,7 @@ export class CreateUserComponent implements OnInit {
         let data = this.userForm.value;
         var odata = new UserRequestModel();
         odata.nombre = data.nombre;
-        odata.estado = 1 ;
+        odata.estado = this.checked == true ? 1:0 ;
         odata.empresaId= data.empresaId.empresaId;
         odata.celular  = data.celular;
         odata.correo  = data.correo;
@@ -105,6 +111,23 @@ export class CreateUserComponent implements OnInit {
         odata.usuarioId  = 0;
         
         this.userServices.addUser(odata).subscribe(
+          (response: any) => {
+            this.displayModal = true;
+          }
+        )
+      }else{
+        //UPDATE
+        let data = this.userForm.value;
+        var odata = new UserRequestModel();
+        odata.nombre = data.nombre;
+        odata.estado = this.checked == true ? 1:0 ;
+        odata.empresaId= data.empresaId.empresaId;
+        odata.celular  = data.celular;
+        odata.correo  = data.correo;
+        odata.personaId  = this.config.data.personaId;
+        odata.usuarioId  = this.config.data.usuarioId;
+        
+        this.userServices.editUser(odata).subscribe(
           (response: any) => {
             this.displayModal = true;
           }
@@ -119,7 +142,6 @@ export class CreateUserComponent implements OnInit {
   getListCompany(){
     this.empresaServices.getListEmpresa("ALL1",0,0).subscribe(
       (response: any) => {
-        console.log(response);
         this.dataEmpresa = response.data
       }
     )
@@ -134,6 +156,9 @@ export class CreateUserComponent implements OnInit {
     this.paisServices.getListPais().subscribe(
       (response: any) => {
         this.countries = response.data;
+        if(this.config.data == null){
+          this.selectedCountry = {paisId: this.countries[0].paisId,nombre: this.countries[0].nombre,sigla: "http://127.0.0.1:8887/PE.svg"}
+        }
       }
     )
   }
