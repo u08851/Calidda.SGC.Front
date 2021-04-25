@@ -15,7 +15,7 @@ import { AppConstants } from 'src/app/shared/constants/app.constants';
 export class CrearEmpresaComponent implements OnInit {
 
   countries: any[];
-  selectedCountry: number = 3;
+  selectedCountry: {};
   empresa= new  EmpresaModel();
   submitted: boolean = false;
   empresaForm:FormGroup;
@@ -31,7 +31,7 @@ export class CrearEmpresaComponent implements OnInit {
     ) {
    }
 
-   showSuccess(mensaje :string) {
+  showSuccess(mensaje :string) {
     this.messageService.add({severity:'success', summary: AppConstants.TitleModal.Success, detail: mensaje});
   }
 
@@ -39,24 +39,22 @@ export class CrearEmpresaComponent implements OnInit {
     this.messageService.add({severity:'warn', summary: AppConstants.TitleModal.Warning, detail: mensaje});
   }
 
-
-
-   crearFormulario()
-   {
-     this.empresaForm = this.fb.group({
+  crearFormulario(){
+    this.empresaForm = this.fb.group({
        nombre: ['', [Validators.required,  Validators.minLength(1)]],
        paisId: ['', [Validators.required,  Validators.minLength(1)]],
-     });
-   }
+    });
+  }
 
-   UpdateFormulario(){
+  UpdateFormulario(){
     this.empresaForm.patchValue({
       nombre: this.config.data.nombre,
       paisId: this.config.data.paisId
     })
+    this.selectedCountry = {paisId: this.config.data.paisId,nombre: this.config.data.paisDto.nombre}
   }
 
-   get g() { return this.empresaForm.controls; }
+  get g() { return this.empresaForm.controls; }
 
   ngOnInit(): void {
     this.listarPais();
@@ -66,12 +64,10 @@ export class CrearEmpresaComponent implements OnInit {
     }else{
       this.valida = false;
       this.UpdateFormulario();
-      console.log(this.empresaForm);
     }
   }
 
-  listarPais()
-  {
+  listarPais(){
     this.paisServices.getListPais().subscribe(
       (response: any) => {
         this.countries = response.data;
@@ -121,13 +117,10 @@ export class CrearEmpresaComponent implements OnInit {
           }
         )
       }
-
-
     } else {
       this.empresaForm.markAllAsTouched();
       this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
     }
   }
-
 
 }

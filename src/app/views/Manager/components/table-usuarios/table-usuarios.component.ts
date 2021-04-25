@@ -83,9 +83,10 @@ export class TableUsuariosComponent implements OnInit {
   updateStatus(data){
 
     var odata = new UserRequestModel();
+    var status: number = data.estado == 0 || data.estado == true ? 1:0;
     odata.nombre = data.personaDto.nombre;
-    odata.estado = 0;
-    odata.celular  = "";
+    odata.estado = status;
+    odata.celular  = data.personaDto.celular;
     odata.correo = data.correo;
     odata.empresaId = data.personaDto.empresaId;
     odata.personaId = data.personaDto.personaId;

@@ -1,82 +1,101 @@
-<div class="p-fluid p-formgrid p-grid form-input-sm p-mb-3">
-    <div class="p-field p-col-12 p-d-flex p-jc-between">
-        <div class="p-d-flex">
-            <p-badge [value]="1" severity="info" styleClass="p-mr-2"></p-badge>
-            <label class="color-primary">Sobre la Empresa</label>
+<form [formGroup]="userForm" autocomplete="offs">
+    <div class="p-fluid p-formgrid p-grid form-input-sm p-mb-3">
+        <div class="p-field p-col-12 p-d-flex p-jc-between">
+            <div class="p-d-flex">
+                <p-badge [value]="1" severity="info" styleClass="p-mr-2"></p-badge>
+                <label class="color-primary">Sobre la Empresa</label>
+            </div>
+
+            <div class="p-d-flex p-ai-center">
+                <!-- variables:  --red --green --info  -->
+                <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--green)'">
+                </i>
+                <label class="p-mr-2">Activo</label>
+                <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+            </div>
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+            <label for="empresaId" [ngClass]="{ 'is-invalid-text': submitted && g.empresaId.errors }">Empresa</label>
+            <p-dropdown formControlName="empresaId" [ngClass]="{ 'p-error': submitted && g.empresaId.errors }" oninput="this.value=this.value.trim()==''?'':this.value" [options]="dataEmpresa" [(ngModel)]="selectedEmpresa" optionLabel="nombre" optionDisabled="inactive"></p-dropdown>
+            <div *ngIf="submitted && g.empresaId.errors != null">
+                <span class="p-error" *ngIf="g.empresaId.errors.required">La empresa es requerido.<br></span>
+            </div>
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+            <label for="paisId" [ngClass]="{ 'is-invalid-text': submitted && g.paisId.errors }">Pais</label>
+
+            <p-dropdown formControlName="paisId" [ngClass]="{ 'is-invalid-input': submitted && g.paisId.errors }" oninput="this.value=this.value.trim()==''?'':this.value" [options]="countries" [(ngModel)]="selectedCountry" optionLabel="nombre" [showClear]="false"
+                placeholder="" dropdownIcon="">
+                <ng-template pTemplate="selectedItem">
+                    <div class="p-d-flex p-ai-center">
+                        <img style="width: 20px;" [src]="selectedCountry.sigla" />
+                        <!-- <span class="p-ml-2" style="line-height: 0; margin-bottom: 5px;">{{selectedCountry.name}}</span> -->
+                        <span class="p-ml-2" style="line-height: 0; margin-bottom: 5px;">{{selectedCountry.nombre}}</span>
+                    </div>
+                </ng-template>
+                <ng-template let-country pTemplate="item">
+                    <div class="p-d-flex p-ai-center">
+                        <img style="width: 20px;" src="assets/images/flag/PE.svg" />
+                        <span class="p-ml-2" style="line-height: 0; margin-bottom: 5px;">{{country.nombre}}</span>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+            <div *ngIf="submitted && g.paisId.errors != null">
+                <span class="p-error" *ngIf="g.paisId.errors.required">El pais es requerido.<br></span>
+            </div>
         </div>
 
-        <div class="p-d-flex p-ai-center">
-            <!-- variables:  --red --green --info  -->
-            <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--green)'">
-            </i>
-            <label class="p-mr-2">Activo</label>
-            <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+        <div class="p-field p-col-12 p-md-6">
+            <div class="p-d-flex">
+                <p-badge [value]="1" severity="info" styleClass="p-mr-2"></p-badge>
+                <label class="color-primary">Datos Personales</label>
+            </div>
         </div>
-    </div>
-    <div class="p-field p-col-12 p-md-6">
-        <label>Empresa</label>
-        <p-dropdown [options]="dataEmpresa" [(ngModel)]="selectedEmpresa" optionLabel="name" optionDisabled="inactive"></p-dropdown>
-    </div>
-    <div class="p-field p-col-12 p-md-6">
-        <label>Pais</label>
 
-        <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" [showClear]="false"
-            placeholder="" dropdownIcon="">
-            <ng-template pTemplate="selectedItem">
-                <div class="p-d-flex p-ai-center">
-                    <img style="width: 20px;" src="assets/images/flag/PE.svg" />
-                    <!-- <span class="p-ml-2" style="line-height: 0; margin-bottom: 5px;">{{selectedCountry.name}}</span> -->
-                    <span class="p-ml-2" style="line-height: 0; margin-bottom: 5px;">PERÚ</span>
-                </div>
-            </ng-template>
-            <ng-template let-country pTemplate="item">
-                <div class="p-d-flex p-ai-center">
-                    <img style="width: 20px;" src="assets/images/flag/PE.svg" />
-                    <span class="p-ml-2" style="line-height: 0; margin-bottom: 5px;">{{country.name}}</span>
-                </div>
-            </ng-template>
-        </p-dropdown>
-
-    </div>
-
-    <div class="p-field p-col-12 p-md-6">
-        <div class="p-d-flex">
-            <p-badge [value]="1" severity="info" styleClass="p-mr-2"></p-badge>
-            <label class="color-primary">Datos Personales</label>
+        <div class="p-field p-col-12 p-md-12">
+            <label for="nombre" [ngClass]="{ 'is-invalid-text': submitted && g.nombre.errors }">Nombres y apellidos</label>
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">
+                    <p-avatar image="assets/images/img-perfil-test.jpg" styleClass="p-mr-2" shape="circle">
+                    </p-avatar>
+                </span>
+                <input formControlName="nombre" [ngClass]="{ 'is-invalid-input': submitted && g.nombre.errors }" oninput="this.value=this.value.trim()==''?'':this.value" class="p-bl-0 bl-0" type="text" pInputText placeholder="Username">
+            </div>
+            <div *ngIf="submitted && g.nombre.errors != null">
+                <span class="p-error" *ngIf="g.nombre.errors.minlength">El nombre debe contener al menos un carácter.<br></span>
+                <span class="p-error" *ngIf="g.nombre.errors.required">El nombre es requerido.<br></span>
+            </div>
+            <!-- <input type="text" pInputText> -->
         </div>
-    </div>
-
-    <div class="p-field p-col-12 p-md-12">
-        <label>Nombres y apellidos</label>
-        <div class="p-inputgroup">
-            <span class="p-inputgroup-addon">
-                <p-avatar image="assets/images/img-perfil-test.jpg" styleClass="p-mr-2" shape="circle">
-                </p-avatar>
-            </span>
-            <input class="p-bl-0 bl-0" type="text" pInputText placeholder="Username">
+        <div class="p-field p-col-12 p-md-12">
+            <label for="correo" [ngClass]="{ 'is-invalid-text': submitted && g.correo.errors }">Correo Electronico ss</label>
+            <input formControlName="correo" [ngClass]="{ 'is-invalid-input': submitted && g.correo.errors }" oninput="this.value=this.value.trim()==''?'':this.value" type="text" pInputText>
+            <div *ngIf="submitted && g.correo.errors != null">
+                <span class="p-error" *ngIf="g.correo.errors.minlength">El correo debe contener al menos un carácter.<br></span>
+                <span class="p-error" *ngIf="g.correo.errors.required">El correo es requerido.<br></span>
+            </div>
         </div>
-        <!-- <input type="text" pInputText> -->
-    </div>
-    <div class="p-field p-col-12 p-md-12">
-        <label>Correo Electronico ss</label>
-        <input type="text" pInputText>
-    </div>
 
 
-    <div class="p-field p-col-12 p-md-6">
-        <label>Celular</label>
-        <input type="text" pInputText>
-    </div>
-    <div class="p-field p-col-12 p-md-6">
-        <label>Rol</label>
-        <p-dropdown [options]="dataRol" [(ngModel)]="selectedRol" optionLabel="name" optionDisabled="inactive"></p-dropdown>
+        <div class="p-field p-col-12 p-md-6">
+            <label for="celular" [ngClass]="{ 'is-invalid-text': submitted && g.celular.errors }">Celular</label>
+            <input formControlName="celular" [ngClass]="{ 'is-invalid-input': submitted && g.celular.errors }" oninput="this.value=this.value.trim()==''?'':this.value" maxlength="9" type="text" pInputText>
+            <div *ngIf="submitted && g.celular.errors != null">
+                <span class="p-error" *ngIf="g.celular.errors.minlength">El celular debe contener al menos 9 carácteres.<br></span>
+                <span class="p-error" *ngIf="g.celular.errors.required">El celular es requerido.<br></span>
+            </div>
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+            <label>Rol</label>
+            <p-dropdown [options]="dataRol" [(ngModel)]="selectedRol" optionLabel="name" optionDisabled="inactive"></p-dropdown>
+        </div>
+
     </div>
 
-</div>
-
-<div class="p-d-flex p-jc-center w-100 p-mb-3">
-    <button (click)="showModalDialog();" pButton type="button" label="Crear"></button>
-</div>
+    <div class="p-d-flex p-jc-center w-100 p-mb-3">
+        <button (click)="showModalDialog();" pButton type="button" label="Crear"></button>
+    </div>
+</form>
 
 <!-- Dialog Crear content -->
 <p-dialog [(visible)]="displayModal" [modal]="true" [style]="{ width: '400px' }" [baseZIndex]="10000"
@@ -89,6 +108,6 @@
         </p>
     </div>
     <ng-template pTemplate="footer">
-        <p-button (click)="displayModal = false" label="Ir a mis comités"></p-button>
+        <p-button (click)="eventClose()" label="Ir a mis comités"></p-button>
     </ng-template>
 </p-dialog>

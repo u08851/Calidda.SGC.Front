@@ -10,11 +10,11 @@
         </div>
         <div class="p-field p-col-12 p-md-6">
             <label for="paisId" [ngClass]="{ 'is-invalid-text': submitted && g.paisId.errors }">País</label>
-            <p-dropdown [options]="countries" formControlName="paisId" [(ngModel)]="selectedCountry" [ngClass]="{ 'p-error': submitted && g.paisId.errors }" optionLabel="nombre" [filter]="true" filterBy="nombre" [showClear]="true">
-                <ng-template pTemplate="countries">
+            <p-dropdown [options]="countries" formControlName="paisId" [(ngModel)]="selectedCountry" [ngClass]="{ 'p-error': submitted && g.paisId.errors }" optionLabel="nombre" [filter]="true" filterBy="nombre" [showClear]="false">
+                <ng-template pTemplate="selectedItem">
                     <div class="country-item country-item-value">
-                        <img src="assets/images/flag/.svg" alt="flag PE" />
-                        <span style="line-height: 0; margin-bottom: 5px;">1{{ selectedCountry.name }}</span>
+                        <img [src]="selectedCountry.sigla" alt="pais" />
+                        <span style="line-height: 0; margin-bottom: 5px;">{{ selectedCountry.nombre }}</span>
                     </div>
                 </ng-template>
                 <ng-template let-country pTemplate="item">
