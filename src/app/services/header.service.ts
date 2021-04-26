@@ -2,9 +2,10 @@ import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable()
 
-export class SidenavService {
+export class headerService {
 
 	sidenav$ = new EventEmitter<boolean>();
+    userId$ = new EventEmitter<number>();
 
 	public sidenav: boolean = true;
 
@@ -16,6 +17,10 @@ export class SidenavService {
 		this.sidenav$.emit(
 			this.sidenav =!  this.sidenav
 		)
+	}
+	
+	setUser(userId) {
+		this.userId$.emit(userId);
 	}
 	
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faCoffee, faReply } from '@fortawesome/free-solid-svg-icons';
-import { SidenavService } from 'src/app/back/services/sidenav.service';
+import { headerService } from 'src/app/services/header.service';
 
 @Component({
   selector: 'app-content',
@@ -14,7 +14,7 @@ export class ContentComponent implements OnInit {
   visibleSidebar: boolean = true;
 
   constructor(
-    private sidevar: SidenavService
+    private sidevar: headerService
   ) { }
 
   ngOnInit(): void {

@@ -11,6 +11,7 @@ $color-white: var(--surface-a);
   background-color: #00a1de;
   color: white;
   font-weight: 600;
+  font-size: 13px;
   padding: 0 71px;
 
   @media screen and (max-width: 768px) {
@@ -18,7 +19,8 @@ $color-white: var(--surface-a);
   }
 
   .toolbar-textlogo::after {
-    content: "Sistema de Gestión de Comités";
+    content: "SISTEMA DE GESTIÓN DE COMITÉS";
+    font-size: 14px;
 
     @media screen and (max-width: 768px) {
       content: "SGC";
@@ -28,10 +30,10 @@ $color-white: var(--surface-a);
   span {
     // width: 224px;
     text-align: left;
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: 0.42px;
     color: #ffffff;
-    text-transform: uppercase;
+    // text-transform: uppercase;
     opacity: 1;
     font-weight: 400;
     padding: 0 0.5rem;

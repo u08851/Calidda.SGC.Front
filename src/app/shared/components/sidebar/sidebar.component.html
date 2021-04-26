@@ -10,12 +10,16 @@
         <div class="custom-card-content">
             <!-- options -->
             <ul>
-                <li routerLink="/manager/dashboard" routerLinkActive="is-active">
+                <li *ngFor="let item of menuItems" [routerLink]="item.routing">
+                    <i class="material-icons material-icons-outlined md-icon-24"> {{item.icon}}</i>
+                    {{ item.label }}
+                </li>
+                <!-- <li routerLink="/manager/dashboard" routerLinkActive="is-active">
                     <i class="material-icons material-icons-outlined md-icon-24">
                         home </i>
                     Inicio
-                </li>
-                <li routerLink="/manager/comites" routerLinkActive="is-active">
+                </li> -->
+                <!-- <li routerLink="/manager/comites" routerLinkActive="is-active">
                     <i class="material-icons material-icons-outlined md-icon-24">
                         article
                     </i>
@@ -32,7 +36,7 @@
                         build
                     </i>
                     Mantenimiento
-                </li>
+                </li> -->
             </ul>
 
             <!-- button -->

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
-import { SidenavService } from 'src/app/back/services/sidenav.service';
+import { headerService } from 'src/app/services/header.service';
 
 @Component({
   selector: 'app-header',
@@ -8,20 +8,16 @@ import { SidenavService } from 'src/app/back/services/sidenav.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  visibleSidebar1;
-
   event: string = 'p-input-icon-left';
   items: MenuItem[];
-
   type: boolean = true;
-
 
   changeStyle() {
     this.type =! this.type;
   }
 
   constructor(
-    public sidenav: SidenavService,
+    public  headerService:  headerService,
     private messageService: MessageService
   ) { }
 
@@ -32,6 +28,7 @@ export class HeaderComponent implements OnInit {
         label: 'Administrador de Sistema',
         icon: 'pi pi-cog',
         command: () => {
+          this.headerService.setUser(1);
           this.message('success', 'Has iniciado el perfil', 'Aministrador de Sistema');
         },
       },
@@ -39,6 +36,7 @@ export class HeaderComponent implements OnInit {
         label: 'Responsable del Comité',
         icon: 'pi pi-bookmark',
         command: () => {
+          this.headerService.setUser(2);
           this.message('success', 'Has iniciado el perfil', 'Responsable de Comité');
         },
       },
@@ -53,7 +51,7 @@ export class HeaderComponent implements OnInit {
   }
 
   sideToogle() {
-    this.sidenav.toggle();
+    this.headerService.toggle();
   }
 
   message(severity, summary, detail) {
@@ -64,5 +62,4 @@ export class HeaderComponent implements OnInit {
       detail: detail
     });
   }
-
 }
