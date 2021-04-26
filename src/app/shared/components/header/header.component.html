@@ -1,24 +1,34 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
-    <!-- SIDEBAR -->
-    <p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000">
-        <h1 style="font-weight: normal">Left Sidebar</h1>
-        <p-button type="button" (click)="visibleSidebar1 = false" label="Save" styleClass="p-button-success"></p-button>
-        <p-button type="button" (click)="visibleSidebar1 = false" label="Cancel" styleClass="p-button-secondary">
-        </p-button>
-    </p-sidebar>
 
     <!-- Button to open Sidebar -->
-    <button pButton pRipple type="button" (click)="sideToogle()" icon="pi pi-bars" class="p-button-rounded"></button>
-    <span class="toolbar-textlogo"></span>
-    <!-- Button to open Sidebar -->
-
+    <div class="p-ai-center" [ngClass]="{'searh_none': !type, 'searh' : type}">
+        <button pButton pRipple type="button" icon="pi pi-bars" (click)="sideToogle()"
+            class="p-button-rounded wh-color icon-header-size p-button-text"></button>
+            <span class="toolbar-textlogo"></span>
+    </div>
+    
+    <!-- <i class="pi pi-search"></i> -->
     <!-- input search -->
-    <span class="header-input-container" id="inputContainer" [ngClass]="event"
-        (mouseenter)="event = 'p-input-icon-right'" (mouseleave)="event = 'p-input-icon-left'">
+    <span class="header-input-container"
+        [ngClass]="{'p-input-icon-right': !type, 'p-input-icon-left': type}"
+        (mouseenter)="changeStyle()"
+        (mouseleave)="changeStyle()"
+    >
+    <i class="pi pi-search"></i>
+    <input class="w-100" type="text" pInputText />
+    </span>
+
+    <!-- <span
+        class="header-input-container searh"
+        id="inputContainer"
+        [ngClass]="event"
+        (mouseenter)="changeStyle(0)"
+        (mouseleave)="changeStyle(1)"
+    >
         <i class="pi pi-search"></i>
         <input type="text" pInputText placeholder="Buscar por nombre" />
-    </span>
+    </span> -->
 
     <!-- notification - user - signout -->
     <div class="toolbar-options">
@@ -26,11 +36,12 @@
             class="p-button-rounded wh-color icon-header-size p-button-text"></button>
 
         <div class="p-d-flex p-ai-center">
-            <p-avatar image="assets/images/img11.jpg" styleClass="custom-avatar" shape="circle" (click)="menu.toggle($event)"></p-avatar>
+            <p-avatar image="assets/images/img11.jpg" styleClass="custom-avatar" shape="circle"
+                (click)="menu.toggle($event)"></p-avatar>
             <p-menu #menu [popup]="true" [model]="items"></p-menu>
         </div>
 
-        <button pButton pRipple type="button" icon="pi pi-sign-out" routerLink="/login"  
+        <button pButton pRipple type="button" icon="pi pi-sign-out" routerLink="/login"
             class="p-button-rounded wh-color icon-header-size p-button-text"></button>
 
     </div>

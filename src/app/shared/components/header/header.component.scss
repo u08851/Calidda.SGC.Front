@@ -26,7 +26,7 @@ $color-white: var(--surface-a);
   }
 
   span {
-    width: 224px;
+    // width: 224px;
     text-align: left;
     font-size: 14px;
     letter-spacing: 0.42px;
@@ -57,7 +57,11 @@ $color-white: var(--surface-a);
 }
 
 .header-input-container {
-  width: 315px !important;
+  // width: 100% !important;  
+  @media screen and(min-width: 768px) {
+    width: 315px !important;  
+  }
+  transition: all 0.3s ease-in;
   input {
     border: none;
     background: transparent;
@@ -92,3 +96,12 @@ $color-white: var(--surface-a);
     font-size: 20px !important;
   }
 }
+  .searh {
+    display: flex;    
+  }  
+  .searh_none {
+    display: none;
+    @media screen and (min-width: 768px) {
+      display: flex;  
+    }
+  }

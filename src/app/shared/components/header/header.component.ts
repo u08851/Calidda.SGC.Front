@@ -11,12 +11,13 @@ export class HeaderComponent implements OnInit {
   visibleSidebar1;
 
   event: string = 'p-input-icon-left';
-
   items: MenuItem[];
 
-  changeStyle($event) {
-    this.event =
-      $event.type == 'mouseover' ? 'p-input-icon-right' : 'p-input-icon-left';
+  type: boolean = true;
+
+
+  changeStyle() {
+    this.type =! this.type;
   }
 
   constructor(

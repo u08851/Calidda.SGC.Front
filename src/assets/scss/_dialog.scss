@@ -1,4 +1,9 @@
 .p-dialog {
+
+    @media screen and(max-width: 768px) {
+      width: 80% !important;
+    }
+
     .p-dialog-content {
         max-height: 90% !important;
         font-size: 13px;

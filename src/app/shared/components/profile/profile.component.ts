@@ -37,9 +37,7 @@ export class ProfileComponent implements OnInit {
   onBeforeUpload() {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Ocurrio un Error al cargar la imagen' });
   }
-
-
-
+  
   showEditUser() {
     this.ref = this.dialogService.open(AddProfileComponent, {
       header: 'Información General',

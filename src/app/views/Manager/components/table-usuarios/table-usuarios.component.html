@@ -1,6 +1,6 @@
 <div class="tab-pd">
-  <div class="tab-content-label">
-    <label> Usuarios </label>
+  <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between p-mb-3">
+    <label class="p-mb-2"> Usuarios </label>
     <!-- Botones cese masivo y Crear -->
     <div>
       <p-button
@@ -75,7 +75,7 @@
 <!-- TABLE -->
 <div class="p-card p-px-3 br-05">
   <p-table [columns]="cols" [value]="products" styleClass="style-table-direccion" [paginator]="true" [rows]="3"
-    [showCurrentPageReport]="true" currentPageReportTemplate="{first} - {last} of {totalRecords}">
+    [showCurrentPageReport]="true" [scrollable]="true" currentPageReportTemplate="{first} - {last} of {totalRecords}">
     <ng-template pTemplate="colgroup" let-columns>
       <colgroup>
         <col [style.width]="16 + '%'" />
@@ -100,7 +100,9 @@
           <div class="p-d-flex p-ai-center">
             <p-avatar image="assets/images/img-perfil-test.jpg" styleClass="p-mr-2" shape="circle">
             </p-avatar>
-            <span><td>{{rowData.personaDto.nombre}} {{rowData.personaDto.apePaterno}} {{rowData.personaDto.apeMaterno}}</td></span>
+            <span>
+              {{rowData.personaDto.nombre}} {{rowData.personaDto.apePaterno}} {{rowData.personaDto.apeMaterno}}
+            </span>
           </div>
         </td>
         <td class="p-text-left">{{rowData.correo}}</td>
