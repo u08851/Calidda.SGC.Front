@@ -6,6 +6,7 @@ import { PaisServices } from 'src/app/services/pais.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
 import { AppConstants } from 'src/app/shared/constants/app.constants';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-crear-empresa',
@@ -15,12 +16,12 @@ import { AppConstants } from 'src/app/shared/constants/app.constants';
 export class CrearEmpresaComponent implements OnInit {
 
   countries: any[];
-  selectedCountry: string;
-
+  selectedCountry: {};
   empresa= new  EmpresaModel();
   submitted: boolean = false;
   empresaForm:FormGroup;
   valida:boolean=false;
+  image:boolean=true;
 
   constructor(
     private fb :FormBuilder,
@@ -28,11 +29,18 @@ export class CrearEmpresaComponent implements OnInit {
     private paisServices:PaisServices,
     public config: DynamicDialogConfig,
     public messageService:MessageService,
-    public ref: DynamicDialogRef
+    public ref: DynamicDialogRef,
+    private sanitizer: DomSanitizer,
     ) {
    }
 
-   showSuccess(mensaje :string) {
+  getSantizeUrl(url : string) {
+    if(url !== undefined){
+      return this.sanitizer.bypassSecurityTrustUrl(url);
+    }
+  }
+
+  showSuccess(mensaje :string) {
     this.messageService.add({severity:'success', summary: AppConstants.TitleModal.Success, detail: mensaje});
   }
 
@@ -40,24 +48,22 @@ export class CrearEmpresaComponent implements OnInit {
     this.messageService.add({severity:'warn', summary: AppConstants.TitleModal.Warning, detail: mensaje});
   }
 
-
-
-   crearFormulario()
-   {
-     this.empresaForm = this.fb.group({
+  crearFormulario(){
+    this.empresaForm = this.fb.group({
        nombre: ['', [Validators.required,  Validators.minLength(1)]],
        paisId: ['', [Validators.required,  Validators.minLength(1)]],
-     });
-   }
+    });
+  }
 
-   UpdateFormulario(){
+  UpdateFormulario(){
     this.empresaForm.patchValue({
       nombre: this.config.data.nombre,
       paisId: this.config.data.paisId
     })
+    this.selectedCountry = {paisId: this.config.data.paisId,nombre: this.config.data.paisDto.nombre,sigla: this.config.data.imagen}
   }
 
-   get g() { return this.empresaForm.controls; }
+  get g() { return this.empresaForm.controls; }
 
   ngOnInit(): void {
     this.listarPais();
@@ -70,11 +76,13 @@ export class CrearEmpresaComponent implements OnInit {
     }
   }
 
-  listarPais()
-  {
+  listarPais(){
     this.paisServices.getListPais().subscribe(
       (response: any) => {
         this.countries = response.data;
+        if(this.config.data == null){
+          this.selectedCountry = {paisId: this.countries[0].paisId,nombre: this.countries[0].nombre,sigla: this.countries[0].sigla}
+        }
       }
     )
   }
@@ -84,18 +92,19 @@ export class CrearEmpresaComponent implements OnInit {
 
     if (this.empresaForm.valid) {
 
-      if (!this.empresaForm.controls.nombre.valid) {
+      if (!this.empresaForm.controls.nombre.valid ||
+        !this.empresaForm.controls.paisId.valid) {
         this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
         return false;
       }
 
-      if(1 > 0){
+      if(this.valida){
         //CREATE
         let data = this.empresaForm.value;
         var odata = new EmpresaModel();
         odata.nombre = data.nombre;
         odata.estado = 1 ;
-        odata.paisId=data.paisId;
+        odata.paisId= data.paisId.paisId;
         odata.empresaId  = 0;
 
         this.empresaServices.addEmpresa(odata).subscribe(
@@ -109,9 +118,9 @@ export class CrearEmpresaComponent implements OnInit {
         let data = this.empresaForm.value;
         var odata = new EmpresaModel();
         odata.nombre = data.nombre;
-        odata.paisId=data.paisId;
-        odata.estado = 1 ;
-        odata.empresaId  = 0;
+        odata.paisId = data.paisId.paisId;
+        odata.estado = this.config.data.estado;
+        odata.empresaId  = this.config.data.empresaId;
 
         this.empresaServices.updateEmpresa(odata).subscribe(
           (response: any) => {
@@ -120,13 +129,10 @@ export class CrearEmpresaComponent implements OnInit {
           }
         )
       }
-
-
     } else {
       this.empresaForm.markAllAsTouched();
       this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
     }
   }
-
 
 }

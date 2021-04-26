@@ -25,5 +25,19 @@ export class PersonModel{
   apePaterno: string;
   apeMaterno: string;
   empresaId: number;
+  paisId: number;
 
+}
+
+export class UserRequestModel{
+
+  nombre: string;
+  correo: string;
+  estado: number;
+  personaId: number;
+  empresaId: number;
+  celular: string;
+  usuarioId: number;
+  paisId: number;
+  
 }

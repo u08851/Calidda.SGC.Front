@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DireccionModel } from 'src/app/models/direccion.model';
@@ -22,13 +23,15 @@ export class TableDireccionComiteComponent implements OnInit {
   displayModal: boolean;
   textFilter: string = "";
   dataDelete: any;
+  formForm:FormGroup;
 
    confi: DynamicDialogConfig;
   constructor(
     public dialogService: DialogService,
     private directionServices: DirectionServices,
     public  ref: DynamicDialogRef,
-    public messageService:MessageService
+    public messageService:MessageService,
+    private fb :FormBuilder,
     ) {}
 
 
@@ -37,6 +40,7 @@ export class TableDireccionComiteComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.crearFormulario();
     this.cols = [
       { header: 'Dirección del comité', field: 'direccionComite' }
     ];
@@ -129,6 +133,12 @@ export class TableDireccionComiteComponent implements OnInit {
         this.displayModal = false;
       }
     )
+  }
+
+  crearFormulario(){
+    this.formForm = this.fb.group({
+      nombre: [],
+    });
   }
 
   onKeydown(event) {
