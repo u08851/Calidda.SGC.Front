@@ -23,7 +23,7 @@
                         <!-- contraseña -->
                         <div class="p-field">
                             <label for="password" [ngClass]="{ 'is-invalid-text': submitted && g.password.errors }">Contraseña</label>
-                            <input type="password" pInputText class="form-control" formControlName="password" [ngClass]="{ 'is-invalid-input': submitted && g.password.errors }" oninput="this.value=this.value.trim()==''?'':this.value" />
+                            <p-password styleClass="style-input-password" [toggleMask]="true" formControlName="password" [ngClass]="{ 'is-invalid-input': submitted && g.password.errors }" oninput="this.value=this.value.trim()==''?'':this.value"></p-password>
                             <div *ngIf="submitted && g.password.errors != null">
                                 <span class="p-error" *ngIf="g.password.errors.minlength">La contraseña debe contener al menos un carácter.<br></span>
                                 <span class="p-error" *ngIf="g.password.errors.required">La contraseña es requerido.<br></span>
