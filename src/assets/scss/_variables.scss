@@ -46,10 +46,13 @@ body {
 
 
 //Material Icons Class
-.exit_to_app {
+.exit_to_app, .east {
   position:relative;
   display:inline-block;
 }
 .exit_to_app:after {
   content: "exit_to_app";
+}
+.east {
+  content: 'east';
 }

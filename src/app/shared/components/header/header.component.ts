@@ -27,14 +27,16 @@ export class HeaderComponent implements OnInit {
       {
         label: 'Administrador de Sistema',
         icon: 'pi pi-cog',
+        routerLink: '/manager',
         command: () => {
           this.headerService.setUser(1);
           this.message('success', 'Has iniciado el perfil', 'Aministrador de Sistema');
         },
       },
       {
-        label: 'Responsable del Comité',
+        label: 'Secretaría del Comité',
         icon: 'pi pi-bookmark',
+        routerLink: '/secretary',
         command: () => {
           this.headerService.setUser(2);
           this.message('success', 'Has iniciado el perfil', 'Responsable de Comité');

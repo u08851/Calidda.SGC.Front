@@ -6,6 +6,7 @@ import { ManagerRoutes } from './secretary.routing';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ComiteComponent } from './pages/comite/comite.component';
 import { ReportsComponent } from './pages/reports/reports.component';
+import { ComitesComponent } from './components/comites/comites.component';
 @NgModule({
   declarations: [
     
@@ -13,7 +14,9 @@ import { ReportsComponent } from './pages/reports/reports.component';
     
   ComiteComponent,
     
-  ReportsComponent],
+  ReportsComponent,
+    
+  ComitesComponent],
   imports: [
     CommonModule,
     SharedModule,

@@ -65,6 +65,9 @@
 .blue-dark{
   color: #2E4259;
 }
+.white {
+  color: #ffffff !important;
+}
 //
 .color-primary {
   color: var(--primary-color) !important;
@@ -90,6 +93,9 @@
 .fz-10 {
   font-size: 10px;
 }
+.fz-11 {
+  font-size: 11px;
+}
 .fz-14 {
   font-size: 14px;
 }
@@ -98,12 +104,26 @@
 .fw-bold {
   font-weight: bold;
 }
+.fw-200 {
+  font-weight: 200;
+}
+.fw-300 {
+  font-weight: 300;
+}
+.fw-400 {
+  font-weight: 400;
+}
 .fw-500 {
   font-weight: 500;
 }
-
 .fw-600 {
   font-weight: 600;
+}
+.line-h {
+  line-height: 0;
+}
+.fs-italic {
+  font-style: italic;
 }
 
 .cPointer{
