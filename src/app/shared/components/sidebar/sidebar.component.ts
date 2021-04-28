@@ -55,11 +55,10 @@ export class Constant {
   static AdminMenuItems = [
     { routing: '/manager/dashboard', label: 'Inicio', icon:'home' },
     { routing: '/manager/comites', label: 'Comités', icon:'article' },
-    { routing: '/manager/dashboard', label: 'Firmas', icon:'assessment' },
     { routing: '/manager/mantenimiento', label: 'Mantenimiento', icon:'build'  }
   ]
   static SecretaryMenuItems = [
-    { routing: '/secretary/dashboard', label: 'Inicio', icon:'home' },
+    { routing: '/secretary', label: 'Inicio', icon:'home' },
     { routing: '/secretary/comites', label: 'Comités', icon:'article' },
     { routing: '/secretary/dashboard', label: 'Firmas', icon:'assessment' },
     { routing: '/secretary/mantenimiento', label: 'Mantenimiento', icon:'build'  },

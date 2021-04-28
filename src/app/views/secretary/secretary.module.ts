@@ -12,6 +12,11 @@ import { ActasComponent } from './components/graficos/actas/actas.component';
 import { CompromisosComponent } from './components/graficos/compromisos/compromisos.component';
 import { ReunionesDonutComponent } from './components/graficos/reuniones-donut/reuniones-donut.component';
 import { ActasDonutComponent } from './components/graficos/actas-donut/actas-donut.component';
+import { ComiteDetailComponent } from './components/comite-operating/comite-detail/comite-detail.component';
+import { ComiteOperatingComponent } from './components/comite-operating/comite-operating.component';
+import { InformationBasicComponent } from './components/comite-operating/information-basic/information-basic.component';
+import { MembersComiteComponent } from './components/comite-operating/members-comite/members-comite.component';
+import { DocumentsComponent } from './components/comite-operating/documents/documents.component';
 @NgModule({
   declarations: [
     
@@ -23,7 +28,12 @@ import { ActasDonutComponent } from './components/graficos/actas-donut/actas-don
   ActasComponent,
   CompromisosComponent,
   ReunionesDonutComponent,
-  ActasDonutComponent
+  ActasDonutComponent,
+  ComiteDetailComponent,
+  ComiteOperatingComponent,
+  InformationBasicComponent,
+  MembersComiteComponent,
+  DocumentsComponent
     
   ],
   imports: [

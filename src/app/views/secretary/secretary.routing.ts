@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { ComitesComponent } from '../secretary/components/comites/comites.component';
+import { ComiteComponent } from '../secretary/pages/comite/comite.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { ComiteComponent } from './pages/comite/comite.component';
+import { ComiteOperatingComponent } from './components/comite-operating/comite-operating.component';
 
 export const ManagerRoutes: Routes = [
     {
@@ -13,15 +13,15 @@ export const ManagerRoutes: Routes = [
             },
             {
                 path: 'comites',
-                component: ComitesComponent
+                component: ComiteComponent
             },
             {
                 path: 'dashboard',
                 component: DashboardComponent,
             },
             {
-                path: 'comite-operativo',
-                component: ComiteComponent
+                path: 'comite-operating',
+                component: ComiteOperatingComponent
             }
         ],  
     },
