@@ -7,6 +7,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ComiteComponent } from './pages/comite/comite.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { ComitesComponent } from './components/comites/comites.component';
+import { ComiteDetailComponent } from './components/comite-detail/comite-detail.component';
 @NgModule({
   declarations: [
     
@@ -16,7 +17,9 @@ import { ComitesComponent } from './components/comites/comites.component';
     
   ReportsComponent,
     
-  ComitesComponent],
+  ComitesComponent,
+    
+  ComiteDetailComponent],
   imports: [
     CommonModule,
     SharedModule,

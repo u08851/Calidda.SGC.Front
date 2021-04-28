@@ -1,1 +1,99 @@
-<p>comite works!</p>
+<div class="card p-flex-column">
+    <div>
+        <p class="title">Creación de Nuevo Comité</p>
+        <label class="p-custom-text">Ingresa los datos requeridos</label>
+    </div>
+    <p-tabView styleClass="p-tab-style-2">
+        <p-tabPanel>
+            <ng-template pTemplate="header">
+                <span class="tab-title">Nuevo</span>
+            </ng-template>
+            <div class="tab-content">
+
+            </div>
+        </p-tabPanel>
+        <p-tabPanel [selected]="true" header="Comité: COC21-2">
+            <div class="tab-content">
+                <form>
+                    <div class="p-grid">
+                        <!-- Nombre del comité -->
+                        <div class="p-col-12 p-md-6 p-lg-4">
+                            <div class="p-field">
+                                <label>Nombre del comité</label>
+                                <input pInputText />
+                            </div>
+                        </div>
+
+                        <!-- Empresa del comité -->
+                        <div class="p-col-12 p-md-6 p-lg-4">
+                            <div class="p-field">
+                                <label>Empresa del comité</label>
+                            </div>
+                        </div>
+
+                        <!-- País -->
+                        <div class="p-col-12 p-md-6 p-lg-4">
+                            <div class="p-field">
+                                <label>País</label>
+                            </div>
+                        </div>
+
+                        <!-- Responsable del comité -->
+                        <div class="p-col-12 p-md-6 p-lg-4">
+                            <div class="p-field">
+                                <label>Responsable del comité</label>
+                                <input pInputText />
+                            </div>
+                        </div>
+
+                        <!-- Correo electrónico -->
+                        <div class="p-col-12 p-md-6 p-lg-4">
+                            <div class="p-field">
+                                <label>Correo electrónico</label>
+                                <input pInputText />
+                            </div>
+                        </div>
+
+                        <!-- Dirección dueña del comité -->
+                        <div class="p-col-12 p-md-6 p-lg-4">
+                            <div class="p-field">
+                                <label>Dirección dueña del comité</label>
+                                <input pInputText />
+                            </div>
+                        </div>
+
+                        <!-- Código del comité -->
+                        <div class="p-col-12 p-md-6 p-lg-4">
+                            <div class="p-field">
+                                <label>Código del comité</label>
+                                <input pInputText />
+                            </div>
+                        </div>
+
+                        <!-- Fecha de la creación de comité -->
+                        <div class="p-col-12 p-md-6 p-lg-4">
+                            <div class="p-field">
+                                <label>Fecha de la creación de comité</label>
+                                <input pInputText />
+                            </div>
+                        </div>
+
+                        <!-- Hora de creación de comité -->
+                        <div class="p-col-12 p-md-6 p-lg-4">
+                            <div class="p-field">
+                                <label>Hora de creación de comité</label>
+                                <input pInputText />
+                            </div>
+                        </div>
+
+                        <!-- Btn Crear -->
+                        <div class="p-col-12 p-text-center">
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </p-tabPanel>
+    </p-tabView>
+</div>
+
