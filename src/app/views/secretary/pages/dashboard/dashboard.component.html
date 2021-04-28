@@ -1,1 +1,290 @@
-Dashboard
+<div>
+  <div class="title">
+    <p>Inicio</p>
+    <p>Filtrar por:</p>
+  </div>
+
+  <!-- Form -->
+  <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
+    <!-- Buscar nombre -->
+    <div class="p-col-12 p-md-6 p-lg-3">
+      <span class="p-float-label p-input-icon-right">
+        <i class="pi pi-search"></i>
+        <input type="text" pInputText />
+        <label for="inputtext">Buscar nombre</label>
+      </span>
+    </div>
+
+    <!-- Código de comité -->
+    <div class="p-col-12 p-md-6 p-lg-3">
+      <span class="p-float-label">
+        <input type="text" pInputText />
+        <label for="inputtext">Código de comité</label>
+      </span>
+    </div>
+
+    <!-- calendario DESDE -->
+    <div class="p-col-12 p-md-6 p-lg-3">
+      <span class="p-float-label">
+        <p-calendar
+          [(ngModel)]="date3"
+          [locale]="es"
+          [showIcon]="true"
+          inputId="icon"
+        ></p-calendar>
+        <label for="inputtext">Desde</label>
+      </span>
+    </div>
+
+    <!-- calendario HASTA -->
+    <div class="p-col-12 p-md-6 p-lg-3">
+      <span class="p-float-label">
+        <p-calendar
+          [(ngModel)]="date4"
+          [locale]="es"
+          [showIcon]="true"
+          inputId="icon"
+        ></p-calendar>
+        <label for="inputtext">Hasta</label>
+      </span>
+    </div>
+  </div>
+
+  <div class="card">
+    <p-tabView styleClass="p-tab-style-1">
+      <!-- TAB-1 REUNIONES -->
+      <p-tabPanel header="Reuniones">
+        <div class="p-grid p-text-right">
+          <div class="p-col-12">
+            <p-button label="Exportar" icon="pi pi-cloud-download"></p-button>
+          </div>
+        </div>
+
+        <!-- INDICADORES -->
+        <div class="p-grid">
+          <!-- Reuniones realizadas -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box" (click)="goToTableActive()">
+              <div class="box-detalle">
+                <p>3</p>
+                <i class="material-icons graph-gray"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Reuniones realizadas</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reuniones canceladas -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box">
+              <div class="box-detalle">
+                <p>3</p>
+                <i class="material-icons graph-light-blue"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Reuniones canceladas</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reuniones reprogramadas -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box">
+              <div class="box-detalle">
+                <p>5</p>
+                <i class="material-icons darkblue"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Reuniones reprogramadas</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Total actas -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box" [style.border-left]="'8px solid var(--primary-color)'">
+              <div class="box-detalle">
+                <p>24</p>
+                <i class="material-icons-outlined" [style.color]="'var(--primary-color)'"> ballot </i>
+              </div>
+              <div class="box-info">
+                <p>Total actas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gráfico Barras -->
+        <div class="p-grid graphic-box">
+          <p>Reporte (Últimos 6 meses)</p>
+          <div class="p-col-12">
+            <app-reuniones></app-reuniones>
+          </div>
+        </div>
+
+        <!-- Gráfico donut-->
+        <div class="p-grid graphic-box">
+          <p>Firma en Actas | Comité de Administrador</p>
+          <div class="p-col-12">
+            <app-reuniones-donut></app-reuniones-donut>
+          </div>
+        </div>
+      </p-tabPanel>
+
+      <!-- TAB-2 ACTAS  -->
+      <p-tabPanel header="Actas">
+        <div class="p-grid p-text-right">
+          <div class="p-col-12">
+            <p-button label="Exportar" icon="pi pi-cloud-download"></p-button>
+          </div>
+        </div>
+
+        <!-- INDICADORES -->
+        <div class="p-grid">
+          <!-- Actas cerradas -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box" (click)="goToTableActivePais()">
+              <div class="box-detalle">
+                <p>53</p>
+                <i class="material-icons graph-dark-green"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Actas cerradas</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actas en proceso -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box">
+              <div class="box-detalle">
+                <p>30</p>
+                <i class="material-icons graph-black"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Actas en proceso</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actas no iniciadas -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box">
+              <div class="box-detalle">
+                <p>21</p>
+                <i class="material-icons graph-light-blue"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Actas no iniciadas</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Total actas -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box" [style.border-left]="'8px solid var(--sucess)'">
+              <div class="box-detalle">
+                <p>4</p>
+                <i class="material-icons-outlined" [style.color]="'var(--primary-color)'"> article </i>
+              </div>
+              <div class="box-info">
+                <p>Total actas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grafico -->
+        <div class="p-grid graphic-box">
+          <p>Reporte (Últimos 6 meses)</p>
+          <div class="p-col-12">
+            <app-actas></app-actas>
+          </div>
+        </div>
+        <!-- Gráfico donut-->
+        <div class="p-grid graphic-box">
+          <p>Firma en Actas | Comité de Administrador</p>
+          <div class="p-col-12">
+            <app-actas-donut></app-actas-donut>
+          </div>
+        </div>
+      </p-tabPanel>
+
+      <!-- TAB-3 COMPROMISOS -->
+      <p-tabPanel header="Compromisos">
+        <div class="p-grid p-text-right">
+          <div class="p-col-12">
+            <p-button label="Exportar" icon="pi pi-cloud-download"></p-button>
+          </div>
+        </div>
+
+        <!-- INDICADORES -->
+        <div class="p-grid">
+          <!-- Compromisos en proceso -->
+          <div class="p-col-12 p-md-6 p-lg-4">
+            <div class="box" (click)="goToTableActiveEmpresa()">
+              <div class="box-detalle">
+                <p>3</p>
+                <i class="material-icons graph-green"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Compromisos en proceso</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Compromisos cerrados -->
+          <div class="p-col-12 p-md-6 p-lg-4">
+            <div class="box">
+              <div class="box-detalle">
+                <p>3</p>
+                <i class="material-icons lightGray"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Compromisos cerrados</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Total compromisos -->
+          <div class="p-col-12 p-md-6 p-lg-4">
+            <div class="box">
+              <div class="box-detalle">
+                <p>5</p>
+                <!-- <i class="material-icons dark"> bar_chart </i> -->
+              </div>
+              <div class="box-info">
+                <p>Total compromisos</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Grafico -->
+        <div class="p-grid graphic-box">
+          <p>Reporte (Últimos 6 meses)</p>
+          <div class="p-col-12">
+            <app-compromisos></app-compromisos>
+          </div>
+        </div>
+      </p-tabPanel>
+
+      <!-- TAB-4 ASISTENCIAS  -->
+      <p-tabPanel header="Asistencias">
+        <div class="p-grid p-text-right">
+          <div class="p-col-12">
+            <p-button label="Exportar" icon="pi pi-cloud-download"></p-button>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="p-grid graphic-box">
+          <p>table aquiii</p>
+          <div class="p-col-12"></div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>

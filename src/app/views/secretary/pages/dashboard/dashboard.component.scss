@@ -1,0 +1,57 @@
+.box {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 20px;
+  color: #2e4259;
+  border: none;
+  cursor: pointer;
+
+  &-detalle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    i {
+      font-size: 45px;
+    }
+  }
+
+  &-info {
+    p {
+      font-size: 12.6px;
+      font-weight: 500;
+      text-align: left;
+    }
+  }
+
+  &:focus {
+    border: aliceblue;
+    outline: aliceblue;
+  }
+}
+
+.graphic-box {
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 15px 0px;
+
+  p {
+    font-size: 13px;
+    font-weight: 500;
+  }
+}
+
+body .ui-table .ui-table-tbody > tr > td {
+  border: 0 none;
+}
+
+.ui-datatable tbody td {
+  border: 0 none;
+}

@@ -13,7 +13,11 @@ export const ManagerRoutes: Routes = [
             {
                 path: 'comites',
                 component: ComitesComponent
-            }
+            },
+            {
+                path: 'dashboard',
+                component: DashboardComponent,
+            },
         ],  
     },
 ];
