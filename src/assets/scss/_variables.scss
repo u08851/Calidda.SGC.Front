@@ -7,10 +7,11 @@
   --info-color: #00a1de;
   --dark-blue: #2e4259;
 
-  --red:   #e31919;
+  --red: #e31919;
   --green: #87d741;
-  --orange:#fab200;
-  --info:  #00a1de;
+  --orange: #fab200;
+  --info: #00a1de;
+  --sucess: #00A34B;
 
   --text-color: #7a7a7a !important;
   font-family: "Galano Grotesque", sans-serif;
@@ -44,15 +45,15 @@ body {
   color: #00a1de;
 }
 
-
 //Material Icons Class
-.exit_to_app, .east {
-  position:relative;
-  display:inline-block;
+.exit_to_app,
+.east {
+  position: relative;
+  display: inline-block;
 }
 .exit_to_app:after {
   content: "exit_to_app";
 }
 .east {
-  content: 'east';
+  content: "east";
 }

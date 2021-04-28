@@ -16,6 +16,10 @@ export const ManagerRoutes: Routes = [
                 component: ComitesComponent
             },
             {
+                path: 'dashboard',
+                component: DashboardComponent,
+            },
+            {
                 path: 'comite-operativo',
                 component: ComiteComponent
             }

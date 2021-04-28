@@ -7,19 +7,25 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ComiteComponent } from './pages/comite/comite.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { ComitesComponent } from './components/comites/comites.component';
-import { ComiteDetailComponent } from './components/comite-detail/comite-detail.component';
+import { ReunionesComponent } from './components/graficos/reuniones/reuniones.component';
+import { ActasComponent } from './components/graficos/actas/actas.component';
+import { CompromisosComponent } from './components/graficos/compromisos/compromisos.component';
+import { ReunionesDonutComponent } from './components/graficos/reuniones-donut/reuniones-donut.component';
+import { ActasDonutComponent } from './components/graficos/actas-donut/actas-donut.component';
 @NgModule({
   declarations: [
     
   DashboardComponent,
-    
   ComiteComponent,
-    
   ReportsComponent,
-    
   ComitesComponent,
+  ReunionesComponent,
+  ActasComponent,
+  CompromisosComponent,
+  ReunionesDonutComponent,
+  ActasDonutComponent
     
-  ComiteDetailComponent],
+  ],
   imports: [
     CommonModule,
     SharedModule,
