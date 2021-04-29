@@ -1338,8 +1338,8 @@ p-multiselect.ng-dirty.ng-invalid > .p-multiselect {
   border-color: #00a1de;
 }
 .p-radiobutton .p-radiobutton-box .p-radiobutton-icon {
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   transition-duration: 0.2s;
   background-color: #00a1de;
 }
@@ -1644,7 +1644,7 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 }
 .p-button.p-button-icon-only {
   width: 3rem;
-  padding: 0.714rem;
+  padding: 0.286rem;
 }
 .p-button.p-button-icon-only .p-button-icon-left,
 .p-button.p-button-icon-only .p-button-icon-right {
@@ -5394,8 +5394,8 @@ p-autocomplete.ng-dirty.ng-invalid .p-autocomplete .p-autocomplete-multiple-cont
 }
 
 .p-calendar-w-btn {
-  border: 1px solid rgba(0, 0, 0, 0.38);
-  background: #ffffff;
+  border: 1px solid #CED3D9;
+  background: #F6F7F9;
   border-radius: 4px;
   transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
 }

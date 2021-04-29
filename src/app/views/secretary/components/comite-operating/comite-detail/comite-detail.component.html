@@ -1,1 +1,81 @@
-<p>comite-detail works!</p>
+<div class="p-fluid p-formgrid gray p-grid">
+    <p class="p-field p-col-12 p-custom-title">Datos del Comité</p>
+
+    <div class="p-field p-col-12">
+        <label>Descripción del Comité</label>
+        <textarea pInputTextarea></textarea>
+    </div>
+    <div class="p-field p-col-12">
+        <label>Lastname</label>
+        <input id="lastname1" type="text" pInputText>
+    </div>
+
+    <div class="p-field p-col-12  p-ai-center">
+        <span class="p-custom-title p-mr-3">Periodicidad de reuniones</span>
+        <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+    </div>
+
+    <div class="p-field p-col-12">
+        <label>Frecuencia</label>
+        <div class="p-d-flex p-jc-between flex-wrap p-p-3 border-1px-gray rounded-1">
+            <p-radioButton value="" label="Semanal" [(ngModel)]="selectedValue"></p-radioButton>
+            <p-radioButton value="" label="Quincenal" [(ngModel)]="selectedValue"></p-radioButton>
+            <p-radioButton value="" label="Trimestral" [(ngModel)]="selectedValue"></p-radioButton>
+            <p-radioButton value="" label="Mensual" [(ngModel)]="selectedValue"></p-radioButton>
+            <p-radioButton value="" label="Semestral" [(ngModel)]="selectedValue"></p-radioButton>
+            <p-radioButton value="" label="Anual" [(ngModel)]="selectedValue"></p-radioButton>
+        </div>
+    </div>
+
+    <div class="p-field p-col-12">
+        <label>Cada</label>
+        <input type="text" pInputText>
+    </div>
+
+    <div class="p-field p-col-12">
+        <label>Días</label>
+        <div class="p-d-flex p-jc-between flex-wrap p-p-3 border-1px-gray rounded-1">
+            <p-checkbox label="Lunes" value="val1" [(ngModel)]="selectedValue"></p-checkbox>
+            <p-checkbox label="Martes" value="val1" [(ngModel)]="selectedValue"></p-checkbox>
+            <p-checkbox label="Miercoles" value="val1" [(ngModel)]="selectedValue"></p-checkbox>
+            <p-checkbox label="Jueves" value="val1" [(ngModel)]="selectedValue"></p-checkbox>
+            <p-checkbox label="Viernes" value="val1" [(ngModel)]="selectedValue"></p-checkbox>
+        </div>
+    </div>
+
+    <div class="p-field p-col-12 p-md-3">
+        <label>Fecha de inicio</label>
+        <p-calendar [(ngModel)]="date" [showIcon]="true" inputId="icon"></p-calendar>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+        <label>Hora de inicio</label>
+        <input id="lastname1" type="text" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+        <label>Hora de fin</label>
+        <input id="lastname1" type="text" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+        <label>Duración</label>
+        <input id="lastname1" type="text" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-3">
+        <label>Repeteciones</label>
+        <input id="lastname1" type="text" pInputText>
+    </div>
+
+    <p class="p-field p-col-12 p-custom-title">Alertas de reuniones</p>
+    <div class="p-field p-col-12 p-md-3">
+        <label>Repeteciones</label>
+        <input id="lastname1" type="text" pInputText>
+    </div>
+
+    <p class="p-field p-col-12 p-custom-title">Facultades</p>
+    <div class="p-field p-col-12 p-md-3">
+        <p-checkbox label="Voto" value="val1" [(ngModel)]="selectedValue"></p-checkbox>
+    </div>
+</div>
+<div class="p-d-flex p-jc-center btn-group">
+    <button class="stylebtn" label="Guardar" pButton></button>
+    <button class="" label="Siguiente" pButton></button>
+</div>

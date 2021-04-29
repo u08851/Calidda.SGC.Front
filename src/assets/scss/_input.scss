@@ -164,3 +164,14 @@
     color: var(--primary-color);
   }
 }
+
+//Forms
+.p-formgrid {
+  font-size: 13px;
+}
+.p-formgrid.gray{
+  label {
+    color: #2E4259;
+    opacity: 0.8;
+  }
+}
