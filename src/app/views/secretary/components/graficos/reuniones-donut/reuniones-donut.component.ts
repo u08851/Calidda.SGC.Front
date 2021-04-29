@@ -40,7 +40,7 @@ export class ReunionesDonutComponent implements OnInit {
 
     // Add label
     let label = chart.seriesContainer.createChild(am4core.Label);
-    label.text = "1995";
+    label.text = "104";
     label.horizontalCenter = "middle";
     label.verticalCenter = "middle";
     label.fontSize = 30;
@@ -65,14 +65,14 @@ export class ReunionesDonutComponent implements OnInit {
     ];
 
     // Legend 
-    chart.legend = new am4charts.Legend();
-    chart.legend.position = 'right';
-    chart.legend.align = 'right';
-    chart.legend.contentAlign = 'right';
-    chart.legend.paddingBottom = 20;
-    chart.legend.markers.template.width = 18;
-    chart.legend.markers.template.height = 8;
-    chart.legend.visible = true;
+    // chart.legend = new am4charts.Legend();
+    // chart.legend.position = 'right';
+    // chart.legend.align = 'right';
+    // chart.legend.contentAlign = 'left';
+    // chart.legend.paddingBottom = 20;
+    // chart.legend.markers.template.width = 18;
+    // chart.legend.markers.template.height = 8;
+    // chart.legend.visible = true;
 
   }
 }

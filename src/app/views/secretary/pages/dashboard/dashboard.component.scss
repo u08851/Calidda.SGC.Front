@@ -55,3 +55,28 @@ body .ui-table .ui-table-tbody > tr > td {
 .ui-datatable tbody td {
   border: 0 none;
 }
+
+.pie-legend {
+  &-info {
+    display: flex;
+    align-items: center;
+    color: hsl(0, 0%, 100%);
+    padding: 4px 20px;
+    border-radius: 5px;
+    margin: 5px 0 16px;
+    cursor: pointer;
+
+    p:first-of-type {
+      font-size: 28px;
+      font-weight: 600;
+      padding: 0 10px 12px;
+    }
+
+    p:nth-of-type(2) {
+      font-size: 13px;
+      font-weight: 300;
+    }
+  }
+}
+
+

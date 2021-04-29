@@ -1,0 +1,42 @@
+<p-carousel
+  [value]="products"
+  [numVisible]="1"
+  [numScroll]="1"
+  [circular]="false"
+>
+  <!--<div class="p-grid">
+    <div class="p-col-12">-->
+  <ng-template let-product pTemplate="item">
+    <div class="product-item">
+      <div class="product-item-content">
+        <div class="icon-chat">
+          <span class="material-icons" [style.color]="'#00A1DE'"> chat </span>
+        </div>
+        <div [style.color]="'#2E4259'">
+          <h4 class="p-mb-1">
+            Rosario Chiarella ha cambiado la Dirección del comité C-2133
+          </h4>
+          <p class="p-mt-0 p-mb-3">
+            El “Comité de Dirección” tiene la sección participantes sin
+            culminar.
+          </p>
+        </div>
+        <div class="car-buttons p-d-flex p-ai-center">
+          <p-button label="Ver detalle"></p-button>
+
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi"
+            class="p-button-rounded p-button-text"
+          >
+            <span class="material-icons-outlined"> cancel </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <!--</div>
+  </div> -->
+</p-carousel>

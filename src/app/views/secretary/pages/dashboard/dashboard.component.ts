@@ -9,24 +9,20 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
   products: any[] = [
     {
-      fechac: 'fechac',
-      cod: 'cod',
-      name: 'name',
-      direccion: 'direccion',
-      responsable: 'responsable',
-      empresa: 'empresa',
-      frecuencia: 'frecuencia',
-      pais: 'pais',
+      reuniones: 'reuniones',
+      codActas: 'codActas',
+      asistencias: 'asistencias',
+      faltas: 'faltas',
+      percentasistencias: 'percentasistencias',
+      miembros: 'miembros'
     },
     {
-      fechac: 'fechac',
-      cod: 'cod',
-      name: 'name',
-      direccion: 'direccion',
-      responsable: 'responsable',
-      empresa: 'empresa',
-      frecuencia: 'frecuencia',
-      pais: 'pais',
+      reuniones: 'reuniones',
+      codActas: 'codActas',
+      asistencias: 'asistencias',
+      faltas: 'faltas',
+      percentasistencias: 'percentasistencias',
+      miembros: 'miembros'
     },
   ];
 
@@ -48,14 +44,12 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.cols = [
-      { header: 'Fec. de Creación', field: 'fechac' },
-      { header: 'Cód', field: 'cod' },
-      { header: 'Nombre del Comité', field: 'name' },
-      { header: 'Direccón del Comité', field: 'direccion' },
-      { header: 'Responsable', field: 'responsable' },
-      { header: 'Empresa', field: 'empresa' },
-      { header: 'Frecuencia', field: 'frecuencia' },
-      { header: 'País', field: 'pais' },
+      { header: 'Reuniones', field: 'reuniones' },
+      { header: 'Cód de Acta', field: 'codActas' },
+      { header: 'Asistencias', field: 'asistencias' },
+      { header: 'Faltas', field: 'faltas' },
+      { header: '% de Asistencias', field: 'percentasistencias' },
+      { header: 'Asistencia de Miembros', field: 'miembros' }
     ];
 
     this.items = [
@@ -126,23 +120,15 @@ export class DashboardComponent implements OnInit {
     ];
   }
 
-  goToTableActive() {
-    this.router.navigateByUrl('/manager/todos-table');
+  goToTableReuniones() {
+    this.router.navigateByUrl('/secretary/reuniones-table');
   }
 
-  goToTableActivePais() {
-    this.router.navigateByUrl('/manager/pais-table');
+  goToTableActas() {
+    this.router.navigateByUrl('/secretary/actas-table');
   }
 
-  goToTableActiveEmpresa() {
-    this.router.navigateByUrl('/manager/empresa-direccion-table');
-  }
-
-  goToTableActiveSecretaria() {
-    this.router.navigateByUrl('/manager/secrearia-table');
-  }
-
-  goToTableActiveFrecuencia() {
-    this.router.navigateByUrl('/manager/frecuencia-table');
+  goToTableCompromisos() {
+    this.router.navigateByUrl('/secretary/compromisos-table');
   }
 }
