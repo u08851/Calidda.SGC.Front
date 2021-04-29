@@ -1,0 +1,25 @@
+<p-tabView styleClass="p-tab-style-3">
+    <div class="comite_number">
+        Comité: C2031
+    </div>
+    <p-tabPanel [selected]="true" header="Información básica">
+        <div class="tab-content">
+            <app-information-basic></app-information-basic>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Detalles del Comité">
+        <div class="tab-content">
+            <app-comite-detail></app-comite-detail>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Miembros del comité">
+        <div class="tab-content">
+            <app-members-comite></app-members-comite>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Documentos">
+        <div class="tab-content">
+            <app-documents></app-documents>
+        </div>
+    </p-tabPanel>
+</p-tabView>

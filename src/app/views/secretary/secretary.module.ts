@@ -12,6 +12,11 @@ import { ActasComponent } from './components/graficos/actas/actas.component';
 import { CompromisosComponent } from './components/graficos/compromisos/compromisos.component';
 import { ReunionesDonutComponent } from './components/graficos/reuniones-donut/reuniones-donut.component';
 import { ActasDonutComponent } from './components/graficos/actas-donut/actas-donut.component';
+import { ComiteDetailComponent } from './components/comite-operating/comite-detail/comite-detail.component';
+import { ComiteOperatingComponent } from './components/comite-operating/comite-operating.component';
+import { InformationBasicComponent } from './components/comite-operating/information-basic/information-basic.component';
+import { MembersComiteComponent } from './components/comite-operating/members-comite/members-comite.component';
+import { DocumentsComponent } from './components/comite-operating/documents/documents.component';
 import { ReunionesTableComponent } from './components/tables/reuniones-table/reuniones-table.component';
 import { ActasTableComponent } from './components/tables/actas-table/actas-table.component';
 import { CompromisosTableComponent } from './components/tables/compromisos-table/compromisos-table.component';
@@ -20,31 +25,23 @@ import { CarouselComponent } from './components/carousel/carousel.component';
   declarations: [
     
   DashboardComponent,
-    
   ComiteComponent,
-    
   ReportsComponent,
-    
   ComitesComponent,
-    
   ReunionesComponent,
-    
   ActasComponent,
-    
   CompromisosComponent,
-    
   ReunionesDonutComponent,
-    
   ActasDonutComponent,
-    
-  ReunionesTableComponent,
-    
-  ActasTableComponent,
-    
+  ComiteDetailComponent,
+  ComiteOperatingComponent,
+  InformationBasicComponent,
+  MembersComiteComponent,
+  DocumentsComponent,    
+  ReunionesTableComponent,    
+  ActasTableComponent,    
   CompromisosTableComponent,
-    
   CarouselComponent,
-    
   ],
   imports: [
     CommonModule,
