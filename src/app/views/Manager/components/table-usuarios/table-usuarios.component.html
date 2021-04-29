@@ -27,6 +27,7 @@
             type="text"
             formControlName="usuario"
             pInputText
+            [(ngModel)]="textFilter"
             styleClass="style-input-1"
             (keydown)="onKeydown($event)"
           />
@@ -41,6 +42,7 @@
               type="text"
               formControlName="empresa"
               pInputText
+              [(ngModel)]="textFilter1"
               styleClass="style-input-1"
               (keydown)="onKeydown($event)"
             />

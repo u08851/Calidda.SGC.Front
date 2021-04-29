@@ -6,34 +6,34 @@
     </div>
     <p class="tab-content-p">Filtrar por</p>
     <!-- form -->
-    <form>
+    <form [formGroup]="formForm">
         <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mt-3">
             <!-- Buscar por nombre -->
             <div class="p-col-12 p-md-6 p-lg-3">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText styleClass="style-input-1" />
-                    <label for="inputtext">Buscar por nombre</label>
+                    <input type="text" (keydown)="onKeydown($event)" [(ngModel)]="textFilter0" formControlName="nombre" pInputText styleClass="style-input-1" />
+                    <label for="nombre">Buscar por nombre</label>
                 </span>
             </div>
 
             <!-- Tipo -->
             <div class="p-col-12 p-md-6 p-lg-3">
-                <p-dropdown [options]="tipo" placeholder="Tipo" optionLabel="name" [showClear]="true"></p-dropdown>
+                <p-dropdown [options]="tipo" (onChange)="onKeydown($event)" [(ngModel)]="textFilter10" formControlName="tipo" placeholder="Tipo" optionLabel="name" [showClear]="true"></p-dropdown>
             </div>
 
             <!-- calendario DESDE -->
             <div class="p-col-12 p-md-6 p-lg-3">
                 <span class="p-float-label">
-                    <p-calendar [(ngModel)]="date3" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
-                    <label for="inputtext">Desde</label>
+                    <p-calendar (onSelect)="onKeydown($event)" [(ngModel)]="textFilter20" formControlName="desde" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                    <label for="desde">Desde</label>
                 </span>
             </div>
 
             <!-- calendario HASTA -->
             <div class="p-col-12 p-md-6 p-lg-3">
                 <span class="p-float-label">
-                    <p-calendar [(ngModel)]="date4" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
-                    <label for="inputtext">Hasta</label>
+                    <p-calendar (onSelect)="onKeydown($event)" [(ngModel)]="textFilter30" formControlName="hasta" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                    <label for="hasta">Hasta</label>
                 </span>
             </div>
         </div>
@@ -64,23 +64,24 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
             <tr>
-                <td class="p-text-left">20/05/2021</td>
-                <td class="p-text-left">3:00pm</td>
-                <td class="p-text-left">Miembro</td>
-                <td class="p-text-left">Comité de administración</td>
+                <td class="p-text-left">{{ getDateList(rowData.fecha) }}</td>
+                <td class="p-text-left">{{ getHourList(rowData.hora) }}</td>
+                <td class="p-text-left">{{ rowData.nombre }}</td>
+                <td class="p-text-left">{{ rowData.tipo }}</td>
                 <td>
                     <div class="p-d-flex p-ai-center">
                         <!-- variables:  --red --green --info  -->
-                        <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--green)'"></i>
-                        Activo
+                        <i *ngIf="rowData.estado == 1" class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--green)'"></i>
+                        <i *ngIf="rowData.estado == 0" class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--red)'"></i>
+                        {{rowData.estado == 1 ? 'Activo': 'Desactivado'}}
                     </div>
                 </td>
                 <td>
                     <div class="p-d-flex p-ai-center p-jc-center p-jc-lg-end">
-                        <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+                        <p-inputSwitch (click)="updateStatus(rowData)" [(ngModel)]="rowData.estado"></p-inputSwitch>
 
                         <button
-                            (click)="showMaximizableDialog()"
+                            (click)="showMaximizableDialog(rowData)"
                             pButton
                             pRipple
                             type="button"
@@ -89,7 +90,7 @@
                         </button>
 
                         <button
-                            (click)="showConfirmation()"
+                            (click)="showConfirmation(rowData)"
                             pButton
                             pRipple
                             type="button"
@@ -144,7 +145,7 @@
         </p>
     </div>
     <ng-template pTemplate="footer">
-        <button (click)="displayModal = false" pButton label="Si"></button>
+        <button (click)="delete()" pButton label="Si"></button>
         <button class="stylebtn" (click)="displayModal = false" pButton label="No"></button>
     </ng-template>
 </p-dialog>
