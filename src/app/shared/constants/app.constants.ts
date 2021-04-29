@@ -19,7 +19,8 @@ export const AppConstants = {
         DELETE_SUCCESS: "Se eliminó correctamente.",
         FIELD_ERROR: "Faltan datos por completar.",
         LOGIN_SUCCESS: "Bienvenido al sistema.",
-        SERVICES_ERROR: "Ha ocurrido un error inesperado."
+        SERVICES_ERROR: "Ha ocurrido un error inesperado.",
+        FIELD_IMPORT_ERROR: "Debe agregar un archivo."
 
     }
 }

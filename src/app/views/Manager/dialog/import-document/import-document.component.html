@@ -1,37 +1,44 @@
 <div class="p-formgrid p-p-3">
 
     <div class="p-d-flex p-jc-center btn-group p-mb-5 p-mt-2">
-        <button pButton class="p-button-outlined p-button-rounded active w-100" label="Acta de confidencialidad de Miembros"></button>
-        <button pButton class="p-button-outlined p-button-rounded w-100" label="Acta de confidencialidad de Invitados"></button>
+        <button *ngIf="tipoSelect == 1" (click)="change(1)" pButton class="p-button-outlined p-button-rounded active w-100" label="Acta de confidencialidad de Miembros"></button>
+        <button *ngIf="tipoSelect == 1" (click)="change(2)" pButton class="p-button-outlined p-button-rounded w-100" label="Acta de confidencialidad de Invitados"></button>
+        <button *ngIf="tipoSelect == 2" (click)="change(1)" pButton class="p-button-outlined p-button-rounded w-100" label="Acta de confidencialidad de Miembros"></button>
+        <button *ngIf="tipoSelect == 2" (click)="change(2)" pButton class="p-button-outlined p-button-rounded active w-100" label="Acta de confidencialidad de Invitados"></button>
     </div>
 
-    <p-fileUpload #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize="1000000"
-        (onUpload)="uploadDocument($event)" [auto]="true" chooseLabel="Subir archivos PDF, no masyor a 5MB"></p-fileUpload>
+    <p-fileUpload #fubauto mode="basic" name="demo" accept="application/pdf" maxFileSize="5000000" customUpload="true"
+        (onSelect)="uploadDocument($event)" chooseLabel="Subir archivos PDF, no mayor a 5MB"></p-fileUpload>
     <br>
-    <div class="p-fluid p-formgrid p-grid p-style-input-fill p-mb-4">
-        <div class="p-field p-col-12 p-md-12">
-            <p class="color-primary">Ingresar Detalles del documento</p>
-        </div>
 
-        <div class="p-field p-col-12 p-md-6">
-            <span class="p-float-label">
-                <input id="lastname" type="text" pInputText styleClass="style-input-1">
-                <label for="firstname">Ingresar Nombre del documento</label>
-            </span>
-        </div>
+    <form [formGroup]="documentForm" autocomplete="offs">
+        <div class="p-fluid p-formgrid p-grid p-style-input-fill p-mb-4">
+            <div class="p-field p-col-12 p-md-12">
+                <p class="color-primary">Ingresar Detalles del documento</p>
+            </div>
 
-        <div class="p-field p-col-12 p-md-6">
-            <!-- variables:  --red --green --info  -->
-            <label for="firstname">Estado</label>
-            <div>
-                <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--green)'"></i>
-                <span class="p-mr-2">Activo</span>
-                <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+            <div class="p-field p-col-12 p-md-6">
+                <span class="p-float-label">
+                    <input formControlName="nombre" [ngClass]="{ 'is-invalid-text': submitted && g.nombre.errors }" oninput="this.value=this.value.trim()==''?'':this.value" type="text" pInputText styleClass="style-input-1">
+                    <label for="nombre" [ngClass]="{ 'is-invalid-text': submitted && g.nombre.errors }">Ingresar Nombre del documento</label>
+                </span>
+            </div>
+
+            <div class="p-field p-col-12 p-md-6">
+                <!-- variables:  --red --green --info  -->
+                <label for="firstname">Estado</label>
+                <div>
+                    <i *ngIf="checked == true" class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--green)'"></i>
+                    <i *ngIf="checked != true" class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--red)'"></i>
+                    <label *ngIf="checked == true" class="p-mr-2">Activo</label>
+                    <label *ngIf="checked != true" class="p-mr-2">Desactivo</label>
+                    <p-inputSwitch [(ngModel)]="checked" formControlName="statusId"></p-inputSwitch>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 
     <div class="p-d-flex p-jc-center btn-group">
-        <button pButton label="Guardar"></button>
+        <button pButton label="Guardar" (click)="send()"></button>
     </div>
 </div>
