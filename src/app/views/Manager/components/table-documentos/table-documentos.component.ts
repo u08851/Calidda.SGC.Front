@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
@@ -11,6 +12,7 @@ import { ImportDocumentComponent } from '../../dialog/import-document/import-doc
   selector: 'app-table-documentos',
   templateUrl: './table-documentos.component.html',
   styleUrls: ['./table-documentos.component.scss'],
+  providers: [DatePipe]
 })
 export class TableDocumentosComponent implements OnInit {
 
@@ -18,10 +20,14 @@ export class TableDocumentosComponent implements OnInit {
   displayModal: boolean;
   checked: boolean;
   ref: DynamicDialogRef;
-  textFilter: string = "";
-  textFilter1: string = "";
-  textFilter2: string = "";
-  textFilter3: string = "";
+  textFilter: any = "";
+  textFilter1: any = "";
+  textFilter2: any = "";
+  textFilter3: any = "";
+  textFilter0: string = "";
+  textFilter10: string = "";
+  textFilter20: string = "";
+  textFilter30: any = "";
   term: string = "ALL1";
   term1: string = "ALL1";
   term2: string = "ALL1";
@@ -42,6 +48,7 @@ export class TableDocumentosComponent implements OnInit {
     private confidencialDocumentoServices:ConfidencialDocumentoServices,
     private fb :FormBuilder,
     public messageService:MessageService,
+    private datePipe: DatePipe,
   ) {
     this.tipo = [
       { name: 'Miembro', code: 6 },
@@ -206,6 +213,162 @@ export class TableDocumentosComponent implements OnInit {
 
   showSuccess(mensaje :string) {
     this.messageService.add({severity:'success', summary: AppConstants.TitleModal.Success, detail: mensaje});
+  }
+
+  onKeydown(event) {
+    var evento = "";
+    try{
+      evento = event.originalEvent.type
+    }
+    catch{
+      try{
+        evento = event.key
+      }
+      catch{
+        evento = "Enter"
+      }
+    }
+    this.textFilter1 = this.textFilter10;
+    this.textFilter = this.textFilter0;
+    try{
+      this.textFilter1 = event.value.code
+    }catch{}
+    if(this.textFilter1 == null){
+      this.textFilter1 = "";
+    }
+    if(this.datePipe.transform(this.textFilter20, 'dd-MM-yyyy') != null){
+      this.textFilter2 = this.datePipe.transform(this.textFilter20, 'dd-MM-yyyy');
+    }
+    else{
+      this.textFilter2 = "";
+    }
+    if(this.datePipe.transform(this.textFilter30, 'dd-MM-yyyy') != null){
+      this.textFilter3 = this.datePipe.transform(this.textFilter30, 'dd-MM-yyyy');
+    }
+    else{
+      this.textFilter3 = "";
+    }
+    if (evento === "Enter" || evento === "click" || evento === undefined) {
+      if(this.textFilter.length == 0 && this.textFilter1.length == 0 && this.textFilter2.length == 0 && this.textFilter3.length == 0){
+        this.confidencialDocumentoServices.getListConfidencialDocumento(this.term,this.term1,this.term2,this.term3,this.page,this.size).subscribe(
+          (result: any) => {
+            this.products2 = result.data
+          }
+        )
+      }else{
+        if(this.textFilter.length == 0 && this.textFilter1.length == 0 && this.textFilter3.length == 0){
+          this.confidencialDocumentoServices.getListConfidencialDocumento(this.term,this.term1,this.textFilter2,this.term3,this.page,this.size).subscribe(
+            (result: any) => {
+              this.products2 = result.data
+            }
+          )
+        }else{
+          if(this.textFilter2.length == 0 && this.textFilter1.length == 0 && this.textFilter3.length == 0){
+            this.confidencialDocumentoServices.getListConfidencialDocumento(this.textFilter,this.term1,this.term2,this.term3,this.page,this.size).subscribe(
+              (result: any) => {
+                this.products2 = result.data
+              }
+            )
+          }else{
+            if(this.textFilter2.length == 0 && this.textFilter.length == 0 && this.textFilter3.length == 0){
+              this.confidencialDocumentoServices.getListConfidencialDocumento(this.term,this.textFilter1,this.term2,this.term3,this.page,this.size).subscribe(
+                (result: any) => {
+                  this.products2 = result.data
+                }
+              )
+            }else{
+              if(this.textFilter2.length == 0 && this.textFilter.length == 0 && this.textFilter1.length == 0){
+                this.confidencialDocumentoServices.getListConfidencialDocumento(this.term,this.term1,this.term2,this.textFilter3,this.page,this.size).subscribe(
+                  (result: any) => {
+                    this.products2 = result.data
+                  }
+                )
+              }else{
+                if(this.textFilter2.length == 0 && this.textFilter.length == 0){
+                  this.confidencialDocumentoServices.getListConfidencialDocumento(this.term,this.textFilter1,this.term2,this.textFilter3,this.page,this.size).subscribe(
+                    (result: any) => {
+                      this.products2 = result.data
+                    }
+                  )
+                }else{
+                  if(this.textFilter1.length == 0 && this.textFilter.length == 0){
+                    this.confidencialDocumentoServices.getListConfidencialDocumento(this.term,this.term1,this.textFilter2,this.textFilter3,this.page,this.size).subscribe(
+                      (result: any) => {
+                        this.products2 = result.data
+                      }
+                    )
+                  }else{
+                    if(this.textFilter3.length == 0 && this.textFilter.length == 0){
+                      this.confidencialDocumentoServices.getListConfidencialDocumento(this.term,this.textFilter1,this.textFilter2,this.term3,this.page,this.size).subscribe(
+                        (result: any) => {
+                          this.products2 = result.data
+                        }
+                      )
+                    }else{
+                      if(this.textFilter3.length == 0 && this.textFilter2.length == 0){
+                        this.confidencialDocumentoServices.getListConfidencialDocumento(this.textFilter,this.textFilter1,this.term2,this.term3,this.page,this.size).subscribe(
+                          (result: any) => {
+                            this.products2 = result.data
+                          }
+                        )
+                      }else{
+                        if(this.textFilter1.length == 0 && this.textFilter2.length == 0){
+                          this.confidencialDocumentoServices.getListConfidencialDocumento(this.textFilter,this.term1,this.term2,this.textFilter3,this.page,this.size).subscribe(
+                            (result: any) => {
+                              this.products2 = result.data
+                            }
+                          )
+                        }else{
+                          if(this.textFilter1.length == 0 && this.textFilter3.length == 0){
+                            this.confidencialDocumentoServices.getListConfidencialDocumento(this.textFilter,this.term1,this.textFilter2,this.term3,this.page,this.size).subscribe(
+                              (result: any) => {
+                                this.products2 = result.data
+                              }
+                            )
+                          }else{
+                            if(this.textFilter.length == 0){
+                              this.confidencialDocumentoServices.getListConfidencialDocumento(this.textFilter,this.term1,this.term2,this.term3,this.page,this.size).subscribe(
+                                (result: any) => {
+                                  this.products2 = result.data
+                                }
+                              )
+                            }else{
+                              if(this.textFilter1.length == 0){
+                                this.confidencialDocumentoServices.getListConfidencialDocumento(this.term,this.textFilter1,this.term2,this.term3,this.page,this.size).subscribe(
+                                  (result: any) => {
+                                    this.products2 = result.data
+                                  }
+                                )
+                              }else{
+                                if(this.textFilter2.length == 0){
+                                  this.confidencialDocumentoServices.getListConfidencialDocumento(this.term,this.term1,this.textFilter2,this.term3,this.page,this.size).subscribe(
+                                    (result: any) => {
+                                      this.products2 = result.data
+                                    }
+                                  )
+                                }else{
+                                  if(this.textFilter3.length == 0){
+                                    this.confidencialDocumentoServices.getListConfidencialDocumento(this.term,this.term1,this.term2,this.textFilter3,this.page,this.size).subscribe(
+                                      (result: any) => {
+                                        this.products2 = result.data
+                                      }
+                                    )
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }      
+    }
   }
 
 }

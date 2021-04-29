@@ -11,20 +11,20 @@
             <!-- Buscar por nombre -->
             <div class="p-col-12 p-md-6 p-lg-3">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="textFilter" formControlName="nombre" pInputText styleClass="style-input-1" />
+                    <input type="text" (keydown)="onKeydown($event)" [(ngModel)]="textFilter0" formControlName="nombre" pInputText styleClass="style-input-1" />
                     <label for="nombre">Buscar por nombre</label>
                 </span>
             </div>
 
             <!-- Tipo -->
             <div class="p-col-12 p-md-6 p-lg-3">
-                <p-dropdown [options]="tipo" [(ngModel)]="textFilter1" formControlName="tipo" placeholder="Tipo" optionLabel="name" [showClear]="true"></p-dropdown>
+                <p-dropdown [options]="tipo" (onChange)="onKeydown($event)" [(ngModel)]="textFilter10" formControlName="tipo" placeholder="Tipo" optionLabel="name" [showClear]="true"></p-dropdown>
             </div>
 
             <!-- calendario DESDE -->
             <div class="p-col-12 p-md-6 p-lg-3">
                 <span class="p-float-label">
-                    <p-calendar [(ngModel)]="textFilter2" formControlName="desde" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                    <p-calendar (onSelect)="onKeydown($event)" [(ngModel)]="textFilter20" formControlName="desde" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
                     <label for="desde">Desde</label>
                 </span>
             </div>
@@ -32,7 +32,7 @@
             <!-- calendario HASTA -->
             <div class="p-col-12 p-md-6 p-lg-3">
                 <span class="p-float-label">
-                    <p-calendar [(ngModel)]="textFilter3" formControlName="hasta" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                    <p-calendar (onSelect)="onKeydown($event)" [(ngModel)]="textFilter30" formControlName="hasta" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
                     <label for="hasta">Hasta</label>
                 </span>
             </div>
