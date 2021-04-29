@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comite-operating.component.scss']
 })
 export class ComiteOperatingComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit(): void {

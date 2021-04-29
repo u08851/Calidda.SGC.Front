@@ -10,11 +10,6 @@ import { headerService } from 'src/app/services/header.service';
 export class HeaderComponent implements OnInit {
   event: string = 'p-input-icon-left';
   items: MenuItem[];
-  type: boolean = true;
-
-  changeStyle() {
-    this.type =! this.type;
-  }
 
   constructor(
     public  headerService:  headerService,

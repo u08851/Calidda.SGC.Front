@@ -2,7 +2,7 @@
 <div class="toolbar" role="banner">
 
     <!-- Button to open Sidebar -->
-    <div class="p-ai-center" [ngClass]="{'searh_none': !type, 'searh' : type}">
+    <div class="p-d-flex p-ai-center">
         <button
             pButton
             pRipple
@@ -13,12 +13,7 @@
         </button>
         <span class="toolbar-textlogo"></span>
     </div>
-
-    <span class="header-input-container" [ngClass]="{'p-input-icon-right': !type, 'p-input-icon-left': type}" (mouseenter)="changeStyle()" (mouseleave)="changeStyle()">
-        <i class="pi pi-search"></i>
-        <input class="w-100" type="text" pInputText />
-    </span>
-
+    
     <!-- notification - user - signout -->
     <div class="toolbar-options">
 
