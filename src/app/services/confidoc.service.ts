@@ -19,6 +19,10 @@ export class ConfidencialDocumentoServices {
 
   }
 
+  getListConfidencialDocumento(term:string,term1:string,term2:string,term3:string,page:number,size:number){
+    return this._http.get<any>(`${this.BASE_URL}/searchAll/${term}/${term1}/${term2}/${term3}/${page}/${size}`);
+  }
+
   addConfidencialDocumento(model: ConfidencialDocumentoRequest) {
     return this._http.post(`${this.BASE_URL}/Create`, model);
   }
