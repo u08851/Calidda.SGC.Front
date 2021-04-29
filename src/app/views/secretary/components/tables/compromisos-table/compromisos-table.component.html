@@ -1,0 +1,109 @@
+<div class="indicadores">
+  <p class="indicadores-p">
+    Compromisos |
+    <span class="indicadores-span">
+        En proceso
+      <i class="material-icons graph-green"> bar_chart </i>
+    </span>
+  </p>
+
+  <!-- Form -->
+  <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mt-2">
+    <!-- Buscar nombre -->
+    <div class="p-col-12 p-md-6 p-lg-3">
+      <span class="p-float-label p-input-icon-right">
+        <i class="pi pi-search"></i>
+        <input type="text" pInputText />
+        <label for="inputtext">Buscar nombre</label>
+      </span>
+    </div>
+
+    <!-- calendario DESDE -->
+    <div class="p-col-12 p-md-6 p-lg-3">
+      <span class="p-float-label">
+        <p-calendar
+          [(ngModel)]="date3"
+          [locale]="es"
+          [showIcon]="true"
+          inputId="icon"
+        ></p-calendar>
+        <label for="inputtext">Desde</label>
+      </span>
+    </div>
+
+    <!-- calendario HASTA -->
+    <div class="p-col-12 p-md-6 p-lg-3">
+      <span class="p-float-label">
+        <p-calendar
+          [(ngModel)]="date4"
+          [locale]="es"
+          [showIcon]="true"
+          inputId="icon"
+        ></p-calendar>
+        <label for="inputtext">Hasta</label>
+      </span>
+    </div>
+
+    <div class="p-col-12 p-md-6 p-lg-3 p-text-right">
+      <p-button label="Exportar" icon="pi pi-cloud-download"></p-button>
+    </div>
+  </div>
+</div>
+
+<!-- TABLE -->
+<div class="p-card p-px-3 br-05">
+  <p-table
+    [columns]="cols"
+    [value]="products"
+    styleClass="style-table-direccion"
+    [paginator]="true"
+    [rows]="3"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="{first} - {last} of {totalRecords}"
+  >
+    <ng-template pTemplate="colgroup" let-columns>
+      <colgroup>
+        <col [style.width]="20 + '%'" />
+        <col [style.width]="20 + '%'" />
+        <col [style.width]="20 + '%'" />
+        <col [style.width]="20 + '%'" />
+        <col [style.width]="20 + '%'" />
+      </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" class="p-text-left">
+          {{ col.header }}
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td class="p-text-left">Acta</td>
+        <td>
+          <div class="p-d-flex p-ai-center">
+            <p-avatar
+              image="assets/images/img-perfil-test.jpg"
+              styleClass="p-mr-2"
+              shape="circle"
+            >
+            </p-avatar>
+            <span>Rocio del Valle</span>
+          </div>
+        </td>
+        <td class="p-text-left">3:00pm</td>
+        <td class="p-text-left">
+            <p class="bg-tables bg_percent" [style.background]="'#f9e6b7'" [style.color]="'#FAB200'">64%</p>
+        </td>
+        <td>
+            <div class="p-d-flex p-ai-center">
+                <!-- variables:  --red --green  -->
+                <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--green)'"></i>
+                En fecha
+            </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

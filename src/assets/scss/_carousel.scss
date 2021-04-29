@@ -1,0 +1,25 @@
+.product-item {
+  background: #ffffff;
+  box-shadow: 0px 2px 4px #0000000d;
+  border-radius: 5px;
+
+  &-content {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 12px 0;
+
+      .icon-chat span {
+          font-size: 35px;
+      }
+
+      h4 {
+        font-weight: 600;
+        font-size: 15px;
+      }
+
+      p {
+          font-size: 12px;
+      }
+  }
+}

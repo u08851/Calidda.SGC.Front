@@ -17,6 +17,10 @@ import { ComiteOperatingComponent } from './components/comite-operating/comite-o
 import { InformationBasicComponent } from './components/comite-operating/information-basic/information-basic.component';
 import { MembersComiteComponent } from './components/comite-operating/members-comite/members-comite.component';
 import { DocumentsComponent } from './components/comite-operating/documents/documents.component';
+import { ReunionesTableComponent } from './components/tables/reuniones-table/reuniones-table.component';
+import { ActasTableComponent } from './components/tables/actas-table/actas-table.component';
+import { CompromisosTableComponent } from './components/tables/compromisos-table/compromisos-table.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 @NgModule({
   declarations: [
     
@@ -33,8 +37,11 @@ import { DocumentsComponent } from './components/comite-operating/documents/docu
   ComiteOperatingComponent,
   InformationBasicComponent,
   MembersComiteComponent,
-  DocumentsComponent
-    
+  DocumentsComponent,    
+  ReunionesTableComponent,    
+  ActasTableComponent,    
+  CompromisosTableComponent,
+  CarouselComponent,
   ],
   imports: [
     CommonModule,
