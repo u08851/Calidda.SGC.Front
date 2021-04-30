@@ -21,6 +21,7 @@ import { ReunionesTableComponent } from './components/tables/reuniones-table/reu
 import { ActasTableComponent } from './components/tables/actas-table/actas-table.component';
 import { CompromisosTableComponent } from './components/tables/compromisos-table/compromisos-table.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { AddMemberComponent } from './dialog/add-member/add-member.component';
 @NgModule({
   declarations: [
     
@@ -42,6 +43,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
   ActasTableComponent,    
   CompromisosTableComponent,
   CarouselComponent,
+  AddMemberComponent,
   ],
   imports: [
     CommonModule,

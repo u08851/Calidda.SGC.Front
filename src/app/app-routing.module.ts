@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { LoginComponent } from './auth/login/login.component';
 import { ResetComponent } from './auth/reset/reset.component';
 
@@ -19,5 +21,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   exports: [RouterModule],
+  providers: [DialogService, ConfirmationService, DynamicDialogRef ]
 })
 export class AppRoutingModule {}

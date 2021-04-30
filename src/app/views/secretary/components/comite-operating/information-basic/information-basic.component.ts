@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./information-basic.component.scss']
 })
 export class InformationBasicComponent implements OnInit {
-
+  selectedValues: string;
   constructor() { }
 
   ngOnInit(): void {

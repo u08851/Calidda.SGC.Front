@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { AddMemberComponent } from '../../../dialog/add-member/add-member.component';
 
 @Component({
   selector: 'app-members-comite',
@@ -6,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./members-comite.component.scss']
 })
 export class MembersComiteComponent implements OnInit {
-  selectedValue: string;
+  checked: boolean = false;
   products: any[] = [
     {
       "name": "fechac",
@@ -29,7 +31,10 @@ export class MembersComiteComponent implements OnInit {
   cols: any[];
   items: any[];
 
-  constructor() { }
+  constructor(
+    public dialogService: DialogService,
+    public  ref: DynamicDialogRef,
+  ) { }
 
   ngOnInit(): void {
 
@@ -61,9 +66,30 @@ export class MembersComiteComponent implements OnInit {
         label: 'Eliminar Comité',
         icon: 'pi pi-times',
       }
-
     ];
 
+  }
+
+
+  showAddMember() {
+    this.ref = this.dialogService.open(AddMemberComponent, {
+      header: 'Añadir miembro titular',
+      width: '65%',
+      contentStyle: { "max-height": "500px", "overflow": "inherit" },
+      baseZIndex: 10000,
+      data: null
+    });
+  }
+
+  
+  showEditMember() {
+    this.ref = this.dialogService.open(AddMemberComponent, {
+      header: 'Editar miembro del comité',
+      width: '65%',
+      contentStyle: { "max-height": "500px", "overflow": "inherit" },
+      baseZIndex: 10000,
+      data: null
+    });
   }
 
 }
