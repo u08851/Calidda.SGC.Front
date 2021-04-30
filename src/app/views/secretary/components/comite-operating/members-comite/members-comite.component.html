@@ -1,76 +1,83 @@
-<div class="btn-group p-mb-3">
-    <button pButton pRipple type="button" label="Titulares" class="p-button-rounded p-button-outlined active"></button>
-    <button pButton pRipple type="button" label="Suplentes" class="p-button-rounded p-button-outlined"></button>
-    <button pButton pRipple type="button" label="Invitados" class="p-button-rounded p-button-outlined"></button>
-    <button pButton pRipple type="button" label="Aistente de Secretaria"
-        class="p-button-rounded p-button-outlined"></button>
-</div>
-
-<div class="border-1px-gray rounded-1 p-p-4 p-mb-3">
-    <div class="p-d-flex p-justify-between">
-        <p class="p-custom-title">Miembros del comité</p>
-        <span class="blue-dark">
-            Nº de participantes: <strong class="op-8">5</strong>
-        </span>
+<form action="">
+    <div class="btn-group p-mb-3">
+        <button pButton pRipple type="button" label="Titulares"
+            class="p-button-rounded p-button-outlined active"></button>
+        <button pButton pRipple type="button" label="Suplentes" class="p-button-rounded p-button-outlined"></button>
+        <button pButton pRipple type="button" label="Invitados" class="p-button-rounded p-button-outlined"></button>
+        <button pButton pRipple type="button" label="Aistente de Secretaria"
+            class="p-button-rounded p-button-outlined"></button>
     </div>
 
-    <p-table [columns]="cols" [value]="products" styleClass="style-table" [paginator]="false" [rows]="3"
-        [showCurrentPageReport]="false">
-        <ng-template pTemplate="colgroup" let-columns>
-            <colgroup>
-                <col [style.width]="20 + '%'" />
-                <col [style.width]="20  + '%'" />
-                <col [style.width]="15 + '%'" />
-                <col [style.width]="15 + '%'" />
-                <col [style.width]="15 + '%'" />
-                <col [style.width]="18 + '%'" />
-                <col [style.width]="8 + '%'" />
-            </colgroup>
-        </ng-template>
-        <ng-template pTemplate="header" let-columns>
-            <tr>
-                <th *ngFor="let col of columns">
-                    {{col.header}}
-                </th>
-                <th></th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rowData let-columns="columns">
-            <tr>
-                <!-- variables:  --red --green --info  -->
-                <td>
-                    <div class="p-d-flex p-ai-center">
-                        <p-avatar image="assets/images/img-perfil-test.jpg" styleClass="p-mr-2" shape="circle">
-                        </p-avatar>
-                        <span>Rocio del valle</span>
-                    </div>
-                </td>
-                <td>s</td>
-                <td>Presidente</td>
-                <td>987654321</td>
-                <td>
-                    <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--green)'"></i>
-                    Activo
-                </td>
-                <td>Voto</td>
-                <td>
-                    <button pButton pRipple type="button" icon="icon-edit"
-                        class="p-button-rounded p-button-info p-button-text icon-table-size">
-                    </button>
-                </td>
-                <!-- <td  class="b-dander" *ngFor="let col of columns">
-                    {{rowData[col.field]}}
-            </td>-->
-            </tr>
-        </ng-template>
-    </p-table>
+    <div class="border-1px-gray rounded-1 p-p-4 p-mb-3">
+        <div class="p-d-flex p-justify-between">
+            <p class="p-custom-title">Miembros del comité</p>
+            <span class="blue-dark">
+                Nº de participantes: <strong class="op-8">5</strong>
+            </span>
+        </div>
 
-    <button pButton pRipple type="button" icon="pi pi-plus-circle" label="Añadir miembro titular"
-        class="p-button-outlined p-mt-3 p-b-0"></button>
-</div>
+        <p-table [columns]="cols" [value]="products" styleClass="style-table" [paginator]="false" [rows]="3"
+            [showCurrentPageReport]="false">
+            <ng-template pTemplate="colgroup" let-columns>
+                <colgroup>
+                    <col [style.width]="20 + '%'" />
+                    <col [style.width]="20  + '%'" />
+                    <col [style.width]="15 + '%'" />
+                    <col [style.width]="15 + '%'" />
+                    <col [style.width]="15 + '%'" />
+                    <col [style.width]="18 + '%'" />
+                    <col [style.width]="8 + '%'" />
+                </colgroup>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns">
+                        {{col.header}}
+                    </th>
+                    <th></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                    <!-- variables:  --red --green --info  -->
+                    <td>
+                        <div class="p-d-flex p-ai-center">
+                            <p-avatar image="assets/images/img-perfil-test.jpg" styleClass="p-mr-2" shape="circle">
+                            </p-avatar>
+                            <span>Rocio del valle</span>
+                        </div>
+                    </td>
+                    <td>s</td>
+                    <td>Presidente</td>
+                    <td>987654321</td>
+                    <td>
+                        <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--green)'"></i>
+                        Activo
+                    </td>
+                    <td>Voto</td>
+                    <td>
+                        <button pButton pRipple type="button" icon="icon-edit"
+                            class="p-button-rounded p-button-info p-button-text icon-table-size">
+                        </button>
+                    </td>
+                    <!-- <td  class="b-dander" *ngFor="let col of columns">
+                        {{rowData[col.field]}}
+                </td>-->
+                </tr>
+            </ng-template>
+        </p-table>
 
-<div class="border-1px-gray rounded-1 p-p-4">
-    <p class="p-custom-title p-mb-3">Condición de Asistencia</p>
-    <p-checkbox styleClass="p-mr-2" value="val" [(ngModel)]="selectedValue"></p-checkbox>
-    <label class="blue-dark op-8">Asistencia obligatoria para todos los titulares</label>
-</div>
+        <button pButton pRipple type="button" icon="pi pi-plus-circle" label="Añadir miembro titular"
+            class="p-button-outlined p-mt-3 p-b-0"></button>
+    </div>
+
+    <div class="border-1px-gray rounded-1 p-p-4 p-mb-5">
+        <p class="p-custom-title p-mb-3">Condición de Asistencia</p>
+        <p-checkbox styleClass="p-mr-2" value="val" [(ngModel)]="selectedValue"></p-checkbox>
+        <label class="blue-dark op-8">Asistencia obligatoria para todos los titulares</label>
+    </div>
+
+    <div class="p-d-flex p-jc-center p-mb-4">
+        <button pButton pRipple type="button" icon="pi pi-arrow-right" label="Siguiente"></button>
+    </div>
+</form>
