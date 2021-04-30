@@ -73,6 +73,8 @@ import { ChartModule } from 'primeng/chart';
 import {BadgeModule} from 'primeng/badge';
 import {AvatarModule} from 'primeng/avatar';
 import {AvatarGroupModule} from 'primeng/avatargroup';
+import { ChipModule } from 'primeng/chip';
+
 
 @NgModule({
   declarations: [],
@@ -149,7 +151,8 @@ import {AvatarGroupModule} from 'primeng/avatargroup';
     ChartModule,
     BadgeModule,
     AvatarModule,
-    AvatarGroupModule
+    AvatarGroupModule,
+    ChipModule
   ],
   exports: [
     CommonModule,
@@ -224,7 +227,8 @@ import {AvatarGroupModule} from 'primeng/avatargroup';
     ChartModule,
     BadgeModule,
     AvatarModule,
-    AvatarGroupModule
+    AvatarGroupModule,
+    ChipModule
   ],
   providers: [],
 })
