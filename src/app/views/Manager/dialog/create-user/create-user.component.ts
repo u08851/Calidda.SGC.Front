@@ -5,6 +5,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { UserRequestModel } from 'src/app/models/user.model';
 import { EmpresaServices } from 'src/app/services/empresa.service';
 import { PaisServices } from 'src/app/services/pais.service';
+import { RolServices } from 'src/app/services/rol.service';
 import { UserServices } from 'src/app/services/user.service';
 import { AppConstants } from 'src/app/shared/constants/app.constants';
 
@@ -22,7 +23,7 @@ export class CreateUserComponent implements OnInit {
   countries:any[];
   valida:boolean=false;
   dataRol: any[];
-  selectedRol:string;
+  selectedRol = {};
   dataEmpresa:any[];
   selectedEmpresa = {};
   userForm:FormGroup;
@@ -35,16 +36,15 @@ export class CreateUserComponent implements OnInit {
     public messageService:MessageService,
     public config: DynamicDialogConfig,
     private userServices:UserServices,
-    public ref: DynamicDialogRef
+    public ref: DynamicDialogRef,
+    public rolServices:RolServices,
   )
   {}
   
   ngOnInit(): void {
     this.crearFormulario();
     this.listarPais();
-    this.dataRol = [
-      {name: 'Admin', code: 'AD'}
-    ];
+    this.listarRol();
     this.getListCompany();
     if(this.config.data == null){
       this.valida = true;
@@ -59,7 +59,7 @@ export class CreateUserComponent implements OnInit {
       empresaId: ['', [Validators.required]],
       nombre: ['', [Validators.required,  Validators.minLength(1)]],
       paisId: ['', [Validators.required,  Validators.minLength(1)]],
-      rolId: ['', ],
+      rolId: ['', [Validators.required]],
       statusId: [false, ],
       correo: ['', [Validators.required,  Validators.minLength(1)]],
       celular: ['', [Validators.required,  Validators.minLength(9)]],
@@ -80,6 +80,7 @@ export class CreateUserComponent implements OnInit {
     this.checked = this.config.data.estado == 1 ? true:false;
     this.selectedCountry = {paisId: this.config.data.personaDto.paisId,nombre: this.config.data.paisDto.nombre,sigla: this.config.data.paisDto.sigla}
     this.selectedEmpresa = {empresaId: this.config.data.empresaDto.empresaId,nombre: this.config.data.empresaDto.nombre}
+    this.selectedRol = {rolId: this.config.data.rolId,nombre: this.config.data.rol}
   }
 
   showWarn(mensaje :string) {
@@ -112,6 +113,8 @@ export class CreateUserComponent implements OnInit {
         odata.personaId  = 0;
         odata.usuarioId  = 0;
         odata.paisId= data.paisId.paisId;
+        odata.rolId = data.rolId.rolId;
+        odata.rolUsuarioId = 0;
         
         this.userServices.addUser(odata).subscribe(
           (response: any) => {
@@ -130,6 +133,8 @@ export class CreateUserComponent implements OnInit {
         odata.personaId  = this.config.data.personaId;
         odata.usuarioId  = this.config.data.usuarioId;
         odata.paisId= data.paisId.paisId;
+        odata.rolId = data.rolId.rolId;
+        odata.rolUsuarioId = this.config.data.rolUsuarioId;
         
         this.userServices.editUser(odata).subscribe(
           (response: any) => {
@@ -165,6 +170,17 @@ export class CreateUserComponent implements OnInit {
         this.countries = response.data;
         if(this.config.data == null){
           this.selectedCountry = {paisId: this.countries[0].paisId,nombre: this.countries[0].nombre,sigla: this.countries[0].sigla}
+        }
+      }
+    )
+  }
+
+  listarRol(){
+    this.rolServices.getListRol().subscribe(
+      (response: any) => {
+        this.dataRol = response.data;
+        if(this.config.data == null){
+          this.selectedRol = {rolId: this.dataRol[0].rolId,nombre: this.dataRol[0].nombre}
         }
       }
     )

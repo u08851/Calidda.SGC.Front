@@ -9,5 +9,7 @@ export class ConfidencialDocumentoRequest {
   userId: number;
   userIdModified: number;
   fechaMdificacion: string;
+  nombreOriginal: string;
+  guideNombre: string;
 
 }

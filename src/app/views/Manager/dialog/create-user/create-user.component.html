@@ -93,8 +93,15 @@
             </div>
         </div>
         <div class="p-field p-col-12 p-md-6">
-            <label>Rol</label>
-            <p-dropdown formControlName="rolId" [options]="dataRol" [(ngModel)]="selectedRol" optionLabel="name" optionDisabled="inactive"></p-dropdown>
+            <label for="rolId" [ngClass]="{ 'is-invalid-text': submitted && g.rolId.errors }">Rol</label>
+            <p-dropdown formControlName="rolId" [options]="dataRol" [(ngModel)]="selectedRol" optionLabel="nombre" optionDisabled="inactive">
+                <ng-template pTemplate="selectedItem">
+                    
+                        
+                    <span class="p-ml-2" style="line-height: 0; margin-bottom: 5px;">{{selectedRol.nombre}}</span>
+               
+            </ng-template>
+            </p-dropdown>
         </div>
 
     </div>
