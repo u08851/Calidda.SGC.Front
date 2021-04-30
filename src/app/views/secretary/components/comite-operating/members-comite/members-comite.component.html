@@ -1,14 +1,5 @@
-<form action="">
-    <div class="btn-group p-mb-3">
-        <button pButton pRipple type="button" label="Titulares"
-            class="p-button-rounded p-button-outlined active"></button>
-        <button pButton pRipple type="button" label="Suplentes" class="p-button-rounded p-button-outlined"></button>
-        <button pButton pRipple type="button" label="Invitados" class="p-button-rounded p-button-outlined"></button>
-        <button pButton pRipple type="button" label="Aistente de Secretaria"
-            class="p-button-rounded p-button-outlined"></button>
-    </div>
-
-    <div class="border-1px-gray rounded-1 p-p-4 p-mb-3">
+<form  action="" *ngIf="member != 'asistent'" class="fadeIn-animation">
+    <div class="border-1px-gray rounded-1 p-p-4 p-mb-3 fadeIn-animation">
         <div class="p-d-flex p-justify-between">
             <p class="p-custom-title">Miembros del comité</p>
             <span class="blue-dark">
@@ -70,14 +61,22 @@
         <button (click)="showAddMember()" pButton pRipple type="button" icon="pi pi-plus-circle"
             label="Añadir miembro titular" class="p-button-outlined p-mt-3 p-b-0"></button>
     </div>
-
     <div class="border-1px-gray rounded-1 p-p-4 p-mb-5">
         <p class="p-custom-title p-mb-3">Condición de Asistencia</p>
         <p-checkbox styleClass="p-mr-2" value="val" [(ngModel)]="checked" name="condition"></p-checkbox>
         <label class="blue-dark op-8">Asistencia obligatoria para todos los titulares</label>
     </div>
+</form>
 
-    <div class="p-d-flex p-jc-center p-mb-4">
-        <button pButton pRipple type="button" icon="pi pi-arrow-right" label="Siguiente"></button>
+<form action="" *ngIf="member=='asistent'" class="fadeIn-animation">
+    <div class="border-1px-gray rounded-1 p-p-4 p-mb-5">
+        <p class="p-custom-title p-mb-3">Asistente de Secretaria</p>
+        <button (click)="showAddMember()" pButton pRipple type="button" icon="pi pi-plus-circle"
+            label="Añadir Asistente de Secretaría" class="p-button-outlined p-mt-3 p-b-0"></button>
     </div>
 </form>
+
+<div class="p-d-flex p-jc-center p-mb-4 btn-group fadeIn-animation">
+    <button *ngIf="member=='asistent'" class="stylebtn" pButton pRipple type="button" label="Guardar"></button>
+    <button pButton pRipple type="button" icon="pi pi-arrow-right" [label]="member? 'Continuar': 'Siguiente'"></button>
+</div>

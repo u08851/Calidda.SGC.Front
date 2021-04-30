@@ -14,7 +14,39 @@
     </p-tabPanel>
     <p-tabPanel header="Miembros del comité">
         <div class="tab-content">
-            <app-members-comite></app-members-comite>
+            <div class="btn-group p-mb-3">
+                <button
+                    (click)="member = 'asistent'"
+                    pButton pRipple type="button"
+                    label="Titulares"
+                    class="p-button-rounded p-button-outlined active">
+                </button>
+                <button
+                    (click)="member = 'suplent'"
+                    pButton
+                    pRipple
+                    type="button"
+                    label="Suplentes"
+                    class="p-button-rounded p-button-outlined">
+                </button>
+                <button
+                    (click)="member = 'invitado'"
+                    pButton
+                    pRipple
+                    type="button"
+                    label="Invitados"
+                    class="p-button-rounded p-button-outlined">
+                </button>
+                <button
+                    (click)="member = 'asistent'"
+                    pButton
+                    pRipple
+                    type="button"
+                    label="Aistente de Secretaria"
+                    class="p-button-rounded p-button-outlined">
+                </button>
+            </div>
+            <app-members-comite [member]="member"></app-members-comite>
         </div>
     </p-tabPanel>
     <p-tabPanel header="Documentos">

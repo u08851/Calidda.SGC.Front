@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AddMemberComponent } from '../../../dialog/add-member/add-member.component';
 
@@ -8,7 +8,10 @@ import { AddMemberComponent } from '../../../dialog/add-member/add-member.compon
   styleUrls: ['./members-comite.component.scss']
 })
 export class MembersComiteComponent implements OnInit {
+ 
+  @Input() member: string;
   checked: boolean = false;
+  secretary: boolean = false;
   products: any[] = [
     {
       "name": "fechac",
@@ -91,5 +94,4 @@ export class MembersComiteComponent implements OnInit {
       data: null
     });
   }
-
 }
