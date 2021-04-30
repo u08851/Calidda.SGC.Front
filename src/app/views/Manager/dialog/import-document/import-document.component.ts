@@ -18,6 +18,7 @@ export class ImportDocumentComponent implements OnInit {
   submitted: boolean = false;
   documentForm:FormGroup;
   imag64:string="";
+  imgName:string="";
   tipoSelect:number = 1;
   
   constructor(
@@ -33,11 +34,12 @@ export class ImportDocumentComponent implements OnInit {
     this.crearFormulario();
   }
 
-  toBase64 = (file: Blob) => new Promise((resolve, reject) => {
+  toBase64 = (file: any) => new Promise((resolve, reject) => {
     const reader = new FileReader()
     reader.readAsDataURL(file)
     reader.onload = () => resolve(reader.result)
     reader.onerror = error => reject(error)
+    this.imgName = file.name
   })
 
   uploadDocument(event) {
@@ -91,6 +93,8 @@ export class ImportDocumentComponent implements OnInit {
       odata.tipo = this.tipoSelect;
       odata.userId = 1;
       odata.userIdModified = null;
+      odata.guideNombre = "";
+      odata.nombreOriginal = this.imgName;
       
       this.confidencialDocumentoServices.addConfidencialDocumento(odata).subscribe(
         (response: any) => {

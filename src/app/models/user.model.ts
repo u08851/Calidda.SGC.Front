@@ -39,5 +39,7 @@ export class UserRequestModel{
   celular: string;
   usuarioId: number;
   paisId: number;
+  rolId: number;
+  rolUsuarioId: number;
   
 }

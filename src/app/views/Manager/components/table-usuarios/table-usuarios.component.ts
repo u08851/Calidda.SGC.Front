@@ -116,6 +116,8 @@ export class TableUsuariosComponent implements OnInit {
     odata.empresaId = data.personaDto.empresaId;
     odata.personaId = data.personaDto.personaId;
     odata.usuarioId = data.usuarioId;
+    odata.rolId = data.rolId;
+    odata.rolUsuarioId = data.rolUsuarioId;
 
     this.userServices.editUser(odata).subscribe(
       (result: any) => {

@@ -121,6 +121,12 @@ export class TableDocumentosComponent implements OnInit {
       contentStyle: { "max-height": "500px", "overflow": "auto" },
       baseZIndex: 10000
     });
+
+    this.ref.onClose.subscribe( data => {
+      if (data) {
+        this.getListConfidencialDocumento();
+      }
+    })
   }
 
   showMaximizableDialog(Data) {
@@ -198,6 +204,8 @@ export class TableDocumentosComponent implements OnInit {
     odata.tipo = data.tipo1;
     odata.userId = data.userId;
     odata.userIdModified = 10;
+    odata.guideNombre = data.guideNombre;
+    odata.nombreOriginal = data.nombreOriginal;
 
     this.confidencialDocumentoServices.updateConfidencialDocumento(odata).subscribe(
       (result: any) => {
