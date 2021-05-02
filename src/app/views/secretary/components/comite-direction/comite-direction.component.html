@@ -1,0 +1,55 @@
+<!-- Banner -->
+<div class="pi-container">
+    <div class="pi-banner">
+        <div class="pi-banner-content">
+            <h1 class="p-p-0">Relación de comites</h1>
+            <p class="white fz-13"> Cod: C2031</p>
+
+            <div class="p-d-flex p-jc-end btn-group">
+                <p-button label="Crear Votación" icon="pi pi-plus-circle" routerLink="/manager/crear-comites">
+                </p-button>
+                <p-button label="Crear Reunión" icon="pi pi-plus-circle" routerLink="/manager/crear-comites">
+                </p-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Form -->
+<div class="p-grid p-style-input-fill p-m-4 p-ai-end">
+    <!-- Nombre del comité -->
+    <div class="p-col-12 p-md-6 p-lg-3">
+        <span class="p-float-label p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input type="text" pInputText />
+            <label for="inputtext">Nombre del comité</label>
+        </span>
+    </div>
+
+    <!-- Código del comité -->
+    <div class="p-col-12 p-md-6 p-lg-3">
+        <span class="p-float-label p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input type="text" pInputText />
+            <label for="inputtext">Código del comité</label>
+        </span>
+    </div>
+
+    <!-- calendario DESDE -->
+    <div class="p-col-12 p-md-6 p-lg-3">
+        <span class="p-float-label">
+            <p-calendar [(ngModel)]="dateFron" [showIcon]="true" inputId="icon"></p-calendar>
+            <label for="inputtext">Desde</label>
+        </span>
+    </div>
+
+    <!-- calendario HASTA -->
+    <div class="p-col-12 p-md-6 p-lg-3">
+        <span class="p-float-label">
+            <p-calendar [(ngModel)]="dateTo" [showIcon]="true" inputId="icon"></p-calendar>
+            <label for="inputtext">Hasta</label>
+        </span>
+    </div>
+</div>
+
+<app-comite-direction-table></app-comite-direction-table>

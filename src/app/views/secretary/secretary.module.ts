@@ -22,6 +22,18 @@ import { ActasTableComponent } from './components/tables/actas-table/actas-table
 import { CompromisosTableComponent } from './components/tables/compromisos-table/compromisos-table.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { AddMemberComponent } from './dialog/add-member/add-member.component';
+import { ComiteDirectionComponent } from './components/comite-direction/comite-direction.component';
+import { CreateMeetComponent } from './components/comite-direction/create-meet/create-meet.component';
+import { DetailComiteComponent } from './components/comite-direction/detail-comite/detail-comite.component';
+import { ViewComiteComponent } from './components/view-comite/view-comite.component';
+import { AddVotacionComponent } from './dialog/add-votacion/add-votacion.component';
+import { ComiteDirectionTableComponent } from './components/comite-direction/comite-direction-table/comite-direction-table.component';
+import { BasicInformationComponent } from './components/view-comite/basic-information/basic-information.component';
+import { AttendeesComponent } from './components/view-comite/attendees/attendees.component';
+import { ActaComponent } from './components/view-comite/acta/acta.component';
+import { VotacionComponent } from './components/view-comite/votacion/votacion.component';
+import { VideoComponent } from './components/view-comite/video/video.component';
+import { CommitmentComponent } from './components/view-comite/commitment/commitment.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +56,19 @@ import { AddMemberComponent } from './dialog/add-member/add-member.component';
   ActasTableComponent,    
   CompromisosTableComponent,
   CarouselComponent,
-  AddMemberComponent
+  AddMemberComponent,
+  ComiteDirectionComponent,
+  CreateMeetComponent,
+  DetailComiteComponent,
+  ViewComiteComponent,
+  AddVotacionComponent,
+  ComiteDirectionTableComponent,
+  BasicInformationComponent,
+  AttendeesComponent,
+  ActaComponent,
+  VotacionComponent,
+  VideoComponent,
+  CommitmentComponent
   ],
   imports: [
     CommonModule,
