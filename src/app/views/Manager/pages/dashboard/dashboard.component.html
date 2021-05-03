@@ -14,7 +14,7 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label p-input-icon-right">
                             <i class="pi pi-search"></i>
-                            <input type="text" pInputText />
+                            <input type="text" pInputText [(ngModel)]="textFilter0" (keydown)="onKeydown($event)"/>
                             <label for="inputtext">Buscar nombre</label>
                         </span>
                     </div>
@@ -46,7 +46,7 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <div class="box" (click)="goToTableActive()">
                             <div class="box-detalle">
-                                <p>3</p>
+                                <p>{{ val1 }}</p>
                                 <i class="material-icons yellow"> bar_chart </i>
                             </div>
                             <div class="box-info">
@@ -59,7 +59,7 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <div class="box">
                             <div class="box-detalle">
-                                <p>3</p>
+                                <p>{{ val2 }}</p>
                                 <i class="material-icons blue"> bar_chart </i>
                             </div>
                             <div class="box-info">
@@ -72,7 +72,7 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <div class="box">
                             <div class="box-detalle">
-                                <p>5</p>
+                                <p>{{ val3 }}</p>
                                 <i class="material-icons dark"> bar_chart </i>
                             </div>
                             <div class="box-info">
@@ -85,7 +85,7 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <div class="box">
                             <div class="box-detalle">
-                                <p>24</p>
+                                <p>{{ val4 }}</p>
                                 <i class="material-icons gray"> bar_chart </i>
                             </div>
                             <div class="box-info">
@@ -156,7 +156,7 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <div class="box" (click)="goToTableActivePais()">
                             <div class="box-detalle">
-                                <p>53</p>
+                                <p>{{ val1 }}</p>
                                 <i class="material-icons yellow"> bar_chart </i>
                             </div>
                             <div class="box-info">
@@ -169,7 +169,7 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <div class="box">
                             <div class="box-detalle">
-                                <p>30</p>
+                                <p>{{ val2 }}</p>
                                 <i class="material-icons blue"> bar_chart </i>
                             </div>
                             <div class="box-info">
@@ -182,7 +182,7 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <div class="box">
                             <div class="box-detalle">
-                                <p>21</p>
+                                <p>{{ val3 }}</p>
                                 <i class="material-icons dark"> bar_chart </i>
                             </div>
                             <div class="box-info">
@@ -195,7 +195,7 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <div class="box">
                             <div class="box-detalle">
-                                <p>4</p>
+                                <p>{{ val4 }}</p>
                                 <i class="material-icons gray"> bar_chart </i>
                             </div>
                             <div class="box-info">
@@ -260,7 +260,7 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <div class="box" (click)="goToTableActiveEmpresa()">
                             <div class="box-detalle">
-                                <p>3</p>
+                                <p>{{ val1 }}</p>
                                 <i class="material-icons yellow"> bar_chart </i>
                             </div>
                             <div class="box-info">
@@ -273,7 +273,7 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <div class="box">
                             <div class="box-detalle">
-                                <p>3</p>
+                                <p>{{ val2 }}</p>
                                 <i class="material-icons blue"> bar_chart </i>
                             </div>
                             <div class="box-info">
@@ -286,7 +286,7 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <div class="box">
                             <div class="box-detalle">
-                                <p>5</p>
+                                <p>{{ val3 }}</p>
                                 <i class="material-icons dark"> bar_chart </i>
                             </div>
                             <div class="box-info">
@@ -299,7 +299,7 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <div class="box">
                             <div class="box-detalle">
-                                <p>24</p>
+                                <p>{{ val4 }}</p>
                                 <i class="material-icons gray"> bar_chart </i>
                             </div>
                             <div class="box-info">
@@ -358,7 +358,7 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <div class="box" (click)="goToTableActiveSecretaria()">
                             <div class="box-detalle">
-                                <p>45</p>
+                                <p>{{ val1 }}</p>
                                 <i class="material-icons yellow"> bar_chart </i>
                             </div>
                             <div class="box-info">
@@ -371,7 +371,7 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <div class="box">
                             <div class="box-detalle">
-                                <p>21</p>
+                                <p>{{ val2 }}</p>
                                 <i class="material-icons blue"> bar_chart </i>
                             </div>
                             <div class="box-info">
@@ -384,7 +384,7 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <div class="box">
                             <div class="box-detalle">
-                                <p>15</p>
+                                <p>{{ val3 }}</p>
                                 <i class="material-icons dark"> bar_chart </i>
                             </div>
                             <div class="box-info">
@@ -397,7 +397,7 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <div class="box">
                             <div class="box-detalle">
-                                <p>7</p>
+                                <p>{{ val4 }}</p>
                                 <i class="material-icons gray"> bar_chart </i>
                             </div>
                             <div class="box-info">
