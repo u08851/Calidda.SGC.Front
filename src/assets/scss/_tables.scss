@@ -113,6 +113,9 @@
 
 .style-table {
   @extend %style-table-base;
+  .p-datatable-tbody > tr > td { 
+    padding: 0.8rem 1rem;
+  }    
   @extend %style-paginator;
 }
 //panel de opcioones
