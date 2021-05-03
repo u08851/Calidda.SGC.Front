@@ -110,73 +110,40 @@ export class DashboardComponent implements OnInit {
     this.router.navigateByUrl('/manager/frecuencia-table');
   }
 
-  onKeydown(event) {
+  onKeydown(event,id:number) {
     var evento = "";
-    try{
-      evento = event.originalEvent.type
-    }
-    catch{
+    if(id == 0){
       try{
-        evento = event.key
+        evento = event.originalEvent.type
       }
       catch{
-        evento = "Enter"
+        try{
+          evento = event.key
+        }
+        catch{
+          evento = "Enter"
+        }
       }
-    }
-    if(this.datePipe.transform(this.date3, 'dd-MM-yyyy') != null){
-      this.textFilter2 = this.datePipe.transform(this.date3, 'dd-MM-yyyy');
-    }
-    else{
-      this.textFilter2 = "";
-    }
-    if(this.datePipe.transform(this.date4, 'dd-MM-yyyy') != null){
-      this.textFilter3 = this.datePipe.transform(this.date4, 'dd-MM-yyyy');
-    }else{
-      this.textFilter3 = "";
-    }
-
-    let sinR = [];
-    var temp = {};
-    var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
-    var result: any;
-
-    if (evento === "Enter" || evento === "click" || evento === undefined) {
-      if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.textFilter0.length != 0){
-        this.comiteServices.getListComite(4,null,null,this.textFilter0).subscribe(
-          (response) =>{
-            sinR = response.data;
-            sinR.forEach(function (a) {
-              temp[a.code] = temp[a.code] || { category: a.code };
-              temp[a.code][groups[a.nombre]] = a.count;
-            });
-            result = Object.keys(temp).map(function (k) { return temp[k]; });
-              
-            let val1 = 0;
-            let val2 = 0;
-            let val3 = 0;
-
-            for(let g = 0; g < result.length; g++){
-              val1 += result[g].value1
-              val2 += result[g].value2
-              val3 += result[g].value3
-            }
-
-            localStorage.removeItem("val1");
-            localStorage.removeItem("val2");
-            localStorage.removeItem("val3");
-            localStorage.setItem("val1",val1.toString())
-            localStorage.setItem("val2",val2.toString())
-            localStorage.setItem("val3",val3.toString())
-
-            this.val1 = localStorage.getItem("val1");
-            this.val2 = localStorage.getItem("val2");
-            this.val3 = localStorage.getItem("val3");
-            this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-          }
-        )
+      if(this.datePipe.transform(this.date3, 'dd-MM-yyyy') != null){
+        this.textFilter2 = this.datePipe.transform(this.date3, 'dd-MM-yyyy');
+      }
+      else{
+        this.textFilter2 = "";
+      }
+      if(this.datePipe.transform(this.date4, 'dd-MM-yyyy') != null){
+        this.textFilter3 = this.datePipe.transform(this.date4, 'dd-MM-yyyy');
       }else{
-        if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.textFilter0.length == 0){
-          this.comiteServices.getListComite(0,null,null,null).subscribe(
+        this.textFilter3 = "";
+      }
+  
+      let sinR = [];
+      var temp = {};
+      var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
+      var result: any;
+  
+      if (evento === "Enter" || evento === "click" || evento === undefined) {
+        if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.textFilter0.length != 0){
+          this.comiteServices.getListComite(4,null,null,this.textFilter0).subscribe(
             (response) =>{
               sinR = response.data;
               sinR.forEach(function (a) {
@@ -184,32 +151,285 @@ export class DashboardComponent implements OnInit {
                 temp[a.code][groups[a.nombre]] = a.count;
               });
               result = Object.keys(temp).map(function (k) { return temp[k]; });
-              
+                
               let val1 = 0;
               let val2 = 0;
               let val3 = 0;
-
+  
               for(let g = 0; g < result.length; g++){
                 val1 += result[g].value1
                 val2 += result[g].value2
                 val3 += result[g].value3
               }
-
+  
               localStorage.removeItem("val1");
               localStorage.removeItem("val2");
               localStorage.removeItem("val3");
               localStorage.setItem("val1",val1.toString())
               localStorage.setItem("val2",val2.toString())
               localStorage.setItem("val3",val3.toString())
-
+  
               this.val1 = localStorage.getItem("val1");
               this.val2 = localStorage.getItem("val2");
               this.val3 = localStorage.getItem("val3");
               this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
             }
           )
+        }else{
+          if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.textFilter0.length == 0){
+            this.comiteServices.getListComite(0,null,null,null).subscribe(
+              (response) =>{
+                sinR = response.data;
+                sinR.forEach(function (a) {
+                  temp[a.code] = temp[a.code] || { category: a.code };
+                  temp[a.code][groups[a.nombre]] = a.count;
+                });
+                result = Object.keys(temp).map(function (k) { return temp[k]; });
+                
+                let val1 = 0;
+                let val2 = 0;
+                let val3 = 0;
+  
+                for(let g = 0; g < result.length; g++){
+                  val1 += result[g].value1
+                  val2 += result[g].value2
+                  val3 += result[g].value3
+                }
+  
+                localStorage.removeItem("val1");
+                localStorage.removeItem("val2");
+                localStorage.removeItem("val3");
+                localStorage.setItem("val1",val1.toString())
+                localStorage.setItem("val2",val2.toString())
+                localStorage.setItem("val3",val3.toString())
+  
+                this.val1 = localStorage.getItem("val1");
+                this.val2 = localStorage.getItem("val2");
+                this.val3 = localStorage.getItem("val3");
+                this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+              }
+            )
+          }else{
+            if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.textFilter0.length == 0){
+              this.comiteServices.getListComite(2,null,this.textFilter3,null).subscribe(
+                (response) =>{
+                  sinR = response.data;
+                  sinR.forEach(function (a) {
+                    temp[a.code] = temp[a.code] || { category: a.code };
+                    temp[a.code][groups[a.nombre]] = a.count;
+                  });
+                  result = Object.keys(temp).map(function (k) { return temp[k]; });
+                    
+                  let val1 = 0;
+                  let val2 = 0;
+                  let val3 = 0;
+      
+                  for(let g = 0; g < result.length; g++){
+                    val1 += result[g].value1
+                    val2 += result[g].value2
+                    val3 += result[g].value3
+                  }
+      
+                  localStorage.removeItem("val1");
+                  localStorage.removeItem("val2");
+                  localStorage.removeItem("val3");
+                  localStorage.setItem("val1",val1.toString())
+                  localStorage.setItem("val2",val2.toString())
+                  localStorage.setItem("val3",val3.toString())
+      
+                  this.val1 = localStorage.getItem("val1");
+                  this.val2 = localStorage.getItem("val2");
+                  this.val3 = localStorage.getItem("val3");
+                  this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                }
+              )
+            }else{
+              if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.textFilter0.length == 0){
+                this.comiteServices.getListComite(1,this.textFilter2,null,null).subscribe(
+                  (response) =>{
+                    sinR = response.data;
+                    sinR.forEach(function (a) {
+                      temp[a.code] = temp[a.code] || { category: a.code };
+                      temp[a.code][groups[a.nombre]] = a.count;
+                    });
+                    result = Object.keys(temp).map(function (k) { return temp[k]; });
+                      
+                    let val1 = 0;
+                    let val2 = 0;
+                    let val3 = 0;
+        
+                    for(let g = 0; g < result.length; g++){
+                      val1 += result[g].value1
+                      val2 += result[g].value2
+                      val3 += result[g].value3
+                    }
+        
+                    localStorage.removeItem("val1");
+                    localStorage.removeItem("val2");
+                    localStorage.removeItem("val3");
+                    localStorage.setItem("val1",val1.toString())
+                    localStorage.setItem("val2",val2.toString())
+                    localStorage.setItem("val3",val3.toString())
+        
+                    this.val1 = localStorage.getItem("val1");
+                    this.val2 = localStorage.getItem("val2");
+                    this.val3 = localStorage.getItem("val3");
+                    this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                  }
+                )
+              }else{
+                if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.textFilter0.length == 0){
+                  this.comiteServices.getListComite(3,this.textFilter2,this.textFilter3,null).subscribe(
+                    (response) =>{
+                      sinR = response.data;
+                      sinR.forEach(function (a) {
+                        temp[a.code] = temp[a.code] || { category: a.code };
+                        temp[a.code][groups[a.nombre]] = a.count;
+                      });
+                      result = Object.keys(temp).map(function (k) { return temp[k]; });
+                        
+                      let val1 = 0;
+                      let val2 = 0;
+                      let val3 = 0;
+          
+                      for(let g = 0; g < result.length; g++){
+                        val1 += result[g].value1
+                        val2 += result[g].value2
+                        val3 += result[g].value3
+                      }
+          
+                      localStorage.removeItem("val1");
+                      localStorage.removeItem("val2");
+                      localStorage.removeItem("val3");
+                      localStorage.setItem("val1",val1.toString())
+                      localStorage.setItem("val2",val2.toString())
+                      localStorage.setItem("val3",val3.toString())
+          
+                      this.val1 = localStorage.getItem("val1");
+                      this.val2 = localStorage.getItem("val2");
+                      this.val3 = localStorage.getItem("val3");
+                      this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                    }
+                  )
+                }else{
+                  if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.textFilter0.length != 0){
+                    this.comiteServices.getListComite(5,this.textFilter2,null,this.textFilter0).subscribe(
+                      (response) =>{
+                        sinR = response.data;
+                        sinR.forEach(function (a) {
+                          temp[a.code] = temp[a.code] || { category: a.code };
+                          temp[a.code][groups[a.nombre]] = a.count;
+                        });
+                        result = Object.keys(temp).map(function (k) { return temp[k]; });
+                          
+                        let val1 = 0;
+                        let val2 = 0;
+                        let val3 = 0;
+            
+                        for(let g = 0; g < result.length; g++){
+                          val1 += result[g].value1
+                          val2 += result[g].value2
+                          val3 += result[g].value3
+                        }
+            
+                        localStorage.removeItem("val1");
+                        localStorage.removeItem("val2");
+                        localStorage.removeItem("val3");
+                        localStorage.setItem("val1",val1.toString())
+                        localStorage.setItem("val2",val2.toString())
+                        localStorage.setItem("val3",val3.toString())
+            
+                        this.val1 = localStorage.getItem("val1");
+                        this.val2 = localStorage.getItem("val2");
+                        this.val3 = localStorage.getItem("val3");
+                        this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                      }
+                    )
+                  }else{
+                    if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.textFilter0.length != 0){
+                      this.comiteServices.getListComite(6,null,this.textFilter3,this.textFilter0).subscribe(
+                        (response) =>{
+                          sinR = response.data;
+                          sinR.forEach(function (a) {
+                            temp[a.code] = temp[a.code] || { category: a.code };
+                            temp[a.code][groups[a.nombre]] = a.count;
+                          });
+                          result = Object.keys(temp).map(function (k) { return temp[k]; });
+                            
+                          let val1 = 0;
+                          let val2 = 0;
+                          let val3 = 0;
+              
+                          for(let g = 0; g < result.length; g++){
+                            val1 += result[g].value1
+                            val2 += result[g].value2
+                            val3 += result[g].value3
+                          }
+              
+                          localStorage.removeItem("val1");
+                          localStorage.removeItem("val2");
+                          localStorage.removeItem("val3");
+                          localStorage.setItem("val1",val1.toString())
+                          localStorage.setItem("val2",val2.toString())
+                          localStorage.setItem("val3",val3.toString())
+              
+                          this.val1 = localStorage.getItem("val1");
+                          this.val2 = localStorage.getItem("val2");
+                          this.val3 = localStorage.getItem("val3");
+                          this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                        }
+                      )
+                    }else{
+                      if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.textFilter0.length != 0){
+                        this.comiteServices.getListComite(7,this.textFilter2,this.textFilter3,this.textFilter0).subscribe(
+                          (response) =>{
+                            sinR = response.data;
+                            sinR.forEach(function (a) {
+                              temp[a.code] = temp[a.code] || { category: a.code };
+                              temp[a.code][groups[a.nombre]] = a.count;
+                            });
+                            result = Object.keys(temp).map(function (k) { return temp[k]; });
+                              
+                            let val1 = 0;
+                            let val2 = 0;
+                            let val3 = 0;
+                
+                            for(let g = 0; g < result.length; g++){
+                              val1 += result[g].value1
+                              val2 += result[g].value2
+                              val3 += result[g].value3
+                            }
+                
+                            localStorage.removeItem("val1");
+                            localStorage.removeItem("val2");
+                            localStorage.removeItem("val3");
+                            localStorage.setItem("val1",val1.toString())
+                            localStorage.setItem("val2",val2.toString())
+                            localStorage.setItem("val3",val3.toString())
+                
+                            this.val1 = localStorage.getItem("val1");
+                            this.val2 = localStorage.getItem("val2");
+                            this.val3 = localStorage.getItem("val3");
+                            this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                          }
+                        )
+                      }else{
+          
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
+    }
+    if(id == 1){
+    }
+    if(id == 2){
+    }
+    if(id == 3){
     }
   }
 
