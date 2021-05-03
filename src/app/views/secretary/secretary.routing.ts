@@ -5,6 +5,8 @@ import { ComiteOperatingComponent } from './components/comite-operating/comite-o
 import { ReunionesTableComponent } from './components/tables/reuniones-table/reuniones-table.component';
 import { ActasTableComponent } from './components/tables/actas-table/actas-table.component';
 import { CompromisosTableComponent } from './components/tables/compromisos-table/compromisos-table.component';
+import { ComiteDirectionComponent } from './components/comite-direction/comite-direction.component';
+import { ViewComiteComponent } from './components/view-comite/view-comite.component';
 
 export const ManagerRoutes: Routes = [
     {
@@ -25,6 +27,14 @@ export const ManagerRoutes: Routes = [
             {
                 path: 'comite-operating',
                 component: ComiteOperatingComponent
+            },
+            {
+                path: 'comite-direction',
+                component: ComiteDirectionComponent
+            },
+            {
+                path: 'view-comite',
+                component: ViewComiteComponent
             },
             {
                 path: 'reuniones-table',

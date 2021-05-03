@@ -1,0 +1,46 @@
+<!-- Banner -->
+<div class="pi-container">
+    <div class="pi-banner">
+        <div class="pi-banner-content">
+            <h1 class="p-p-0">Relación de comites</h1>
+            <p class="white fz-13"> Cod: C2031</p>
+
+            <div class="p-d-flex p-jc-end btn-group">
+                <p-button label="Crear Votación" icon="pi pi-plus-circle" routerLink="/manager/crear-comites">
+                </p-button>
+                <p-button label="Crear Reunión" icon="pi pi-plus-circle" routerLink="/manager/crear-comites">
+                </p-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Form -->
+<div class="p-grid p-style-input-fill p-m-4 p-ai-end">
+    <div class="p-col-12 p-md-6 p-lg-3">
+        <span class="p-float-label p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input type="text" pInputText />
+            <label for="inputtext">Buscar en el Acta</label>
+        </span>
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-3">
+        <span class="p-float-label p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input type="text" pInputText />
+            <label for="inputtext">Código de Reunión</label>
+        </span>
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-3">
+        <span class="p-float-label">
+            <p-dropdown [options]="TipoMeet" [(ngModel)]="selectedMeet" optionLabel="name" optionValue="code">
+            </p-dropdown>
+            <label for="inputtext">Tipo de Reunión</label>
+        </span>
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-3 p-d-flex p-jc-end">
+        <button pButton label="Detalles de Comité"></button>
+    </div>
+</div>
+<!-- Table -->
+<app-comite-direction-table></app-comite-direction-table>
