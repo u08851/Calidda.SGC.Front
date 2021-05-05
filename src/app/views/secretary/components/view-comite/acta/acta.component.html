@@ -1,1 +1,176 @@
-<p>acta works!</p>
+<p class="title info p-mb-3">Acta de Reunión - C2031</p>
+<div class="p-grid p-style-input-fill dark">
+    <div class="p-field p-grid p-col-12 p-md-6">
+        <div class="p-d-flex w-100">
+            <label class="p-mr-1 info p-col-6 p-md-5">Comité</label>
+            Comité Cálida
+        </div>
+    </div>
+    <div class="p-field p-grid p-col-12 p-md-6">
+        <div class="p-d-flex w-100">
+            <label class="p-mr-1 info p-col-6 p-md-3">Responsable:</label>
+            Karina Lopez
+        </div>
+    </div>
+    <div class="p-field p-grid p-col-12 p-md-6">
+        <div class="p-d-flex w-100">
+            <label class="p-mr-1 info p-col-6 p-md-5">Link:</label>
+            <a class="info" href="http://">http:www.calida.com</a>
+        </div>
+    </div>
+    <div class="p-field p-grid p-col-12 p-md-6">
+        <div class="p-d-flex w-100">
+            <label class="p-mr-1 info p-col-6 p-md-3">Asunto:</label>
+            Reición de entregables
+        </div>
+    </div>
+    <div class="p-field p-grid p-col-12 p-md-6">
+        <div class="p-d-flex w-100">
+            <label class="p-mr-1 info p-col-6 p-md-5">Fecha:</label>
+            20/11/20 - 30/11/20
+        </div>
+    </div>
+    <div class="p-field p-grid p-col-12 p-md-6">
+        <div class="p-d-flex w-100">
+            <label class="p-mr-1 info p-col-6 p-md-3">Detalle:</label>
+            Entrega de avances finales para la aprobación
+        </div>
+    </div>
+    <div class="p-field p-grid p-col-12 p-md-6">
+        <div class="p-d-flex w-100">
+            <label class="p-mr-1 info p-col-6 p-md-5">Hora:</label>
+            10:00 am - 1:00 pm
+        </div>
+    </div>
+    <div class="p-field p-grid p-col-12 p-md-6">
+        <div class="p-d-flex w-100">
+            <label class="p-mr-1 info p-col-6 p-md-3">Comité:</label>
+            C2031
+        </div>
+    </div>
+</div>
+<br>
+<div class="border-1px-gray rounded-1 p-p-3 p-mb-3">
+    <p class="title fz-14">Acciones del Acta</p>
+    <div class="p-d-flex p-jc-center p-mb-2">
+        <button class="stylebtn" pButton label="Editar Acta" icon="pi icon-edit"></button>
+    </div>
+</div>
+<div class="border-1px-gray rounded-1 p-p-3 p-mb-3">
+    <p class="title fz-14">Cargar Acta</p>
+    <div class="p-d-flex p-jc-center p-ai-center p-mb-2">
+        <p-fileUpload styleClass="stylebtn" name="myfile[]" url="./upload.php" chooseIcon="pi pi-arrow-up"
+            chooseLabel="Subir Acta" multiple="multiple" accept="image/*" [auto]="true">
+        </p-fileUpload>
+        <button pButton label="Enviar a Aprobación" icon="pi icon-edit"></button>
+    </div>
+</div>
+
+<!-- probación de Acta -->
+<div class="border-1px-gray rounded-1 p-p-3 p-mb-3">
+    <p class="title fz-14 p-mb-3">Aprobación de Acta</p>
+    <p><span class="info">Fecha limite de aprovación: </span>27/04/2021</p>
+
+    <p-table [columns]="cols" [value]="data" styleClass="style-table" [paginator]="true" [rows]="3"
+        [showCurrentPageReport]="true">
+        <ng-template pTemplate="colgroup" let-columns>
+            <colgroup>
+                <col [style.width]="20 + '%'" />
+                <col [style.width]="12  + '%'" />
+                <col [style.width]="20 + '%'" />
+                <col [style.width]="15 + '%'" />
+                <col [style.width]="23 + '%'" />
+            </colgroup>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                <td class="b-dander" *ngFor="let col of columns">
+                    <div class="p-d-flex p-ai-center">
+                        <p-avatar *ngIf="col.field == 'names'" image="../assets/images/img22.jpg" styleClass="p-mr-2"
+                            shape="circle"></p-avatar>
+                        <span class="material-icons-outlined info p-mr-2" *ngIf="col.field == 'forum'">
+                            message
+                        </span>
+                        <span *ngIf="col.field != 'status'; else estatus">
+                            {{rowData[col.field]}}
+                        </span>
+                        <ng-template #estatus>
+                            <!-- variables:  --red --green --info  -->
+                            <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8 green" *ngIf="rowData.status.cod == 0"></i>
+                            <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8 red" *ngIf="rowData.status.cod == 1"></i>
+                            <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8 orange" *ngIf="rowData.status.cod == 2"></i>
+                            {{rowData[col.field].name}}
+                        </ng-template>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<!-- Firma del Acta -->
+<div class="border-1px-gray rounded-1 p-p-3 p-mb-3">
+    <p class="title fz-14 p-mb-3">Firma del Acta</p>
+    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between p-ai-md-center">
+        <p class="p-mb-3"><span class="info">Fecha limite de Firma: </span>27/04/2021</p>
+        <button pButton label="Enviar a Firma" icon="pi"></button>
+    </div>
+    <p-table [columns]="colsFirmaActa" [value]="dataFActa" styleClass="style-table" [paginator]="true" [rows]="3" responsive="true"
+        [showCurrentPageReport]="true">
+        <ng-template pTemplate="colgroup" let-columns>
+            <colgroup class="colgroup">
+                <col [style.width]="5 + '%'" />
+                <col [style.width]="20 + '%'" />
+                <col [style.width]="12  + '%'" />
+                <col [style.width]="20 + '%'" />
+                <col [style.width]="15 + '%'" />
+            </colgroup>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th>
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                </td>
+                <td class="b-dander" *ngFor="let col of columns">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-ai-md-center">
+                        <p class="p-column-title"> {{col.header}}</p>
+                        <div class="p-d-flex p-ai-center">
+                            <p-avatar *ngIf="col.field == 'names'" image="../assets/images/img22.jpg"
+                                styleClass="p-mr-2" shape="circle"></p-avatar>
+
+                            <span *ngIf="col.field != 'status'; else estatus">
+                                {{rowData[col.field]}}
+                            </span>
+                            <ng-template #estatus>
+                                <!-- variables:  --red --green --info  -->
+                                <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8 green" *ngIf="rowData.status.cod == 0"></i>
+                                <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8 red" *ngIf="rowData.status.cod == 1"></i>
+                                <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8 orange"
+                                    *ngIf="rowData.status.cod == 2"></i>
+                                <p class="p-column-title">{{col.header}}</p>
+                                {{rowData[col.field].name}}
+                            </ng-template>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

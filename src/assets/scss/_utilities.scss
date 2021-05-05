@@ -99,7 +99,10 @@
 //borders
 .br-05 {
     border-radius: 0.5rem !important;
-  }
+}
+.bl-s-5px {
+  border-left: 5px solid !important;
+}
   
 // sizes
 .fs-1 {
@@ -171,4 +174,10 @@
 //borders
 .p-b-0 {
   border: 0 !important;
+}
+.border-1px-gray {
+  border: 1px solid #CED3D9;
+}
+.rounded-1 {
+  border-radius: 0.5rem;
 }

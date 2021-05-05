@@ -17,10 +17,12 @@
   }
 
   .p-datatable-tbody > tr > td { 
-    // padding: 0.5rem 1rem;
-    padding: 0.2rem 1rem;
+    padding: 0.5rem 1rem;
+    // padding: 0.2rem 1rem;
     border: 1px solid #F6F7F9;
-    height: 50px;
+    @media screen and(min-width: 768){
+      height: 50px;
+    }
 
     .pi-ellipsis-v::before {
       font-size: 20px;
@@ -129,14 +131,17 @@
 }
 
 // :host ::ng-deep {    
-    .p-datatable-responsive-demo .p-datatable-tbody > tr > td .p-column-title {
+    .style-table .p-datatable-tbody > tr > td .p-column-title {
         display: none;
     }
 // }
 
 @media screen and (max-width: 40rem) {
   .p-datatable {
-    &.p-datatable-responsive-demo {
+    &.style-table {
+      colgroup {
+        display: none;
+      }
       .p-datatable-thead > tr > th,
       .p-datatable-tfoot > tr > td {
         display: none !important;
@@ -153,7 +158,7 @@
         .p-column-title {
           padding: .4rem;
           min-width: 30%;
-          display: inline-block;
+          display: block;
           margin: -.4em 1em -.4em -.4rem;
           font-weight: bold;
         }
