@@ -253,3 +253,32 @@
       margin-bottom: 12px;
     }
 }
+
+//panels
+.p-panel {
+  box-shadow: none;
+}
+.p-panel .p-panel-header .p-panel-header-icon {
+  color: var(--info);
+  span {
+    font-size: 25px;
+    &:hover {
+      color: var(--info);
+    }
+  }
+}
+
+.hx-bar {
+  padding: 0.2rem;
+  width: 30px;
+  border-radius: 10px;
+}
+.hx-bar.red {
+  background: var(--red);
+}
+.hx-bar.orange {
+  background: var(--orange);
+}
+.hx-bar.green {
+  background: var(--green);
+}
