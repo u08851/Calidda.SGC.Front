@@ -34,6 +34,10 @@ import { ActaComponent } from './components/view-comite/acta/acta.component';
 import { VotacionComponent } from './components/view-comite/votacion/votacion.component';
 import { VideoComponent } from './components/view-comite/video/video.component';
 import { CommitmentComponent } from './components/view-comite/commitment/commitment.component';
+import { ComiteMemberTableComponent } from './components/comite-direction/comite-member-table/comite-member-table.component';
+import { AssistantSecretaryComponent } from './dialog/assistant-secretary/assistant-secretary.component';
+import { StateDocumentComponent } from './dialog/state-document/state-document.component';
+import { SendDocumentComponent } from './dialog/send-document/send-document.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +72,11 @@ import { CommitmentComponent } from './components/view-comite/commitment/commitm
   ActaComponent,
   VotacionComponent,
   VideoComponent,
-  CommitmentComponent
+  CommitmentComponent,
+  ComiteMemberTableComponent,
+  AssistantSecretaryComponent,
+  StateDocumentComponent,
+  SendDocumentComponent
   ],
   imports: [
     CommonModule,

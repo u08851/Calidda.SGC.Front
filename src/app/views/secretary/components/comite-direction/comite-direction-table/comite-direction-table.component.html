@@ -1,2 +1,63 @@
-<p>comite-direction-table works!</p>
-<button pButton label=""></button>
+<div class="p-card p-px-3 br-05">
+  <p-table
+    [columns]="cols"
+    [value]="products"
+    styleClass="style-table-direccion"
+    [paginator]="true"
+    [rows]="3"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="{first} - {last} of {totalRecords}"
+  >
+    <ng-template pTemplate="colgroup" let-columns>
+      <colgroup>
+        <col [style.width]="13 + '%'" />
+        <col [style.width]="12 + '%'" />
+        <col [style.width]="12 + '%'" />
+        <col [style.width]="12 + '%'" />
+        <col [style.width]="29 + '%'" />
+        <col [style.width]="22 + '%'" />
+      </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" class="p-text-left">
+          {{ col.header }}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td class="p-text-left">RE-2349</td>
+        <td>20/11/2020</td>
+        <td>30/11/2020</td>
+        <td>4:00pm</td>
+        <td class="p-text-left">
+          <div class="p-d-flex p-ai-center p-jc-between">
+            Presencial
+            <p-button label="Iniciar reunión"></p-button>
+          </div>
+        </td>
+        <td class="p-text-left p-d-flex p-ai-center p-jc-between">
+          <div class="p-d-flex p-ai-center">
+            <!-- variables:  --red --green --info  -->
+            <i
+              class="pi pi-circle-on p-mr-2 p-mt-1 fz-8"
+              [style.color]="'var(--red)'"
+            ></i>
+            Finalizado
+          </div>
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi"
+            class="p-button-rounded p-button-text"
+          >
+            <!-- variables:  visibility, settings, edit_note  -->
+            <span class="material-icons-outlined"> settings </span>
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

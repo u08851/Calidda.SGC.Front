@@ -1,1 +1,240 @@
-<p>detail-comite works!</p>
+<div class="card p-flex-column">
+  <div>
+    <p class="appearance-tab">Detalle de comité</p>
+    <!-- <label class="p-custom-text">Ingresa los datos requeridos</label> -->
+  </div>
+  <p-tabView styleClass="p-tab-style-2">
+    <p-tabPanel [selected]="true" header="Comité: COC21-2">
+      <!-- INFORMACIÓN BÁSICA -->
+      <div class="tab-content">
+        <p class="tab-info-label">Información básica</p>
+        <div class="p-grid">
+          <!-- NOMBRE -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'25%'">
+              Nombre:
+            </p>
+            <p>Comité cálidda</p>
+          </div>
+
+          <!-- CÓDIGO DE COMITÉ -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'35%'">
+              Código de comite:
+            </p>
+            <p>C2031</p>
+          </div>
+
+          <!-- EMPRESA -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'25%'">
+              Empresa:
+            </p>
+            <p>Cálidda</p>
+          </div>
+
+          <!-- RESPONSABLE -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'25%'">
+              Responsable:
+            </p>
+            <div class="p-d-flex p-ai-center">
+              <p-avatar
+                image="assets/images/img22.jpg"
+                styleClass="p-mr-2"
+                shape="circle"
+              ></p-avatar>
+              <p>Rosario Chiarella</p>
+            </div>
+          </div>
+
+          <!-- PAÍS -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'25%'">
+              País:
+            </p>
+            <div class="p-d-flex p-ai-center">
+              <img src="assets/images/flag/PE.svg" alt="flag" class="p-mr-2" />
+              <p>Perú</p>
+            </div>
+          </div>
+
+          <!-- DIRECCIÓN DEL COMITÉ -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'40%'">
+              Dirección del comité:
+            </p>
+            <p>Comité cálidda</p>
+          </div>
+
+          <!-- FECHA DE CREACIÓN -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'35%'">
+              Fecha de creación:
+            </p>
+            <p>30/11/2020</p>
+          </div>
+
+          <!-- HORA DE CREACIÓN -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'35%'">
+              Hora de creación:
+            </p>
+            <p>04:00pm</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- DATOS DEL COMITÉ -->
+      <div class="tab-content">
+        <p class="tab-info-label">Datos del comité</p>
+        <div class="p-grid">
+          <!-- DESCRIPCIÓN DEL COMITÉ -->
+          <div class="p-col-12">
+            <p [style.color]="'var(--primary-color)'" class="p-mb-3">
+              Descripción del comité
+            </p>
+            <p>Entrega de avances finales para la aprobación del proyecto.</p>
+          </div>
+
+          <!-- OBJETIVO DEL COMITÉ -->
+          <div class="p-col-12">
+            <p [style.color]="'var(--primary-color)'" class="p-mb-3">
+              Objetivo del comité
+            </p>
+            <p>Revisión de la comisión</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PERIODICIDAD DE REUNIONES -->
+      <div class="tab-content">
+        <p class="tab-info-label">Periodicidad de reuniones</p>
+        <div class="p-grid">
+          <!-- FRECUENCIA -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <p [style.color]="'var(--primary-color)'" class="p-mb-3">
+              Frecuencia
+            </p>
+            <div class="p-field-radiobutton">
+              <p-radioButton name="city" value="Semanal"></p-radioButton>
+              <label for="city1">Semanal</label>
+            </div>
+          </div>
+
+          <!-- DÍAS -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <p [style.color]="'var(--primary-color)'" class="p-mb-3">Días</p>
+            <p>Lunes</p>
+          </div>
+
+          <!-- REPETICIONES -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <p [style.color]="'var(--primary-color)'" class="p-mb-3">
+              Repeticiones
+            </p>
+            <p>10 repeticiones</p>
+          </div>
+          <div class="p-col-12 p-md-6 p-lg-3"></div>
+
+          <!-- FECHA DE INICIO -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <p [style.color]="'var(--primary-color)'" class="p-mb-3">
+              Fecha de inicio
+            </p>
+            <p class="p-d-flex p-ai-center">
+              20/11/2020
+              <span class="material-icons p-ml-6"> calendar_today </span>
+            </p>
+          </div>
+
+          <!-- HORA DE INICIO -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <p [style.color]="'var(--primary-color)'" class="p-mb-3">
+              Hora de inicio
+            </p>
+            <p>10:00am</p>
+          </div>
+
+          <!-- HORA DE FIN -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <p [style.color]="'var(--primary-color)'" class="p-mb-3">
+              Hora de fin
+            </p>
+            <p>11:00am</p>
+          </div>
+
+          <!-- DURACIÓN -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <p [style.color]="'var(--primary-color)'" class="p-mb-3">
+              Duración
+            </p>
+            <p>30 minutos</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ALERTAS DE REUNIONES -->
+      <div class="tab-content">
+        <p class="tab-info-label">Alertas de reuniones</p>
+        <div class="p-grid">
+          <!-- -->
+          <div class="p-col-12">
+            <p>3 días de anticipación</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FACULTADES -->
+      <div class="tab-content">
+        <p class="tab-info-label">Facultades</p>
+        <div class="p-grid">
+          <!-- -->
+          <div class="p-col-12">
+            <p>Voto</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MIEMBROS DEL COMITÉ -->
+      <div class="tab-content">
+        <p class="tab-info-label">Miembros del comité</p>
+        <div class="p-d-flex p-jc-between p-ai-center">
+          <div class="btn-group p-mb-3">
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Titulares"
+              class="p-button-rounded p-button-outlined active"
+            ></button>
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Suplentes"
+              class="p-button-rounded p-button-outlined"
+            ></button>
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Invitados"
+              class="p-button-rounded p-button-outlined"
+            ></button>
+          </div>
+          <p>N° de participantes: <strong>50</strong></p>
+        </div>
+
+        <app-comite-member-table></app-comite-member-table>
+
+        <!-- btn enviar -->
+        <div class="p-grid">
+            <div class="p-col-12 p-text-center">
+                <button pButton pRipple type="button" label="Enviar"></button>
+            </div>
+        </div>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+</div>
