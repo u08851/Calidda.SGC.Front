@@ -7,7 +7,7 @@
     <div class="card">
         <p-tabView styleClass="p-tab-style-1">
             <!-- TAB-1 TODOS -->
-            <p-tabPanel header="Todos">
+            <p-tabPanel header="Todos" (click)="getListModo(0)">
                 <!-- Form -->
                 <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
                     <!-- Buscar nombre -->
@@ -105,7 +105,7 @@
             </p-tabPanel>
 
             <!-- TAB-2 PAÍS -->
-            <p-tabPanel header="País">
+            <p-tabPanel header="País" (click)="getListModo(1)">
                 <!-- Form -->
                 <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
                     <!-- Buscar país -->
@@ -213,7 +213,7 @@
             </p-tabPanel>
 
             <!-- TAB-3 EMPRESA -->
-            <p-tabPanel header="Empresa y Dirección">
+            <p-tabPanel header="Empresa y Dirección" (click)="getListModo(2)">
                 <!-- Form -->
                 <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
                     <!-- Buscar empresa -->
@@ -317,7 +317,7 @@
             </p-tabPanel>
 
             <!-- TAB-4 RESPONSABLE -->
-            <p-tabPanel header="Secretaria de Comité">
+            <p-tabPanel header="Secretaria de Comité" (click)="getListModo(3)">
                 <!-- Form -->
                 <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
                     <!-- Buscar secretaria de comité -->
@@ -415,7 +415,7 @@
             </p-tabPanel>
 
             <!-- TAB-5 FRECUENCIA -->
-            <p-tabPanel header="Frecuencia">
+            <p-tabPanel header="Frecuencia" (click)="getListModo(4)">
                 <!-- Form -->
                 <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
                     <!-- Buscar secretaria de comité -->
