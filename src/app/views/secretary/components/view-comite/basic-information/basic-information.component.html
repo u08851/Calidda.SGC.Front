@@ -1,1 +1,38 @@
-<p>basic-information works!</p>
+<p class="title info">Reunión: C2031</p>
+<div class="p-d-flex btn-group p-jc-end">
+    <button pButton label="Cancelar reunión" icon="pi pi-times-circle"></button>
+    <button pButton label="Reprogramar reunión" icon="pi pi-clock">
+    </button>
+</div>
+
+<div class="p-fluid p-formgrid p-grid gray">
+    <div class="p-field p-col-12 p-md-6">
+        <label for="firstname6">Titulo de la reunión</label>
+        <input id="firstname6" type="text" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+        <label for="lastname6">Fecha</label>
+        <p-calendar [(ngModel)]="date" [showIcon]="true" inputId="icon"></p-calendar>
+
+    </div>
+    <div class="p-field p-col-12 p-md-3">
+        <label for="address">Hora de inicio</label>
+        <p-calendar [(ngModel)]="date" [showIcon]="false" [timeOnly]="true" inputId="icon"></p-calendar>
+    </div>
+    <div class="p-field p-col-12 p-md-3">
+        <label for="city">Hora fin</label>
+        <p-calendar [(ngModel)]="date" [showIcon]="false" [timeOnly]="true" inputId="icon"></p-calendar>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+        <label for="state">Tipo de reunión</label>
+        <p-dropdown [options]="tipoMeet" [(ngModel)]="selectedTipo" optionLabel="name"></p-dropdown>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+        <label for="zip">Link de la reunión</label>
+        <input id="zip" type="text" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+        <label for="zip">Codigo de comité</label>
+        <input id="zip" type="text" pInputText>
+    </div>
+</div>

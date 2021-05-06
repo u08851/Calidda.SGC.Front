@@ -1,4 +1,5 @@
-<p-sidebar class="p-sidebar-half" [(visible)]="visibleSidebar" [modal]="false" [showCloseIcon]="false" [baseZIndex]="1002">
+<p-sidebar class="p-sidebar-half" [(visible)]="visibleSidebar" [modal]="false" [showCloseIcon]="false"
+    [baseZIndex]="1002">
     <div class="custom-card">
         <div class="custom-card-header" (click)="profile()">
             <img class="cPointer" src="assets/images/img-perfil-test.jpg" alt="foto_perfil" />
@@ -14,36 +15,13 @@
                     <i class="material-icons material-icons-outlined md-icon-24"> {{item.icon}}</i>
                     {{ item.label }}
                 </li>
-                <!-- <li routerLink="/manager/dashboard" routerLinkActive="is-active">
-                    <i class="material-icons material-icons-outlined md-icon-24">
-                        home </i>
-                    Inicio
-                </li> -->
-                <!-- <li routerLink="/manager/comites" routerLinkActive="is-active">
-                    <i class="material-icons material-icons-outlined md-icon-24">
-                        article
-                    </i>
-                    Comités
-                </li>
-                <li>
-                    <i class="material-icons material-icons-outlined md-icon-24">
-                        assessment
-                    </i>
-                    Reportes
-                </li>
-                <li routerLink="/manager/mantenimiento" routerLinkActive="is-active">
-                    <i class="material-icons material-icons-outlined md-icon-24">
-                        build
-                    </i>
-                    Mantenimiento
-                </li> -->
             </ul>
 
             <!-- button -->
             <div class="p-btn">
-                <button>
+                <button [routerLink]="routerBack">
                     <!-- <fa-icon [icon]="faReply" class="faReply"></fa-icon> -->
-                    <span>Cancelar</span>
+                    <span>Atras</span>
                 </button>
             </div>
         </div>

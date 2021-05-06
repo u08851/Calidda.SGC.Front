@@ -9,9 +9,14 @@ export class ComiteDirectionComponent implements OnInit {
 
   dateFron:Date;
   dateTo:Date;
+  selectedMeet:string;
+  TipoMeet:any[];
   constructor() { }
 
   ngOnInit(): void {
+    this.TipoMeet = [
+      {name: 'Presencial', code: '01'},
+    ]
   }
 
 }

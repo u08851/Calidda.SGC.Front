@@ -59,10 +59,25 @@
   margin: 0 -0.3rem;
   align-items: center;
 }
-
+.btn-group.success {
+  .active {
+    background: #3ad13c36;
+    color: #0ac702;
+    border: 0;
+  }
+}
 .stylebtn {
   background: #cde8f2;
   color: #00a1de;
+  .p-button {
+    background: #cde8f2;
+    color: #00a1de;
+    &:hover {
+      background: aliceblue;
+      color: #00a1de;
+      border-color: transparent;
+    }
+  }
 }
 .p-button {
   font-size: 13px;
@@ -228,7 +243,46 @@
   margin-bottom: 5px;
 }
 
-//
+//chips
+.chip-info.p-chip {
+    background: #3ad13c36;
+    color: #0ac702;
+    font-weight: 500;
+    .p-chip-text {
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+}
+
+//panels
+.p-panel {
+  box-shadow: none;
+}
+.p-panel .p-panel-header .p-panel-header-icon {
+  color: var(--info);
+  span {
+    font-size: 25px;
+    &:hover {
+      color: var(--info);
+    }
+  }
+}
+
+.hx-bar {
+  padding: 0.2rem;
+  width: 30px;
+  border-radius: 10px;
+}
+.hx-bar.red {
+  background: var(--red);
+}
+.hx-bar.orange {
+  background: var(--orange);
+}
+.hx-bar.green {
+  background: var(--green);
+}
+
 .appearance-tab {
   background: #00a1de;
   width: fit-content;

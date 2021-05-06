@@ -9,35 +9,78 @@ export class ComiteDirectionTableComponent implements OnInit {
 
   products: any[] = [
     {
-      codReunion: 'codReunion',
-      fechaCreación: 'fechaCreación',
-      fechaReunion: 'fechaReunion',
-      horaReunion: 'horaReunion',
-      tipoReunion: 'tipoReunion',
-      estado: 'estado'
+      "cod": "RE-2455",
+      "fechaC": "20/11/20",
+      "fechaR": "20/11/20",
+      "horaR": "4:00pm",
+      "tipoR": "Presencial",
+      "estado": {
+        'cod': '0',
+        'name':'Finalizado'
+      }
     },
     {
-      codReunion: 'codReunion',
-      fechaCreación: 'fechaCreación',
-      fechaReunion: 'fechaReunion',
-      horaReunion: 'horaReunion',
-      tipoReunion: 'tipoReunion',
-      estado: 'estado'
+      "cod": "RE-2455",
+      "fechaC": "20/11/20",
+      "fechaR": "20/11/20",
+      "horaR": "4:00pm",
+      "tipoR": "Presencial",
+      "estado": {
+        'cod': '1',
+        'name':'En Curso'
+      }
+    },
+    {
+      "cod": "RE-2455",
+      "fechaC": "20/11/20",
+      "fechaR": "20/11/20",
+      "horaR": "4:00pm",
+      "tipoR": "Presencial",
+      "estado": {
+        'cod': '2',
+        'name':'Pre-Agendada'
+      }
     },
   ];
+
   cols: any[];
+  items: any[];
 
   constructor() { }
 
   ngOnInit(): void {
+
     this.cols = [
-      { header: 'Código de reunión', field: 'codReunion' },
-      { header: 'F. de creación', field: 'fechaCreación' },
-      { header: 'F. de reunión', field: 'fechaReunion' },
-      { header: 'H. de reunión', field: 'horaReunion' },
-      { header: 'Tipo de reunión', field: 'tipoReunion' },
+      { header: 'Codigo de Reunión',field: 'cod' },
+      { header: 'F. de Creación', field: 'fechaC' },
+      { header: 'F. de Reunión', field: 'fechaR' },
+      { header: 'H. de Reunión', field: 'horaR' },
+      { header: 'Tipo de Resunión', field: 'tipoR' },
       { header: 'Estado', field: 'estado' }
     ];
+
+
+
+    this.items = [
+      {
+        label: 'Editar Comité',
+        icon: 'pi pi-refresh',
+      },
+      {
+        label: 'Ver histórico',
+        icon: 'pi pi-times',
+      },
+      {
+        label: 'Dar de baja al Comité',
+        icon: 'pi pi-times',
+      },
+      {
+        label: 'Eliminar Comité',
+        icon: 'pi pi-times',
+      }
+
+    ];
+
   }
 
 }

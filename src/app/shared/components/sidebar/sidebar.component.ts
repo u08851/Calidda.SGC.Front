@@ -13,6 +13,7 @@ export class SidebarComponent implements OnInit {
   visibleSidebar: boolean = true;
   menuItems: any[];
   userId: number = 1;
+  routerBack: string;
 
   constructor(
     public headerService: headerService,
@@ -34,9 +35,11 @@ export class SidebarComponent implements OnInit {
     switch (this.userId) {
       case 1:
         this.menuItems = Constant.AdminMenuItems;
+        this.routerBack = "/manager/dashboard"
         break;
       case 2:
         this.menuItems = Constant.SecretaryMenuItems;
+        this.routerBack = "/secretary"
         break;
       default:
         this.menuItems = Constant.AdminMenuItems;

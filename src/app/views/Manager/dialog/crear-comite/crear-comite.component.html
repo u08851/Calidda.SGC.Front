@@ -38,7 +38,7 @@
                         <div class="p-col-12 p-md-6 p-lg-4">
                             <div class="p-field">
                                 <label>País</label>
-                                <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name"
+                                <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" name="pais"
                                     [showClear]="false" placeholder="" dropdownIcon="">
                                     <ng-template pTemplate="selectedItem">
                                         <div class="p-d-flex p-ai-center">
@@ -62,7 +62,8 @@
                         <div class="p-col-12 p-md-6 p-lg-4">
                             <div class="p-field">
                                 <label>Responsable del comité</label>
-                                <input pInputText />
+                                <!-- <input pInputText /> -->
+                                <p-autoComplete name="rcomite" [(ngModel)]="selectedResponsableComite" [suggestions]="filteredResponsableComite" (completeMethod)="filtered($event)" field="name" [minLength]="1"></p-autoComplete>
                             </div>
                         </div>
 
@@ -78,7 +79,7 @@
                         <div class="p-col-12 p-md-6 p-lg-4">
                             <div class="p-field">
                                 <label>Dirección dueña del comité</label>
-                                <input pInputText />
+                                <p-dropdown [options]="direccion" [(ngModel)]="selectedDireccion" name="direcion" optionLabel="name"></p-dropdown>
                             </div>
                         </div>
 

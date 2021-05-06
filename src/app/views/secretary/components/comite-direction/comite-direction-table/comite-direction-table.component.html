@@ -1,63 +1,62 @@
-<div class="p-card p-px-3 br-05">
-  <p-table
-    [columns]="cols"
-    [value]="products"
-    styleClass="style-table-direccion"
-    [paginator]="true"
-    [rows]="3"
-    [showCurrentPageReport]="true"
-    currentPageReportTemplate="{first} - {last} of {totalRecords}"
-  >
-    <ng-template pTemplate="colgroup" let-columns>
-      <colgroup>
-        <col [style.width]="13 + '%'" />
-        <col [style.width]="12 + '%'" />
-        <col [style.width]="12 + '%'" />
-        <col [style.width]="12 + '%'" />
-        <col [style.width]="29 + '%'" />
-        <col [style.width]="22 + '%'" />
-      </colgroup>
-    </ng-template>
-    <ng-template pTemplate="header" let-columns>
-      <tr>
-        <th *ngFor="let col of columns" class="p-text-left">
-          {{ col.header }}
-        </th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-      <tr>
-        <td class="p-text-left">RE-2349</td>
-        <td>20/11/2020</td>
-        <td>30/11/2020</td>
-        <td>4:00pm</td>
-        <td class="p-text-left">
-          <div class="p-d-flex p-ai-center p-jc-between">
-            Presencial
-            <p-button label="Iniciar reunión"></p-button>
-          </div>
-        </td>
-        <td class="p-text-left p-d-flex p-ai-center p-jc-between">
-          <div class="p-d-flex p-ai-center">
-            <!-- variables:  --red --green --info  -->
-            <i
-              class="pi pi-circle-on p-mr-2 p-mt-1 fz-8"
-              [style.color]="'var(--red)'"
-            ></i>
-            Finalizado
-          </div>
-          <button
-            pButton
-            pRipple
-            type="button"
-            icon="pi"
-            class="p-button-rounded p-button-text"
-          >
-            <!-- variables:  visibility, settings, edit_note  -->
-            <span class="material-icons-outlined"> settings </span>
-          </button>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
+<div class="p-card p-px-5 p-py-3 br-05">
+    <p-table [columns]="cols" [value]="products" styleClass="style-table" [paginator]="true" [rows]="3"
+        [showCurrentPageReport]="true">
+        <ng-template pTemplate="colgroup" let-columns>
+            <colgroup>
+                <col [style.width]="12 + '%'" />
+                <col [style.width]="12  + '%'" />
+                <col [style.width]="12 + '%'" />
+                <col [style.width]="12 + '%'" />
+                <col [style.width]="23 + '%'" />
+                <col [style.width]="10 + '%'" />
+                <col [style.width]="8 + '%'" />
+            </colgroup>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                <td class="b-dander" *ngFor="let col of columns">
+
+                    <div class="p-d-flex p-ai-center">
+                        <span *ngIf="col.field != 'estado'; else estatus">
+                            {{rowData[col.field]}}
+                        </span>
+                        <button pButton pRipple type="button" icon="pi" *ngIf="col.field == 'tipoR'"
+                            label="Iniciar Reunión" class="p-ml-2" styleClass="icon-size">
+                        </button>
+                        <ng-template #estatus>
+                            <!-- variables:  --red --green --info  -->
+                            <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--green)'"></i>
+                            {{rowData[col.field].name}}
+                        </ng-template>
+                    </div>
+                </td>
+                <td>
+                    <button pButton pRipple type="button" icon="pi" *ngIf="rowData.estado.cod == '0'"
+                        routerLink="/secretary/view-comite" 
+                        class="p-button-rounded p-button-info p-button-text icon-size" styleClass="icon-size">
+                        <span class="material-icons-outlined">
+                            visibility
+                        </span>
+                    </button>
+                    <button pButton pRipple type="button" icon="pi" *ngIf="rowData.estado.cod == '1'"
+                        class="p-button-rounded p-button-info p-button-text icon-size" styleClass="icon-size">
+                        <span class="material-icons-outlined">
+                            settings
+                        </span>
+                    </button>
+                    <button pButton pRipple type="button" icon="pi icon-edit" *ngIf="rowData.estado.cod == '2'"
+                        class="p-button-rounded p-button-info p-button-text icon-size" styleClass="icon-size">
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
 </div>

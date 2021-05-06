@@ -14,7 +14,7 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label p-input-icon-right">
                             <i class="pi pi-search"></i>
-                            <input type="text" pInputText [(ngModel)]="textFilter0" (keydown)="onKeydown($event)"/>
+                            <input type="text" pInputText [(ngModel)]="textFilter0" (keydown)="onKeydown($event,0)"/>
                             <label for="inputtext">Buscar nombre</label>
                         </span>
                     </div>
@@ -22,7 +22,7 @@
                     <!-- calendario DESDE -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-calendar [(ngModel)]="date3" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,0)" [(ngModel)]="date3" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Desde</label>
                         </span>
                     </div>
@@ -30,7 +30,7 @@
                     <!-- calendario HASTA -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-calendar [(ngModel)]="date4" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,0)" [(ngModel)]="date4" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Hasta</label>
                         </span>
                     </div>
@@ -97,7 +97,7 @@
 
                 <!-- Grafico -->
                 <div class="p-grid graphic-box">
-                    <p>Reporte (Últimos 6 meses)</p>
+                    <p>{{ message }}</p>
                     <div class="p-col-12">
                         <app-bar-todos></app-bar-todos>
                     </div>
@@ -110,20 +110,18 @@
                 <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
                     <!-- Buscar país -->
                     <div class="p-col-12 p-md-6 p-lg-3">
-                        <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name"
-                            [filter]="true" filterBy="name" [showClear]="true" placeholder="Buscar país">
+                        <p-dropdown (onChange)="onKeydown($event,1)" [options]="countries" [(ngModel)]="selectedCountry" optionLabel="nombre"
+                            [filter]="true" filterBy="nombre" [showClear]="true" placeholder="Buscar país">
                             <ng-template pTemplate="selectedItem">
                                 <div class="country-item country-item-value" *ngIf="selectedCountry">
-                                    <img src="assets/images/flag/PE.svg"
-                                        [class]="'flag flag-' + selectedCountry.code.toLowerCase()" />
-                                    <div>{{ selectedCountry.name }}</div>
+                                    <img style="width: 20px;" [src]="selectedCountry.sigla" />
+                                    <div>{{ selectedCountry.nombre }}</div>
                                 </div>
                             </ng-template>
                             <ng-template let-country pTemplate="item">
                                 <div class="country-item">
-                                    <img src="assets/images/flag/PE.svg"
-                                        [class]="'flag flag-' + country.code.toLowerCase()" />
-                                    <div>{{ country.name }}</div>
+                                    <img [src]="country.sigla"/>
+                                    <div>{{ country.nombre }}</div>
                                 </div>
                             </ng-template>
                         </p-dropdown>
@@ -132,7 +130,7 @@
                     <!-- calendario DESDE -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-calendar [(ngModel)]="date3" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,1)" [(ngModel)]="date3" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Desde</label>
                         </span>
                     </div>
@@ -140,7 +138,7 @@
                     <!-- calendario HASTA -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-calendar [(ngModel)]="date4" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,1)" [(ngModel)]="date4" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Hasta</label>
                         </span>
                     </div>
@@ -207,7 +205,7 @@
 
                 <!-- Grafico -->
                 <div class="p-grid graphic-box">
-                    <p>Reporte (Últimos 6 meses)</p>
+                    <p>{{ message }}</p>
                     <div class="p-col-12">
                         <app-bar-pais></app-bar-pais>
                     </div>
@@ -221,7 +219,7 @@
                     <!-- Buscar empresa -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <p-dropdown [options]="cities" [(ngModel)]="selectedCity1" placeholder="Buscar empresa"
-                            optionLabel="name" [showClear]="true"></p-dropdown>
+                            optionLabel="nombre" [showClear]="true"></p-dropdown>
                     </div>
 
                     <!-- Buscar direccion del comite -->
@@ -311,7 +309,7 @@
 
                 <!-- Grafico -->
                 <div class="p-grid graphic-box">
-                    <p>Reporte (Últimos 6 meses)</p>
+                    <p>{{ message }}</p>
                     <div class="p-col-12">
                         <app-bar-empresa-direccion></app-bar-empresa-direccion>
                     </div>
@@ -409,7 +407,7 @@
 
                 <!-- Grafico -->
                 <div class="p-grid graphic-box">
-                    <p>Reporte (Últimos 6 meses)</p>
+                    <p>{{ message }}</p>
                     <div class="p-col-12">
                         <app-bar-secretaria></app-bar-secretaria>
                     </div>
@@ -425,7 +423,7 @@
                     <!-- calendario DESDE -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-calendar [(ngModel)]="date3" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,4)" [(ngModel)]="date3" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Desde</label>
                         </span>
                     </div>
@@ -433,7 +431,7 @@
                     <!-- calendario HASTA -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-calendar [(ngModel)]="date4" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,4)" [(ngModel)]="date4" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Hasta</label>
                         </span>
                     </div>
@@ -449,7 +447,7 @@
                     <div class="p-col-12 p-md-6 p-lg-2">
                         <div class="box" (click)="goToTableActiveFrecuencia()">
                             <div class="box-detalle">
-                                <p>45</p>
+                                <p>{{ val11 }}</p>
                                 <i class="material-icons purple"> data_saver_off </i>
                             </div>
                             <div class="box-info">
@@ -462,7 +460,7 @@
                     <div class="p-col-12 p-md-6 p-lg-2">
                         <div class="box">
                             <div class="box-detalle">
-                                <p>21</p>
+                                <p>{{ val22 }}</p>
                                 <i class="material-icons darkblue"> data_saver_off </i>
                             </div>
                             <div class="box-info">
@@ -475,7 +473,7 @@
                     <div class="p-col-12 p-md-6 p-lg-2">
                         <div class="box">
                             <div class="box-detalle">
-                                <p>15</p>
+                                <p>{{ val33 }}</p>
                                 <i class="material-icons green"> data_saver_off </i>
                             </div>
                             <div class="box-info">
@@ -488,7 +486,7 @@
                     <div class="p-col-12 p-md-6 p-lg-2">
                         <div class="box">
                             <div class="box-detalle">
-                                <p>7</p>
+                                <p>{{ val44 }}</p>
                                 <i class="material-icons lightblue"> data_saver_off </i>
                             </div>
                             <div class="box-info">
@@ -501,7 +499,7 @@
                     <div class="p-col-12 p-md-6 p-lg-2">
                         <div class="box">
                             <div class="box-detalle">
-                                <p>7</p>
+                                <p>{{ val55 }}</p>
                                 <i class="material-icons limon"> data_saver_off </i>
                             </div>
                             <div class="box-info">
@@ -514,7 +512,7 @@
                     <div class="p-col-12 p-md-6 p-lg-2">
                         <div class="box">
                             <div class="box-detalle">
-                                <p>7</p>
+                                <p>{{ val66 }}</p>
                                 <i class="material-icons oranges"> data_saver_off </i>
                             </div>
                             <div class="box-info">
@@ -526,7 +524,7 @@
 
                 <!-- Grafico -->
                 <div class="p-grid graphic-box">
-                    <p>Reporte (Últimos 6 meses)</p>
+                    <p>{{ message }}</p>
                     <div class="p-col-12">
                         <app-donut></app-donut>
                     </div>

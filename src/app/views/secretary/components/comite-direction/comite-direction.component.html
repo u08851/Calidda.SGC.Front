@@ -25,48 +25,32 @@
 
 <!-- Form -->
 <div class="p-grid p-style-input-fill p-m-4 p-ai-end">
-  <!-- Nombre del comité -->
-  <div class="p-col-12 p-md-6 p-lg-3">
-    <span class="p-float-label p-input-icon-right">
-      <i class="pi pi-search"></i>
-      <input type="text" pInputText />
-      <label for="inputtext">Nombre del comité</label>
-    </span>
-  </div>
-
-  <!-- Código del comité -->
-  <div class="p-col-12 p-md-6 p-lg-3">
-    <span class="p-float-label p-input-icon-right">
-      <i class="pi pi-search"></i>
-      <input type="text" pInputText />
-      <label for="inputtext">Código del comité</label>
-    </span>
-  </div>
-
-  <!-- calendario DESDE -->
-  <div class="p-col-12 p-md-6 p-lg-3">
-    <span class="p-float-label">
-      <p-calendar
-        [(ngModel)]="dateFron"
-        [showIcon]="true"
-        inputId="icon"
-      ></p-calendar>
-      <label for="inputtext">Desde</label>
-    </span>
-  </div>
-
-  <!-- calendario HASTA -->
-  <!-- <div class="p-col-12 p-md-6 p-lg-3">
-        <span class="p-float-label">
-            <p-calendar [(ngModel)]="dateTo" [showIcon]="true" inputId="icon"></p-calendar>
-            <label for="inputtext">Hasta</label>
+    <div class="p-col-12 p-md-6 p-lg-3">
+        <span class="p-float-label p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input type="text" pInputText />
+            <label for="inputtext">Buscar en el Acta</label>
         </span>
-    </div> -->
-  <div class="p-col-12 p-md-6 p-lg-3">
-    <button pButton label="Detalles de comité" icon="pi" routerLink="/secretary/detail-comite">
-      <span class="material-icons-outlined"> sticky_note_2 </span>
-    </button>
-  </div>
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-3">
+        <span class="p-float-label p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input type="text" pInputText />
+            <label for="inputtext">Código de Reunión</label>
+        </span>
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-3">
+        <span class="p-float-label">
+            <p-dropdown [options]="TipoMeet" [(ngModel)]="selectedMeet" optionLabel="name" optionValue="code">
+            </p-dropdown>
+            <label for="inputtext">Tipo de Reunión</label>
+        </span>
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-3 p-d-flex p-jc-end">
+      <button pButton label="Detalles de comité" icon="pi" routerLink="/secretary/detail-comite">
+          <span class="material-icons-outlined"> sticky_note_2 </span>
+      </button>
+    </div>
 </div>
-
+<!-- Table -->
 <app-comite-direction-table></app-comite-direction-table>
