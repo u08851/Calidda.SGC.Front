@@ -1,9 +1,12 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ComiteServices } from 'src/app/services/comite.service';
 import { EmpresaServices } from 'src/app/services/empresa.service';
 import { PaisServices } from 'src/app/services/pais.service';
+import { BarPaisComponent } from '../../components/graficos/bar-pais/bar-pais.component';
+import { BarTodosComponent } from '../../components/graficos/bar-todos/bar-todos.component';
+import { DonutComponent } from '../../components/graficos/donut/donut.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -37,6 +40,10 @@ export class DashboardComponent implements OnInit {
   textFilter0: any = "";
   textFilter2: any = "";
   textFilter3: any = "";
+
+  @ViewChild(BarTodosComponent) barTodos: BarTodosComponent;
+  @ViewChild(BarPaisComponent) barPais: BarPaisComponent;
+  @ViewChild(DonutComponent) donuts: DonutComponent;
 
   constructor(
     private router: Router,
@@ -156,33 +163,41 @@ export class DashboardComponent implements OnInit {
             (response) =>{
               this.message = "Reporte de 6 meses anteriores"
               sinR = response.data;
-              sinR.forEach(function (a) {
-                temp[a.code] = temp[a.code] || { category: a.code };
-                temp[a.code][groups[a.nombre]] = a.count;
-              });
-              result = Object.keys(temp).map(function (k) { return temp[k]; });
+              
+              try{
+                sinR.forEach(function (a) {
+                  temp[a.code] = temp[a.code] || { category: a.code };
+                  temp[a.code][groups[a.nombre]] = a.count;
+                });
+                result = Object.keys(temp).map(function (k) { return temp[k]; });
+                  
+                let val1 = 0;
+                let val2 = 0;
+                let val3 = 0;
+    
+                for(let g = 0; g < result.length; g++){
+                  val1 += result[g].value1
+                  val2 += result[g].value2
+                  val3 += result[g].value3
+                }
+    
+                localStorage.removeItem("val1");
+                localStorage.removeItem("val2");
+                localStorage.removeItem("val3");
+                localStorage.setItem("val1",val1.toString())
+                localStorage.setItem("val2",val2.toString())
+                localStorage.setItem("val3",val3.toString())
+    
+                this.val1 = localStorage.getItem("val1");
+                this.val2 = localStorage.getItem("val2");
+                this.val3 = localStorage.getItem("val3");
+                this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
                 
-              let val1 = 0;
-              let val2 = 0;
-              let val3 = 0;
-  
-              for(let g = 0; g < result.length; g++){
-                val1 += result[g].value1
-                val2 += result[g].value2
-                val3 += result[g].value3
+                this.barTodos.dataReceived(sinR);
+              }catch{
+                this.barTodos.dataReceived("");
               }
-  
-              localStorage.removeItem("val1");
-              localStorage.removeItem("val2");
-              localStorage.removeItem("val3");
-              localStorage.setItem("val1",val1.toString())
-              localStorage.setItem("val2",val2.toString())
-              localStorage.setItem("val3",val3.toString())
-  
-              this.val1 = localStorage.getItem("val1");
-              this.val2 = localStorage.getItem("val2");
-              this.val3 = localStorage.getItem("val3");
-              this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+              
             }
           )
         }else{
@@ -191,41 +206,8 @@ export class DashboardComponent implements OnInit {
               (response) =>{
                 this.message = "Reporte de los 6 últimos meses"
                 sinR = response.data;
-                sinR.forEach(function (a) {
-                  temp[a.code] = temp[a.code] || { category: a.code };
-                  temp[a.code][groups[a.nombre]] = a.count;
-                });
-                result = Object.keys(temp).map(function (k) { return temp[k]; });
                 
-                let val1 = 0;
-                let val2 = 0;
-                let val3 = 0;
-  
-                for(let g = 0; g < result.length; g++){
-                  val1 += result[g].value1
-                  val2 += result[g].value2
-                  val3 += result[g].value3
-                }
-  
-                localStorage.removeItem("val1");
-                localStorage.removeItem("val2");
-                localStorage.removeItem("val3");
-                localStorage.setItem("val1",val1.toString())
-                localStorage.setItem("val2",val2.toString())
-                localStorage.setItem("val3",val3.toString())
-  
-                this.val1 = localStorage.getItem("val1");
-                this.val2 = localStorage.getItem("val2");
-                this.val3 = localStorage.getItem("val3");
-                this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-              }
-            )
-          }else{
-            if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.textFilter0.length == 0){
-              this.comiteServices.getListComite(2,null,this.textFilter3,null).subscribe(
-                (response) =>{
-                  this.message = "Reporte de los 6 últimos meses " + this.textFilter3
-                  sinR = response.data;
+                try{
                   sinR.forEach(function (a) {
                     temp[a.code] = temp[a.code] || { category: a.code };
                     temp[a.code][groups[a.nombre]] = a.count;
@@ -253,14 +235,21 @@ export class DashboardComponent implements OnInit {
                   this.val2 = localStorage.getItem("val2");
                   this.val3 = localStorage.getItem("val3");
                   this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                  
+                  this.barTodos.dataReceived(sinR);
+                }catch{
+                  this.barTodos.dataReceived("");
                 }
-              )
-            }else{
-              if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.textFilter0.length == 0){
-                this.comiteServices.getListComite(1,this.textFilter2,null,null).subscribe(
-                  (response) =>{
-                    this.message = "Reporte fecha ingresada"
-                    sinR = response.data;
+              }
+            )
+          }else{
+            if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.textFilter0.length == 0){
+              this.comiteServices.getListComite(2,null,this.textFilter3,null).subscribe(
+                (response) =>{
+                  this.message = "Reporte de los 6 últimos meses " + this.textFilter3
+                  sinR = response.data;
+                  
+                  try{
                     sinR.forEach(function (a) {
                       temp[a.code] = temp[a.code] || { category: a.code };
                       temp[a.code][groups[a.nombre]] = a.count;
@@ -288,14 +277,21 @@ export class DashboardComponent implements OnInit {
                     this.val2 = localStorage.getItem("val2");
                     this.val3 = localStorage.getItem("val3");
                     this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                    
+                    this.barTodos.dataReceived(sinR);
+                  }catch{
+                    this.barTodos.dataReceived("");
                   }
-                )
-              }else{
-                if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.textFilter0.length == 0){
-                  this.comiteServices.getListComite(3,this.textFilter2,this.textFilter3,null).subscribe(
-                    (response) =>{
-                      this.message = "Reporte de rango de fechas"
-                      sinR = response.data;
+                }
+              )
+            }else{
+              if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.textFilter0.length == 0){
+                this.comiteServices.getListComite(1,this.textFilter2,null,null).subscribe(
+                  (response) =>{
+                    this.message = "Reporte fecha ingresada"
+                    sinR = response.data;
+                    
+                    try{
                       sinR.forEach(function (a) {
                         temp[a.code] = temp[a.code] || { category: a.code };
                         temp[a.code][groups[a.nombre]] = a.count;
@@ -323,14 +319,21 @@ export class DashboardComponent implements OnInit {
                       this.val2 = localStorage.getItem("val2");
                       this.val3 = localStorage.getItem("val3");
                       this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                      
+                      this.barTodos.dataReceived(sinR);
+                    }catch{
+                      this.barTodos.dataReceived("");
                     }
-                  )
-                }else{
-                  if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.textFilter0.length != 0){
-                    this.comiteServices.getListComite(5,this.textFilter2,null,this.textFilter0).subscribe(
-                      (response) =>{
-                        this.message = "Reporte de fecha y nombre ingresado"
-                        sinR = response.data;
+                  }
+                )
+              }else{
+                if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.textFilter0.length == 0){
+                  this.comiteServices.getListComite(3,this.textFilter2,this.textFilter3,null).subscribe(
+                    (response) =>{
+                      this.message = "Reporte de rango de fechas"
+                      sinR = response.data;
+                      
+                      try{
                         sinR.forEach(function (a) {
                           temp[a.code] = temp[a.code] || { category: a.code };
                           temp[a.code][groups[a.nombre]] = a.count;
@@ -358,14 +361,21 @@ export class DashboardComponent implements OnInit {
                         this.val2 = localStorage.getItem("val2");
                         this.val3 = localStorage.getItem("val3");
                         this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                        
+                        this.barTodos.dataReceived(sinR);
+                      }catch{
+                        this.barTodos.dataReceived("");
                       }
-                    )
-                  }else{
-                    if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.textFilter0.length != 0){
-                      this.comiteServices.getListComite(6,null,this.textFilter3,this.textFilter0).subscribe(
-                        (response) =>{
-                          this.message = "Reporte de fecha y nombre ingresado"
-                          sinR = response.data;
+                    }
+                  )
+                }else{
+                  if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.textFilter0.length != 0){
+                    this.comiteServices.getListComite(5,this.textFilter2,null,this.textFilter0).subscribe(
+                      (response) =>{
+                        this.message = "Reporte de fecha y nombre ingresado"
+                        sinR = response.data;
+                        
+                        try{
                           sinR.forEach(function (a) {
                             temp[a.code] = temp[a.code] || { category: a.code };
                             temp[a.code][groups[a.nombre]] = a.count;
@@ -393,14 +403,21 @@ export class DashboardComponent implements OnInit {
                           this.val2 = localStorage.getItem("val2");
                           this.val3 = localStorage.getItem("val3");
                           this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                          
+                          this.barTodos.dataReceived(sinR);
+                        }catch{
+                          this.barTodos.dataReceived("");
                         }
-                      )
-                    }else{
-                      if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.textFilter0.length != 0){
-                        this.comiteServices.getListComite(7,this.textFilter2,this.textFilter3,this.textFilter0).subscribe(
-                          (response) =>{
-                            this.message = "Reporte de rango de fechas y nombre ingresado"
-                            sinR = response.data;
+                      }
+                    )
+                  }else{
+                    if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.textFilter0.length != 0){
+                      this.comiteServices.getListComite(6,null,this.textFilter3,this.textFilter0).subscribe(
+                        (response) =>{
+                          this.message = "Reporte de fecha y nombre ingresado"
+                          sinR = response.data;
+                          
+                          try{
                             sinR.forEach(function (a) {
                               temp[a.code] = temp[a.code] || { category: a.code };
                               temp[a.code][groups[a.nombre]] = a.count;
@@ -428,6 +445,53 @@ export class DashboardComponent implements OnInit {
                             this.val2 = localStorage.getItem("val2");
                             this.val3 = localStorage.getItem("val3");
                             this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                            
+                            this.barTodos.dataReceived(sinR);
+                          }catch{
+                            this.barTodos.dataReceived("");
+                          }
+                        }
+                      )
+                    }else{
+                      if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.textFilter0.length != 0){
+                        this.comiteServices.getListComite(7,this.textFilter2,this.textFilter3,this.textFilter0).subscribe(
+                          (response) =>{
+                            this.message = "Reporte de rango de fechas y nombre ingresado"
+                            sinR = response.data;
+                            
+                            try{
+                              sinR.forEach(function (a) {
+                                temp[a.code] = temp[a.code] || { category: a.code };
+                                temp[a.code][groups[a.nombre]] = a.count;
+                              });
+                              result = Object.keys(temp).map(function (k) { return temp[k]; });
+                                
+                              let val1 = 0;
+                              let val2 = 0;
+                              let val3 = 0;
+                  
+                              for(let g = 0; g < result.length; g++){
+                                val1 += result[g].value1
+                                val2 += result[g].value2
+                                val3 += result[g].value3
+                              }
+                  
+                              localStorage.removeItem("val1");
+                              localStorage.removeItem("val2");
+                              localStorage.removeItem("val3");
+                              localStorage.setItem("val1",val1.toString())
+                              localStorage.setItem("val2",val2.toString())
+                              localStorage.setItem("val3",val3.toString())
+                  
+                              this.val1 = localStorage.getItem("val1");
+                              this.val2 = localStorage.getItem("val2");
+                              this.val3 = localStorage.getItem("val3");
+                              this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                              
+                              this.barTodos.dataReceived(sinR);
+                            }catch{
+                              this.barTodos.dataReceived("");
+                            }
                           }
                         )
                       }
@@ -475,33 +539,40 @@ export class DashboardComponent implements OnInit {
             (response) =>{
               this.message = "Reporte de los 6 últimos meses"
               sinR = response.data;
-              sinR.forEach(function (a) {
-                temp[a.code] = temp[a.code] || { category: a.code };
-                temp[a.code][groups[a.nombre]] = a.count;
-              });
-              result = Object.keys(temp).map(function (k) { return temp[k]; });
               
-              let val1 = 0;
-              let val2 = 0;
-              let val3 = 0;
-
-              for(let g = 0; g < result.length; g++){
-                val1 += result[g].value1
-                val2 += result[g].value2
-                val3 += result[g].value3
+              try{
+                sinR.forEach(function (a) {
+                  temp[a.code] = temp[a.code] || { category: a.code };
+                  temp[a.code][groups[a.nombre]] = a.count;
+                });
+                result = Object.keys(temp).map(function (k) { return temp[k]; });
+                  
+                let val1 = 0;
+                let val2 = 0;
+                let val3 = 0;
+    
+                for(let g = 0; g < result.length; g++){
+                  val1 += result[g].value1
+                  val2 += result[g].value2
+                  val3 += result[g].value3
+                }
+    
+                localStorage.removeItem("val1");
+                localStorage.removeItem("val2");
+                localStorage.removeItem("val3");
+                localStorage.setItem("val1",val1.toString())
+                localStorage.setItem("val2",val2.toString())
+                localStorage.setItem("val3",val3.toString())
+    
+                this.val1 = localStorage.getItem("val1");
+                this.val2 = localStorage.getItem("val2");
+                this.val3 = localStorage.getItem("val3");
+                this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                
+                this.barPais.dataReceived(sinR);
+              }catch{
+                this.barPais.dataReceived("");
               }
-
-              localStorage.removeItem("val1");
-              localStorage.removeItem("val2");
-              localStorage.removeItem("val3");
-              localStorage.setItem("val1",val1.toString())
-              localStorage.setItem("val2",val2.toString())
-              localStorage.setItem("val3",val3.toString())
-
-              this.val1 = localStorage.getItem("val1");
-              this.val2 = localStorage.getItem("val2");
-              this.val3 = localStorage.getItem("val3");
-              this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
             }
           )
         }else{
@@ -510,33 +581,40 @@ export class DashboardComponent implements OnInit {
               (response) =>{
                 this.message = "Reporte del páis elegido"
                 sinR = response.data;
-                sinR.forEach(function (a) {
-                  temp[a.code] = temp[a.code] || { category: a.code };
-                  temp[a.code][groups[a.nombre]] = a.count;
-                });
-                result = Object.keys(temp).map(function (k) { return temp[k]; });
                 
-                let val1 = 0;
-                let val2 = 0;
-                let val3 = 0;
-  
-                for(let g = 0; g < result.length; g++){
-                  val1 += result[g].value1
-                  val2 += result[g].value2
-                  val3 += result[g].value3
+                try{
+                  sinR.forEach(function (a) {
+                    temp[a.code] = temp[a.code] || { category: a.code };
+                    temp[a.code][groups[a.nombre]] = a.count;
+                  });
+                  result = Object.keys(temp).map(function (k) { return temp[k]; });
+                    
+                  let val1 = 0;
+                  let val2 = 0;
+                  let val3 = 0;
+      
+                  for(let g = 0; g < result.length; g++){
+                    val1 += result[g].value1
+                    val2 += result[g].value2
+                    val3 += result[g].value3
+                  }
+      
+                  localStorage.removeItem("val1");
+                  localStorage.removeItem("val2");
+                  localStorage.removeItem("val3");
+                  localStorage.setItem("val1",val1.toString())
+                  localStorage.setItem("val2",val2.toString())
+                  localStorage.setItem("val3",val3.toString())
+      
+                  this.val1 = localStorage.getItem("val1");
+                  this.val2 = localStorage.getItem("val2");
+                  this.val3 = localStorage.getItem("val3");
+                  this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                  
+                  this.barPais.dataReceived(sinR);
+                }catch{
+                  this.barPais.dataReceived("");
                 }
-  
-                localStorage.removeItem("val1");
-                localStorage.removeItem("val2");
-                localStorage.removeItem("val3");
-                localStorage.setItem("val1",val1.toString())
-                localStorage.setItem("val2",val2.toString())
-                localStorage.setItem("val3",val3.toString())
-  
-                this.val1 = localStorage.getItem("val1");
-                this.val2 = localStorage.getItem("val2");
-                this.val3 = localStorage.getItem("val3");
-                this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
               }
             )
           }else{
@@ -545,33 +623,40 @@ export class DashboardComponent implements OnInit {
                 (response) =>{
                   this.message = "Reporte de la fecha inicial ingresada"
                   sinR = response.data;
-                  sinR.forEach(function (a) {
-                    temp[a.code] = temp[a.code] || { category: a.code };
-                    temp[a.code][groups[a.nombre]] = a.count;
-                  });
-                  result = Object.keys(temp).map(function (k) { return temp[k]; });
                   
-                  let val1 = 0;
-                  let val2 = 0;
-                  let val3 = 0;
-    
-                  for(let g = 0; g < result.length; g++){
-                    val1 += result[g].value1
-                    val2 += result[g].value2
-                    val3 += result[g].value3
+                  try{
+                    sinR.forEach(function (a) {
+                      temp[a.code] = temp[a.code] || { category: a.code };
+                      temp[a.code][groups[a.nombre]] = a.count;
+                    });
+                    result = Object.keys(temp).map(function (k) { return temp[k]; });
+                      
+                    let val1 = 0;
+                    let val2 = 0;
+                    let val3 = 0;
+        
+                    for(let g = 0; g < result.length; g++){
+                      val1 += result[g].value1
+                      val2 += result[g].value2
+                      val3 += result[g].value3
+                    }
+        
+                    localStorage.removeItem("val1");
+                    localStorage.removeItem("val2");
+                    localStorage.removeItem("val3");
+                    localStorage.setItem("val1",val1.toString())
+                    localStorage.setItem("val2",val2.toString())
+                    localStorage.setItem("val3",val3.toString())
+        
+                    this.val1 = localStorage.getItem("val1");
+                    this.val2 = localStorage.getItem("val2");
+                    this.val3 = localStorage.getItem("val3");
+                    this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                    
+                    this.barPais.dataReceived(sinR);
+                  }catch{
+                    this.barPais.dataReceived("");
                   }
-    
-                  localStorage.removeItem("val1");
-                  localStorage.removeItem("val2");
-                  localStorage.removeItem("val3");
-                  localStorage.setItem("val1",val1.toString())
-                  localStorage.setItem("val2",val2.toString())
-                  localStorage.setItem("val3",val3.toString())
-    
-                  this.val1 = localStorage.getItem("val1");
-                  this.val2 = localStorage.getItem("val2");
-                  this.val3 = localStorage.getItem("val3");
-                  this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
                 }
               )
             }else{
@@ -580,33 +665,40 @@ export class DashboardComponent implements OnInit {
                   (response) =>{
                     this.message = "Reporte de la fecha elegida"
                     sinR = response.data;
-                    sinR.forEach(function (a) {
-                      temp[a.code] = temp[a.code] || { category: a.code };
-                      temp[a.code][groups[a.nombre]] = a.count;
-                    });
-                    result = Object.keys(temp).map(function (k) { return temp[k]; });
                     
-                    let val1 = 0;
-                    let val2 = 0;
-                    let val3 = 0;
-      
-                    for(let g = 0; g < result.length; g++){
-                      val1 += result[g].value1
-                      val2 += result[g].value2
-                      val3 += result[g].value3
+                    try{
+                      sinR.forEach(function (a) {
+                        temp[a.code] = temp[a.code] || { category: a.code };
+                        temp[a.code][groups[a.nombre]] = a.count;
+                      });
+                      result = Object.keys(temp).map(function (k) { return temp[k]; });
+                        
+                      let val1 = 0;
+                      let val2 = 0;
+                      let val3 = 0;
+          
+                      for(let g = 0; g < result.length; g++){
+                        val1 += result[g].value1
+                        val2 += result[g].value2
+                        val3 += result[g].value3
+                      }
+          
+                      localStorage.removeItem("val1");
+                      localStorage.removeItem("val2");
+                      localStorage.removeItem("val3");
+                      localStorage.setItem("val1",val1.toString())
+                      localStorage.setItem("val2",val2.toString())
+                      localStorage.setItem("val3",val3.toString())
+          
+                      this.val1 = localStorage.getItem("val1");
+                      this.val2 = localStorage.getItem("val2");
+                      this.val3 = localStorage.getItem("val3");
+                      this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                      
+                      this.barPais.dataReceived(sinR);
+                    }catch{
+                      this.barPais.dataReceived("");
                     }
-      
-                    localStorage.removeItem("val1");
-                    localStorage.removeItem("val2");
-                    localStorage.removeItem("val3");
-                    localStorage.setItem("val1",val1.toString())
-                    localStorage.setItem("val2",val2.toString())
-                    localStorage.setItem("val3",val3.toString())
-      
-                    this.val1 = localStorage.getItem("val1");
-                    this.val2 = localStorage.getItem("val2");
-                    this.val3 = localStorage.getItem("val3");
-                    this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
                   }
                 )
               }else{
@@ -615,33 +707,40 @@ export class DashboardComponent implements OnInit {
                     (response) =>{
                       this.message = "Reporte del rango de fecha"
                       sinR = response.data;
-                      sinR.forEach(function (a) {
-                        temp[a.code] = temp[a.code] || { category: a.code };
-                        temp[a.code][groups[a.nombre]] = a.count;
-                      });
-                      result = Object.keys(temp).map(function (k) { return temp[k]; });
                       
-                      let val1 = 0;
-                      let val2 = 0;
-                      let val3 = 0;
-        
-                      for(let g = 0; g < result.length; g++){
-                        val1 += result[g].value1
-                        val2 += result[g].value2
-                        val3 += result[g].value3
+                      try{
+                        sinR.forEach(function (a) {
+                          temp[a.code] = temp[a.code] || { category: a.code };
+                          temp[a.code][groups[a.nombre]] = a.count;
+                        });
+                        result = Object.keys(temp).map(function (k) { return temp[k]; });
+                          
+                        let val1 = 0;
+                        let val2 = 0;
+                        let val3 = 0;
+            
+                        for(let g = 0; g < result.length; g++){
+                          val1 += result[g].value1
+                          val2 += result[g].value2
+                          val3 += result[g].value3
+                        }
+            
+                        localStorage.removeItem("val1");
+                        localStorage.removeItem("val2");
+                        localStorage.removeItem("val3");
+                        localStorage.setItem("val1",val1.toString())
+                        localStorage.setItem("val2",val2.toString())
+                        localStorage.setItem("val3",val3.toString())
+            
+                        this.val1 = localStorage.getItem("val1");
+                        this.val2 = localStorage.getItem("val2");
+                        this.val3 = localStorage.getItem("val3");
+                        this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                        
+                        this.barPais.dataReceived(sinR);
+                      }catch{
+                        this.barPais.dataReceived("");
                       }
-        
-                      localStorage.removeItem("val1");
-                      localStorage.removeItem("val2");
-                      localStorage.removeItem("val3");
-                      localStorage.setItem("val1",val1.toString())
-                      localStorage.setItem("val2",val2.toString())
-                      localStorage.setItem("val3",val3.toString())
-        
-                      this.val1 = localStorage.getItem("val1");
-                      this.val2 = localStorage.getItem("val2");
-                      this.val3 = localStorage.getItem("val3");
-                      this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
                     }
                   )
                 }else{
@@ -650,33 +749,40 @@ export class DashboardComponent implements OnInit {
                       (response) =>{
                         this.message = "Reporte de la fecha inicial y país elegida"
                         sinR = response.data;
-                        sinR.forEach(function (a) {
-                          temp[a.code] = temp[a.code] || { category: a.code };
-                          temp[a.code][groups[a.nombre]] = a.count;
-                        });
-                        result = Object.keys(temp).map(function (k) { return temp[k]; });
                         
-                        let val1 = 0;
-                        let val2 = 0;
-                        let val3 = 0;
-          
-                        for(let g = 0; g < result.length; g++){
-                          val1 += result[g].value1
-                          val2 += result[g].value2
-                          val3 += result[g].value3
+                        try{
+                          sinR.forEach(function (a) {
+                            temp[a.code] = temp[a.code] || { category: a.code };
+                            temp[a.code][groups[a.nombre]] = a.count;
+                          });
+                          result = Object.keys(temp).map(function (k) { return temp[k]; });
+                            
+                          let val1 = 0;
+                          let val2 = 0;
+                          let val3 = 0;
+              
+                          for(let g = 0; g < result.length; g++){
+                            val1 += result[g].value1
+                            val2 += result[g].value2
+                            val3 += result[g].value3
+                          }
+              
+                          localStorage.removeItem("val1");
+                          localStorage.removeItem("val2");
+                          localStorage.removeItem("val3");
+                          localStorage.setItem("val1",val1.toString())
+                          localStorage.setItem("val2",val2.toString())
+                          localStorage.setItem("val3",val3.toString())
+              
+                          this.val1 = localStorage.getItem("val1");
+                          this.val2 = localStorage.getItem("val2");
+                          this.val3 = localStorage.getItem("val3");
+                          this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                          
+                          this.barPais.dataReceived(sinR);
+                        }catch{
+                          this.barPais.dataReceived("");
                         }
-          
-                        localStorage.removeItem("val1");
-                        localStorage.removeItem("val2");
-                        localStorage.removeItem("val3");
-                        localStorage.setItem("val1",val1.toString())
-                        localStorage.setItem("val2",val2.toString())
-                        localStorage.setItem("val3",val3.toString())
-          
-                        this.val1 = localStorage.getItem("val1");
-                        this.val2 = localStorage.getItem("val2");
-                        this.val3 = localStorage.getItem("val3");
-                        this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
                       }
                     )
                   }else{
@@ -685,33 +791,40 @@ export class DashboardComponent implements OnInit {
                         (response) =>{
                           this.message = "Reporte del país y fecha elegida"
                           sinR = response.data;
-                          sinR.forEach(function (a) {
-                            temp[a.code] = temp[a.code] || { category: a.code };
-                            temp[a.code][groups[a.nombre]] = a.count;
-                          });
-                          result = Object.keys(temp).map(function (k) { return temp[k]; });
                           
-                          let val1 = 0;
-                          let val2 = 0;
-                          let val3 = 0;
-            
-                          for(let g = 0; g < result.length; g++){
-                            val1 += result[g].value1
-                            val2 += result[g].value2
-                            val3 += result[g].value3
+                          try{
+                            sinR.forEach(function (a) {
+                              temp[a.code] = temp[a.code] || { category: a.code };
+                              temp[a.code][groups[a.nombre]] = a.count;
+                            });
+                            result = Object.keys(temp).map(function (k) { return temp[k]; });
+                              
+                            let val1 = 0;
+                            let val2 = 0;
+                            let val3 = 0;
+                
+                            for(let g = 0; g < result.length; g++){
+                              val1 += result[g].value1
+                              val2 += result[g].value2
+                              val3 += result[g].value3
+                            }
+                
+                            localStorage.removeItem("val1");
+                            localStorage.removeItem("val2");
+                            localStorage.removeItem("val3");
+                            localStorage.setItem("val1",val1.toString())
+                            localStorage.setItem("val2",val2.toString())
+                            localStorage.setItem("val3",val3.toString())
+                
+                            this.val1 = localStorage.getItem("val1");
+                            this.val2 = localStorage.getItem("val2");
+                            this.val3 = localStorage.getItem("val3");
+                            this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                            
+                            this.barPais.dataReceived(sinR);
+                          }catch{
+                            this.barPais.dataReceived("");
                           }
-            
-                          localStorage.removeItem("val1");
-                          localStorage.removeItem("val2");
-                          localStorage.removeItem("val3");
-                          localStorage.setItem("val1",val1.toString())
-                          localStorage.setItem("val2",val2.toString())
-                          localStorage.setItem("val3",val3.toString())
-            
-                          this.val1 = localStorage.getItem("val1");
-                          this.val2 = localStorage.getItem("val2");
-                          this.val3 = localStorage.getItem("val3");
-                          this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
                         }
                       )
                     }else{
@@ -720,33 +833,40 @@ export class DashboardComponent implements OnInit {
                           (response) =>{
                             this.message = "Reporte del rango de fecha y país elegido"
                             sinR = response.data;
-                            sinR.forEach(function (a) {
-                              temp[a.code] = temp[a.code] || { category: a.code };
-                              temp[a.code][groups[a.nombre]] = a.count;
-                            });
-                            result = Object.keys(temp).map(function (k) { return temp[k]; });
                             
-                            let val1 = 0;
-                            let val2 = 0;
-                            let val3 = 0;
-              
-                            for(let g = 0; g < result.length; g++){
-                              val1 += result[g].value1
-                              val2 += result[g].value2
-                              val3 += result[g].value3
+                            try{
+                              sinR.forEach(function (a) {
+                                temp[a.code] = temp[a.code] || { category: a.code };
+                                temp[a.code][groups[a.nombre]] = a.count;
+                              });
+                              result = Object.keys(temp).map(function (k) { return temp[k]; });
+                                
+                              let val1 = 0;
+                              let val2 = 0;
+                              let val3 = 0;
+                  
+                              for(let g = 0; g < result.length; g++){
+                                val1 += result[g].value1
+                                val2 += result[g].value2
+                                val3 += result[g].value3
+                              }
+                  
+                              localStorage.removeItem("val1");
+                              localStorage.removeItem("val2");
+                              localStorage.removeItem("val3");
+                              localStorage.setItem("val1",val1.toString())
+                              localStorage.setItem("val2",val2.toString())
+                              localStorage.setItem("val3",val3.toString())
+                  
+                              this.val1 = localStorage.getItem("val1");
+                              this.val2 = localStorage.getItem("val2");
+                              this.val3 = localStorage.getItem("val3");
+                              this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                              
+                              this.barPais.dataReceived(sinR);
+                            }catch{
+                              this.barPais.dataReceived("");
                             }
-              
-                            localStorage.removeItem("val1");
-                            localStorage.removeItem("val2");
-                            localStorage.removeItem("val3");
-                            localStorage.setItem("val1",val1.toString())
-                            localStorage.setItem("val2",val2.toString())
-                            localStorage.setItem("val3",val3.toString())
-              
-                            this.val1 = localStorage.getItem("val1");
-                            this.val2 = localStorage.getItem("val2");
-                            this.val3 = localStorage.getItem("val3");
-                            this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
                           }
                         )
                       }
@@ -795,36 +915,8 @@ export class DashboardComponent implements OnInit {
           this.comiteServices.getListComite(16,null,null,null).subscribe(
             (response) =>{
               sinR = response.data;
-              var groupBy = function (miarray, prop) {
-                return miarray.reduce(function(groups, item) {
-                    var val = item[prop];
-                    groups[val] = groups[val] || {nombre: item.nombre, count: 0};
-                    groups[val].count += item.count;
-                    return groups;
-                }, {});
-              }
 
-              result = groupBy(sinR,'nombre')
-
-              localStorage.removeItem("val11");
-              localStorage.removeItem("val22");
-              localStorage.removeItem("val33");
-              localStorage.removeItem("val44");
-              localStorage.removeItem("val55");
-              localStorage.removeItem("val66");
-              localStorage.setItem("val11",result.Semanal.count.toString())
-              localStorage.setItem("val22",result.Quincenal.count.toString())
-              localStorage.setItem("val33",result.Trimestral.count.toString())
-              localStorage.setItem("val44",result.Mensual.count.toString())
-              localStorage.setItem("val55",result.Semestral.count.toString())
-              localStorage.setItem("val66",result.Anual.count.toString())
-            }
-          )
-        }else{
-          if(this.textFilter2.length != 0 && this.textFilter3.length == 0){
-            this.comiteServices.getListComite(17,this.textFilter2,null,null).subscribe(
-              (response) =>{
-                sinR = response.data;
+              try{
                 var groupBy = function (miarray, prop) {
                   return miarray.reduce(function(groups, item) {
                       var val = item[prop];
@@ -833,7 +925,7 @@ export class DashboardComponent implements OnInit {
                       return groups;
                   }, {});
                 }
-                
+  
                 result = groupBy(sinR,'nombre')
   
                 localStorage.removeItem("val11");
@@ -848,13 +940,41 @@ export class DashboardComponent implements OnInit {
                 localStorage.setItem("val44",result.Mensual.count.toString())
                 localStorage.setItem("val55",result.Semestral.count.toString())
                 localStorage.setItem("val66",result.Anual.count.toString())
+
+                this.val11 = localStorage.getItem("val11");
+                this.val22 = localStorage.getItem("val22");
+                this.val33 = localStorage.getItem("val33");
+                this.val44 = localStorage.getItem("val44");
+                this.val55 = localStorage.getItem("val55");
+                this.val66 = localStorage.getItem("val3");
+
+                this.donuts.dataReceived(sinR);
+              }catch{
+                this.donuts.dataReceived("");
+                localStorage.setItem("val11","0")
+                localStorage.setItem("val22","0")
+                localStorage.setItem("val33","0")
+                localStorage.setItem("val44","0")
+                localStorage.setItem("val55","0")
+                localStorage.setItem("val66","0")
+
+                this.val11 = localStorage.getItem("val11");
+                this.val22 = localStorage.getItem("val22");
+                this.val33 = localStorage.getItem("val33");
+                this.val44 = localStorage.getItem("val44");
+                this.val55 = localStorage.getItem("val55");
+                this.val66 = localStorage.getItem("val3");
               }
-            )
-          }else{
-            if(this.textFilter2.length == 0 && this.textFilter3.length != 0){
-              this.comiteServices.getListComite(18,null,this.textFilter3,null).subscribe(
-                (response) =>{
-                  sinR = response.data;
+             
+            }
+          )
+        }else{
+          if(this.textFilter2.length != 0 && this.textFilter3.length == 0){
+            this.comiteServices.getListComite(17,this.textFilter2,null,null).subscribe(
+              (response) =>{
+                sinR = response.data;
+                
+                try{
                   var groupBy = function (miarray, prop) {
                     return miarray.reduce(function(groups, item) {
                         var val = item[prop];
@@ -863,7 +983,7 @@ export class DashboardComponent implements OnInit {
                         return groups;
                     }, {});
                   }
-                  
+    
                   result = groupBy(sinR,'nombre')
     
                   localStorage.removeItem("val11");
@@ -878,13 +998,40 @@ export class DashboardComponent implements OnInit {
                   localStorage.setItem("val44",result.Mensual.count.toString())
                   localStorage.setItem("val55",result.Semestral.count.toString())
                   localStorage.setItem("val66",result.Anual.count.toString())
+
+                  this.val11 = localStorage.getItem("val11");
+                  this.val22 = localStorage.getItem("val22");
+                  this.val33 = localStorage.getItem("val33");
+                  this.val44 = localStorage.getItem("val44");
+                  this.val55 = localStorage.getItem("val55");
+                  this.val66 = localStorage.getItem("val3");
+  
+                  this.donuts.dataReceived(sinR);
+                }catch{
+                  this.donuts.dataReceived("");
+                  localStorage.setItem("val11","0")
+                  localStorage.setItem("val22","0")
+                  localStorage.setItem("val33","0")
+                  localStorage.setItem("val44","0")
+                  localStorage.setItem("val55","0")
+                  localStorage.setItem("val66","0")
+
+                  this.val11 = localStorage.getItem("val11");
+                  this.val22 = localStorage.getItem("val22");
+                  this.val33 = localStorage.getItem("val33");
+                  this.val44 = localStorage.getItem("val44");
+                  this.val55 = localStorage.getItem("val55");
+                  this.val66 = localStorage.getItem("val3");
                 }
-              )
-            }else{
-              if(this.textFilter2.length != 0 && this.textFilter3.length != 0){
-                this.comiteServices.getListComite(19,this.textFilter2,this.textFilter3,null).subscribe(
-                  (response) =>{
-                    sinR = response.data;
+              }
+            )
+          }else{
+            if(this.textFilter2.length == 0 && this.textFilter3.length != 0){
+              this.comiteServices.getListComite(18,null,this.textFilter3,null).subscribe(
+                (response) =>{
+                  sinR = response.data;
+
+                  try{
                     var groupBy = function (miarray, prop) {
                       return miarray.reduce(function(groups, item) {
                           var val = item[prop];
@@ -893,7 +1040,7 @@ export class DashboardComponent implements OnInit {
                           return groups;
                       }, {});
                     }
-                    
+      
                     result = groupBy(sinR,'nombre')
       
                     localStorage.removeItem("val11");
@@ -908,6 +1055,89 @@ export class DashboardComponent implements OnInit {
                     localStorage.setItem("val44",result.Mensual.count.toString())
                     localStorage.setItem("val55",result.Semestral.count.toString())
                     localStorage.setItem("val66",result.Anual.count.toString())
+
+                    this.val11 = localStorage.getItem("val11");
+                    this.val22 = localStorage.getItem("val22");
+                    this.val33 = localStorage.getItem("val33");
+                    this.val44 = localStorage.getItem("val44");
+                    this.val55 = localStorage.getItem("val55");
+                    this.val66 = localStorage.getItem("val3");
+
+                    this.donuts.dataReceived(sinR);
+                  }catch{
+                    this.donuts.dataReceived("");
+                    localStorage.setItem("val11","0")
+                    localStorage.setItem("val22","0")
+                    localStorage.setItem("val33","0")
+                    localStorage.setItem("val44","0")
+                    localStorage.setItem("val55","0")
+                    localStorage.setItem("val66","0")
+
+                    this.val11 = localStorage.getItem("val11");
+                    this.val22 = localStorage.getItem("val22");
+                    this.val33 = localStorage.getItem("val33");
+                    this.val44 = localStorage.getItem("val44");
+                    this.val55 = localStorage.getItem("val55");
+                    this.val66 = localStorage.getItem("val3");
+                  }
+                }
+              )
+            }else{
+              if(this.textFilter2.length != 0 && this.textFilter3.length != 0){
+                this.comiteServices.getListComite(19,this.textFilter2,this.textFilter3,null).subscribe(
+                  (response) =>{
+                    sinR = response.data;
+                    
+                    try{
+                      var groupBy = function (miarray, prop) {
+                        return miarray.reduce(function(groups, item) {
+                            var val = item[prop];
+                            groups[val] = groups[val] || {nombre: item.nombre, count: 0};
+                            groups[val].count += item.count;
+                            return groups;
+                        }, {});
+                      }
+        
+                      result = groupBy(sinR,'nombre')
+        
+                      localStorage.removeItem("val11");
+                      localStorage.removeItem("val22");
+                      localStorage.removeItem("val33");
+                      localStorage.removeItem("val44");
+                      localStorage.removeItem("val55");
+                      localStorage.removeItem("val66");
+                      localStorage.setItem("val11",result.Semanal.count.toString())
+                      localStorage.setItem("val22",result.Quincenal.count.toString())
+                      localStorage.setItem("val33",result.Trimestral.count.toString())
+                      localStorage.setItem("val44",result.Mensual.count.toString())
+                      localStorage.setItem("val55",result.Semestral.count.toString())
+                      localStorage.setItem("val66",result.Anual.count.toString())
+
+                      this.val11 = localStorage.getItem("val11");
+                      this.val22 = localStorage.getItem("val22");
+                      this.val33 = localStorage.getItem("val33");
+                      this.val44 = localStorage.getItem("val44");
+                      this.val55 = localStorage.getItem("val55");
+                      this.val66 = localStorage.getItem("val3");
+      
+                      this.donuts.dataReceived(sinR);
+                    }catch{
+                      this.donuts.dataReceived("");
+                      localStorage.setItem("val11","0")
+                      localStorage.setItem("val22","0")
+                      localStorage.setItem("val33","0")
+                      localStorage.setItem("val44","0")
+                      localStorage.setItem("val55","0")
+                      localStorage.setItem("val66","0")
+
+                      this.val11 = localStorage.getItem("val11");
+                      this.val22 = localStorage.getItem("val22");
+                      this.val33 = localStorage.getItem("val33");
+                      this.val44 = localStorage.getItem("val44");
+                      this.val55 = localStorage.getItem("val55");
+                      this.val66 = localStorage.getItem("val3");
+                    }
+                    
                   }
                 )
               }
