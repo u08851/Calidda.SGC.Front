@@ -1,6 +1,6 @@
 <div class="p-card p-px-5 p-py-3 br-05">
-    <p-table [columns]="cols" [value]="products" [paginator]="true" [rows]="3"
-        [showCurrentPageReport]="true" [resizableColumns]="true">
+    <p-table [columns]="cols" [value]="products" [paginator]="true" [rows]="3" styleClass="style-table-direccion"
+        [showCurrentPageReport]="true" [resizableColumns]="true" currentPageReportTemplate="{first} - {last} of {totalRecords}">
         <ng-template pTemplate="colgroup" let-columns>
             <colgroup>
                 <col [style.width]="12 + '%'" />

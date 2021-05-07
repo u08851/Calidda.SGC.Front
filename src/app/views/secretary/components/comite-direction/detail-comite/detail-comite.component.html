@@ -4,7 +4,7 @@
     <!-- <label class="p-custom-text">Ingresa los datos requeridos</label> -->
   </div>
   <p-tabView styleClass="p-tab-style-2">
-    <p-tabPanel [selected]="true" header="Comité: COC21-2">
+    <p-tabPanel [selected]="true" header="Comité: COC21-2" [style.background]="'#ffffff'">
       <!-- INFORMACIÓN BÁSICA -->
       <div class="tab-content">
         <p class="tab-info-label">Información básica</p>
@@ -83,10 +83,8 @@
             <p>04:00pm</p>
           </div>
         </div>
-      </div>
 
       <!-- DATOS DEL COMITÉ -->
-      <div class="tab-content">
         <p class="tab-info-label">Datos del comité</p>
         <div class="p-grid">
           <!-- DESCRIPCIÓN DEL COMITÉ -->
@@ -105,99 +103,145 @@
             <p>Revisión de la comisión</p>
           </div>
         </div>
-      </div>
 
       <!-- PERIODICIDAD DE REUNIONES -->
-      <div class="tab-content">
-        <p class="tab-info-label">Periodicidad de reuniones</p>
-        <div class="p-grid">
-          <!-- FRECUENCIA -->
-          <div class="p-col-12 p-md-6 p-lg-3">
-            <p [style.color]="'var(--primary-color)'" class="p-mb-3">
-              Frecuencia
-            </p>
-            <div class="p-field-radiobutton">
-              <p-radioButton name="city" value="Semanal"></p-radioButton>
-              <label for="city1">Semanal</label>
+        <div class="p-fluid p-formgrid gray p-grid">
+          <div class="p-field p-col-12 p-ai-center">
+            <span class="tab-info-label p-mr-3">Periodicidad de reuniones</span>
+            <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+          </div>
+
+          <div class="p-field p-col-12">
+            <label>Frecuencia</label>
+            <div
+              class="p-d-flex p-jc-between flex-wrap p-p-3 border-1px-gray rounded-1"
+            >
+              <p-radioButton
+                value=""
+                label="Semanal"
+                [(ngModel)]="selectedValue"
+              ></p-radioButton>
+              <p-radioButton
+                value=""
+                label="Quincenal"
+                [(ngModel)]="selectedValue"
+              ></p-radioButton>
+              <p-radioButton
+                value=""
+                label="Trimestral"
+                [(ngModel)]="selectedValue"
+              ></p-radioButton>
+              <p-radioButton
+                value=""
+                label="Mensual"
+                [(ngModel)]="selectedValue"
+              ></p-radioButton>
+              <p-radioButton
+                value=""
+                label="Semestral"
+                [(ngModel)]="selectedValue"
+              ></p-radioButton>
+              <p-radioButton
+                value=""
+                label="Anual"
+                [(ngModel)]="selectedValue"
+              ></p-radioButton>
             </div>
           </div>
 
-          <!-- DÍAS -->
-          <div class="p-col-12 p-md-6 p-lg-3">
-            <p [style.color]="'var(--primary-color)'" class="p-mb-3">Días</p>
-            <p>Lunes</p>
+          <div class="p-field p-col-12">
+            <label>Días</label>
+            <div
+              class="p-d-flex p-jc-between flex-wrap p-p-3 border-1px-gray rounded-1"
+            >
+              <p-checkbox
+                label="Lunes"
+                value="val1"
+                [(ngModel)]="selectedValue"
+              ></p-checkbox>
+              <p-checkbox
+                label="Martes"
+                value="val1"
+                [(ngModel)]="selectedValue"
+              ></p-checkbox>
+              <p-checkbox
+                label="Miercoles"
+                value="val1"
+                [(ngModel)]="selectedValue"
+              ></p-checkbox>
+              <p-checkbox
+                label="Jueves"
+                value="val1"
+                [(ngModel)]="selectedValue"
+              ></p-checkbox>
+              <p-checkbox
+                label="Viernes"
+                value="val1"
+                [(ngModel)]="selectedValue"
+              ></p-checkbox>
+            </div>
           </div>
 
-          <!-- REPETICIONES -->
-          <div class="p-col-12 p-md-6 p-lg-3">
-            <p [style.color]="'var(--primary-color)'" class="p-mb-3">
-              Repeticiones
-            </p>
-            <p>10 repeticiones</p>
+          <div class="p-field p-col-12 p-md-3">
+            <label>Fecha de inicio</label>
+            <p-calendar
+              [(ngModel)]="date"
+              [showIcon]="true"
+              inputId="icon"
+            ></p-calendar>
           </div>
-          <div class="p-col-12 p-md-6 p-lg-3"></div>
-
-          <!-- FECHA DE INICIO -->
-          <div class="p-col-12 p-md-6 p-lg-3">
-            <p [style.color]="'var(--primary-color)'" class="p-mb-3">
-              Fecha de inicio
-            </p>
-            <p class="p-d-flex p-ai-center">
-              20/11/2020
-              <span class="material-icons p-ml-6"> calendar_today </span>
-            </p>
+          <div class="p-field p-col-12 p-md-2">
+            <label>Hora de inicio</label>
+            <input type="text" pInputText />
           </div>
-
-          <!-- HORA DE INICIO -->
-          <div class="p-col-12 p-md-6 p-lg-3">
-            <p [style.color]="'var(--primary-color)'" class="p-mb-3">
-              Hora de inicio
-            </p>
-            <p>10:00am</p>
+          <div class="p-field p-col-12 p-md-2">
+            <label>Hora de fin</label>
+            <input type="text" pInputText />
+          </div>
+          <div class="p-field p-col-12 p-md-2">
+            <label>Duración</label>
+            <input type="text" pInputText />
+          </div>
+          <div class="p-field p-col-12 p-md-3">
+            <label>Repeteciones</label>
+            <input type="text" pInputText />
           </div>
 
-          <!-- HORA DE FIN -->
-          <div class="p-col-12 p-md-6 p-lg-3">
-            <p [style.color]="'var(--primary-color)'" class="p-mb-3">
-              Hora de fin
-            </p>
-            <p>11:00am</p>
+          <p class="p-field p-col-12 p-custom-title">Alertas de reuniones</p>
+          <div class="p-field p-col-12 p-md-3">
+            <label>Días de anticipación</label>
+            <input type="text" pInputText />
           </div>
 
-          <!-- DURACIÓN -->
-          <div class="p-col-12 p-md-6 p-lg-3">
-            <p [style.color]="'var(--primary-color)'" class="p-mb-3">
-              Duración
-            </p>
-            <p>30 minutos</p>
+          <p class="p-field p-col-12 p-custom-title">Facultades</p>
+          <div class="p-field p-col-12 p-md-3">
+            <p-checkbox
+              label="Voto"
+              value="val1"
+              [(ngModel)]="selectedValue"
+            ></p-checkbox>
           </div>
         </div>
-      </div>
 
-      <!-- ALERTAS DE REUNIONES -->
-      <div class="tab-content">
-        <p class="tab-info-label">Alertas de reuniones</p>
-        <div class="p-grid">
-          <!-- -->
-          <div class="p-col-12">
-            <p>3 días de anticipación</p>
+      <!-- CUÓRUM -->
+        <p class="tab-info-label p-mb-3">Cuórum</p>
+        <div class="p-fluid p-formgrid gray p-grid">
+          <div class="p-field p-col-12 p-md-3">
+            <label>Ingresar cuórum mínimo</label>
+            <input type="text" pInputText />
           </div>
         </div>
-      </div>
 
-      <!-- FACULTADES -->
-      <div class="tab-content">
-        <p class="tab-info-label">Facultades</p>
-        <div class="p-grid">
-          <!-- -->
-          <div class="p-col-12">
-            <p>Voto</p>
+      <!-- TIEMPO MÁXIMO DE ESPERA -->
+        <p class="tab-info-label p-mb-3">Tiempo máximo de espera</p>
+        <div class="p-fluid p-formgrid gray p-grid">
+          <div class="p-field p-col-12 p-md-3">
+            <label>Ingresar tiempo máximo</label>
+            <input type="text" pInputText />
           </div>
         </div>
-      </div>
 
       <!-- MIEMBROS DEL COMITÉ -->
-      <div class="tab-content">
         <p class="tab-info-label">Miembros del comité</p>
         <div class="p-d-flex p-jc-between p-ai-center">
           <div class="btn-group p-mb-3">
@@ -230,9 +274,9 @@
 
         <!-- btn enviar -->
         <div class="p-grid">
-            <div class="p-col-12 p-text-center">
-                <button pButton pRipple type="button" label="Enviar"></button>
-            </div>
+          <div class="p-col-12 p-text-center">
+            <button pButton pRipple type="button" label="Enviar"></button>
+          </div>
         </div>
       </div>
     </p-tabPanel>
