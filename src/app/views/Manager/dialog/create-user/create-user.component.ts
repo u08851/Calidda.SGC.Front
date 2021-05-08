@@ -118,7 +118,9 @@ export class CreateUserComponent implements OnInit {
         
         this.userServices.addUser(odata).subscribe(
           (response: any) => {
-            this.displayModal = true;
+            if(response.valid){
+              this.displayModal = true;
+            }
           }
         )
       }else{

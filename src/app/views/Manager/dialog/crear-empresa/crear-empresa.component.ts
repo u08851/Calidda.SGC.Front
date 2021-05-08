@@ -109,8 +109,10 @@ export class CrearEmpresaComponent implements OnInit {
 
         this.empresaServices.addEmpresa(odata).subscribe(
           (response: any) => {
-            this.showSuccess(AppConstants.MessageModal.CREATE_SUCCESS);
-            this.ref.close(true);
+            if(response.valid){
+              this.showSuccess(AppConstants.MessageModal.CREATE_SUCCESS);
+              this.ref.close(true);
+            }
           }
         )
       }else{
@@ -124,8 +126,10 @@ export class CrearEmpresaComponent implements OnInit {
 
         this.empresaServices.updateEmpresa(odata).subscribe(
           (response: any) => {
-            this.showSuccess(AppConstants.MessageModal.EDIT_SUCCESS);
-            this.ref.close(true);
+            if(response.valid){
+              this.showSuccess(AppConstants.MessageModal.EDIT_SUCCESS);
+              this.ref.close(true);
+            }
           }
         )
       }
