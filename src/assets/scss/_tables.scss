@@ -1,172 +1,231 @@
-
 // style base table
 %style-table-base {
-  
-  table {
-      border-collapse: separate !important;
-      border-spacing: 0px 10px;
-      font-size: 13px;
-  }
-  
-  .p-datatable-thead > tr > th {
-    color: #00A1DE;
-  }
 
-  .p-datatable-tbody > tr {
-    background: #F6F7F9;
-  }
-
-  .p-datatable-tbody > tr > td { 
-    padding: 0.5rem 1rem;
-    // padding: 0.2rem 1rem;
-    border: 1px solid #F6F7F9;
-    @media screen and(min-width: 768){
-      height: 50px;
+    table {
+        border-collapse: separate !important;
+        border-spacing: 0px 10px;
+        font-size: 13px;
     }
-
-    .pi-ellipsis-v::before {
-      font-size: 20px;
+    
+    .p-datatable-thead > tr > th {
+      color: #00A1DE;
     }
-  }
   
-  .p-datatable-tbody > tr td:first-child {
-    border-bottom-left-radius: 0.5rem;
-    border-top-left-radius: 0.5rem;
-  }
-
-  .p-datatable-tbody > tr td:last-child {
-    border-bottom-right-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-  }
-
-}
-
-//paginator
-%style-paginator {
-
-  .p-paginator {
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    border: 0;
-  }
-  .p-paginator .p-paginator-first {
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    display: none;
-  }
-  .p-paginator .p-paginator-last {
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    display: none;
-  }
-  .p-paginator .p-paginator-first,
-  .p-paginator .p-paginator-prev,
-  .p-paginator .p-paginator-next,
-  .p-paginator .p-paginator-last {
-    min-width: 1rem;
-  }
-  .p-paginator .p-paginator-pages .p-paginator-page {
-    display: none;
-  }
-}
-
-//table striped
-%style-stripeed {
-  tbody > tr:nth-child(odd) {
-    background: #f4f4f4;
-  }
-  table > tbody > tr {
-    .p-button-text {
-      color: #3c3c3c;
+    .p-datatable-tbody > tr {
+      background: #F6F7F9;
     }
-  }
-}
-
-.style-table-comite {
-  @extend %style-table-base;
-
-  .p-datatable-tbody > tr > td {
-    padding: 0.1rem 1rem;
-  }
-  .p-datatable-tbody > tr > td:first-child {
-    border-left: 0.5em solid;
-  } 
-
-  @extend %style-paginator; 
-}
-
-// table Mantenimiento - direccion del comite
-.style-table-direccion {
-
-  @extend %style-table-base;
-
-  .p-datatable-tbody > tr > td {
-    padding: 0.5rem 1rem;
-    border: none;
-  }
-  .p-datatable-tbody > tr td:last-child {
-    text-align: right;
-  }
-
-  @extend %style-paginator;
   
-}
-
-.style-table {
-  @extend %style-table-base;
-  @extend %style-paginator;
-}
-//panel de opcioones
-.style-panel.p-menu {
-  top: 46px !important;
-  left: -139px !important;
-}
-
-::ng-deep.icon-table-size {
-  .pi {
-    font-size: 20px !important;
-  }
-}
-
-// :host ::ng-deep {    
-    .style-table .p-datatable-tbody > tr > td .p-column-title {
-        display: none;
-    }
-// }
-
-@media screen and (max-width: 40rem) {
-  .p-datatable {
-    &.style-table {
-      colgroup {
-        display: none;
+    .p-datatable-tbody > tr > td { 
+      padding: 0.5rem 1rem;
+      // padding: 0.2rem 1rem;
+      border: 1px solid #F6F7F9;
+      @media screen and(min-width: 768){
+        height: 50px;
       }
-      .p-datatable-thead > tr > th,
-      .p-datatable-tfoot > tr > td {
-        display: none !important;
+  
+      .pi-ellipsis-v::before {
+        font-size: 20px;
       }
+    }
+    
+    .p-datatable-tbody > tr td:first-child {
+      border-bottom-left-radius: 0.5rem;
+      border-top-left-radius: 0.5rem;
+    }
+  
+    .p-datatable-tbody > tr td:last-child {
+      border-bottom-right-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+    }
+  
+  }
+  
+  //paginator
+  %style-paginator {
+  
+    .p-paginator {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      border: 0;
+    }
+    .p-paginator .p-paginator-first {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      display: none;
+    }
+    .p-paginator .p-paginator-last {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      display: none;
+    }
+    .p-paginator .p-paginator-first,
+    .p-paginator .p-paginator-prev,
+    .p-paginator .p-paginator-next,
+    .p-paginator .p-paginator-last {
+      min-width: 1rem;
+    }
+    .p-paginator .p-paginator-pages .p-paginator-page {
+      display: none;
+    }
+  }
+  
+  //table striped
+  %style-stripeed {
+    tbody > tr:nth-child(odd) {
+        background: #f4f4f4;
+    }
+    table > tbody > tr {
+        .p-button-text {
+            color: #3c3c3c;
+        }
+    }
+  }
+  
+  .style-table-comite {
+    @extend %style-table-base;
+  
+    .p-datatable-tbody > tr > td {
+      padding: 0.1rem 1rem;
+    }
+    .p-datatable-tbody > tr > td:first-child {
+      border-left: 0.5em solid;
+    } 
+  
+    @extend %style-paginator; 
+  }
+  
+  // table Mantenimiento - direccion del comite
+  .style-table-direccion {
+  
+    @extend %style-table-base;
+  
+    .p-datatable-tbody > tr > td {
+      padding: 0.5rem 1rem;
+      border: none;
+    }
+    .p-datatable-tbody > tr td:last-child {
+      text-align: right;
+    }
+  
+    @extend %style-paginator;
+    
+  }
+  
+  .style-table {
+    @extend %style-table-base;
+    @extend %style-paginator;
+  }
 
+
+  //----------------------------------------------
+
+  .style-table-1 {
+    table {
+        font-size: 13px;
+    }
+    .p-datatable-thead > tr > th {
+        color: #00A1DE;
+      }
+    .p-datatable-tbody > tr {
+        background: #85bcc357;
+    }
+    .p-datatable-tbody {
+        background: #c3ced759;
+    }
+    .p-datatable-tbody > tr.rowexpan {
+        background: transparent;
+    }
+    
+    .p-datatable-tbody > tr > td {
+        padding: 0.5rem 1rem;
+    }
+    .p-datatable-tbody > tr td:first-child {
+        border-bottom-left-radius: 0.5rem;
+        border-top-left-radius: 0.5rem;
+      }
+    
+      .p-datatable-tbody > tr td:last-child {
+        border-bottom-right-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+      }
+      .p-button.p-button-icon-only.p-button-rounded {
+        width: 30px;
+        height: 30px
+  }
+  }
+
+  .style-table-2 {
+    .p-datatable-thead > tr > th {
+        background: transparent;
+        color: black;
+    }
+    .p-datatable-tbody > tr.rowexpan {
+        background: transparent;
+    }
+  }
+  .style-table-3 {
+      @extend %style-table-base;
+      .p-datatable-tbody > tr {
+          background: #ffffff;
+      }
+   
       .p-datatable-tbody > tr > td {
-        text-align: left;
-        display: block;
-        width: 100%;
-        float: left;
-        clear: left;
-        border: 0 none;
-
-        .p-column-title {
-          padding: .4rem;
-          min-width: 30%;
-          display: block;
-          margin: -.4em 1em -.4em -.4rem;
-          font-weight: bold;
+        padding: 0.3rem 1rem;
+      }
+      @extend %style-paginator;
+  }
+  //panel de opcioones
+  .style-panel.p-menu {
+    top: 46px !important;
+    left: -139px !important;
+  }
+  
+  ::ng-deep.icon-table-size {
+    .pi {
+      font-size: 20px !important;
+    }
+  }
+  
+  // :host ::ng-deep {    
+      .style-table .p-datatable-tbody > tr > td .p-column-title {
+          display: none;
+      }
+  // }
+  
+  @media screen and (max-width: 40rem) {
+    .p-datatable {
+      &.style-table {
+        colgroup {
+          display: none;
         }
-
-        &:last-child {
-          border-bottom: 1px solid var(--surface-d);
+        .p-datatable-thead > tr > th,
+        .p-datatable-tfoot > tr > td {
+          display: none !important;
+        }
+  
+        .p-datatable-tbody > tr > td {
+          text-align: left;
+          display: block;
+          width: 100%;
+          float: left;
+          clear: left;
+          border: 0 none;
+  
+          .p-column-title {
+            padding: .4rem;
+            min-width: 30%;
+            display: block;
+            margin: -.4em 1em -.4em -.4rem;
+            font-weight: bold;
+          }
+  
+          &:last-child {
+            border-bottom: 1px solid var(--surface-d);
+          }
         }
       }
     }
   }
-}
+  

@@ -1,6 +1,6 @@
 <div class="p-card p-px-5 p-py-3 br-05">
     <p-table [columns]="cols" [value]="products" [paginator]="true" [rows]="3"
-        [showCurrentPageReport]="true" [resizableColumns]="true">
+        [showCurrentPageReport]="true" [resizableColumns]="true" styleClass="style-table">
         <ng-template pTemplate="colgroup" let-columns>
             <colgroup>
                 <col [style.width]="12 + '%'" />
@@ -60,17 +60,3 @@
         </ng-template>
     </p-table>
 </div>
-
-
-<p-tree [value]="nodes">
-    <ng-template let-node pTemplate="url">
-    
-        <a [href]="node.data">{{node.label}}</a>
-    </ng-template>
-    <ng-template let-node pTemplate="default">
-        <button pButton pRipple type="button" icon="pi icon-edit"
-        class="p-button-rounded p-button-info p-button-text icon-size" styleClass="icon-size">
-    </button>
-        <b>{{node.label}}</b>
-    </ng-template>
-</p-tree>

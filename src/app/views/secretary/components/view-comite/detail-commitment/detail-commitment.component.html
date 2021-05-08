@@ -1,0 +1,117 @@
+<div class="p-card p-p-4 br-05">
+    <p-table [value]="products" dataKey="id"  expandableRows="true" styleClass="style-table-1">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Acta </th>
+                <th>F. de creación</th>
+                <th>H. de creación</th>
+                <th>Estado</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product let-expanded="expanded">
+            <tr>
+                <td>{{product.acta}}</td>
+                <td>{{product.dataCreation}}</td>
+                <td>{{product.horaCreation}}</td>
+                <td>
+                    <i  class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--orange)'"></i>
+                    {{product.status}}
+                </td>
+                <td [style.text-align]="'end'">
+                    <button type="button" pButton pRipple [pRowToggler]="product" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-circle-up' : 'pi pi-chevron-circle-down'"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-product>
+            <tr class="rowexpan">
+                <td colspan="5" class="p-p-0">
+                    <div>
+                        <p-table [value]="product.orders" dataKey="id" styleClass="style-table" expandableRows="false" styleClass="style-table-2">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th [style.width]="'30%'">Compromisos</th>
+                                    <th>Anterior</th>
+                                    <th>Actual</th>
+                                    <th>Fecha Cierre</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-order let-expanded="expanded">
+                                <tr [style.background]="order.orders? '#8780803d':'transparent'" >
+                                    <td>
+                                        <div class="p-d-flex p-ai-center">
+                                            <button *ngIf="order.orders" type="button" pButton pRipple [pRowToggler]="order" class="p-button-text p-button-rounded p-button-plain p-mr-2" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                                            <!-- <i class="pi p-mr-2 cPointer" pRipple [pRowToggler]="order"  [ngClass]="{'pi-chevron-down': expanded, 'pi-chevron-right': !expanded}"></i> -->
+
+                                            <span>{{order.compromiso}}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p-tag styleClass="p-mr-2" value="45%" [rounded]="true"></p-tag>
+                                    </td>
+                                    <td>
+                                        <p-tag styleClass="p-mr-2" value="45%" severity="success" [rounded]="true"></p-tag>
+                                    </td>
+                                    <td>
+                                        {{order.fechaCierre}}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="rowexpansion" let-order>
+                                <tr class="rowexpan" *ngIf="order.orders">
+                                    <td colspan="4">
+                                        <!-- <ng-container *ngTemplateOutlet="nameTable; context: order"></ng-container> -->
+    
+                                        <div class="">
+                                            <p-table [value]="order.orders" styleClass="style-table-3">
+                                                <ng-template pTemplate="header">
+                                                    <tr>
+                                                        <th> Subtareas </th>
+                                                        <th> Responsable </th>
+                                                        <th> avance </th>
+                                                        <th></th>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-orderr>
+                                                    <tr>
+                                                        <td>{{orderr.subTarea}}</td>
+                                                        <td>
+                                                            <div class="p-d-flex p-ai-center">
+                                                                <p-avatar image="assets/images/img-perfil-test.jpg" styleClass="p-mr-2" shape="circle">
+                                                                </p-avatar>
+                                                                {{orderr.daresponsable}}
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <p-tag styleClass="p-mr-2" [value]="orderr.avance" [rounded]="true"></p-tag>
+                                                        </td>
+                                                        <td [style.text-align]="'end'">
+                                                            <span class="material-icons-outlined info">
+                                                                watch_later
+                                                                </span>
+                                                        </td>
+                                                        <!-- <td><p-button type="button" icon="pi pi-search"></p-button></td> -->
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="emptymessage">
+                                                    <tr>
+                                                        <td colspan="6">There are no order for this product yet.</td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="emptymessage">
+                                <tr>
+                                    <td colspan="6">There are no order for this product yet.</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>    
+</div>

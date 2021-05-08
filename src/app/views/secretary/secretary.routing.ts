@@ -8,6 +8,7 @@ import { CompromisosTableComponent } from './components/tables/compromisos-table
 import { ComiteDirectionComponent } from './components/comite-direction/comite-direction.component';
 import { ViewComiteComponent } from './components/view-comite/view-comite.component';
 import { DetailComiteComponent } from './components/comite-direction/detail-comite/detail-comite.component';
+import { DetailCommitmentComponent } from './components/view-comite/detail-commitment/detail-commitment.component';
 
 export const ManagerRoutes: Routes = [
     {
@@ -36,6 +37,10 @@ export const ManagerRoutes: Routes = [
             {
                 path: 'view-comite',
                 component: ViewComiteComponent
+            },
+            {
+                path: 'detail-compromiso',
+                component: DetailCommitmentComponent
             },
             {
                 path: 'reuniones-table',

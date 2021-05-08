@@ -38,6 +38,7 @@ import { ComiteMemberTableComponent } from './components/comite-direction/comite
 import { AssistantSecretaryComponent } from './dialog/assistant-secretary/assistant-secretary.component';
 import { StateDocumentComponent } from './dialog/state-document/state-document.component';
 import { SendDocumentComponent } from './dialog/send-document/send-document.component';
+import { DetailCommitmentComponent } from './components/view-comite/detail-commitment/detail-commitment.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { SendDocumentComponent } from './dialog/send-document/send-document.comp
   ComiteMemberTableComponent,
   AssistantSecretaryComponent,
   StateDocumentComponent,
-  SendDocumentComponent
+  SendDocumentComponent,
+  DetailCommitmentComponent
   ],
   imports: [
     CommonModule,
