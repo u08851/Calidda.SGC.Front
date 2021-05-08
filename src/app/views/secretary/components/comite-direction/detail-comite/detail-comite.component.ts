@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailComiteComponent implements OnInit {
 
+  autoResize:boolean = true;
+  checked: boolean = true;
+  selectedValue: string;
+  date: Date;
+  
   constructor() { }
 
   ngOnInit(): void {
