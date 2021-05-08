@@ -157,7 +157,7 @@ export class DashboardComponent implements OnInit {
       var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
       var result: any;
   
-      if (evento === "Enter" || evento === "click" || evento === undefined) {
+      if (evento === "Enter" || evento === "click") {
         if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.textFilter0.length != 0){
           this.comiteServices.getListComite(4,null,null,this.textFilter0).subscribe(
             (response) =>{
@@ -533,7 +533,7 @@ export class DashboardComponent implements OnInit {
       var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
       var result: any;
   
-      if (evento === "Enter" || evento === "click" || evento === undefined) {
+      if (evento === "Enter" || evento === "click") {
         if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.selectedCountry == null){
           this.comiteServices.getListComite(8,null,null,null).subscribe(
             (response) =>{
@@ -910,7 +910,7 @@ export class DashboardComponent implements OnInit {
       let sinR = [];
       var result: any;
       
-      if (evento === "Enter" || evento === "click" || evento === undefined) {
+      if (evento === "Enter" || evento === "click") {
         if(this.textFilter2.length == 0 && this.textFilter3.length == 0){
           this.comiteServices.getListComite(16,null,null,null).subscribe(
             (response) =>{
@@ -1165,8 +1165,11 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-  getListModo(id:number){
+  onTabClicked(event: any) {
+    this.getListModo(event.index);
+ }
 
+  getListModo(id:number){
     /*this.date3 = new Date("");
     this.date4 = new Date("");*/
     this.textFilter0 = "";
@@ -1176,6 +1179,154 @@ export class DashboardComponent implements OnInit {
     var temp = {};
     var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
     var result: any;
+
+    if(id == 0){
+      this.comiteServices.getListComite(0,null,null,null).subscribe(
+        (response) =>{
+          this.message = "Reporte de los 6 últimos meses"
+          sinR = response.data;
+          
+          try{
+            sinR.forEach(function (a) {
+              temp[a.code] = temp[a.code] || { category: a.code };
+              temp[a.code][groups[a.nombre]] = a.count;
+            });
+            result = Object.keys(temp).map(function (k) { return temp[k]; });
+              
+            let val1 = 0;
+            let val2 = 0;
+            let val3 = 0;
+
+            for(let g = 0; g < result.length; g++){
+              val1 += result[g].value1
+              val2 += result[g].value2
+              val3 += result[g].value3
+            }
+
+            localStorage.removeItem("val1");
+            localStorage.removeItem("val2");
+            localStorage.removeItem("val3");
+            localStorage.setItem("val1",val1.toString())
+            localStorage.setItem("val2",val2.toString())
+            localStorage.setItem("val3",val3.toString())
+
+            this.val1 = localStorage.getItem("val1");
+            this.val2 = localStorage.getItem("val2");
+            this.val3 = localStorage.getItem("val3");
+            this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+            
+            this.barTodos.dataReceived(sinR);
+          }catch{
+            this.barTodos.dataReceived("");
+          }
+        }
+      )
+    }
+    if(id == 1){
+      this.comiteServices.getListComite(8,null,null,null).subscribe(
+        (response) =>{
+          this.message = "Reporte de los 6 últimos meses"
+          sinR = response.data;
+          
+          try{
+            sinR.forEach(function (a) {
+              temp[a.code] = temp[a.code] || { category: a.code };
+              temp[a.code][groups[a.nombre]] = a.count;
+            });
+            result = Object.keys(temp).map(function (k) { return temp[k]; });
+              
+            let val1 = 0;
+            let val2 = 0;
+            let val3 = 0;
+
+            for(let g = 0; g < result.length; g++){
+              val1 += result[g].value1
+              val2 += result[g].value2
+              val3 += result[g].value3
+            }
+
+            localStorage.removeItem("val1");
+            localStorage.removeItem("val2");
+            localStorage.removeItem("val3");
+            localStorage.setItem("val1",val1.toString())
+            localStorage.setItem("val2",val2.toString())
+            localStorage.setItem("val3",val3.toString())
+
+            this.val1 = localStorage.getItem("val1");
+            this.val2 = localStorage.getItem("val2");
+            this.val3 = localStorage.getItem("val3");
+            this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+            this.barPais.dataReceived(sinR);
+          }catch{
+            this.barPais.dataReceived("");
+          }
+        }
+      )
+    }
+    if(id == 2){
+
+    }
+    if(id == 3){
+
+    }
+    if(id == 4){
+      this.comiteServices.getListComite(16,null,null,null).subscribe(
+        (response) =>{
+          sinR = response.data;
+
+          try{
+            var groupBy = function (miarray, prop) {
+              return miarray.reduce(function(groups, item) {
+                  var val = item[prop];
+                  groups[val] = groups[val] || {nombre: item.nombre, count: 0};
+                  groups[val].count += item.count;
+                  return groups;
+              }, {});
+            }
+
+            result = groupBy(sinR,'nombre')
+
+            localStorage.removeItem("val11");
+            localStorage.removeItem("val22");
+            localStorage.removeItem("val33");
+            localStorage.removeItem("val44");
+            localStorage.removeItem("val55");
+            localStorage.removeItem("val66");
+            localStorage.setItem("val11",result.Semanal.count.toString())
+            localStorage.setItem("val22",result.Quincenal.count.toString())
+            localStorage.setItem("val33",result.Trimestral.count.toString())
+            localStorage.setItem("val44",result.Mensual.count.toString())
+            localStorage.setItem("val55",result.Semestral.count.toString())
+            localStorage.setItem("val66",result.Anual.count.toString())
+
+            this.val11 = localStorage.getItem("val11");
+            this.val22 = localStorage.getItem("val22");
+            this.val33 = localStorage.getItem("val33");
+            this.val44 = localStorage.getItem("val44");
+            this.val55 = localStorage.getItem("val55");
+            this.val66 = localStorage.getItem("val3");
+
+            this.donuts.dataReceived(sinR);
+          }catch{
+            this.donuts.dataReceived("");
+            localStorage.setItem("val11","0")
+            localStorage.setItem("val22","0")
+            localStorage.setItem("val33","0")
+            localStorage.setItem("val44","0")
+            localStorage.setItem("val55","0")
+            localStorage.setItem("val66","0")
+
+            this.val11 = localStorage.getItem("val11");
+            this.val22 = localStorage.getItem("val22");
+            this.val33 = localStorage.getItem("val33");
+            this.val44 = localStorage.getItem("val44");
+            this.val55 = localStorage.getItem("val55");
+            this.val66 = localStorage.getItem("val3");
+          }
+         
+        }
+      )
+    }
   }
 
 }
