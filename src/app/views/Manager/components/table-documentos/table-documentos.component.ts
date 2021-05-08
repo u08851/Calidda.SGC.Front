@@ -50,14 +50,11 @@ export class TableDocumentosComponent implements OnInit {
     public messageService:MessageService,
     private datePipe: DatePipe,
   ) {
-    this.tipo = [
-      { name: 'Miembro', code: 6 },
-      { name: 'Invitados', code: 7 }
-    ];
   }
 
   ngOnInit(): void {
     this.crearFormulario();
+    this.getListMembresSelect();
     this.getListConfidencialDocumento();
 
     this.es = {
@@ -377,6 +374,14 @@ export class TableDocumentosComponent implements OnInit {
         }
       }      
     }
+  }
+
+  getListMembresSelect(){
+    this.confidencialDocumentoServices.getListMembers().subscribe(
+      (res:any) =>{
+        this.tipo = res.data
+      }
+    )
   }
 
 }
