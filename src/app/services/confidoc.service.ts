@@ -32,7 +32,7 @@ export class ConfidencialDocumentoServices {
   }
 
   getListMembers(){
-    return this._http.get<any>(`${this.BASE_URL}/listMembers}`);
+    return this._http.get<any>(`${this.BASE_URL}/listMembers`);
   }
 
 }
