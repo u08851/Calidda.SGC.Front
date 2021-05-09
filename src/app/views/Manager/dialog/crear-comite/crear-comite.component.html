@@ -3,6 +3,7 @@
         <p class="title">Creación de Nuevo Comité</p>
         <label class="p-custom-text">Ingresa los datos requeridos</label>
     </div>
+
     <p-tabView styleClass="p-tab-style-2">
         <p-tabPanel>
             <ng-template pTemplate="header">
@@ -12,15 +13,23 @@
 
             </div>
         </p-tabPanel>
+
+
         <p-tabPanel [selected]="true" header="Comité: COC21-2">
             <div class="tab-content">
-                <form>
+                <form [formGroup]="comiteForm" autocomplete="offs">
                     <div class="p-grid">
                         <!-- Nombre del comité -->
                         <div class="p-col-12 p-md-6 p-lg-4">
                             <div class="p-field">
-                                <label>Nombre del comité</label>
-                                <input pInputText />
+                                <label for="nombre" [ngClass]="{ 'is-invalid-text': submitted && g.nombre.errors }">Nombre del comité</label>
+                                <input formControlName="nombre" [ngClass]="{ 'is-invalid-input': submitted && g.nombre.errors }" oninput="this.value=this.value.trim()==''?'':this.value" pInputText />
+                                <div *ngIf="submitted && g.nombre.errors != null">
+                                    <span class="p-error" *ngIf="g.nombre.errors.minlength">El nombre debe contener al menos un carácter.<br></span>
+                                    <span class="p-error" *ngIf="g.nombre.errors.required">El nombre es requerido.<br></span>
+                                    <span class="p-error" *ngIf="g.nombre.errors.maxlength">El nombre debe contener maximo 70 carácteres.<br></span>
+                                </div>
+
                             </div>
                         </div>
 
@@ -28,9 +37,7 @@
                         <div class="p-col-12 p-md-6 p-lg-4">
                             <div class="p-field">
                                 <label>Empresa del comité</label>
-                                <p-dropdown [options]="empresa" optionLabel="name" [showClear]="true"
-                                    styleClass="style-dropdown">
-                                </p-dropdown>
+                                <p-dropdown [options]="listaEmpresas" (onChange)="changeEmpresa($event)" formControlName="empresaId" optionLabel="nombre" placeholder="Seleccione..."></p-dropdown>
                             </div>
                         </div>
 
@@ -38,8 +45,7 @@
                         <div class="p-col-12 p-md-6 p-lg-4">
                             <div class="p-field">
                                 <label>País</label>
-                                <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" name="pais"
-                                    [showClear]="false" placeholder="" dropdownIcon="">
+                                <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" name="pais" [showClear]="false" placeholder="" dropdownIcon="">
                                     <ng-template pTemplate="selectedItem">
                                         <div class="p-d-flex p-ai-center">
                                             <img style="width: 20px;" src="assets/images/flag/PE.svg" />
@@ -50,8 +56,7 @@
                                     <ng-template let-country pTemplate="item">
                                         <div class="p-d-flex p-ai-center">
                                             <img style="width: 20px;" src="assets/images/flag/PE.svg" />
-                                            <span class="p-ml-2"
-                                                style="line-height: 0; margin-bottom: 5px;">{{country.name}}</span>
+                                            <span class="p-ml-2" style="line-height: 0; margin-bottom: 5px;">{{country.name}}</span>
                                         </div>
                                     </ng-template>
                                 </p-dropdown>
@@ -63,7 +68,7 @@
                             <div class="p-field">
                                 <label>Responsable del comité</label>
                                 <!-- <input pInputText /> -->
-                                <p-autoComplete name="rcomite" [(ngModel)]="selectedResponsableComite" [suggestions]="filteredResponsableComite" (completeMethod)="filtered($event)" field="name" [minLength]="1"></p-autoComplete>
+                                <p-autoComplete [(ngModel)]="usuarioSelected" (onSelect)="onSelectUsuario($event)" [suggestions]="filteredUsuarios" (completeMethod)="filtered($event)" field="label" [minLength]="1" emptyMessage="No se han encontrado resultados" placeholder="Ingrese al menos 1 caracter..."></p-autoComplete>
                             </div>
                         </div>
 
@@ -71,7 +76,7 @@
                         <div class="p-col-12 p-md-6 p-lg-4">
                             <div class="p-field">
                                 <label>Correo electrónico</label>
-                                <input pInputText />
+                                <input pInputText formControlName="correo" />
                             </div>
                         </div>
 
@@ -79,7 +84,7 @@
                         <div class="p-col-12 p-md-6 p-lg-4">
                             <div class="p-field">
                                 <label>Dirección dueña del comité</label>
-                                <p-dropdown [options]="direccion" [(ngModel)]="selectedDireccion" name="direcion" optionLabel="name"></p-dropdown>
+                                <p-dropdown [options]="listaDirecciones" formControlName="direccionId" placeholder="Seleccione..." optionLabel="nombre"></p-dropdown>
                             </div>
                         </div>
 
@@ -109,7 +114,7 @@
 
                         <!-- Btn Crear -->
                         <div class="p-col-12 p-text-center">
-                            <p-button label="Crear" (click)="showModalDialog()"></p-button>
+                            <p-button label="Crear" (click)="send()"></p-button>
                         </div>
                     </div>
                 </form>
@@ -119,8 +124,7 @@
 </div>
 
 <!-- Dialog Crear content -->
-<p-dialog [(visible)]="displayModal" [modal]="true" [style]="{ width: '400px' }" [baseZIndex]="10000"
-    [draggable]="false" [resizable]="false" [closable]="false" styleClass="style-dialog-confirmation">
+<p-dialog [(visible)]="displayModal" [modal]="true" [style]="{ width: '400px' }" [baseZIndex]="10000" [draggable]="false" [resizable]="false" [closable]="false" styleClass="style-dialog-confirmation">
     <div class="dialog-content">
         <i class="material-icons"> check_circle_outline </i>
         <h3>Confirmación</h3>
