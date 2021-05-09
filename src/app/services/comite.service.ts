@@ -90,19 +90,19 @@ export class ComiteServices {
   }
 
   getListComiteActivePais(term:string,term1:string,term2:string,page:number,size:number){
-    return this._http.get<ComiteActiveModel>(`${this.BASE_URL1}/SubInicio?termN=${term}&termD=${term1}&termH=${term2}&page=${page}&size=${size}`);
+    return this._http.get<ComiteActiveModel>(`${this.BASE_URL1}/SubInicioPais?termN=${term}&termD=${term1}&termH=${term2}&page=${page}&size=${size}`);
   }
 
   getListComiteActiveEmpresa(term:string,term1:string,term2:string,page:number,size:number){
-    return this._http.get<ComiteActiveModel>(`${this.BASE_URL1}/SubInicio?termN=${term}&termD=${term1}&termH=${term2}&page=${page}&size=${size}`);
+    return this._http.get<ComiteActiveModel>(`${this.BASE_URL1}/SubInicioEmpresa?termN=${term}&termD=${term1}&termH=${term2}&page=${page}&size=${size}`);
   }
 
   getListComiteActiveSecretaria(term:string,term1:string,term2:string,page:number,size:number){
-    return this._http.get<ComiteActiveModel>(`${this.BASE_URL1}/SubInicio?termN=${term}&termD=${term1}&termH=${term2}&page=${page}&size=${size}`);
+    return this._http.get<ComiteActiveModel>(`${this.BASE_URL1}/SubInicioSecreataria?termN=${term}&termD=${term1}&termH=${term2}&page=${page}&size=${size}`);
   }
 
   getListComiteActiveFrecuencia(term:string,term1:string,term2:string,page:number,size:number){
-    return this._http.get<ComiteActiveModel>(`${this.BASE_URL1}/SubInicio?termN=${term}&termD=${term1}&termH=${term2}&page=${page}&size=${size}`);
+    return this._http.get<ComiteActiveModel>(`${this.BASE_URL1}/SubInicioFrecuencia?termN=${term}&termD=${term1}&termH=${term2}&page=${page}&size=${size}`);
   }
 
 }
