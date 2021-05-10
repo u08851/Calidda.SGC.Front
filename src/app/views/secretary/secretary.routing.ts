@@ -39,7 +39,7 @@ export const ManagerRoutes: Routes = [
                 component: ViewComiteComponent
             },
             {
-                path: 'detail-compromiso',
+                path: 'detail-compromiso/:index',
                 component: DetailCommitmentComponent
             },
             {

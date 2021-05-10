@@ -28,7 +28,7 @@
                     </div>
                     <div class="p-card-footer">
                         <div class="p-d-flex p-jc-center">
-                            <button class="p-mb-3" pButton label="Alertar al responsable"></button>
+                            <button (click)="showAlertResponsable()" class="p-mb-3" pButton label="Alertar al responsable"></button>
                         </div>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                     <div class="p-card-footer">
                         <div class="p-d-flex p-jc-center">
                             <button 
-                                routerLink="/secretary/detail-compromiso" 
+                                [routerLink]="['/secretary/detail-compromiso', 1]" 
                                 class="p-mb-3" icon="pi pi-eye" pButton label="Ver Detalles">
                             </button>
                         </div>
@@ -118,7 +118,10 @@
                     </div>
                     <div class="p-card-footer">
                         <div class="p-d-flex p-jc-center">
-                            <button class="p-mb-3" icon="pi pi-eye" pButton label="Ver Detalles"></button>
+                            <button 
+                            [routerLink]="['/secretary/detail-compromiso', 2]" 
+                                class="p-mb-3" icon="pi pi-eye" pButton label="Ver Detalles">
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -155,3 +158,21 @@
     
     </div>
 </p-panel>
+
+
+
+<!-- Dialog alertar a responsable-->
+<p-dialog [(visible)]="displayModal" [modal]="true" [style]="{ width: '400px' }" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false" [closable]="false" styleClass="style-dialog-confirmation">
+    <div class="dialog-content">
+        
+        <i class="pi pi-check-circle"></i>
+        <h3>Confirmación</h3>
+        <p class="p-m-0">
+            La alerta fue enviada correctamente
+        </p>
+    </div>
+    <ng-template pTemplate="footer">
+        <button (click)="displayModal = false"  pButton  label="Aceptar"></button>
+    </ng-template>
+</p-dialog>

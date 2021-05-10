@@ -39,6 +39,7 @@ import { AssistantSecretaryComponent } from './dialog/assistant-secretary/assist
 import { StateDocumentComponent } from './dialog/state-document/state-document.component';
 import { SendDocumentComponent } from './dialog/send-document/send-document.component';
 import { DetailCommitmentComponent } from './components/view-comite/detail-commitment/detail-commitment.component';
+import { DetailCommitmentTableComponent } from './components/view-comite/detail-commitment-table/detail-commitment-table.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { DetailCommitmentComponent } from './components/view-comite/detail-commi
   AssistantSecretaryComponent,
   StateDocumentComponent,
   SendDocumentComponent,
-  DetailCommitmentComponent
+  DetailCommitmentComponent,
+  DetailCommitmentTableComponent
   ],
   imports: [
     CommonModule,
