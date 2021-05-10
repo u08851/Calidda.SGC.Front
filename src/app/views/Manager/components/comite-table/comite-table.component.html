@@ -60,3 +60,22 @@
         </ng-template>
     </p-table>
 </div>
+
+
+
+<!-- Dialog confirmacón dar de baja-->
+<p-dialog [(visible)]="displayModal" [modal]="true" [style]="{ width: '400px' }" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false" [closable]="false" styleClass="style-dialog-confirmation">
+    <div class="dialog-content">
+        
+        <i class="pi pi-thumbs-down info"></i>
+        <h3>Confirmación</h3>
+        <p class="p-m-0">
+            ¿Esta seguro de realizar esta operación?
+        </p>
+    </div>
+    <ng-template pTemplate="footer">
+        <button (click)="displayModal = false"  pButton  label="Cancelar"></button>
+        <button class="stylebtn"  (click)="displayModal = false" pButton  label="Continuar"></button>
+    </ng-template>
+</p-dialog>

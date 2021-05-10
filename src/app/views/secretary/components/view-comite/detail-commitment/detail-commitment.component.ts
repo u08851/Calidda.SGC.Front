@@ -9,44 +9,21 @@ import { Component, OnInit } from '@angular/core';
 export class DetailCommitmentComponent implements OnInit {
   products: any[];
   status: string[] = ['OUTOFSTOCK', 'INSTOCK', 'LOWSTOCK'];
-  productNames: string[] = [
-    "Bamboo Watch",
-    "Black Watch",
-    "Blue Band",
-    "Blue T-Shirt",
-    "Bracelet",
-    "Brown Purse",
-    "Chakra Bracelet",
-    "Galaxy Earrings",
-    "Game Controller",
-    "Gaming Set",
-    "Gold Phone Case",
-    "Green Earbuds",
-    "Green T-Shirt",
-    "Grey T-Shirt",
-    "Headphones",
-    "Light Green T-Shirt",
-    "Lime Band",
-    "Mini Speakers",
-    "Painted Phone Case",
-    "Pink Band",
-    "Pink Purse",
-    "Purple Band",
-    "Purple Gemstone Necklace",
-    "Purple T-Shirt",
-    "Shoes",
-    "Sneakers",
-    "Teal T-Shirt",
-    "Yellow Earbuds",
-    "Yoga Mat",
-    "Yoga Set",
-  ];
-
+  cols: any[];
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.products = data;
+
+    this.cols = [
+      { field: 'id', header: 'Id', width: '10' },
+      { field: 'subTarea', header: 'Sub Tareas', width: '20' },
+      { field: 'responsable', header: 'Responsable', width: '20' },
+      { field: 'avance', header: 'Avance', width: '10' }
+  ];
   }
+
+  
 
 }
 
@@ -81,11 +58,11 @@ const data = [
         "anterior": "45%",
         "actual": '50%',
         "fechaCierre": '20/11/2020',
-        "orders": [
+        "tareas": [
           {
             "id": "1000",
             "subTarea": "f230fh0g3",
-            "daresponsable": "2020-09-13",
+            "responsable": "2020-09-13",
             "avance": "65%",
           },
         ]
@@ -94,7 +71,7 @@ const data = [
   },
   {
     "id": "2000",
-    "acta": "Acata 1",
+    "acta": "Acata 2",
     "dataCreation": "20/11/2020",
     "horaCreation": "4:00 pm",
     "status": "En Proceso",
@@ -112,12 +89,12 @@ const data = [
         "anterior": "2020-09-13",
         "actual": 65,
         "fechaCierre": 1,
-        "orders": [
+        "tareas": [
           {
             "id": "1000",
-            "subTarea": "f230fh0g3",
-            "daresponsable": "2020-09-13",
-            "avance": "75%",
+            "subTarea": "1. Ejecutar Valorización",
+            "responsable": "Rocío Del Valle",
+            "avance": "50%",
           },
         ]
       }
