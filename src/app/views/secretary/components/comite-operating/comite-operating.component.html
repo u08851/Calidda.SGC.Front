@@ -15,34 +15,16 @@
     <p-tabPanel header="Miembros del comité">
         <div class="tab-content">
             <div class="btn-group p-mb-3">
-                <button
-                    (click)="member = 'titular'"
-                    pButton pRipple type="button"
-                    label="Titulares"
+                <button (click)="member = 'titular'" pButton pRipple type="button" label="Titulares"
                     class="p-button-rounded p-button-outlined active">
                 </button>
-                <button
-                    (click)="member = 'suplent'"
-                    pButton
-                    pRipple
-                    type="button"
-                    label="Suplentes"
+                <button (click)="member = 'suplent'" pButton pRipple type="button" label="Suplentes"
                     class="p-button-rounded p-button-outlined">
                 </button>
-                <button
-                    (click)="member = 'invitado'"
-                    pButton
-                    pRipple
-                    type="button"
-                    label="Invitados"
+                <button (click)="member = 'invitado'" pButton pRipple type="button" label="Invitados"
                     class="p-button-rounded p-button-outlined">
                 </button>
-                <button
-                    (click)="member = 'asistent'"
-                    pButton
-                    pRipple
-                    type="button"
-                    label="Aistente de Secretaria"
+                <button (click)="member = 'asistent'" pButton pRipple type="button" label="Aistente de Secretaria"
                     class="p-button-rounded p-button-outlined">
                 </button>
             </div>
@@ -51,7 +33,13 @@
     </p-tabPanel>
     <p-tabPanel header="Documentos">
         <div class="tab-content">
-            <app-documents></app-documents>
+            <p class="p-custom-title p-mb-2">Documentos de Constitución </p>
+            <p class="p-custom-text">(En este espacio se puede cargar Acta de constitución del Comité, Reglamentos, etc)
+            </p>
+            <app-attach-file></app-attach-file>
+            <div class="p-d-flex p-jc-center p-mb-4 p-mt-4">
+                <button pButton pRipple type="button" icon="pi" label="Guardar"></button>
+            </div>
         </div>
     </p-tabPanel>
 </p-tabView>

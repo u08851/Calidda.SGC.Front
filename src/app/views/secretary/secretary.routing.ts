@@ -11,6 +11,7 @@ import { DetailComiteComponent } from './components/comite-direction/detail-comi
 import { DetailCommitmentComponent } from './components/view-comite/detail-commitment/detail-commitment.component';
 import { ConfComiteComponent } from './components/conf-comite/conf-comite.component';
 import { InPersonMeetingComponent } from './components/comite-direction/in-person-meeting/in-person-meeting.component';
+import { CreateMeetComponent } from './components/comite-direction/create-meet/create-meet.component';
 
 export const ManagerRoutes: Routes = [
     {
@@ -35,6 +36,10 @@ export const ManagerRoutes: Routes = [
             {
                 path: 'comite-direction',
                 component: ComiteDirectionComponent
+            },
+            {
+                path: 'meet',
+                component: CreateMeetComponent
             },
             {
                 path: 'view-comite',

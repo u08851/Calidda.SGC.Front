@@ -45,6 +45,8 @@ import { ParticipantsComponent } from './components/conf-comite/participants/par
 import { InPersonMeetingComponent } from './components/comite-direction/in-person-meeting/in-person-meeting.component';
 import { AssistanceTableComponent } from './components/comite-direction/assistance-table/assistance-table.component';
 import { ScheduleComiteComponent } from './components/comite-direction/schedule-comite/schedule-comite.component';
+import { ListTableComponent } from './components/list-table/list-table.component';
+import { AttachFileComponent } from './components/attach-file/attach-file.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +92,9 @@ import { ScheduleComiteComponent } from './components/comite-direction/schedule-
   ParticipantsComponent,
   InPersonMeetingComponent,
   AssistanceTableComponent,
-  ScheduleComiteComponent
+  ScheduleComiteComponent,
+  ListTableComponent,
+  AttachFileComponent
   ],
   imports: [
     CommonModule,

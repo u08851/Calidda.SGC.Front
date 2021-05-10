@@ -1,1 +1,88 @@
-<p>create-meet works!</p>
+<p-tabView styleClass="p-tab-style-3">
+    <div class="comite_number">
+        Comité: C2031
+    </div>
+    <p-tabPanel [selected]="true" header="Crear una reunión">
+        <div class="tab-content">
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-field p-col-12 p-md-6">
+                    <label>Título de la reunión</label>
+                    <input type="text" pInputText>
+                </div>
+                <div class="p-field p-col-12 p-md-6">
+                    <label>Fecha</label>
+                    <p-calendar name="date" [(ngModel)]="date" [showIcon]="true" inputId="icon"></p-calendar>
+
+                </div>
+                <div class="p-field p-col-12 p-md-3">
+                    <label>Hora de inicio</label>
+                    <p-calendar [(ngModel)]="date" [timeOnly]="true" inputId="timeonly"></p-calendar>
+                </div>
+                <div class="p-field p-col-12 p-md-3">
+                    <label>Hora de fin</label>
+                    <p-calendar [(ngModel)]="date" [timeOnly]="true" inputId="timeonly"></p-calendar>
+                </div>
+                <div class="p-field p-col-12 p-md-6">
+                    <label>Tipo de reunión</label>
+                    <p-dropdown inputId="state" [options]="tipoMeet" [(ngModel)]="selectedTipoMeet"
+                        placeholder="Seleccione una opción" optionLabel="name"></p-dropdown>
+                </div>
+                <div class="p-field p-col-12 p-md-6">
+                    <label>Ubicación</label>
+                    <input type="text" pInputText>
+                </div>
+                <div class="p-field p-col-12">
+                    <p class="p-custom-title p-mb-3"> Miembros del comité</p>
+                    <app-list-table [cols]="colsMember" [data]="dataMember" [showIndexAvatar]="0"></app-list-table>
+                </div>
+                <div class="p-field p-col-12">
+                    <div class="p-d-flex p-ai-center p-mb-3 ">
+                        <p class="p-custom-title p-mr-2">Agenda de la reunión del comité</p>
+                        <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+                    </div>
+
+                    <app-list-table [cols]="colsAgenda" [data]="dataAgenda" [showIndexAvatar]="2"></app-list-table>
+                </div>
+                <div class="p-field p-col-12">
+                    <app-attach-file></app-attach-file>
+                </div>
+
+                <p class="p-custom-title p-mb-3 p-col-12">Fecha y Hora limite de entrega de archivos</p>
+                <div class="p-field p-col-12 p-md-4">
+                    <label>Fecha</label>
+                    <p-calendar name="date" [(ngModel)]="date" [showIcon]="true" inputId="icon"></p-calendar>
+                </div>
+                <div class="p-field p-col-12 p-md-3">
+                    <label>Hora Fin</label>
+                    <p-calendar [(ngModel)]="date" [timeOnly]="true" inputId="timeonly"></p-calendar>
+                </div>
+
+                <p class="p-custom-title p-mb-3 p-col-12">Cuórum</p>
+                <div class="p-field p-col-12 p-md-3">
+                    <label>Ingresar quórum mínimo</label>
+                    <div class="p-inputgroup">
+                        <input type="text" pInputText>
+                        <span class="p-inputgroup-addon" [style.padding]="'0.4rem'">
+                            <button [style.width]="'2rem'" type="button" pButton pRipple icon="pi pi-plus"></button>
+                        </span>
+                    </div>
+                </div>
+
+                <p class="p-custom-title p-mb-3 p-col-12">Tiempo máximo de espera</p>
+                <div class="p-field p-col-12 p-md-3">
+                    <label>Ingresar quórum mínimo</label>
+                    <div class="p-inputgroup">
+                        <input type="text" pInputText>
+                        <span class="p-inputgroup-addon" [style.padding]="'0.4rem'">
+                            <button [style.width]="'2rem'" type="button" pButton pRipple icon="pi pi-plus"></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="p-d-flex p-jc-center btn-group p-mb-4">
+                <button class="stylebtn" pButton label="Guardar"></button>
+                <button pButton label="Guardar y Enviar"></button>
+            </div>
+        </div>
+    </p-tabPanel>
+</p-tabView>
