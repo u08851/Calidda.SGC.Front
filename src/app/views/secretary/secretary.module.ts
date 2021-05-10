@@ -40,6 +40,11 @@ import { StateDocumentComponent } from './dialog/state-document/state-document.c
 import { SendDocumentComponent } from './dialog/send-document/send-document.component';
 import { DetailCommitmentComponent } from './components/view-comite/detail-commitment/detail-commitment.component';
 import { DetailCommitmentTableComponent } from './components/view-comite/detail-commitment-table/detail-commitment-table.component';
+import { ConfComiteComponent } from './components/conf-comite/conf-comite.component';
+import { ParticipantsComponent } from './components/conf-comite/participants/participants.component';
+import { InPersonMeetingComponent } from './components/comite-direction/in-person-meeting/in-person-meeting.component';
+import { AssistanceTableComponent } from './components/comite-direction/assistance-table/assistance-table.component';
+import { ScheduleComiteComponent } from './components/comite-direction/schedule-comite/schedule-comite.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +85,12 @@ import { DetailCommitmentTableComponent } from './components/view-comite/detail-
   StateDocumentComponent,
   SendDocumentComponent,
   DetailCommitmentComponent,
-  DetailCommitmentTableComponent
+  DetailCommitmentTableComponent,
+  ConfComiteComponent,
+  ParticipantsComponent,
+  InPersonMeetingComponent,
+  AssistanceTableComponent,
+  ScheduleComiteComponent
   ],
   imports: [
     CommonModule,

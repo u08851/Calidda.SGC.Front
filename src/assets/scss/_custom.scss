@@ -245,13 +245,13 @@
 
 //chips
 .chip-info.p-chip {
-    background: #3ad13c36;
-    color: #0ac702;
-    font-weight: 500;
-    .p-chip-text {
-      line-height: 1.2;
-      margin-bottom: 12px;
-    }
+  background: #3ad13c36;
+  color: #0ac702;
+  font-weight: 500;
+  .p-chip-text {
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
 }
 
 //panels
@@ -305,6 +305,26 @@
   background: #ebb31b42;
   color: #EBB31B;
 }
-
-
 //End p-tags
+
+
+.bg_alert {
+  background: #ff000029;
+  color: #e83232bf;
+  border-left: 12px solid #e83232bf;
+}
+
+.bg_succes {
+  background: #00800029;
+  color: #008000bf;
+  border-left: 12px solid #008000bf;
+}
+
+.style_check {
+  background: #69DA00;
+  color: #ffffff;
+  font-size: 10px;
+  padding: 4px;
+  font-weight: 600;
+  border: none;
+}

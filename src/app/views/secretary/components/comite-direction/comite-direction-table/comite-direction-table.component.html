@@ -29,7 +29,7 @@
                             {{rowData[col.field]}}
                         </span>
                         <button pButton pRipple type="button" icon="pi" *ngIf="col.field == 'tipoR'"
-                            label="Iniciar Reunión" class="p-ml-2" styleClass="icon-size">
+                            label="Iniciar Reunión" class="p-ml-2" styleClass="icon-size" routerLink="/secretary/in-person-meeting">
                         </button>
                         <ng-template #estatus>
                             <!-- variables:  --red --green --info  -->
@@ -47,6 +47,7 @@
                         </span>
                     </button>
                     <button pButton pRipple type="button" icon="pi" *ngIf="rowData.estado.cod == '1'"
+                        routerLink="/secretary/detail-config"
                         class="p-button-rounded p-button-info p-button-text icon-size" styleClass="icon-size">
                         <span class="material-icons-outlined">
                             settings

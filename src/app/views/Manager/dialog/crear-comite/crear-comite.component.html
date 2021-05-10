@@ -56,11 +56,14 @@
         <!-- Responsable del comité -->
         <div class="p-col-12 p-md-6 p-lg-4">
             <div class="p-field">
-                <label>Responsable del comité</label>
+                <label [ngClass]="{ 'is-invalid-text': submitted && g.usuarioId.errors}">Responsable del comité</label>
                 <!-- <input pInputText /> -->
                 <p-autoComplete [ngModelOptions]="{standalone: true}" [(ngModel)]="usuarioSelected" (onSelect)="onSelectUsuario($event)" [suggestions]="filteredUsuarios" (completeMethod)="filtered($event)" field="label" [minLength]="1" emptyMessage="No se han encontrado resultados"
                     placeholder="Ingrese al menos 1 caracter...">
                 </p-autoComplete>
+                <div *ngIf="submitted && g.usuarioId.errors != null">
+                    <span class="p-error" *ngIf="g.usuarioId.errors.required">El responsable es requerido.<br></span>
+                </div>
             </div>
         </div>
 
@@ -98,10 +101,10 @@
         <i class="material-icons"> check_circle_outline </i>
         <h3>Confirmación</h3>
         <p class="p-m-0">
-            El comité <strong>“Comité Cálidda”</strong> ha sido creado correctamente
+            El comité <strong>“Comité {{nombreComite}}”</strong> ha sido creado correctamente
         </p>
     </div>
     <ng-template pTemplate="footer">
-        <p-button (click)="displayModal = false" label="Ir a mis comités"></p-button>
+        <p-button (click)="eventClose()" label="Ir a mis comités"></p-button>
     </ng-template>
 </p-dialog>

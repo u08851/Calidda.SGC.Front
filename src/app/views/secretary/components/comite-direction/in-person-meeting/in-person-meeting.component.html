@@ -1,0 +1,119 @@
+<div class="card p-flex-column">
+  <div>
+    <p class="appearance-tab">Detalle de comité</p>
+    <!-- <label class="p-custom-text">Ingresa los datos requeridos</label> -->
+  </div>
+  <p-tabView styleClass="p-tab-style-2">
+    <p-tabPanel
+      [selected]="true"
+      header="Comité: COC21-2"
+      [style.background]="'#ffffff'"
+    >
+      <!-- INFORMACIÓN BÁSICA -->
+      <div class="tab-content">
+        <div class="p-grid">
+          <!-- NOMBRE -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'22%'">
+              Nombre:
+            </p>
+            <p>Comité cálidda</p>
+          </div>
+
+          <!-- RESPONSABLE -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'30%'">
+              Responsable:
+            </p>
+            <div class="p-d-flex p-ai-center">
+              <p-avatar
+                image="assets/images/img22.jpg"
+                styleClass="p-mr-2"
+                shape="circle"
+              ></p-avatar>
+              <p>Karina López</p>
+            </div>
+          </div>
+
+          <!-- LINK -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'22%'">
+              Link:
+            </p>
+            <p [style.color]="'var(--primary-color)'">
+              www.mricrosoftteams.com/calidda
+            </p>
+          </div>
+
+          <!-- ASUNTO -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'21%'">
+              Asunto:
+            </p>
+            <p>Reunión cálidda</p>
+          </div>
+
+          <!-- FECHA -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'22%'">
+              Fecha:
+            </p>
+            <p>30/11/2020 - 20/11/2020</p>
+          </div>
+
+          <!-- DETALLE -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'27%'">
+              Detalle:
+            </p>
+            <p>Entrega de avances finales para la aprobación del proyecto.</p>
+          </div>
+
+          <!-- HORA -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'22%'">
+              Hora:
+            </p>
+            <p>10:00am - 11:00am</p>
+          </div>
+
+          <!-- CÓDIGO DE COMITÉ -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'25%'">
+              Código de comité:
+            </p>
+            <p>C2031</p>
+          </div>
+        </div>
+
+        <!-- ASISTENTES DE LA REUNIÓN -->
+        <p class="p-col-12 p-custom-title">Asistentes de la reunión</p>
+        <p class="p-col-12 p-text-right">
+          N° Asistentes: <strong>5/58</strong>
+        </p>
+
+        <!-- variables style: bg_alert , bg_succes -->
+        <div class="p-col-12 p-d-flex  bg_alert" >
+          <span class="material-icons-outlined p-ml-1 p-mr-1"> supervisor_account </span>
+          <p>El coúrum esta imcompleto. El mínimo para iniciar la reunión son 10 asistentes.</p>
+        </div>
+
+        <app-assistance-table></app-assistance-table>
+
+        <!-- PARTICIPANTES DE LA REUNIÓN -->
+        <app-participants></app-participants> 
+
+        <!-- AgGENDA DE LA REUNIÓN DEL COMITÉ -->
+        <p class="p-col-12 p-custom-title">Agenda de la reunión del comité</p>
+        <app-schedule-comite></app-schedule-comite>
+        
+        <!-- INICIAR ACTA -->
+        <div class="p-grid">
+          <div class="p-col-12 p-text-center">
+            <button pButton pRipple type="button" label="Iniciar acta"></button>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+</div>

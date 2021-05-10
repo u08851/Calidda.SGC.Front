@@ -10,6 +10,7 @@ import { UserServices } from 'src/app/services/user.service';
 import * as _ from 'lodash';
 import { ComiteServices } from 'src/app/services/comite.service';
 import { PaisServices } from 'src/app/services/pais.service';
+import { Router } from '@angular/router';
 
 interface Demo {
   name: string;
@@ -28,23 +29,10 @@ interface Demo2 {
 })
 export class CrearComiteComponent implements OnInit {
 
-  activeIndex: number = 0;
-  empresa: Demo[];
-  selectedDemo1: Demo;
-
   selectedCountry: {};
   countries: any[];
   displayModal: boolean;
-
-  //responsable comite
-  selectedResponsableComite: any;
-  filteredResponsableComite: any[];
-  responsableComite: any[];
-  filteredResponsableComites: any[];
-
-  //Dirección
-  selectedDireccion: string;
-  direccion: any[];
+  nombreComite:string;
 
   submitted: boolean = false;
   listaEmpresas: any[];
@@ -72,7 +60,8 @@ export class CrearComiteComponent implements OnInit {
     private direccionServices: DirectionServices,
     private messageService: MessageService,
     private usuariosServices: UserServices,
-    private paisServices :PaisServices) {
+    private paisServices :PaisServices,
+    public router:Router) {
   }
 
   ngOnInit(): void {
@@ -129,6 +118,8 @@ export class CrearComiteComponent implements OnInit {
         odata.usuarioId=data.usuarioId;
         odata.paisId=data.paisId.paisId;
         odata.codigo="";
+
+        this.nombreComite=odata.nombre;
 
         this.comiteServices.addComite(odata).subscribe(
           (response: any) => {
@@ -238,6 +229,12 @@ export class CrearComiteComponent implements OnInit {
     this.correo = event.email;
     this.comiteForm.patchValue({ correo: event.email });
     this.comiteForm.patchValue({ usuarioId: event.value });
+
+  }
+
+  eventClose(){
+    this.router.navigateByUrl('/manager/comites');
+    this.displayModal = false;
 
   }
 

@@ -9,6 +9,8 @@ import { ComiteDirectionComponent } from './components/comite-direction/comite-d
 import { ViewComiteComponent } from './components/view-comite/view-comite.component';
 import { DetailComiteComponent } from './components/comite-direction/detail-comite/detail-comite.component';
 import { DetailCommitmentComponent } from './components/view-comite/detail-commitment/detail-commitment.component';
+import { ConfComiteComponent } from './components/conf-comite/conf-comite.component';
+import { InPersonMeetingComponent } from './components/comite-direction/in-person-meeting/in-person-meeting.component';
 
 export const ManagerRoutes: Routes = [
     {
@@ -58,6 +60,14 @@ export const ManagerRoutes: Routes = [
                 path:'detail-comite',
                 component: DetailComiteComponent
             },
+            {
+                path: 'detail-config',
+                component: ConfComiteComponent
+            },
+            {
+                path: 'in-person-meeting',
+                component: InPersonMeetingComponent
+            }
         ],  
     },
 ];

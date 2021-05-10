@@ -1,0 +1,61 @@
+<div class="border-1px-gray rounded-1 p-p-3 p-mb-3 p-mt-3">
+  <p-table
+    [columns]="colsFirmaActa"
+    [value]="dataFActa"
+    styleClass="style-table"
+    [paginator]="true"
+    [rows]="3"
+    responsive="true"
+    [showCurrentPageReport]="true"
+  >
+    <ng-template pTemplate="colgroup" let-columns>
+      <colgroup class="colgroup">
+        <col [style.width]="20 + '%'" />
+        <col [style.width]="12 + '%'" />
+        <col [style.width]="20 + '%'" />
+        <col [style.width]="15 + '%'" />
+      </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns">
+          {{ col.header }}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td class="b-dander" *ngFor="let col of columns">
+          <div class="p-d-flex p-flex-column p-flex-md-row p-ai-md-center">
+            <p class="p-column-title">{{ col.header }}</p>
+            <div class="p-d-flex p-ai-center">
+              <p-avatar
+                *ngIf="col.field == 'names'"
+                image="../assets/images/img22.jpg"
+                styleClass="p-mr-2"
+                shape="circle"
+              ></p-avatar>
+
+              <span *ngIf="col.field != 'asistencia'; else asistencia">
+                {{ rowData[col.field] }}
+              </span>
+              <ng-template #asistencia>
+                <!-- variables:  --red --green --info  -->
+                <i
+                  class="pi pi-check p-mr-2 p-mt-1 style_check"
+                  *ngIf="rowData.asistencia.cod == 0"
+                ></i>
+                <i
+                  class="pi"
+                  *ngIf="rowData.asistencia.cod == 1"
+                ></i>
+                <p class="p-column-title">{{ col.header }}</p>
+                {{ rowData[col.field].name }}
+              </ng-template>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
