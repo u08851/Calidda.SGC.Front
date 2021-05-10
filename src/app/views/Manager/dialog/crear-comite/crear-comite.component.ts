@@ -9,6 +9,7 @@ import { AppConstants } from 'src/app/shared/constants/app.constants';
 import { UserServices } from 'src/app/services/user.service';
 import * as _ from 'lodash';
 import { ComiteServices } from 'src/app/services/comite.service';
+import { PaisServices } from 'src/app/services/pais.service';
 
 interface Demo {
   name: string;
@@ -31,7 +32,7 @@ export class CrearComiteComponent implements OnInit {
   empresa: Demo[];
   selectedDemo1: Demo;
 
-  selectedCountry: string;
+  selectedCountry: {};
   countries: any[];
   displayModal: boolean;
 
@@ -50,7 +51,7 @@ export class CrearComiteComponent implements OnInit {
   listaDirecciones: any[];
   comiteForm: FormGroup;
   valida: boolean = false;
-  usuarioSelected: UserModel;
+  usuarioSelected: any;
   filteredUsuarios: any[];
   listaUsuarios: UserModel[];
   resultado: any = [{}];
@@ -70,7 +71,8 @@ export class CrearComiteComponent implements OnInit {
     private comiteServices: ComiteServices,
     private direccionServices: DirectionServices,
     private messageService: MessageService,
-    private usuariosServices: UserServices) {
+    private usuariosServices: UserServices,
+    private paisServices :PaisServices) {
   }
 
   ngOnInit(): void {
@@ -94,17 +96,14 @@ export class CrearComiteComponent implements OnInit {
       empresaId: ['', [Validators.required, Validators.minLength(1)]],
       direccionId: ['', [Validators.required, Validators.minLength(1)]],
       correo: ['', [Validators.required, Validators.minLength(1)]],
-      usuarioId: [''],
-      /*
-      paisId: ['', [Validators.required, Validators.minLength(1)]],*/
+      usuarioId: ['', [Validators.required, Validators.minLength(1)]],
+      paisId: ['', [Validators.minLength(1)]],
     })
 
   }
 
   send() {
     this.submitted = true;
-
-    console.log(this.comiteForm);
 
     if (!this.comiteForm.invalid) {
 
@@ -176,6 +175,16 @@ export class CrearComiteComponent implements OnInit {
     )
   }
 
+  listarPaisxEmpresa(idEmpresa:number){
+    this.paisServices.getPaisByEmpresa(idEmpresa).subscribe(
+      (response: any) => {
+
+        this.countries = response;
+        this.selectedCountry = {paisId: this.countries[0].paisId,nombre:  this.countries[0].nombre,sigla:this.countries[0].sigla}
+      }
+    )
+  }
+
   // dialog crear
   showModalDialog() {
     this.displayModal = true;
@@ -184,9 +193,12 @@ export class CrearComiteComponent implements OnInit {
   changeEmpresa(event): void {
 
     this.resultado = [];
-    this.usuarioSelected=null;
     this.comiteForm.patchValue({ correo: '' })
+    this.usuarioSelected={};
     let idEmpresa = event.value.empresaId;
+
+    this.listarPaisxEmpresa(idEmpresa);
+
     this.usuariosServices.getUsuariosByEmpresa(idEmpresa).subscribe(
       (response: any) => {
         this.listaUsuarios = response.data;
@@ -216,6 +228,7 @@ export class CrearComiteComponent implements OnInit {
           'email': val.correo
 
         });
+        this.comiteForm.patchValue({ usuarioId: val.usuarioId });
       }
     });
     this.filteredUsuarios = this.resultado;

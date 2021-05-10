@@ -22,12 +22,15 @@
                         <!-- Nombre del comité -->
                         <div class="p-col-12 p-md-6 p-lg-4">
                             <div class="p-field">
-                                <label for="nombre" [ngClass]="{ 'is-invalid-text': submitted && g.nombre.errors }">Nombre del comité</label>
+                                <label for="nombre" [ngClass]="{ 'is-invalid-text': submitted && g.nombre.errors }">Nombre del
+                  comité</label>
                                 <input formControlName="nombre" [ngClass]="{ 'is-invalid-input': submitted && g.nombre.errors }" oninput="this.value=this.value.trim()==''?'':this.value" pInputText />
                                 <div *ngIf="submitted && g.nombre.errors != null">
-                                    <span class="p-error" *ngIf="g.nombre.errors.minlength">El nombre debe contener al menos un carácter.<br></span>
+                                    <span class="p-error" *ngIf="g.nombre.errors.minlength">El nombre debe contener al menos un
+                    carácter.<br></span>
                                     <span class="p-error" *ngIf="g.nombre.errors.required">El nombre es requerido.<br></span>
-                                    <span class="p-error" *ngIf="g.nombre.errors.maxlength">El nombre debe contener maximo 70 carácteres.<br></span>
+                                    <span class="p-error" *ngIf="g.nombre.errors.maxlength">El nombre debe contener maximo 70
+                    carácteres.<br></span>
                                 </div>
 
                             </div>
@@ -36,27 +39,33 @@
                         <!-- Empresa del comité -->
                         <div class="p-col-12 p-md-6 p-lg-4">
                             <div class="p-field">
-                                <label>Empresa del comité</label>
-                                <p-dropdown [options]="listaEmpresas" (onChange)="changeEmpresa($event)" formControlName="empresaId" optionLabel="nombre" placeholder="Seleccione..."></p-dropdown>
+                                <label [ngClass]="{ 'is-invalid-text': submitted && g.empresaId.errors }">Empresa del comité</label>
+                                <p-dropdown [options]="listaEmpresas" (onChange)="changeEmpresa($event)" formControlName="empresaId" optionLabel="nombre" placeholder="Seleccione...">
+
+                                </p-dropdown>
+                                <div *ngIf="submitted && g.empresaId.errors != null">
+                                    <span class="p-error" *ngIf="g.empresaId.errors.required">La empresa es requerido.<br></span>
+                                </div>
                             </div>
                         </div>
 
                         <!-- País -->
                         <div class="p-col-12 p-md-6 p-lg-4">
                             <div class="p-field">
-                                <label>País</label>
-                                <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" name="pais" [showClear]="false" placeholder="" dropdownIcon="">
+                                <label [ngClass]="{ 'is-invalid-text': submitted && g.paisId.errors }">País</label>
+                                <p-dropdown formControlName="paisId" [ngClass]="{ 'is-invalid-input': submitted && g.paisId.errors }" oninput="this.value=this.value.trim()==''?'':this.value" [disabled]="true" [options]="countries" [(ngModel)]="selectedCountry" optionLabel="nombre" [showClear]="false"
+                                    placeholder="" dropdownIcon="">
                                     <ng-template pTemplate="selectedItem">
                                         <div class="p-d-flex p-ai-center">
-                                            <img style="width: 20px;" src="assets/images/flag/PE.svg" />
+                                            <img style="width: 20px;" [src]="selectedCountry.sigla" />
                                             <!-- <span class="p-ml-2" style="line-height: 0; margin-bottom: 5px;">{{selectedCountry.name}}</span> -->
-                                            <span class="p-ml-2" style="line-height: 0; margin-bottom: 5px;">PERÚ</span>
+                                            <span class="p-ml-2" style="line-height: 0; margin-bottom: 5px;">{{selectedCountry.nombre}}</span>
                                         </div>
                                     </ng-template>
                                     <ng-template let-country pTemplate="item">
                                         <div class="p-d-flex p-ai-center">
-                                            <img style="width: 20px;" src="assets/images/flag/PE.svg" />
-                                            <span class="p-ml-2" style="line-height: 0; margin-bottom: 5px;">{{country.name}}</span>
+                                            <img style="width: 20px;" [src]="country.sigla" />
+                                            <span class="p-ml-2" style="line-height: 0; margin-bottom: 5px;">{{country.nombre}}</span>
                                         </div>
                                     </ng-template>
                                 </p-dropdown>
@@ -68,23 +77,31 @@
                             <div class="p-field">
                                 <label>Responsable del comité</label>
                                 <!-- <input pInputText /> -->
-                                <p-autoComplete [(ngModel)]="usuarioSelected" (onSelect)="onSelectUsuario($event)" [suggestions]="filteredUsuarios" (completeMethod)="filtered($event)" field="label" [minLength]="1" emptyMessage="No se han encontrado resultados" placeholder="Ingrese al menos 1 caracter..."></p-autoComplete>
+                                <p-autoComplete [ngModelOptions]="{standalone: true}" [(ngModel)]="usuarioSelected" (onSelect)="onSelectUsuario($event)" [suggestions]="filteredUsuarios" (completeMethod)="filtered($event)" field="label" [minLength]="1" emptyMessage="No se han encontrado resultados"
+                                    placeholder="Ingrese al menos 1 caracter...">
+                                </p-autoComplete>
                             </div>
                         </div>
 
                         <!-- Correo electrónico -->
                         <div class="p-col-12 p-md-6 p-lg-4">
                             <div class="p-field">
-                                <label>Correo electrónico</label>
-                                <input pInputText formControlName="correo" />
+                                <label [ngClass]="{ 'is-invalid-text': submitted && g.correo.errors }">Correo electrónico</label>
+                                <input pInputText formControlName="correo" readonly />
+                                <div *ngIf="submitted && g.correo.errors != null">
+                                    <span class="p-error" *ngIf="g.correo.errors.required">El correo es requerido.<br></span>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Dirección dueña del comité -->
                         <div class="p-col-12 p-md-6 p-lg-4">
                             <div class="p-field">
-                                <label>Dirección dueña del comité</label>
+                                <label [ngClass]="{ 'is-invalid-text': submitted && g.direccionId.errors }">Dirección dueña del comité</label>
                                 <p-dropdown [options]="listaDirecciones" formControlName="direccionId" placeholder="Seleccione..." optionLabel="nombre"></p-dropdown>
+                                <div *ngIf="submitted && g.direccionId.errors != null">
+                                    <span class="p-error" *ngIf="g.direccionId.errors.required">La dirección es requerida.<br></span>
+                                </div>
                             </div>
                         </div>
                         <!-- Btn Crear -->

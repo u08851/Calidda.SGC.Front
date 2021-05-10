@@ -23,4 +23,8 @@ export class PaisServices {
     return this._http.get<PaisModel>(`${this.BASE_URL}/listarPais`);
   }
 
+  getPaisByEmpresa(idEmpresa:number){
+    return this._http.get<PaisModel>(`${this.BASE_URL}/GetPaisByEmpresa/${idEmpresa}`);
+  }
+
 }
