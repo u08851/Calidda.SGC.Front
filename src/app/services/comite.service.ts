@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ComiteActiveModel } from '../models/comite.model';
+import { ComiteRequestModel } from '../models/comite.model';
 
 
 @Injectable({
@@ -15,6 +16,9 @@ export class ComiteServices {
   private BaseController1 = "SubInicio"
   private BASE_URL1 = environment.apiComiteUrl + this.BaseController1;
 
+  private BaseController2 = "Comite"
+  private BASE_URL2 = environment.apiComiteUrl + this.BaseController2;
+
   constructor(
     private _http:HttpClient,
   )
@@ -22,7 +26,11 @@ export class ComiteServices {
 
   }
 
-  getListComite(type:number,term1:string,term2:string,term3:string,term4:string){
+  addComite(model: ComiteRequestModel) {
+    return this._http.post(`${this.BASE_URL2}/Create`, model);
+  }
+  
+  getListComite(type:number,term1:string,term2:string,term3:string){
     if(type == 0){
       return this._http.get<any>(`${this.BASE_URL}/Inicio?type=0`);
     }

@@ -14,3 +14,19 @@ export class ComiteActiveModel{
   frecuencia: string;
   count: number;
 }
+
+export class ComiteRequestModel {
+
+  comiteId: string;
+  empresaId:number;
+  paisId:number;
+  usuarioId:number;
+  nombre: string;
+  correo:string;
+  direccionId:number;
+  codigo: string;
+  estado:number;
+
+
+
+}

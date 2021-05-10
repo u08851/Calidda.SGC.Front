@@ -32,4 +32,8 @@ export class UserServices {
     return this._http.put(`${this.BASE_URL}/Update`, model);
   }
 
+  getUsuariosByEmpresa(idEmpresa: number) {
+    return this._http.get(`${this.BASE_URL}/getUsuariosByEmpresa/${idEmpresa}`);
+  }
+
 }
