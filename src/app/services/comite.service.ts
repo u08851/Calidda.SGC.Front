@@ -30,7 +30,7 @@ export class ComiteServices {
     return this._http.post(`${this.BASE_URL2}/Create`, model);
   }
   
-  getListComite(type:number,term1:string,term2:string,term3:string){
+  getListComite(type:number,term1:string,term2:string,term3:string,term4:string){
     if(type == 0){
       return this._http.get<any>(`${this.BASE_URL}/Inicio?type=0`);
     }
