@@ -38,6 +38,11 @@ import { ComiteMemberTableComponent } from './components/comite-direction/comite
 import { AssistantSecretaryComponent } from './dialog/assistant-secretary/assistant-secretary.component';
 import { StateDocumentComponent } from './dialog/state-document/state-document.component';
 import { SendDocumentComponent } from './dialog/send-document/send-document.component';
+import { ConfComiteComponent } from './components/conf-comite/conf-comite.component';
+import { ParticipantsComponent } from './components/conf-comite/participants/participants.component';
+import { InPersonMeetingComponent } from './components/comite-direction/in-person-meeting/in-person-meeting.component';
+import { AssistanceTableComponent } from './components/comite-direction/assistance-table/assistance-table.component';
+import { ScheduleComiteComponent } from './components/comite-direction/schedule-comite/schedule-comite.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +81,12 @@ import { SendDocumentComponent } from './dialog/send-document/send-document.comp
   ComiteMemberTableComponent,
   AssistantSecretaryComponent,
   StateDocumentComponent,
-  SendDocumentComponent
+  SendDocumentComponent,
+  ConfComiteComponent,
+  ParticipantsComponent,
+  InPersonMeetingComponent,
+  AssistanceTableComponent,
+  ScheduleComiteComponent
   ],
   imports: [
     CommonModule,
