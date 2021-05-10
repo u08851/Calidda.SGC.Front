@@ -73,13 +73,8 @@ export class ComiteTableComponent implements OnInit {
         icon: 'pi pi-thumbs-down',
         command: (event) => {
           this.showConfirmation();
-        },
-      },
-      {
-        label: 'Record de Asistencias',
-        icon: 'pi pi-users',
+        }
       }
-
     ];
   }
 
