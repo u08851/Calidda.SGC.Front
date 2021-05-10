@@ -109,7 +109,7 @@ export class CrearComiteComponent implements OnInit {
 
       if (!this.comiteForm.controls.nombre.valid ||
         !this.comiteForm.controls.empresaId.valid ||
-        //!this.comiteForm.controls.paisId.valid ||
+        !this.comiteForm.controls.paisId.valid ||
         !this.comiteForm.controls.usuarioId.valid ||
         !this.comiteForm.controls.correo.valid ||
         !this.comiteForm.controls.direccionId.valid) {
@@ -127,9 +127,8 @@ export class CrearComiteComponent implements OnInit {
         odata.empresaId = data.empresaId.empresaId;
         odata.correo=data.correo;
         odata.usuarioId=data.usuarioId;
-        odata.paisId=2;
+        odata.paisId=data.paisId.paisId;
         odata.codigo="";
-
 
         this.comiteServices.addComite(odata).subscribe(
           (response: any) => {
