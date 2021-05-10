@@ -5,9 +5,9 @@
     </div>
 
     <div class="card">
-        <p-tabView styleClass="p-tab-style-1">
+        <p-tabView (onChange)="onTabClicked($event)" styleClass="p-tab-style-1">
             <!-- TAB-1 TODOS -->
-            <p-tabPanel header="Todos" (click)="getListModo(0)">
+            <p-tabPanel header="Todos">
                 <!-- Form -->
                 <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
                     <!-- Buscar nombre -->
@@ -105,7 +105,7 @@
             </p-tabPanel>
 
             <!-- TAB-2 PAÍS -->
-            <p-tabPanel header="País" (click)="getListModo(1)">
+            <p-tabPanel header="País">
                 <!-- Form -->
                 <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
                     <!-- Buscar país -->
@@ -213,12 +213,12 @@
             </p-tabPanel>
 
             <!-- TAB-3 EMPRESA -->
-            <p-tabPanel header="Empresa y Dirección" (click)="getListModo(2)">
+            <p-tabPanel header="Empresa y Dirección">
                 <!-- Form -->
                 <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
                     <!-- Buscar empresa -->
                     <div class="p-col-12 p-md-6 p-lg-3">
-                        <p-dropdown [options]="cities" [(ngModel)]="selectedCity1" placeholder="Buscar empresa"
+                        <p-dropdown (onChange)="onKeydown($event,2)" [options]="cities" [(ngModel)]="selectedCity1" placeholder="Buscar empresa"
                             optionLabel="nombre" [showClear]="true"></p-dropdown>
                     </div>
 
@@ -226,7 +226,7 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label p-input-icon-right">
                             <i class="pi pi-search"></i>
-                            <input type="text" pInputText />
+                            <input (keydown)="onKeydown($event,2)" type="text" pInputText [(ngModel)]="textFilterDE"/>
                             <label for="inputtext">Buscar Dirección del Comité</label>
                         </span>
                     </div>
@@ -234,7 +234,7 @@
                     <!-- calendario DESDE -->
                     <div class="p-col-12 p-md-6 p-lg-2">
                         <span class="p-float-label">
-                            <p-calendar [(ngModel)]="date3" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,2)" [(ngModel)]="date3" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Desde</label>
                         </span>
                     </div>
@@ -242,7 +242,7 @@
                     <!-- calendario HASTA -->
                     <div class="p-col-12 p-md-6 p-lg-2">
                         <span class="p-float-label">
-                            <p-calendar [(ngModel)]="date4" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,2)" [(ngModel)]="date4" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Hasta</label>
                         </span>
                     </div>
@@ -317,7 +317,7 @@
             </p-tabPanel>
 
             <!-- TAB-4 RESPONSABLE -->
-            <p-tabPanel header="Secretaria de Comité" (click)="getListModo(3)">
+            <p-tabPanel header="Secretaria de Comité">
                 <!-- Form -->
                 <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
                     <!-- Buscar secretaria de comité -->
@@ -415,7 +415,7 @@
             </p-tabPanel>
 
             <!-- TAB-5 FRECUENCIA -->
-            <p-tabPanel header="Frecuencia" (click)="getListModo(4)">
+            <p-tabPanel header="Frecuencia">
                 <!-- Form -->
                 <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
                     <!-- Buscar secretaria de comité -->

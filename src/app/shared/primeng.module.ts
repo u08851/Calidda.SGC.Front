@@ -74,6 +74,7 @@ import {BadgeModule} from 'primeng/badge';
 import {AvatarModule} from 'primeng/avatar';
 import {AvatarGroupModule} from 'primeng/avatargroup';
 import { ChipModule } from 'primeng/chip';
+import { TagModule } from 'primeng/tag';
 
 
 @NgModule({
@@ -152,7 +153,8 @@ import { ChipModule } from 'primeng/chip';
     BadgeModule,
     AvatarModule,
     AvatarGroupModule,
-    ChipModule
+    ChipModule,
+    TagModule
   ],
   exports: [
     CommonModule,
@@ -228,7 +230,8 @@ import { ChipModule } from 'primeng/chip';
     BadgeModule,
     AvatarModule,
     AvatarGroupModule,
-    ChipModule
+    ChipModule,
+    TagModule
   ],
   providers: [],
 })

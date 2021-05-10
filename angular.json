@@ -43,7 +43,8 @@
               "raf",
               "xlsx",
               "@babel/runtime",
-              "chart.js"
+              "chart.js",
+              "lodash"
             ]
           },
           "configurations": {

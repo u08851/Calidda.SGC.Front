@@ -13,3 +13,8 @@ export class ConfidencialDocumentoRequest {
   guideNombre: string;
 
 }
+
+export class MasterMembers{
+  masterDetailId: number;
+  nombre: string;
+}

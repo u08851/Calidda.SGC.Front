@@ -31,4 +31,8 @@ export class ConfidencialDocumentoServices {
     return this._http.put(`${this.BASE_URL}/Update`, model);
   }
 
+  getListMembers(){
+    return this._http.get<any>(`${this.BASE_URL}/listMembers`);
+  }
+
 }

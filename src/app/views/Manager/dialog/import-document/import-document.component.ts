@@ -98,8 +98,10 @@ export class ImportDocumentComponent implements OnInit {
       
       this.confidencialDocumentoServices.addConfidencialDocumento(odata).subscribe(
         (response: any) => {
-          this.showSuccess(AppConstants.MessageModal.CREATE_SUCCESS);
-          this.ref.close(true);
+          if(response.valid){
+            this.showSuccess(AppConstants.MessageModal.CREATE_SUCCESS);
+            this.ref.close(true);
+          }
         }
       )
 

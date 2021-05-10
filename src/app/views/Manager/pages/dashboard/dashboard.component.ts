@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ComiteServices } from 'src/app/services/comite.service';
 import { EmpresaServices } from 'src/app/services/empresa.service';
 import { PaisServices } from 'src/app/services/pais.service';
+import { BarEmpresaDireccionComponent } from '../../components/graficos/bar-empresa-direccion/bar-empresa-direccion.component';
 import { BarPaisComponent } from '../../components/graficos/bar-pais/bar-pais.component';
 import { BarTodosComponent } from '../../components/graficos/bar-todos/bar-todos.component';
 import { DonutComponent } from '../../components/graficos/donut/donut.component';
@@ -18,6 +19,7 @@ export class DashboardComponent implements OnInit {
   // Calendar
   date3: Date;
   date4: Date;
+  textFilterDE:string;
   es: any;
   val1: string = localStorage.getItem("val1");
   val2: string = localStorage.getItem("val2");
@@ -42,6 +44,7 @@ export class DashboardComponent implements OnInit {
   textFilter3: any = "";
 
   @ViewChild(BarTodosComponent) barTodos: BarTodosComponent;
+  @ViewChild(BarEmpresaDireccionComponent) barEmpresaDireccion: BarEmpresaDireccionComponent;
   @ViewChild(BarPaisComponent) barPais: BarPaisComponent;
   @ViewChild(DonutComponent) donuts: DonutComponent;
 
@@ -157,9 +160,9 @@ export class DashboardComponent implements OnInit {
       var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
       var result: any;
   
-      if (evento === "Enter" || evento === "click" || evento === undefined) {
+      if (evento === "Enter" || evento === "click") {
         if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.textFilter0.length != 0){
-          this.comiteServices.getListComite(4,null,null,this.textFilter0).subscribe(
+          this.comiteServices.getListComite(4,null,null,this.textFilter0,null).subscribe(
             (response) =>{
               this.message = "Reporte de 6 meses anteriores"
               sinR = response.data;
@@ -202,7 +205,7 @@ export class DashboardComponent implements OnInit {
           )
         }else{
           if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.textFilter0.length == 0){
-            this.comiteServices.getListComite(0,null,null,null).subscribe(
+            this.comiteServices.getListComite(0,null,null,null,null).subscribe(
               (response) =>{
                 this.message = "Reporte de los 6 últimos meses"
                 sinR = response.data;
@@ -244,7 +247,7 @@ export class DashboardComponent implements OnInit {
             )
           }else{
             if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.textFilter0.length == 0){
-              this.comiteServices.getListComite(2,null,this.textFilter3,null).subscribe(
+              this.comiteServices.getListComite(2,null,this.textFilter3,null,null).subscribe(
                 (response) =>{
                   this.message = "Reporte de los 6 últimos meses " + this.textFilter3
                   sinR = response.data;
@@ -286,7 +289,7 @@ export class DashboardComponent implements OnInit {
               )
             }else{
               if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.textFilter0.length == 0){
-                this.comiteServices.getListComite(1,this.textFilter2,null,null).subscribe(
+                this.comiteServices.getListComite(1,this.textFilter2,null,null,null).subscribe(
                   (response) =>{
                     this.message = "Reporte fecha ingresada"
                     sinR = response.data;
@@ -328,7 +331,7 @@ export class DashboardComponent implements OnInit {
                 )
               }else{
                 if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.textFilter0.length == 0){
-                  this.comiteServices.getListComite(3,this.textFilter2,this.textFilter3,null).subscribe(
+                  this.comiteServices.getListComite(3,this.textFilter2,this.textFilter3,null,null).subscribe(
                     (response) =>{
                       this.message = "Reporte de rango de fechas"
                       sinR = response.data;
@@ -370,7 +373,7 @@ export class DashboardComponent implements OnInit {
                   )
                 }else{
                   if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.textFilter0.length != 0){
-                    this.comiteServices.getListComite(5,this.textFilter2,null,this.textFilter0).subscribe(
+                    this.comiteServices.getListComite(5,this.textFilter2,null,this.textFilter0,null).subscribe(
                       (response) =>{
                         this.message = "Reporte de fecha y nombre ingresado"
                         sinR = response.data;
@@ -412,7 +415,7 @@ export class DashboardComponent implements OnInit {
                     )
                   }else{
                     if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.textFilter0.length != 0){
-                      this.comiteServices.getListComite(6,null,this.textFilter3,this.textFilter0).subscribe(
+                      this.comiteServices.getListComite(6,null,this.textFilter3,this.textFilter0,null).subscribe(
                         (response) =>{
                           this.message = "Reporte de fecha y nombre ingresado"
                           sinR = response.data;
@@ -454,7 +457,7 @@ export class DashboardComponent implements OnInit {
                       )
                     }else{
                       if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.textFilter0.length != 0){
-                        this.comiteServices.getListComite(7,this.textFilter2,this.textFilter3,this.textFilter0).subscribe(
+                        this.comiteServices.getListComite(7,this.textFilter2,this.textFilter3,this.textFilter0,null).subscribe(
                           (response) =>{
                             this.message = "Reporte de rango de fechas y nombre ingresado"
                             sinR = response.data;
@@ -533,9 +536,9 @@ export class DashboardComponent implements OnInit {
       var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
       var result: any;
   
-      if (evento === "Enter" || evento === "click" || evento === undefined) {
+      if (evento === "Enter" || evento === "click") {
         if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.selectedCountry == null){
-          this.comiteServices.getListComite(8,null,null,null).subscribe(
+          this.comiteServices.getListComite(8,null,null,null,null).subscribe(
             (response) =>{
               this.message = "Reporte de los 6 últimos meses"
               sinR = response.data;
@@ -577,7 +580,7 @@ export class DashboardComponent implements OnInit {
           )
         }else{
           if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.selectedCountry != null){
-            this.comiteServices.getListComite(9,null,null,this.selectedCountry.paisId).subscribe(
+            this.comiteServices.getListComite(9,null,null,this.selectedCountry.paisId,null).subscribe(
               (response) =>{
                 this.message = "Reporte del páis elegido"
                 sinR = response.data;
@@ -619,7 +622,7 @@ export class DashboardComponent implements OnInit {
             )
           }else{
             if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.selectedCountry == null){
-              this.comiteServices.getListComite(10,this.textFilter2,null,null).subscribe(
+              this.comiteServices.getListComite(10,this.textFilter2,null,null,null).subscribe(
                 (response) =>{
                   this.message = "Reporte de la fecha inicial ingresada"
                   sinR = response.data;
@@ -661,7 +664,7 @@ export class DashboardComponent implements OnInit {
               )
             }else{
               if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.selectedCountry == null){
-                this.comiteServices.getListComite(11,null,this.textFilter3,null).subscribe(
+                this.comiteServices.getListComite(11,null,this.textFilter3,null,null).subscribe(
                   (response) =>{
                     this.message = "Reporte de la fecha elegida"
                     sinR = response.data;
@@ -703,7 +706,7 @@ export class DashboardComponent implements OnInit {
                 )
               }else{
                 if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.selectedCountry == null){
-                  this.comiteServices.getListComite(12,this.textFilter2,this.textFilter3,null).subscribe(
+                  this.comiteServices.getListComite(12,this.textFilter2,this.textFilter3,null,null).subscribe(
                     (response) =>{
                       this.message = "Reporte del rango de fecha"
                       sinR = response.data;
@@ -745,7 +748,7 @@ export class DashboardComponent implements OnInit {
                   )
                 }else{
                   if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.selectedCountry != null){
-                    this.comiteServices.getListComite(13,this.textFilter2,null,this.selectedCountry.paisId).subscribe(
+                    this.comiteServices.getListComite(13,this.textFilter2,null,this.selectedCountry.paisId,null).subscribe(
                       (response) =>{
                         this.message = "Reporte de la fecha inicial y país elegida"
                         sinR = response.data;
@@ -787,7 +790,7 @@ export class DashboardComponent implements OnInit {
                     )
                   }else{
                     if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.selectedCountry != null){
-                      this.comiteServices.getListComite(14,null,this.textFilter3,this.selectedCountry.paisId).subscribe(
+                      this.comiteServices.getListComite(14,null,this.textFilter3,this.selectedCountry.paisId,null).subscribe(
                         (response) =>{
                           this.message = "Reporte del país y fecha elegida"
                           sinR = response.data;
@@ -829,7 +832,7 @@ export class DashboardComponent implements OnInit {
                       )
                     }else{
                       if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.selectedCountry != null){
-                        this.comiteServices.getListComite(15,this.textFilter2,this.textFilter3,this.selectedCountry.paisId).subscribe(
+                        this.comiteServices.getListComite(15,this.textFilter2,this.textFilter3,this.selectedCountry.paisId,null).subscribe(
                           (response) =>{
                             this.message = "Reporte del rango de fecha y país elegido"
                             sinR = response.data;
@@ -880,6 +883,739 @@ export class DashboardComponent implements OnInit {
       }
     }
     if(id == 2){
+      try{
+        evento = event.originalEvent.type
+      }
+      catch{
+        try{
+          evento = event.key
+        }
+        catch{
+          evento = "Enter"
+        }
+      }
+      if(this.datePipe.transform(this.date3, 'dd-MM-yyyy') != null){
+        this.textFilter2 = this.datePipe.transform(this.date3, 'dd-MM-yyyy');
+      }
+      else{
+        this.textFilter2 = "";
+      }
+      if(this.datePipe.transform(this.date4, 'dd-MM-yyyy') != null){
+        this.textFilter3 = this.datePipe.transform(this.date4, 'dd-MM-yyyy');
+      }else{
+        this.textFilter3 = "";
+      }
+  
+      let sinR = [];
+      var temp = {};
+      var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
+      var result: any;
+  
+      if (evento === "Enter" || evento === "click") {
+        if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.selectedCity1 == null && this.textFilterDE.length == 0){
+          this.comiteServices.getListComite(20,null,null,null,null).subscribe(
+            (response) =>{
+              this.message = "Reporte de 6 meses anteriores"
+              sinR = response.data;
+              
+              try{
+                sinR.forEach(function (a) {
+                  temp[a.code] = temp[a.code] || { category: a.code };
+                  temp[a.code][groups[a.nombre]] = a.count;
+                });
+                result = Object.keys(temp).map(function (k) { return temp[k]; });
+                  
+                let val1 = 0;
+                let val2 = 0;
+                let val3 = 0;
+    
+                for(let g = 0; g < result.length; g++){
+                  val1 += result[g].value1
+                  val2 += result[g].value2
+                  val3 += result[g].value3
+                }
+    
+                localStorage.removeItem("val1");
+                localStorage.removeItem("val2");
+                localStorage.removeItem("val3");
+                localStorage.setItem("val1",val1.toString())
+                localStorage.setItem("val2",val2.toString())
+                localStorage.setItem("val3",val3.toString())
+    
+                this.val1 = localStorage.getItem("val1");
+                this.val2 = localStorage.getItem("val2");
+                this.val3 = localStorage.getItem("val3");
+                this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                
+                this.barEmpresaDireccion.dataReceived(sinR);
+              }catch{
+                this.barEmpresaDireccion.dataReceived("");
+              }
+              
+            }
+          )
+        }else{
+          if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.selectedCity1 == null && this.textFilterDE.length == 0){
+            this.comiteServices.getListComite(21,this.textFilter2,null,null,null).subscribe(
+              (response) =>{
+                this.message = "Reporte de 6 meses anteriores"
+                sinR = response.data;
+                
+                try{
+                  sinR.forEach(function (a) {
+                    temp[a.code] = temp[a.code] || { category: a.code };
+                    temp[a.code][groups[a.nombre]] = a.count;
+                  });
+                  result = Object.keys(temp).map(function (k) { return temp[k]; });
+                    
+                  let val1 = 0;
+                  let val2 = 0;
+                  let val3 = 0;
+      
+                  for(let g = 0; g < result.length; g++){
+                    val1 += result[g].value1
+                    val2 += result[g].value2
+                    val3 += result[g].value3
+                  }
+      
+                  localStorage.removeItem("val1");
+                  localStorage.removeItem("val2");
+                  localStorage.removeItem("val3");
+                  localStorage.setItem("val1",val1.toString())
+                  localStorage.setItem("val2",val2.toString())
+                  localStorage.setItem("val3",val3.toString())
+      
+                  this.val1 = localStorage.getItem("val1");
+                  this.val2 = localStorage.getItem("val2");
+                  this.val3 = localStorage.getItem("val3");
+                  this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                  
+                  this.barEmpresaDireccion.dataReceived(sinR);
+                }catch{
+                  this.barEmpresaDireccion.dataReceived("");
+                }
+                
+              }
+            )
+          }else{
+            if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.selectedCity1 == null && this.textFilterDE.length == 0){
+              this.comiteServices.getListComite(22,null,this.textFilter3,null,null).subscribe(
+                (response) =>{
+                  this.message = "Reporte de 6 meses anteriores"
+                  sinR = response.data;
+                  
+                  try{
+                    sinR.forEach(function (a) {
+                      temp[a.code] = temp[a.code] || { category: a.code };
+                      temp[a.code][groups[a.nombre]] = a.count;
+                    });
+                    result = Object.keys(temp).map(function (k) { return temp[k]; });
+                      
+                    let val1 = 0;
+                    let val2 = 0;
+                    let val3 = 0;
+        
+                    for(let g = 0; g < result.length; g++){
+                      val1 += result[g].value1
+                      val2 += result[g].value2
+                      val3 += result[g].value3
+                    }
+        
+                    localStorage.removeItem("val1");
+                    localStorage.removeItem("val2");
+                    localStorage.removeItem("val3");
+                    localStorage.setItem("val1",val1.toString())
+                    localStorage.setItem("val2",val2.toString())
+                    localStorage.setItem("val3",val3.toString())
+        
+                    this.val1 = localStorage.getItem("val1");
+                    this.val2 = localStorage.getItem("val2");
+                    this.val3 = localStorage.getItem("val3");
+                    this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                    
+                    this.barEmpresaDireccion.dataReceived(sinR);
+                  }catch{
+                    this.barEmpresaDireccion.dataReceived("");
+                  }
+                  
+                }
+              )
+            }else{
+              if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.selectedCity1 != null && this.textFilterDE.length == 0){
+                this.comiteServices.getListComite(23,null,null,this.selectedCity1.nombre,null).subscribe(
+                  (response) =>{
+                    this.message = "Reporte de 6 meses anteriores"
+                    sinR = response.data;
+                    
+                    try{
+                      sinR.forEach(function (a) {
+                        temp[a.code] = temp[a.code] || { category: a.code };
+                        temp[a.code][groups[a.nombre]] = a.count;
+                      });
+                      result = Object.keys(temp).map(function (k) { return temp[k]; });
+                        
+                      let val1 = 0;
+                      let val2 = 0;
+                      let val3 = 0;
+          
+                      for(let g = 0; g < result.length; g++){
+                        val1 += result[g].value1
+                        val2 += result[g].value2
+                        val3 += result[g].value3
+                      }
+          
+                      localStorage.removeItem("val1");
+                      localStorage.removeItem("val2");
+                      localStorage.removeItem("val3");
+                      localStorage.setItem("val1",val1.toString())
+                      localStorage.setItem("val2",val2.toString())
+                      localStorage.setItem("val3",val3.toString())
+          
+                      this.val1 = localStorage.getItem("val1");
+                      this.val2 = localStorage.getItem("val2");
+                      this.val3 = localStorage.getItem("val3");
+                      this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                      
+                      this.barEmpresaDireccion.dataReceived(sinR);
+                    }catch{
+                      this.barEmpresaDireccion.dataReceived("");
+                    }
+                    
+                  }
+                )
+              }else{
+                if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.selectedCity1 == null && this.textFilterDE.length != 0){
+                  this.comiteServices.getListComite(24,null,null,null,this.textFilterDE).subscribe(
+                    (response) =>{
+                      this.message = "Reporte de 6 meses anteriores"
+                      sinR = response.data;
+                      
+                      try{
+                        sinR.forEach(function (a) {
+                          temp[a.code] = temp[a.code] || { category: a.code };
+                          temp[a.code][groups[a.nombre]] = a.count;
+                        });
+                        result = Object.keys(temp).map(function (k) { return temp[k]; });
+                          
+                        let val1 = 0;
+                        let val2 = 0;
+                        let val3 = 0;
+            
+                        for(let g = 0; g < result.length; g++){
+                          val1 += result[g].value1
+                          val2 += result[g].value2
+                          val3 += result[g].value3
+                        }
+            
+                        localStorage.removeItem("val1");
+                        localStorage.removeItem("val2");
+                        localStorage.removeItem("val3");
+                        localStorage.setItem("val1",val1.toString())
+                        localStorage.setItem("val2",val2.toString())
+                        localStorage.setItem("val3",val3.toString())
+            
+                        this.val1 = localStorage.getItem("val1");
+                        this.val2 = localStorage.getItem("val2");
+                        this.val3 = localStorage.getItem("val3");
+                        this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                        
+                        this.barEmpresaDireccion.dataReceived(sinR);
+                      }catch{
+                        this.barEmpresaDireccion.dataReceived("");
+                      }
+                      
+                    }
+                  )
+                }else{
+                  if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.selectedCity1 == null && this.textFilterDE.length == 0){
+                    this.comiteServices.getListComite(25,this.textFilter2,this.textFilter3,null,null).subscribe(
+                      (response) =>{
+                        this.message = "Reporte de 6 meses anteriores"
+                        sinR = response.data;
+                        
+                        try{
+                          sinR.forEach(function (a) {
+                            temp[a.code] = temp[a.code] || { category: a.code };
+                            temp[a.code][groups[a.nombre]] = a.count;
+                          });
+                          result = Object.keys(temp).map(function (k) { return temp[k]; });
+                            
+                          let val1 = 0;
+                          let val2 = 0;
+                          let val3 = 0;
+              
+                          for(let g = 0; g < result.length; g++){
+                            val1 += result[g].value1
+                            val2 += result[g].value2
+                            val3 += result[g].value3
+                          }
+              
+                          localStorage.removeItem("val1");
+                          localStorage.removeItem("val2");
+                          localStorage.removeItem("val3");
+                          localStorage.setItem("val1",val1.toString())
+                          localStorage.setItem("val2",val2.toString())
+                          localStorage.setItem("val3",val3.toString())
+              
+                          this.val1 = localStorage.getItem("val1");
+                          this.val2 = localStorage.getItem("val2");
+                          this.val3 = localStorage.getItem("val3");
+                          this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                          
+                          this.barEmpresaDireccion.dataReceived(sinR);
+                        }catch{
+                          this.barEmpresaDireccion.dataReceived("");
+                        }
+                        
+                      }
+                    )
+                  }else{
+                    if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.selectedCity1 != null && this.textFilterDE.length == 0){
+                      this.comiteServices.getListComite(26,this.textFilter2,null,this.selectedCity1.nombre,null).subscribe(
+                        (response) =>{
+                          this.message = "Reporte de 6 meses anteriores"
+                          sinR = response.data;
+                          
+                          try{
+                            sinR.forEach(function (a) {
+                              temp[a.code] = temp[a.code] || { category: a.code };
+                              temp[a.code][groups[a.nombre]] = a.count;
+                            });
+                            result = Object.keys(temp).map(function (k) { return temp[k]; });
+                              
+                            let val1 = 0;
+                            let val2 = 0;
+                            let val3 = 0;
+                
+                            for(let g = 0; g < result.length; g++){
+                              val1 += result[g].value1
+                              val2 += result[g].value2
+                              val3 += result[g].value3
+                            }
+                
+                            localStorage.removeItem("val1");
+                            localStorage.removeItem("val2");
+                            localStorage.removeItem("val3");
+                            localStorage.setItem("val1",val1.toString())
+                            localStorage.setItem("val2",val2.toString())
+                            localStorage.setItem("val3",val3.toString())
+                
+                            this.val1 = localStorage.getItem("val1");
+                            this.val2 = localStorage.getItem("val2");
+                            this.val3 = localStorage.getItem("val3");
+                            this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                            
+                            this.barEmpresaDireccion.dataReceived(sinR);
+                          }catch{
+                            this.barEmpresaDireccion.dataReceived("");
+                          }
+                          
+                        }
+                      )
+                    }else{
+                      if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.selectedCity1 == null && this.textFilterDE.length != 0){
+                        this.comiteServices.getListComite(27,this.textFilter2,null,null,this.textFilterDE).subscribe(
+                          (response) =>{
+                            this.message = "Reporte de 6 meses anteriores"
+                            sinR = response.data;
+                            
+                            try{
+                              sinR.forEach(function (a) {
+                                temp[a.code] = temp[a.code] || { category: a.code };
+                                temp[a.code][groups[a.nombre]] = a.count;
+                              });
+                              result = Object.keys(temp).map(function (k) { return temp[k]; });
+                                
+                              let val1 = 0;
+                              let val2 = 0;
+                              let val3 = 0;
+                  
+                              for(let g = 0; g < result.length; g++){
+                                val1 += result[g].value1
+                                val2 += result[g].value2
+                                val3 += result[g].value3
+                              }
+                  
+                              localStorage.removeItem("val1");
+                              localStorage.removeItem("val2");
+                              localStorage.removeItem("val3");
+                              localStorage.setItem("val1",val1.toString())
+                              localStorage.setItem("val2",val2.toString())
+                              localStorage.setItem("val3",val3.toString())
+                  
+                              this.val1 = localStorage.getItem("val1");
+                              this.val2 = localStorage.getItem("val2");
+                              this.val3 = localStorage.getItem("val3");
+                              this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                              
+                              this.barEmpresaDireccion.dataReceived(sinR);
+                            }catch{
+                              this.barEmpresaDireccion.dataReceived("");
+                            }
+                            
+                          }
+                        )
+                      }else{
+                        if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.selectedCity1 != null && this.textFilterDE.length == 0){
+                          this.comiteServices.getListComite(28,null,this.textFilter3,this.selectedCity1.nombre,null).subscribe(
+                            (response) =>{
+                              this.message = "Reporte de 6 meses anteriores"
+                              sinR = response.data;
+                              
+                              try{
+                                sinR.forEach(function (a) {
+                                  temp[a.code] = temp[a.code] || { category: a.code };
+                                  temp[a.code][groups[a.nombre]] = a.count;
+                                });
+                                result = Object.keys(temp).map(function (k) { return temp[k]; });
+                                  
+                                let val1 = 0;
+                                let val2 = 0;
+                                let val3 = 0;
+                    
+                                for(let g = 0; g < result.length; g++){
+                                  val1 += result[g].value1
+                                  val2 += result[g].value2
+                                  val3 += result[g].value3
+                                }
+                    
+                                localStorage.removeItem("val1");
+                                localStorage.removeItem("val2");
+                                localStorage.removeItem("val3");
+                                localStorage.setItem("val1",val1.toString())
+                                localStorage.setItem("val2",val2.toString())
+                                localStorage.setItem("val3",val3.toString())
+                    
+                                this.val1 = localStorage.getItem("val1");
+                                this.val2 = localStorage.getItem("val2");
+                                this.val3 = localStorage.getItem("val3");
+                                this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                                
+                                this.barEmpresaDireccion.dataReceived(sinR);
+                              }catch{
+                                this.barEmpresaDireccion.dataReceived("");
+                              }
+                              
+                            }
+                          )
+                        }else{
+                          if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.selectedCity1 == null && this.textFilterDE.length != 0){
+                            this.comiteServices.getListComite(29,null,this.textFilter3,null,this.textFilterDE).subscribe(
+                              (response) =>{
+                                this.message = "Reporte de 6 meses anteriores"
+                                sinR = response.data;
+                                
+                                try{
+                                  sinR.forEach(function (a) {
+                                    temp[a.code] = temp[a.code] || { category: a.code };
+                                    temp[a.code][groups[a.nombre]] = a.count;
+                                  });
+                                  result = Object.keys(temp).map(function (k) { return temp[k]; });
+                                    
+                                  let val1 = 0;
+                                  let val2 = 0;
+                                  let val3 = 0;
+                      
+                                  for(let g = 0; g < result.length; g++){
+                                    val1 += result[g].value1
+                                    val2 += result[g].value2
+                                    val3 += result[g].value3
+                                  }
+                      
+                                  localStorage.removeItem("val1");
+                                  localStorage.removeItem("val2");
+                                  localStorage.removeItem("val3");
+                                  localStorage.setItem("val1",val1.toString())
+                                  localStorage.setItem("val2",val2.toString())
+                                  localStorage.setItem("val3",val3.toString())
+                      
+                                  this.val1 = localStorage.getItem("val1");
+                                  this.val2 = localStorage.getItem("val2");
+                                  this.val3 = localStorage.getItem("val3");
+                                  this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                                  
+                                  this.barEmpresaDireccion.dataReceived(sinR);
+                                }catch{
+                                  this.barEmpresaDireccion.dataReceived("");
+                                }
+                                
+                              }
+                            )
+                          }else{
+                            if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.selectedCity1 != null && this.textFilterDE.length != 0){
+                              this.comiteServices.getListComite(30,null,null,this.selectedCity1.nombre,this.textFilterDE).subscribe(
+                                (response) =>{
+                                  this.message = "Reporte de 6 meses anteriores"
+                                  sinR = response.data;
+                                  
+                                  try{
+                                    sinR.forEach(function (a) {
+                                      temp[a.code] = temp[a.code] || { category: a.code };
+                                      temp[a.code][groups[a.nombre]] = a.count;
+                                    });
+                                    result = Object.keys(temp).map(function (k) { return temp[k]; });
+                                      
+                                    let val1 = 0;
+                                    let val2 = 0;
+                                    let val3 = 0;
+                        
+                                    for(let g = 0; g < result.length; g++){
+                                      val1 += result[g].value1
+                                      val2 += result[g].value2
+                                      val3 += result[g].value3
+                                    }
+                        
+                                    localStorage.removeItem("val1");
+                                    localStorage.removeItem("val2");
+                                    localStorage.removeItem("val3");
+                                    localStorage.setItem("val1",val1.toString())
+                                    localStorage.setItem("val2",val2.toString())
+                                    localStorage.setItem("val3",val3.toString())
+                        
+                                    this.val1 = localStorage.getItem("val1");
+                                    this.val2 = localStorage.getItem("val2");
+                                    this.val3 = localStorage.getItem("val3");
+                                    this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                                    
+                                    this.barEmpresaDireccion.dataReceived(sinR);
+                                  }catch{
+                                    this.barEmpresaDireccion.dataReceived("");
+                                  }
+                                  
+                                }
+                              )
+                            }else{
+                              if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.selectedCity1 != null && this.textFilterDE.length != 0){
+                                this.comiteServices.getListComite(31,this.textFilter2,null,this.selectedCity1.nombre,this.textFilterDE).subscribe(
+                                  (response) =>{
+                                    this.message = "Reporte de 6 meses anteriores"
+                                    sinR = response.data;
+                                    
+                                    try{
+                                      sinR.forEach(function (a) {
+                                        temp[a.code] = temp[a.code] || { category: a.code };
+                                        temp[a.code][groups[a.nombre]] = a.count;
+                                      });
+                                      result = Object.keys(temp).map(function (k) { return temp[k]; });
+                                        
+                                      let val1 = 0;
+                                      let val2 = 0;
+                                      let val3 = 0;
+                          
+                                      for(let g = 0; g < result.length; g++){
+                                        val1 += result[g].value1
+                                        val2 += result[g].value2
+                                        val3 += result[g].value3
+                                      }
+                          
+                                      localStorage.removeItem("val1");
+                                      localStorage.removeItem("val2");
+                                      localStorage.removeItem("val3");
+                                      localStorage.setItem("val1",val1.toString())
+                                      localStorage.setItem("val2",val2.toString())
+                                      localStorage.setItem("val3",val3.toString())
+                          
+                                      this.val1 = localStorage.getItem("val1");
+                                      this.val2 = localStorage.getItem("val2");
+                                      this.val3 = localStorage.getItem("val3");
+                                      this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                                      
+                                      this.barEmpresaDireccion.dataReceived(sinR);
+                                    }catch{
+                                      this.barEmpresaDireccion.dataReceived("");
+                                    }
+                                    
+                                  }
+                                )
+                              }else{
+                                if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.selectedCity1 != null && this.textFilterDE.length != 0){
+                                  this.comiteServices.getListComite(32,null,this.textFilter3,this.selectedCity1.nombre,this.textFilterDE).subscribe(
+                                    (response) =>{
+                                      this.message = "Reporte de 6 meses anteriores"
+                                      sinR = response.data;
+                                      
+                                      try{
+                                        sinR.forEach(function (a) {
+                                          temp[a.code] = temp[a.code] || { category: a.code };
+                                          temp[a.code][groups[a.nombre]] = a.count;
+                                        });
+                                        result = Object.keys(temp).map(function (k) { return temp[k]; });
+                                          
+                                        let val1 = 0;
+                                        let val2 = 0;
+                                        let val3 = 0;
+                            
+                                        for(let g = 0; g < result.length; g++){
+                                          val1 += result[g].value1
+                                          val2 += result[g].value2
+                                          val3 += result[g].value3
+                                        }
+                            
+                                        localStorage.removeItem("val1");
+                                        localStorage.removeItem("val2");
+                                        localStorage.removeItem("val3");
+                                        localStorage.setItem("val1",val1.toString())
+                                        localStorage.setItem("val2",val2.toString())
+                                        localStorage.setItem("val3",val3.toString())
+                            
+                                        this.val1 = localStorage.getItem("val1");
+                                        this.val2 = localStorage.getItem("val2");
+                                        this.val3 = localStorage.getItem("val3");
+                                        this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                                        
+                                        this.barEmpresaDireccion.dataReceived(sinR);
+                                      }catch{
+                                        this.barEmpresaDireccion.dataReceived("");
+                                      }
+                                      
+                                    }
+                                  )
+                                }else{
+                                  if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.selectedCity1 == null && this.textFilterDE.length != 0){
+                                    this.comiteServices.getListComite(33,this.textFilter2,this.textFilter3,null,this.textFilterDE).subscribe(
+                                      (response) =>{
+                                        this.message = "Reporte de 6 meses anteriores"
+                                        sinR = response.data;
+                                        
+                                        try{
+                                          sinR.forEach(function (a) {
+                                            temp[a.code] = temp[a.code] || { category: a.code };
+                                            temp[a.code][groups[a.nombre]] = a.count;
+                                          });
+                                          result = Object.keys(temp).map(function (k) { return temp[k]; });
+                                            
+                                          let val1 = 0;
+                                          let val2 = 0;
+                                          let val3 = 0;
+                              
+                                          for(let g = 0; g < result.length; g++){
+                                            val1 += result[g].value1
+                                            val2 += result[g].value2
+                                            val3 += result[g].value3
+                                          }
+                              
+                                          localStorage.removeItem("val1");
+                                          localStorage.removeItem("val2");
+                                          localStorage.removeItem("val3");
+                                          localStorage.setItem("val1",val1.toString())
+                                          localStorage.setItem("val2",val2.toString())
+                                          localStorage.setItem("val3",val3.toString())
+                              
+                                          this.val1 = localStorage.getItem("val1");
+                                          this.val2 = localStorage.getItem("val2");
+                                          this.val3 = localStorage.getItem("val3");
+                                          this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                                          
+                                          this.barEmpresaDireccion.dataReceived(sinR);
+                                        }catch{
+                                          this.barEmpresaDireccion.dataReceived("");
+                                        }
+                                        
+                                      }
+                                    )
+                                  }else{
+                                    if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.selectedCity1 != null && this.textFilterDE.length == 0){
+                                      this.comiteServices.getListComite(34,this.textFilter2,this.textFilter3,this.selectedCity1.nombre,null).subscribe(
+                                        (response) =>{
+                                          this.message = "Reporte de 6 meses anteriores"
+                                          sinR = response.data;
+                                          
+                                          try{
+                                            sinR.forEach(function (a) {
+                                              temp[a.code] = temp[a.code] || { category: a.code };
+                                              temp[a.code][groups[a.nombre]] = a.count;
+                                            });
+                                            result = Object.keys(temp).map(function (k) { return temp[k]; });
+                                              
+                                            let val1 = 0;
+                                            let val2 = 0;
+                                            let val3 = 0;
+                                
+                                            for(let g = 0; g < result.length; g++){
+                                              val1 += result[g].value1
+                                              val2 += result[g].value2
+                                              val3 += result[g].value3
+                                            }
+                                
+                                            localStorage.removeItem("val1");
+                                            localStorage.removeItem("val2");
+                                            localStorage.removeItem("val3");
+                                            localStorage.setItem("val1",val1.toString())
+                                            localStorage.setItem("val2",val2.toString())
+                                            localStorage.setItem("val3",val3.toString())
+                                
+                                            this.val1 = localStorage.getItem("val1");
+                                            this.val2 = localStorage.getItem("val2");
+                                            this.val3 = localStorage.getItem("val3");
+                                            this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                                            
+                                            this.barEmpresaDireccion.dataReceived(sinR);
+                                          }catch{
+                                            this.barEmpresaDireccion.dataReceived("");
+                                          }
+                                          
+                                        }
+                                      )
+                                    }else{
+                                      if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.selectedCity1 != null && this.textFilterDE.length != 0){
+                                        this.comiteServices.getListComite(35,this.textFilter2,this.textFilter3,this.selectedCity1.nombre,this.textFilterDE).subscribe(
+                                          (response) =>{
+                                            this.message = "Reporte de 6 meses anteriores"
+                                            sinR = response.data;
+                                            
+                                            try{
+                                              sinR.forEach(function (a) {
+                                                temp[a.code] = temp[a.code] || { category: a.code };
+                                                temp[a.code][groups[a.nombre]] = a.count;
+                                              });
+                                              result = Object.keys(temp).map(function (k) { return temp[k]; });
+                                                
+                                              let val1 = 0;
+                                              let val2 = 0;
+                                              let val3 = 0;
+                                  
+                                              for(let g = 0; g < result.length; g++){
+                                                val1 += result[g].value1
+                                                val2 += result[g].value2
+                                                val3 += result[g].value3
+                                              }
+                                  
+                                              localStorage.removeItem("val1");
+                                              localStorage.removeItem("val2");
+                                              localStorage.removeItem("val3");
+                                              localStorage.setItem("val1",val1.toString())
+                                              localStorage.setItem("val2",val2.toString())
+                                              localStorage.setItem("val3",val3.toString())
+                                  
+                                              this.val1 = localStorage.getItem("val1");
+                                              this.val2 = localStorage.getItem("val2");
+                                              this.val3 = localStorage.getItem("val3");
+                                              this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+                                              
+                                              this.barEmpresaDireccion.dataReceived(sinR);
+                                            }catch{
+                                              this.barEmpresaDireccion.dataReceived("");
+                                            }
+                                            
+                                          }
+                                        )
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
     if(id == 3){
     }
@@ -910,9 +1646,9 @@ export class DashboardComponent implements OnInit {
       let sinR = [];
       var result: any;
       
-      if (evento === "Enter" || evento === "click" || evento === undefined) {
+      if (evento === "Enter" || evento === "click") {
         if(this.textFilter2.length == 0 && this.textFilter3.length == 0){
-          this.comiteServices.getListComite(16,null,null,null).subscribe(
+          this.comiteServices.getListComite(16,null,null,null,null).subscribe(
             (response) =>{
               sinR = response.data;
 
@@ -970,7 +1706,7 @@ export class DashboardComponent implements OnInit {
           )
         }else{
           if(this.textFilter2.length != 0 && this.textFilter3.length == 0){
-            this.comiteServices.getListComite(17,this.textFilter2,null,null).subscribe(
+            this.comiteServices.getListComite(17,this.textFilter2,null,null,null).subscribe(
               (response) =>{
                 sinR = response.data;
                 
@@ -1027,7 +1763,7 @@ export class DashboardComponent implements OnInit {
             )
           }else{
             if(this.textFilter2.length == 0 && this.textFilter3.length != 0){
-              this.comiteServices.getListComite(18,null,this.textFilter3,null).subscribe(
+              this.comiteServices.getListComite(18,null,this.textFilter3,null,null).subscribe(
                 (response) =>{
                   sinR = response.data;
 
@@ -1084,7 +1820,7 @@ export class DashboardComponent implements OnInit {
               )
             }else{
               if(this.textFilter2.length != 0 && this.textFilter3.length != 0){
-                this.comiteServices.getListComite(19,this.textFilter2,this.textFilter3,null).subscribe(
+                this.comiteServices.getListComite(19,this.textFilter2,this.textFilter3,null,null).subscribe(
                   (response) =>{
                     sinR = response.data;
                     
@@ -1165,8 +1901,11 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-  getListModo(id:number){
+  onTabClicked(event: any) {
+    this.getListModo(event.index);
+ }
 
+  getListModo(id:number){
     /*this.date3 = new Date("");
     this.date4 = new Date("");*/
     this.textFilter0 = "";
@@ -1178,7 +1917,7 @@ export class DashboardComponent implements OnInit {
     var result: any;
 
     if(id == 0){
-      this.comiteServices.getListComite(0,null,null,null).subscribe(
+      this.comiteServices.getListComite(0,null,null,null,null).subscribe(
         (response) =>{
           this.message = "Reporte de los 6 últimos meses"
           sinR = response.data;
@@ -1220,7 +1959,7 @@ export class DashboardComponent implements OnInit {
       )
     }
     if(id == 1){
-      this.comiteServices.getListComite(8,null,null,null).subscribe(
+      this.comiteServices.getListComite(8,null,null,null,null).subscribe(
         (response) =>{
           this.message = "Reporte de los 6 últimos meses"
           sinR = response.data;
@@ -1253,7 +1992,6 @@ export class DashboardComponent implements OnInit {
             this.val2 = localStorage.getItem("val2");
             this.val3 = localStorage.getItem("val3");
             this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-            
             this.barPais.dataReceived(sinR);
           }catch{
             this.barPais.dataReceived("");
@@ -1268,7 +2006,7 @@ export class DashboardComponent implements OnInit {
 
     }
     if(id == 4){
-      this.comiteServices.getListComite(16,null,null,null).subscribe(
+      this.comiteServices.getListComite(16,null,null,null,null).subscribe(
         (response) =>{
           sinR = response.data;
 

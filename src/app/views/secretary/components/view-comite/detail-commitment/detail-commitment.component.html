@@ -1,0 +1,131 @@
+<div class="p-card p-p-4 br-05">
+    <p-table [value]="products" dataKey="id"  expandableRows="true" styleClass="style-table-1">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Acta </th>
+                <th>F. de creación</th>
+                <th>H. de creación</th>
+                <th>Estado</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product let-expanded="expanded">
+            <tr>
+                <td>{{product.acta}}</td>
+                <td>{{product.dataCreation}}</td>
+                <td>{{product.horaCreation}}</td>
+                <td>
+                    <i  class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--orange)'"></i>
+                    {{product.status}}
+                </td>
+                <td [style.text-align]="'end'">
+                    <button type="button" pButton pRipple [pRowToggler]="product" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-circle-up' : 'pi pi-chevron-circle-down'"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-product>
+            <tr class="rowexpan">
+                <td colspan="5" class="p-p-0">
+                    <ng-container *ngTemplateOutlet="subRow; context: product"></ng-container>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>    
+</div>
+
+<!-- Sub row table-->
+<ng-template #subRow let-order="orders">
+    <p-table [value]="order" dataKey="id" styleClass="style-table" expandableRows="false" styleClass="style-table-2">
+        <ng-template pTemplate="header">
+            <tr>
+                <th [style.width]="'30%'">Compromisos</th>
+                <th>Anterior</th>
+                <th>Actual</th>
+                <th>Fecha Cierre</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-order let-expanded="expanded">
+            <!-- [style.background]="order.tareas? '#8780803d':'transparent'"  -->
+            <tr [ngClass]="{'color-td': order.tareas? true: false}">
+                <td>
+                    <div class="p-d-flex p-ai-center">
+                        <button *ngIf="order.tareas" type="button" pButton pRipple [pRowToggler]="order" class="p-button-text p-button-rounded p-button-plain p-mr-2" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                        <span>{{order.compromiso}}</span>
+                    </div>
+                </td>
+                <td>
+                    <p-tag styleClass="p-mr-2" value="45%" [rounded]="true"></p-tag>
+                </td>
+                <td>
+                    <p-tag styleClass="p-mr-2" value="45%" severity="success" [rounded]="true"></p-tag>
+                </td>
+                <td>
+                    {{order.fechaCierre}}
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-order>
+            <tr class="rowexpan" *ngIf="order.tareas" [ngClass]="{'color-td': order.tareas? true: false}">
+                <td colspan="4">
+                    <ng-container *ngTemplateOutlet="tareasTable; context: order"></ng-container>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="6">There are no order for this product yet.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</ng-template>
+
+
+<!-- 3 teable  tareas-->
+<ng-template #tareasTable let-tarea="tareas" >
+    <p-table [value]="tarea" [columns]="cols"  dataKey="id" styleClass="style-table-3">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <ng-container *ngFor="let col of columns">
+                    <th *ngIf="col.field != 'id'" [style.width]="col.width+'%'">
+                        {{col.header}}
+                    </th>
+                </ng-container>
+                <th [style.width]="'5%'" ></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-tarea let-columns="columns">
+            <tr>
+                <ng-container *ngFor="let col of columns">
+                    <td *ngIf="col.field != 'id'">
+                        <div class="p-d-flex p-ai-center">
+                            <p-avatar
+                                *ngIf="col.field == 'responsable'"
+                                image="assets/images/img-perfil-test.jpg"
+                                styleClass="p-mr-2"
+                                shape="circle">
+                            </p-avatar>
+                            <span
+                                *ngIf="col.field != 'avance' && col.field != 'id'" >
+                                {{tarea[col.field]}}
+                            </span>
+                            <p-tag 
+                                *ngIf="col.field == 'avance'"
+                                styleClass="p-mr-2" [value]="tarea[col.field]" [rounded]="true">
+                            </p-tag>
+                        </div>
+                    </td>
+                </ng-container>
+                <td [style.text-align]="'end'">
+                    <span class="material-icons-outlined info">
+                        watch_later
+                    </span>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="6">There are no order for this product yet.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</ng-template>

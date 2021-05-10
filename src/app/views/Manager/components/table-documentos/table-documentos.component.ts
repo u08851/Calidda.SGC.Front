@@ -25,7 +25,7 @@ export class TableDocumentosComponent implements OnInit {
   textFilter2: any = "";
   textFilter3: any = "";
   textFilter0: string = "";
-  textFilter10: string = "";
+  textFilter10:  any;
   textFilter20: string = "";
   textFilter30: any = "";
   term: string = "ALL1";
@@ -50,14 +50,11 @@ export class TableDocumentosComponent implements OnInit {
     public messageService:MessageService,
     private datePipe: DatePipe,
   ) {
-    this.tipo = [
-      { name: 'Miembro', code: 6 },
-      { name: 'Invitados', code: 7 }
-    ];
   }
 
   ngOnInit(): void {
     this.crearFormulario();
+    this.getListMembresSelect();
     this.getListConfidencialDocumento();
 
     this.es = {
@@ -238,11 +235,10 @@ export class TableDocumentosComponent implements OnInit {
     }
     this.textFilter1 = this.textFilter10;
     this.textFilter = this.textFilter0;
-    try{
-      this.textFilter1 = event.value.code
-    }catch{}
     if(this.textFilter1 == null){
       this.textFilter1 = "";
+    }else{
+      this.textFilter1 = this.textFilter1.masterDetailId
     }
     if(this.datePipe.transform(this.textFilter20, 'dd-MM-yyyy') != null){
       this.textFilter2 = this.datePipe.transform(this.textFilter20, 'dd-MM-yyyy');
@@ -377,6 +373,14 @@ export class TableDocumentosComponent implements OnInit {
         }
       }      
     }
+  }
+
+  getListMembresSelect(){
+    this.confidencialDocumentoServices.getListMembers().subscribe(
+      (res:any) =>{
+        this.tipo = res.data
+      }
+    )
   }
 
 }

@@ -32,6 +32,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableDocumentosComponent } from './components/table-documentos/table-documentos.component';
 import { ImportDocumentComponent } from './dialog/import-document/import-document.component';
 import { ReportTableComponent } from './components/report-table/report-table.component';
+import { ComiteHistoryComponent } from './dialog/comite-history/comite-history.component';
+
 @NgModule({
   declarations: [
     MaintenanceComponent,
@@ -58,7 +60,8 @@ import { ReportTableComponent } from './components/report-table/report-table.com
     FrecuenciaTableComponent,
     TableDocumentosComponent,
     ImportDocumentComponent,
-    ReportTableComponent
+    ReportTableComponent,
+    ComiteHistoryComponent
   ],
   imports: [
     CommonModule,

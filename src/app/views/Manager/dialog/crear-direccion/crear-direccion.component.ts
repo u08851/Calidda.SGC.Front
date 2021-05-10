@@ -84,8 +84,10 @@ export class CrearDireccionComponent implements OnInit {
 
         this.directionServices.addDirection(odata).subscribe(
           (response: any) => {
-            this.showSuccess(AppConstants.MessageModal.CREATE_SUCCESS);
-            this.ref.close(true);
+            if(response.valid){
+              this.showSuccess(AppConstants.MessageModal.CREATE_SUCCESS);
+              this.ref.close(true);
+            }
           }
         )
       }else{
@@ -98,8 +100,10 @@ export class CrearDireccionComponent implements OnInit {
 
         this.directionServices.updateDirection(odata).subscribe(
           (response: any) => {
-            this.showSuccess(AppConstants.MessageModal.EDIT_SUCCESS);
-            this.ref.close(true);
+            if(response.valid){
+              this.showSuccess(AppConstants.MessageModal.EDIT_SUCCESS);
+              this.ref.close(true);
+            }
           }
         )
       }

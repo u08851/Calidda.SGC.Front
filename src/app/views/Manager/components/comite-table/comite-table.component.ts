@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ComiteHistoryComponent } from '../../dialog/comite-history/comite-history.component';
 
 @Component({
   selector: 'app-comite-table',
@@ -6,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comite-table.component.scss']
 })
 export class ComiteTableComponent implements OnInit {
+  displayModal:boolean;
   products: any[] = [
     {
       "fechac": "fechac",
@@ -32,7 +35,10 @@ export class ComiteTableComponent implements OnInit {
   cols: any[];
   items: any[];
 
-  constructor() { }
+  constructor(
+    public dialogService: DialogService,
+    public  ref: DynamicDialogRef
+  ) { }
 
   ngOnInit(): void {
 
@@ -52,23 +58,38 @@ export class ComiteTableComponent implements OnInit {
     this.items = [
       {
         label: 'Editar Comité',
-        icon: 'pi pi-refresh',
+        icon: 'pi icon-edit',
+        routerLink: "/manager/crear-comites"
       },
       {
         label: 'Ver histórico',
-        icon: 'pi pi-times',
+        icon: 'pi pi-clock',
+        command: (event) => {
+          this.showHistory();
+        },
       },
       {
         label: 'Dar de baja al Comité',
-        icon: 'pi pi-times',
-      },
-      {
-        label: 'Eliminar Comité',
-        icon: 'pi pi-times',
+        icon: 'pi pi-thumbs-down',
+        command: (event) => {
+          this.showConfirmation();
+        }
       }
-
     ];
+  }
 
+  showHistory() {
+    this.ref = this.dialogService.open(ComiteHistoryComponent, {
+      header: 'Historial de cambios del Responsable en el Comité',
+      width: '65%',
+      contentStyle: { "max-height": "500px", "overflow": "auto" },
+      baseZIndex: 10000,
+      data: null
+    });
+  }
+
+  showConfirmation() {
+    this.displayModal = true;
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ComiteServices } from 'src/app/services/comite.service';
 
 @Component({
   selector: 'app-empresa-direccion-table',
@@ -10,26 +11,20 @@ export class EmpresaDireccionTableComponent implements OnInit {
   date4: Date;
   es: any;
 
-  products2: any[] = [
-    {
-      fechaCreacion: 'fechaCreacion',
-      pais: 'pais',
-      nombre: 'nombre',
-      secretario: 'secretario',
-      fechaUltimo: 'fechaUltimo',
-    },
-    {
-      fechaCreacion: 'fechaCreacion',
-      pais: 'pais',
-      nombre: 'nombre',
-      secretario: 'secretario',
-      fechaUltimo: 'fechaUltimo',
-    },
-  ];
+  products2: any[];
 
   cols2: any[];
 
-  constructor() {}
+  term: string = "ALL1";
+  term1: string = "ALL1";
+  term2: string = "ALL1"
+  term3: string = "ALL1";
+  page: number = 0;
+  size: number = 5;
+
+  constructor(
+    private comiteServices:ComiteServices
+  ) {}
 
   ngOnInit(): void {
     this.es = {
@@ -79,10 +74,26 @@ export class EmpresaDireccionTableComponent implements OnInit {
 
     this.cols2 = [
       { header: 'Fecha de creacion', field: 'fechaCreacion' },
-      { header: 'País', field: 'pais' },
+      { header: 'Empresa', field: 'company' },
       { header: 'Nombre del comité', field: 'nombre' },
       { header: 'Secretario del comité', field: 'secretario' },
       { header: 'Fecha de último sesión', field: 'fechaUltimo' },
     ];
+
+    this.getListComiteActiveList();
+
   }
+
+  getDateList(value:string){
+    return value.substr(0,10);
+  }
+
+  getListComiteActiveList(){
+    this.comiteServices.getListComiteActiveEmpresa(this.term,this.term1,this.term2,this.page,this.size).subscribe(
+      (result: any) => {
+        this.products2 = result.data
+      }
+    )
+  }
+
 }
