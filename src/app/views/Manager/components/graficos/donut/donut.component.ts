@@ -135,7 +135,7 @@ export class DonutComponent implements OnInit {
     let sinR = [];
     var result: any;
 
-    this.comiteServices.getListComite(16,null,null,null).subscribe(
+    this.comiteServices.getListComite(16,null,null,null,null).subscribe(
       (response) =>{
         sinR = response.data;
         var groupBy = function (miarray, prop) {

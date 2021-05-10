@@ -25,7 +25,7 @@ export class BarSecretariaComponent implements OnInit {
     var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
     var result: any;
 
-    this.comiteServices.getListComite(0,null,null,null).subscribe(
+    this.comiteServices.getListComite(20,null,null,null,null).subscribe(
       (response) =>{
         sinR = response.data;
         sinR.forEach(function (a) {
