@@ -1,1 +1,298 @@
-<p>detail-comite works!</p>
+<p-tabView styleClass="p-tab-style-3">
+    <div class="comite_number">
+        Comité: C2031
+    </div>
+    <p-tabPanel [selected]="true" header="Detalles del Comité">
+        <div class="tab-content">
+            <div class="p-grid dark p-pt-3 p-m-0">
+                <p class="p-field title info p-col-12">Información básica</p>
+                <div class="p-field p-grid p-col-12 p-md-6 p-m-0">
+                    <div class="p-d-flex w-100">
+                        <label class="p-mr-1 info p-col-6 p-md-5" for="">Nombre:</label>
+                        Comité Cálidda
+                    </div>
+                </div>
+                <div class="p-field p-grid p-col-12 p-md-6 p-m-0">
+                    <div class="p-d-flex w-100">
+                        <label class="p-mr-1 info p-col-6 p-md-4" for="">Código de Comité:</label>
+                        C2031
+                    </div>
+                </div>
+                <div class="p-field p-grid p-col-12 p-md-6 p-m-0">
+                    <div class="p-d-flex w-100">
+                        <label class="p-mr-1 info p-col-6 p-md-5" for="">Empresa:</label>
+                        Cálidda
+                    </div>
+                </div>
+                <div class="p-field p-grid p-col-12 p-md-6 p-m-0">
+                    <div class="p-d-flex w-100">
+                        <label class="p-mr-1 info p-col-6 p-md-4" for="">Responsable:</label>
+                        <p-avatar class="p-mr-2" image="assets/images/img22.jpg" shape="circle"></p-avatar>
+                        <strong class="p-mt-1">Rosario Chiarella</strong>
+                    </div>
+                </div>
+                <div class="p-field p-grid p-col-12 p-md-6 p-m-0">
+                    <div class="p-d-flex w-100">
+                        <label class="p-mr-1 info p-col-6 p-md-5" for="">País:</label>
+                        <img class="p-mr-2" [style.width]="'25px'" src="assets/images/flag/PE.svg" alt=""> Peru
+                    </div>
+                </div>
+                <div class="p-field p-grid p-col-12 p-md-6 p-m-0">
+                    <div class="p-d-flex w-100">
+                        <label class="p-mr-1 info p-col-6 p-md-4" for="">Dirección del Comité:</label>
+                        Abastecimiento y Servicio
+                    </div>
+                </div>
+
+                <div class="p-field p-grid p-col-12 p-md-6 p-m-0">
+                    <div class="p-d-flex w-100">
+                        <label class="p-mr-1 info p-col-6 p-md-5" for="">Fecha de creación:</label>
+                        30/11/2020
+                    </div>
+                </div>
+                <div class="p-field p-grid p-col-12 p-md-6">
+                    <div class="p-d-flex w-100">
+                        <label class="p-mr-1 info p-col-6 p-md-4" for="">Hora de creación:</label>
+                        15:45
+                    </div>
+                </div>
+
+
+                <!-- Datos del Comité -->
+                <p class="p-col-12 title info">Datos del Comité</p>
+                <div class="p-field p-col-12 p-md-12">
+                    <label class="info">Descripción del Comité</label>
+                    <p>Entrega de avances finales para la aprobación del proyecto.</p>
+                    <!-- <input type="text" pInputText>  -->
+                </div>
+                <div class="p-field p-col-12 p-md-12">
+                    <label class="info">Objetivo del comité</label>
+                    <p>Revisión de la comisión</p>
+                </div>
+
+                <!-- Periodicidad de reuniones -->
+                <p class="p-col-12 title info">Periodicidad de reuniones</p>
+                <div class="p-field p-col-12 p-md-3">
+                    <label class="info">Frecuencia</label>
+                    <div class="p-field-checkbox">
+                        <p-radioButton name="frecuencia" value="Los Angeles" [(ngModel)]="selectedFrecuencia">
+                        </p-radioButton>
+                        <label for="city8">Semanal</label>
+                    </div>
+                </div>
+                <div class="p-field p-col-12 p-md-3">
+                    <label class="info">Días</label>
+                    <p>Lunes</p>
+                </div>
+                <div class="p-field p-col-12 p-md-6">
+                    <label class="info">Repeticiones</label>
+                    <p>10 repeticiones</p>
+                </div>
+
+                <div class="p-field p-col-12 p-md-3">
+                    <label class="info">Fecha de inicio</label>
+                    <p-calendar [(ngModel)]="date" [showIcon]="true"></p-calendar>
+                </div>
+                <div class="p-field p-col-12 p-md-3">
+                    <label class="info">Hora de inicio</label>
+                    <p>10 repeticiones</p>
+                </div>
+                <div class="p-field p-col-12 p-md-3">
+                    <label class="info">Hora de fin</label>
+                    <p>10 repeticiones</p>
+                </div>
+                <div class="p-field p-col-12 p-md-3">
+                    <label class="info">Duración</label>
+                    <p>10 repeticiones</p>
+                </div>
+
+                <!-- Alertas de reuniones -->
+                <p class="p-col-12 title info">Alertas de reuniones</p>
+                <div class="p-field p-col-12 p-md-3">
+                    <p>Días de anticipación</p>
+                </div>
+
+                <p class="p-col-12 title info">Facultades</p>
+                <div class="p-field p-col-12 p-md-3">
+                    <p>Voto</p>
+                </div>
+
+
+                <!-- Miembros del comité -->
+                <p class="title p-field p-col-12 info">Miembros del comité</p>
+                <div class="p-d-flex p-jc-between p-col-12">
+                    <div class="btn-group p-mb-3">
+                        <button pButton pRipple type="button" label="Titulares"
+                            class="p-button-rounded p-button-outlined active">
+                        </button>
+                        <button pButton pRipple type="button" label="Suplentes"
+                            class="p-button-rounded p-button-outlined">
+                        </button>
+                        <button pButton pRipple type="button" label="Invitados"
+                            class="p-button-rounded p-button-outlined">
+                        </button>
+                        <button pButton pRipple type="button" label="Aistente de Secretaria"
+                            class="p-button-rounded p-button-outlined">
+                        </button>
+                    </div>
+                    <span class="blue-dark">
+                        Nº de participantes: <strong class="op-8">50</strong>
+                    </span>
+                </div>
+
+                <div class="border-1px-gray rounded-1 p-p-4 p-mb-3 fadeIn-animation">
+                    <div class="p-d-flex p-justify-end">
+                        <span class="blue-dark">
+                            Nº de participantes: <strong class="op-8">5</strong>
+                        </span>
+                    </div>
+                    <p-table [columns]="cols" [value]="data" styleClass="style-table" [paginator]="false" [rows]="3"
+                        [showCurrentPageReport]="false">
+                        <ng-template pTemplate="colgroup" let-columns>
+                            <colgroup>
+                                <col [style.width]="20 + '%'" />
+                                <col [style.width]="20  + '%'" />
+                                <col [style.width]="15 + '%'" />
+                                <col [style.width]="15 + '%'" />
+                                <col [style.width]="15 + '%'" />
+                                <col [style.width]="18 + '%'" />
+                            </colgroup>
+                        </ng-template>
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <th *ngFor="let col of columns">
+                                    {{col.header}}
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData let-columns="columns">
+                            <tr>
+                                <!-- variables:  --red --green --info  -->
+                                <td>
+                                    <div class="p-d-flex p-ai-center">
+                                        <p-avatar image="assets/images/img-perfil-test.jpg" styleClass="p-mr-2"
+                                            shape="circle">
+                                        </p-avatar>
+                                        <span>Rocio del valle</span>
+                                    </div>
+                                </td>
+                                <td>s</td>
+                                <td>Presidente</td>
+                                <td>987654321</td>
+                                <td>
+                                    <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--green)'"></i>
+                                    Activo
+                                </td>
+                                <td>Voto</td>
+                                <!-- <td  class="b-dander" *ngFor="let col of columns">
+                                    {{rowData[col.field]}}
+                            </td>-->
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+
+                <!-- Asistente de Secretaría -->
+                <p class="title p-col-12 info">Asistente de Secretaría</p>
+                <p-table [columns]="cols" [value]="data" styleClass="style-table" [paginator]="false" [rows]="3"
+                    [showCurrentPageReport]="false">
+                    <ng-template pTemplate="colgroup" let-columns>
+                        <colgroup>
+                            <col [style.width]="20 + '%'" />
+                            <col [style.width]="20  + '%'" />
+                            <col [style.width]="15 + '%'" />
+                            <col [style.width]="15 + '%'" />
+                            <col [style.width]="15 + '%'" />
+                            <col [style.width]="18 + '%'" />
+                        </colgroup>
+                    </ng-template>
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns">
+                                {{col.header}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr>
+                            <!-- variables:  --red --green --info  -->
+                            <td>
+                                <div class="p-d-flex p-ai-center">
+                                    <p-avatar image="assets/images/img-perfil-test.jpg" styleClass="p-mr-2"
+                                        shape="circle">
+                                    </p-avatar>
+                                    <span>Rocio del valle</span>
+                                </div>
+                            </td>
+                            <td>s</td>
+                            <td>Presidente</td>
+                            <td>987654321</td>
+                            <td>
+                                <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--green)'"></i>
+                                Activo
+                            </td>
+                            <td>Voto</td>
+                            <!-- <td  class="b-dander" *ngFor="let col of columns">
+                            {{rowData[col.field]}}
+                    </td>-->
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <p class="title p-col-12 info">Lista de Documentos</p>
+                <p-table [columns]="colsDocuments" [value]="documents" styleClass="style-table" [paginator]="false" [rows]="3"
+                    [showCurrentPageReport]="false">
+                    <ng-template pTemplate="colgroup" let-columns>
+                        <colgroup>
+                            <col [style.width]="90 + '%'" />
+                            <col [style.width]="10 + '%'" />
+                        </colgroup>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr>
+                            <td *ngFor="let col of columns">
+                                <div class="p-d-flex p-ai-center">
+                                    <i class="pi pi-file-pdf red fz-1 p-mr-2"></i>
+                                    {{rowData[col.field]}}
+                                </div>
+                            </td>
+                            <td>
+                                <div style="position: relative;">
+                                    <button
+                                    (click)="showMaximizableDialog()"
+                                        pButton pRipple type="button" icon="pi pi-eye"
+                                        class="p-button-rounded p-button-info p-button-text icon-size"
+                                        styleClass="icon-size">
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </p-tabPanel>
+</p-tabView>
+
+<!--Modal Visor pdf -->
+<p-dialog
+    header="Reglamentos"
+    [(visible)]="displayMaximizable"
+    [modal]="true"
+    [style]="{width: '70%'}"
+    [maximizable]="false"
+    [baseZIndex]="10000"
+    [draggable]="false"
+    styleClass="ovf-inherit"
+    [resizable]="false">
+    
+    <ng-template pTemplate="body">
+        <app-view-file [currentpdf]="document"></app-view-file>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton (click)="displayMaximizable=false" label="Aceptar" styleClass="p-button-text"></button>
+    </ng-template>
+</p-dialog>
+
+<!-- app-view-file -->
