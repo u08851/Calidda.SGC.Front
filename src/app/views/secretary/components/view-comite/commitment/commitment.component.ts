@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./commitment.component.scss']
 })
 export class CommitmentComponent implements OnInit {
-
+  displayModal: boolean;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  showAlertResponsable() {
+    this.displayModal = true;
+  }
 }

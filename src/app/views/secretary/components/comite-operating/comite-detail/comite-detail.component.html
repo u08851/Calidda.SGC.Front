@@ -1,4 +1,4 @@
-<div class="p-fluid p-formgrid gray p-grid">
+<div class="p-fluid p-formgrid gray p-grid p-mb-3">
     <p class="p-field p-col-12 p-custom-title">Datos del Comité</p>
 
     <div class="p-field p-col-12">
@@ -61,21 +61,47 @@
     </div>
     <div class="p-field p-col-12 p-md-3">
         <label>Repeteciones</label>
-        <input type="text" pInputText>
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon" [style.padding]="'0.4rem'">
+                <button [style.width]="'2rem'" type="button" pButton pRipple icon="pi pi-minus"></button>
+            </span>
+            <input type="text" pInputText>
+            <span class="p-inputgroup-addon" [style.padding]="'0.4rem'">
+                <button [style.width]="'2rem'" type="button" pButton pRipple icon="pi pi-plus"></button>
+            </span>
+        </div>
     </div>
 
     <p class="p-field p-col-12 p-custom-title">Alertas de reuniones</p>
-    <div class="p-field p-col-12 p-md-3">
-        <label>Repeteciones</label>
-        <input type="text" pInputText>
+    <div class="p-field p-col-12 p-md-4">
+        <label>Días de anticipación</label>
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon" [style.padding]="'0.4rem'">
+                <button [style.width]="'2rem'" type="button" pButton pRipple icon="pi pi-minus"></button>
+            </span>
+            <input type="text" pInputText>
+            <span class="p-inputgroup-addon" [style.padding]="'0.4rem'">
+                <button [style.width]="'2rem'" type="button" pButton pRipple icon="pi pi-plus"></button>
+            </span>
+        </div>
     </div>
 
     <p class="p-field p-col-12 p-custom-title">Facultades</p>
-    <div class="p-field p-col-12 p-md-3">
+    <div class="p-field p-col-12 p-md-4">
         <p-checkbox label="Voto" value="val1" [(ngModel)]="selectedValue"></p-checkbox>
     </div>
+    <p class="p-field p-col-12 p-custom-title">Cuórum</p>
+    <div class="p-field p-col-12 p-md-4">
+        <label>Ingresar cuorum minimo de asistentes</label>
+        <div class="p-inputgroup">
+            <input type="text" pInputText>
+            <span class="p-inputgroup-addon" [style.padding]="'0.4rem'">
+                <button [style.width]="'2rem'" type="button" pButton pRipple icon="pi pi-plus"></button>
+            </span>
+        </div>
+    </div>
 </div>
-<div class="p-d-flex p-jc-center btn-group">
+<div class="p-d-flex p-jc-center btn-group p-mb-4">
     <button class="stylebtn" label="Guardar" pButton></button>
     <button class="" label="Siguiente" pButton></button>
 </div>

@@ -39,11 +39,14 @@ import { AssistantSecretaryComponent } from './dialog/assistant-secretary/assist
 import { StateDocumentComponent } from './dialog/state-document/state-document.component';
 import { SendDocumentComponent } from './dialog/send-document/send-document.component';
 import { DetailCommitmentComponent } from './components/view-comite/detail-commitment/detail-commitment.component';
+import { DetailCommitmentTableComponent } from './components/view-comite/detail-commitment-table/detail-commitment-table.component';
 import { ConfComiteComponent } from './components/conf-comite/conf-comite.component';
 import { ParticipantsComponent } from './components/conf-comite/participants/participants.component';
 import { InPersonMeetingComponent } from './components/comite-direction/in-person-meeting/in-person-meeting.component';
 import { AssistanceTableComponent } from './components/comite-direction/assistance-table/assistance-table.component';
 import { ScheduleComiteComponent } from './components/comite-direction/schedule-comite/schedule-comite.component';
+import { ListTableComponent } from './components/list-table/list-table.component';
+import { AttachFileComponent } from './components/attach-file/attach-file.component';
 
 @NgModule({
   declarations: [
@@ -84,11 +87,14 @@ import { ScheduleComiteComponent } from './components/comite-direction/schedule-
   StateDocumentComponent,
   SendDocumentComponent,
   DetailCommitmentComponent,
+  DetailCommitmentTableComponent,
   ConfComiteComponent,
   ParticipantsComponent,
   InPersonMeetingComponent,
   AssistanceTableComponent,
-  ScheduleComiteComponent
+  ScheduleComiteComponent,
+  ListTableComponent,
+  AttachFileComponent
   ],
   imports: [
     CommonModule,

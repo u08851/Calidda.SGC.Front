@@ -293,6 +293,21 @@
   border-radius: 5px 5px 0 0;
 }
 
+// p-tags
+.p-tag {
+  padding: 0.25rem 1rem;
+}
+.p-tag.p-tag-success {
+  background:#87d74145;
+  color: #87D741;
+}
+.p-tag.p-tag-warning { 
+  background: #ebb31b42;
+  color: #EBB31B;
+}
+//End p-tags
+
+
 .bg_alert {
   background: #ff000029;
   color: #e83232bf;

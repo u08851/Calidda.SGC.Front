@@ -1,0 +1,56 @@
+<div class="p-card br-05 p-p-3">
+    <div class="border-1px-gray br-05 p-p-3">
+        <p-table [columns]="cols" [value]="data" [paginator]="true" [rows]="3" styleClass="style-table-direccion"
+            [showCurrentPageReport]="true" [resizableColumns]="true"
+            currentPageReportTemplate="{first} - {last} of {totalRecords}">
+            <ng-template pTemplate="colgroup" let-columns>
+                <colgroup>
+                    <col [style.width]="10 + '%'" />
+                    <col [style.width]="10  + '%'" />
+                    <col [style.width]="10 + '%'" />
+                    <col [style.width]="10 + '%'" />
+                    <col [style.width]="25 + '%'" />
+                    <col [style.width]="11 + '%'" />
+                    <col [style.width]="8 + '%'" />
+                </colgroup>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns" pResizableColumn>
+                        {{col.header}}
+                    </th>
+                    <th></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                    <td class="b-dander" *ngFor="let col of columns">
+
+                        <div class="p-d-flex p-ai-center">
+                            <span *ngIf="col.field != 'estado'; else estatus">
+                                {{rowData[col.field]}}
+                            </span>
+                            <button *ngIf="col.field == 'tipoR'" class="p-ml-2 w-100" pButton pRipple type="button"
+                                icon="pi" [label]="rowData.button.label" routerLink="/secretary/in-person-meeting">
+                            </button>
+                            <ng-template #estatus>
+                                <!-- clases:  --red --green --info  -->
+                                <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8 red"></i>
+                                {{rowData[col.field].name}}
+                            </ng-template>
+                        </div>
+                    </td>
+                    <td>
+                        <button pButton pRipple type="button" icon="pi" *ngIf="rowData.estado.cod == '0'"
+                            routerLink="/secretary/view-comite"
+                            class="p-button-rounded p-button-info p-button-text icon-size" styleClass="icon-size">
+                            <span class="material-icons-outlined">
+                                visibility
+                            </span>
+                        </button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

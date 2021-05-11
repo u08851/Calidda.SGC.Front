@@ -41,6 +41,7 @@ export class HeaderComponent implements OnInit {
         label: 'Miembro del Comité',
         icon: 'pi pi-briefcase',
         command: () => {
+          this.headerService.setUser(3);
           this.message('success', 'Has iniciado el perfil', 'Miembro de Comité');
         },
       },

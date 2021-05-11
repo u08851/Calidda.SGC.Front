@@ -122,32 +122,28 @@
   //----------------------------------------------
 
   .style-table-1 {
-    table {
-        font-size: 13px;
+    .p-datatable-tbody > tr {
+      margin-bottom: 5px;
     }
     .p-datatable-thead > tr > th {
         color: #00A1DE;
+        border: 1px;
       }
-    .p-datatable-tbody > tr > td {
+    .p-datatable-tbody > tr:not(.rowexpan) > td {
         background: #d8ecf4; 
-    }
-    .p-datatable-tbody {
-        // background: #c3ced759;
-    }
-    .p-datatable-tbody > tr.rowexpan {
-        // background: transparent;
+        border-bottom: 1px solid #ffffff;
     }
     
     .p-datatable-tbody > tr > td {
         padding: 0.5rem 1rem;
     }
     .p-datatable-tbody > tr:not(.rowexpan) td:first-child {
-        // border-bottom-left-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
         border-top-left-radius: 0.5rem;
       }
     
       .p-datatable-tbody > tr:not(.rowexpan) td:last-child {
-        // border-bottom-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
         border-top-right-radius: 0.5rem;
       }
       .p-button.p-button-icon-only.p-button-rounded {
@@ -158,8 +154,11 @@
 
   .style-table-2 {
     .p-datatable-thead > tr > th {
-        background: #f8f9fb;
+        background: transparent;
         color: black;
+    }
+    .p-datatable-tbody > tr.rowexpan > td {
+      background: #F0F3F5;
     }
     .p-datatable-tbody > tr > td {
       background: #f8f9fb;
@@ -178,6 +177,10 @@
       @extend %style-table-base;
       .p-datatable-tbody > tr > td{
           background: #ffffff;
+      }
+      .p-datatable-tbody > tr:not(.rowexpan) > td {
+        background: #ffffff;
+        border: 0;
       }
    
       .p-datatable-tbody > tr > td {
@@ -240,3 +243,6 @@
   .color-td > td {
       background: #F0F3F5 !important;
   }
+  .transparent-td > td {
+    background: transparent !important;
+}

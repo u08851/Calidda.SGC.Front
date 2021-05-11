@@ -1,6 +1,7 @@
 <div class="p-card p-px-5 p-py-3 br-05">
     <p-table [columns]="cols" [value]="products" [paginator]="true" [rows]="3" styleClass="style-table-direccion"
-        [showCurrentPageReport]="true" [resizableColumns]="true" currentPageReportTemplate="{first} - {last} of {totalRecords}">
+        [showCurrentPageReport]="true" [resizableColumns]="true"
+        currentPageReportTemplate="{first} - {last} of {totalRecords}">
         <ng-template pTemplate="colgroup" let-columns>
             <colgroup>
                 <col [style.width]="12 + '%'" />
@@ -29,7 +30,8 @@
                             {{rowData[col.field]}}
                         </span>
                         <button pButton pRipple type="button" icon="pi" *ngIf="col.field == 'tipoR'"
-                            label="Iniciar Reunión" class="p-ml-2" styleClass="icon-size" routerLink="/secretary/in-person-meeting">
+                            label="Iniciar Reunión" class="p-ml-2" styleClass="icon-size"
+                            routerLink="/secretary/in-person-meeting">
                         </button>
                         <ng-template #estatus>
                             <!-- variables:  --red --green --info  -->
@@ -40,7 +42,7 @@
                 </td>
                 <td>
                     <button pButton pRipple type="button" icon="pi" *ngIf="rowData.estado.cod == '0'"
-                        routerLink="/secretary/view-comite" 
+                        routerLink="/secretary/view-comite"
                         class="p-button-rounded p-button-info p-button-text icon-size" styleClass="icon-size">
                         <span class="material-icons-outlined">
                             visibility
@@ -53,8 +55,9 @@
                             settings
                         </span>
                     </button>
-                    <button pButton pRipple type="button" icon="pi icon-edit" *ngIf="rowData.estado.cod == '2'"
-                        class="p-button-rounded p-button-info p-button-text icon-size" styleClass="icon-size">
+                    <button routerLink="/secretary/meet" pButton pRipple type="button" icon="pi icon-edit"
+                        *ngIf="rowData.estado.cod == '2'" class="p-button-rounded p-button-info p-button-text icon-size"
+                        styleClass="icon-size">
                     </button>
                 </td>
             </tr>

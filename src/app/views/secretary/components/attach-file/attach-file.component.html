@@ -1,5 +1,5 @@
 <div class="p-d-flex p-flex-column p-jc-center p-ai-center border-1px-gray p-p-3 rounded-1 p-mb-4">
-    <p class="p-custom-title p-mb-2">Adjuntar Video:</p>
+    <p class="p-custom-title p-mb-2">Adjuntar archivo:</p>
 
     <p-chips *ngIf="selectedFiles.length > 0" styleClass="style-chip-1" [(ngModel)]="selectedFiles" icon="pi"
         (onRemove)="onRemove($event)">
@@ -13,9 +13,8 @@
         [showCancelButton]="false"></p-fileUpload>
 </div>
 
-<!-- Table -->
 <p class="p-custom-title p-mb-2">Lista de Documentos</p>
-<p-table [columns]="cols" [value]="data" styleClass="style-table" [paginator]="false" [rows]="3"
+<p-table [columns]="cols" [value]="products" styleClass="style-table" [paginator]="false" [rows]="3"
     [showCurrentPageReport]="false">
     <ng-template pTemplate="colgroup" let-columns>
         <colgroup>
@@ -33,9 +32,10 @@
             </td>
             <td>
                 <div style="position: relative;">
-                    <button pButton pRipple type="button" icon="pi pi-ellipsis-v" icon="pi pi-eye"
-                        class="p-button-rounded p-button-info p-button-text icon-size" styleClass="icon-size">
-                    </button>
+                    <button pButton pRipple type="button" icon="pi pi-ellipsis-v"
+                        class="p-button-rounded p-button-info p-button-text icon-size" styleClass="icon-size"
+                        (click)="menu.toggle($event)"></button>
+                    <p-menu styleClass="style-panel" #menu [popup]="true" [model]="items"></p-menu>
                 </div>
             </td>
         </tr>
