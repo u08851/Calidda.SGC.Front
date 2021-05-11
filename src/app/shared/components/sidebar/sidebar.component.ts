@@ -41,6 +41,10 @@ export class SidebarComponent implements OnInit {
         this.menuItems = Constant.SecretaryMenuItems;
         this.routerBack = "/secretary"
         break;
+      case 3:
+        this.menuItems = Constant.MemberMenuItems;
+        this.routerBack = "/member"
+        break;
       default:
         this.menuItems = Constant.AdminMenuItems;
         break;
@@ -56,15 +60,21 @@ export class SidebarComponent implements OnInit {
 
 export class Constant {
   static AdminMenuItems = [
-    { routing: '/manager/dashboard', label: 'Inicio', icon:'home' },
-    { routing: '/manager/comites', label: 'Comités', icon:'article' },
-    { routing: '/manager/mantenimiento', label: 'Mantenimiento', icon:'build'  }
+    { routing: '/manager/dashboard', label: 'Inicio', icon: 'home' },
+    { routing: '/manager/comites', label: 'Comités', icon: 'article' },
+    { routing: '/manager/mantenimiento', label: 'Mantenimiento', icon: 'build' }
   ]
   static SecretaryMenuItems = [
-    { routing: '/secretary', label: 'Inicio', icon:'home' },
-    { routing: '/secretary/comites', label: 'Comités', icon:'article' },
-    { routing: '/secretary/dashboard', label: 'Firmas', icon:'assessment' },
-    { routing: '/secretary/mantenimiento', label: 'Mantenimiento', icon:'build'  },
-    { routing: '/secretary/mantenimiento', label: 'Atención de compromisos', icon:''}
+    { routing: '/secretary', label: 'Inicio', icon: 'home' },
+    { routing: '/secretary/comites', label: 'Comités', icon: 'article' },
+    { routing: '/secretary/dashboard', label: 'Firmas', icon: 'assessment' },
+    { routing: '/secretary/mantenimiento', label: 'Mantenimiento', icon: 'build' },
+    { routing: '/secretary/mantenimiento', label: 'Atención de compromisos', icon: '' }
+  ]
+  static MemberMenuItems = [
+    { routing: '/member', label: 'Inicio', icon: 'home' },
+    { routing: '/member/comites', label: 'Comités', icon: 'article' },
+    { routing: '/member/mantenimiento', label: 'Mantenimiento', icon: 'build' },
+    { routing: '/member/mantenimiento', label: 'Atención de compromisos', icon: '' }
   ]
 }

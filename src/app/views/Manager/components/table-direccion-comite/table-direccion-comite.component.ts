@@ -25,7 +25,7 @@ export class TableDireccionComiteComponent implements OnInit {
   dataDelete: any;
   formForm:FormGroup;
 
-   confi: DynamicDialogConfig;
+  confi: DynamicDialogConfig;
   constructor(
     public dialogService: DialogService,
     private directionServices: DirectionServices,
