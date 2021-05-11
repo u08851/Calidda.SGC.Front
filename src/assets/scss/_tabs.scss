@@ -183,15 +183,17 @@ $primary: var(--primary-color);
         opacity: 0.5;
         color: white;
         border-radius: 4px 4px 0 0;
+        padding: 0.8rem 1.5rem;
+
     }
     .p-tabview-nav li {
         margin-right: 3px;
         &:hover {
             background: #00A1DE;
+            border-radius: 4px 4px 0 0;
             .p-tabview-nav-link {
                 opacity: 1;
                 color: white !important;
-                border-radius: 4px 4px 0 0;
             }
         }
     }
