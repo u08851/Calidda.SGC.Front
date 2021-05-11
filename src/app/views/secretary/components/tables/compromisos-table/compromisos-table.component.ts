@@ -12,14 +12,16 @@ export class CompromisosTableComponent implements OnInit {
 
   products: any[] = [
     {
-      acta: 'acta',
+      codActa: 'codActa',
+      compromiso: 'compromiso',
       responsable: 'responsable',
       fechaEntrega: 'fechaEntrega',
       avance: 'avance',
       estado: 'estado'
     },
     {
-      acta: 'acta',
+      codActa: 'codActa',
+      compromiso: 'compromiso',
       responsable: 'responsable',
       fechaEntrega: 'fechaEntrega',
       avance: 'avance',
@@ -78,7 +80,8 @@ export class CompromisosTableComponent implements OnInit {
     };
 
     this.cols = [
-      { header: 'Acta', field: 'acta' },
+      { header: 'Código de acta', field: 'codActa' },
+      { header: 'Título de compromiso', field: 'compromiso' },
       { header: 'Responsable', field: 'responsable' },
       { header: 'Fecha de Entrega', field: 'fechaEntrega' },
       { header: '% de Avance', field: 'avance' },

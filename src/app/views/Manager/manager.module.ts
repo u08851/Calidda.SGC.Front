@@ -33,6 +33,7 @@ import { TableDocumentosComponent } from './components/table-documentos/table-do
 import { ImportDocumentComponent } from './dialog/import-document/import-document.component';
 import { ReportTableComponent } from './components/report-table/report-table.component';
 import { ComiteHistoryComponent } from './dialog/comite-history/comite-history.component';
+import { TotalTableComponent } from './components/indicadores-inicio-tables/total-table/total-table.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,9 @@ import { ComiteHistoryComponent } from './dialog/comite-history/comite-history.c
     TableDocumentosComponent,
     ImportDocumentComponent,
     ReportTableComponent,
-    ComiteHistoryComponent
+    ComiteHistoryComponent,
+    TotalTableComponent,
+    
   ],
   imports: [
     CommonModule,

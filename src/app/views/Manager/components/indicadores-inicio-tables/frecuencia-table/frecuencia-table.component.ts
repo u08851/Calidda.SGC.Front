@@ -76,7 +76,7 @@ export class FrecuenciaTableComponent implements OnInit {
 
     this.cols = [
       { header: 'Fecha de creacion', field: 'fechaCreacion' },
-      { header: 'Frecuencia', field: 'frecuencia' },
+      { header: 'Código de comité', field: 'codComite' },
       { header: 'Nombre del comité', field: 'nombre' },
       { header: 'Secretario del comité', field: 'secretario' },
       { header: 'Fecha de último sesión', field: 'fechaUltimo' }

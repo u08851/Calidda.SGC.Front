@@ -9,17 +9,9 @@
 
   <!-- Form -->
   <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mt-2">
-    <!-- Buscar nombre -->
-    <div class="p-col-12 p-md-6 p-lg-3">
-      <span class="p-float-label p-input-icon-right">
-        <i class="pi pi-search"></i>
-        <input type="text" pInputText />
-        <label for="inputtext">Buscar nombre</label>
-      </span>
-    </div>
 
     <!-- calendario DESDE -->
-    <div class="p-col-12 p-md-6 p-lg-3">
+    <div class="p-col-12 p-md-6 p-lg-4">
       <span class="p-float-label">
         <p-calendar
           [(ngModel)]="date3"
@@ -32,7 +24,7 @@
     </div>
 
     <!-- calendario HASTA -->
-    <div class="p-col-12 p-md-6 p-lg-3">
+    <div class="p-col-12 p-md-6 p-lg-4">
       <span class="p-float-label">
         <p-calendar
           [(ngModel)]="date4"
@@ -44,7 +36,7 @@
       </span>
     </div>
 
-    <div class="p-col-12 p-md-6 p-lg-3 p-text-right">
+    <div class="p-col-12 p-md-6 p-lg-4 p-text-right">
       <p-button label="Exportar" icon="pi pi-cloud-download"></p-button>
     </div>
   </div>
@@ -68,6 +60,7 @@
         <col [style.width]="20 + '%'" />
         <col [style.width]="20 + '%'" />
         <col [style.width]="20 + '%'" />
+        <col [style.width]="20 + '%'" />
       </colgroup>
     </ng-template>
     <ng-template pTemplate="header" let-columns>
@@ -81,6 +74,7 @@
     <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr>
         <td class="p-text-left">Acta</td>
+        <td>tyn</td>
         <td>
           <div class="p-d-flex p-ai-center">
             <p-avatar

@@ -86,7 +86,7 @@
 
           <!-- Reuniones reprogramadas -->
           <div class="p-col-12 p-md-6 p-lg-3">
-            <div class="box">
+            <div class="box" routerLink="/secretary/reuniones-reprogramadas">
               <div class="box-detalle">
                 <p>5</p>
                 <i class="material-icons darkblue"> bar_chart </i>
@@ -97,10 +97,10 @@
             </div>
           </div>
 
-          <!-- Total actas -->
+          <!-- Total reuniones -->
           <div class="p-col-12 p-md-6 p-lg-3">
             <div
-              class="box"
+              class="box" routerLink="/secretary/total-reuniones"
               [style.border-left]="'8px solid var(--primary-color)'"
             >
               <div class="box-detalle">
@@ -113,7 +113,7 @@
                 </i>
               </div>
               <div class="box-info">
-                <p>Total actas</p>
+                <p>Total reuniones</p>
               </div>
             </div>
           </div>
@@ -136,14 +136,14 @@
             </div>
             <div class="p-col-12 p-md-6 p-lg-5 p-d-flex p-ai-center">
               <div class="pie-legend">
-                <div class="pie-legend-info" [style.background]="'#72C7E7'">
+                <div class="pie-legend-info" [style.background]="'#72C7E7'" routerLink="/secretary/reuniones-presenciales">
                   <i class="material-icons-outlined" [style.font-size]="'28px'">
                     ballot
                   </i>
                   <p>24</p>
                   <p>Reuniones Presenciales</p>
                 </div>
-                <div class="pie-legend-info" [style.background]="'#707070'">
+                <div class="pie-legend-info" [style.background]="'#707070'" routerLink="/secretary/reuniones-virtuales">
                   <i class="material-icons-outlined" [style.font-size]="'28px'">
                     assignment
                   </i>
@@ -175,7 +175,7 @@
 
           <!-- Actas en proceso -->
           <div class="p-col-12 p-md-6 p-lg-3">
-            <div class="box">
+            <div class="box" routerLink="/secretary/actas-en-proceso">
               <div class="box-detalle">
                 <p>30</p>
                 <i class="material-icons graph-black"> bar_chart </i>
@@ -188,7 +188,7 @@
 
           <!-- Actas no iniciadas -->
           <div class="p-col-12 p-md-6 p-lg-3">
-            <div class="box">
+            <div class="box" routerLink="/secretary/actas-no-iniciadas">
               <div class="box-detalle">
                 <p>21</p>
                 <i class="material-icons graph-light-blue"> bar_chart </i>
@@ -201,7 +201,7 @@
 
           <!-- Total actas -->
           <div class="p-col-12 p-md-6 p-lg-3">
-            <div class="box" [style.border-left]="'8px solid var(--sucess)'">
+            <div class="box" [style.border-left]="'8px solid var(--sucess)'" routerLink="/secretary/total-actas">
               <div class="box-detalle">
                 <p>4</p>
                 <i
@@ -234,7 +234,7 @@
             </div>
             <div class="p-col-12 p-md-6 p-lg-5 p-d-flex p-ai-center">
               <div class="pie-legend">
-                <div class="pie-legend-info" [style.background]="'#38BDF0'">
+                <div class="pie-legend-info" [style.background]="'#38BDF0'" routerLink="/secretary/reporte-actas">
                   <i class="material-icons-outlined" [style.font-size]="'28px'">
                     task
                   </i>
@@ -286,7 +286,7 @@
 
           <!-- Total compromisos -->
           <div class="p-col-12 p-md-6 p-lg-4">
-            <div class="box">
+            <div class="box" routerLink="/secretary/total-compromisos">
               <div class="box-detalle">
                 <p>5</p>
                 <!-- <i class="material-icons dark"> bar_chart </i> -->
@@ -347,6 +347,7 @@
                 <td class="p-text-left">
                   <div>
                     <button
+                      (click)="showAssistance()"
                       pButton
                       pRipple
                       type="button"

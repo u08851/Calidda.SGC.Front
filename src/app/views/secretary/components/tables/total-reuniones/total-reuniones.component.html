@@ -1,0 +1,89 @@
+<div class="indicadores">
+  <p class="indicadores-p">
+    Reuniones |
+    <span class="indicadores-span">
+        Total de Reuniones
+      <i class="material-icons graph-gray"> bar_chart </i>
+    </span>
+  </p>
+
+  <!-- Form -->
+  <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mt-2">
+    <!-- calendario DESDE -->
+    <div class="p-col-12 p-md-6 p-lg-4">
+      <span class="p-float-label">
+        <p-calendar
+          [(ngModel)]="date3"
+          [locale]="es"
+          [showIcon]="true"
+          inputId="icon"
+        ></p-calendar>
+        <label for="inputtext">Desde</label>
+      </span>
+    </div>
+
+    <!-- calendario HASTA -->
+    <div class="p-col-12 p-md-6 p-lg-4">
+      <span class="p-float-label">
+        <p-calendar
+          [(ngModel)]="date4"
+          [locale]="es"
+          [showIcon]="true"
+          inputId="icon"
+        ></p-calendar>
+        <label for="inputtext">Hasta</label>
+      </span>
+    </div>
+
+    <!-- exportar -->
+    <div class="p-col-12 p-md-6 p-lg-4 p-text-right">
+      <p-button label="Exportar" icon="pi pi-cloud-download"></p-button>
+    </div>
+  </div>
+</div>
+
+<!-- TABLE -->
+<div class="p-card p-px-3 br-05">
+  <p-table
+    [columns]="cols"
+    [value]="products"
+    styleClass="style-table-direccion"
+    [paginator]="true"
+    [rows]="3"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="{first} - {last} of {totalRecords}"
+  >
+    <ng-template pTemplate="colgroup" let-columns>
+      <colgroup>
+        <col [style.width]="12.5 + '%'" />
+        <col [style.width]="11 + '%'" />
+        <col [style.width]="11 + '%'" />
+        <col [style.width]="15 + '%'" />
+        <col [style.width]="10 + '%'" />
+        <col [style.width]="15 + '%'" />
+        <col [style.width]="12.5 + '%'" />
+        <col [style.width]="10 + '%'" />
+      </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" class="p-text-left">
+          {{ col.header }}
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td class="p-text-left">Reunión</td>
+        <td>C213</td>
+        <td>20/11/2020</td>
+        <td>21/11/2020</td>
+        <td>3:00pm</td>
+        <td class="p-text-left">4:00pm</td>
+        <td>as</td>
+        <td class="p-text-left">sdvv</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

@@ -14,17 +14,19 @@ export class ReunionesTableComponent implements OnInit {
   products: any[] = [
     {
       reuniones: 'reuniones',
+      codReunion: 'codReunion',
       fechaReunion: 'fechaReunion',
       horaReunion: 'horaReunion',
-      asistencia: 'asistencia',
-      agenda: 'agenda'
+      tipoReunion: 'tipoReunion',
+      asistencia: 'asistencia'
     },
     {
       reuniones: 'reuniones',
+      codReunion: 'codReunion',
       fechaReunion: 'fechaReunion',
       horaReunion: 'horaReunion',
-      asistencia: 'asistencia',
-      agenda: 'agenda'
+      tipoReunion: 'tipoReunion',
+      asistencia: 'asistencia'
     },
   ];
 
@@ -81,10 +83,11 @@ export class ReunionesTableComponent implements OnInit {
 
     this.cols = [
       { header: 'Reuniones', field: 'reuniones' },
+      { header: 'Código de reunión', field: 'codReunion' },
       { header: 'Fecha de la reunión', field: 'fechaReunion' },
       { header: 'Hora de la reunión', field: 'horaReunion' },
-      { header: 'Asistencia de Miembros', field: 'asistencia' },
-      { header: 'Agenda de la Reunión', field: 'agenda' }
+      { header: 'Tipo de reunión', field: 'tipoReunion' },
+      { header: 'Asistencia de Miembros', field: 'asistencia' }
     ];
   }
 

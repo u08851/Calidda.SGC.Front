@@ -53,10 +53,10 @@
             </div>
         </div>
 
-        <!-- Responsable del comité -->
+        <!-- Secretaría de comité -->
         <div class="p-col-12 p-md-6 p-lg-4">
             <div class="p-field">
-                <label [ngClass]="{ 'is-invalid-text': submitted && g.usuarioId.errors}">Responsable del comité</label>
+                <label [ngClass]="{ 'is-invalid-text': submitted && g.usuarioId.errors}">Secretaría de comité</label>
                 <!-- <input pInputText /> -->
                 <p-autoComplete [ngModelOptions]="{standalone: true}" [(ngModel)]="usuarioSelected" (onSelect)="onSelectUsuario($event)" [suggestions]="filteredUsuarios" (completeMethod)="filtered($event)" field="label" [minLength]="1" emptyMessage="No se han encontrado resultados"
                     placeholder="Ingrese al menos 1 caracter...">

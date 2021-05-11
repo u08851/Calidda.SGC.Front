@@ -12,6 +12,15 @@ import { DetailCommitmentComponent } from './components/view-comite/detail-commi
 import { ConfComiteComponent } from './components/conf-comite/conf-comite.component';
 import { InPersonMeetingComponent } from './components/comite-direction/in-person-meeting/in-person-meeting.component';
 import { CreateMeetComponent } from './components/comite-direction/create-meet/create-meet.component';
+import { ReunionesReprogramadasComponent } from './components/tables/reuniones-reprogramadas/reuniones-reprogramadas.component';
+import { TotalReunionesComponent } from './components/tables/total-reuniones/total-reuniones.component';
+import { ReunionesPresencialesComponent } from './components/tables/reuniones-presenciales/reuniones-presenciales.component';
+import { ReunionesVirtualesComponent } from './components/tables/reuniones-virtuales/reuniones-virtuales.component';
+import { ActaProcesoComponent } from './components/tables/acta-proceso/acta-proceso.component';
+import { ActaNoIniciadoComponent } from './components/tables/acta-no-iniciado/acta-no-iniciado.component';
+import { TotalActasComponent } from './components/tables/total-actas/total-actas.component';
+import { ReporteActasComponent } from './components/tables/reporte-actas/reporte-actas.component';
+import { TotalCompromisosComponent } from './components/tables/total-compromisos/total-compromisos.component';
 
 export const ManagerRoutes: Routes = [
     {
@@ -72,6 +81,42 @@ export const ManagerRoutes: Routes = [
             {
                 path: 'in-person-meeting',
                 component: InPersonMeetingComponent
+            },
+            {
+                path: 'reuniones-reprogramadas',
+                component: ReunionesReprogramadasComponent
+            },
+            {
+                path: 'total-reuniones',
+                component: TotalReunionesComponent
+            },
+            {
+                path: 'reuniones-presenciales',
+                component: ReunionesPresencialesComponent
+            },
+            {
+                path: 'reuniones-virtuales',
+                component: ReunionesVirtualesComponent
+            },
+            {
+                path: 'actas-en-proceso',
+                component: ActaProcesoComponent
+            },
+            {
+                path: 'actas-no-iniciadas',
+                component: ActaNoIniciadoComponent
+            },
+            {
+                path: 'total-actas',
+                component: TotalActasComponent
+            },
+            {
+                path: 'reporte-actas',
+                component: ReporteActasComponent
+            },
+            {
+                path: 'total-compromisos',
+                component: TotalCompromisosComponent
             }
         ],  
     },

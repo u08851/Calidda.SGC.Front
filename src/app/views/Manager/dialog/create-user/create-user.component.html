@@ -104,6 +104,14 @@
             </p-dropdown>
         </div>
 
+        <div class="p-field p-col-12 p-md-6">
+            <label for="dni" [ngClass]="{ 'is-invalid-text': submitted && g.dni.errors }">DNI</label>
+            <input formControlName="dni" [ngClass]="{ 'is-invalid-input': submitted && g.dni.errors }" oninput="this.value=this.value.trim()==''?'':this.value" maxlength="8" type="text" pInputText>
+            <div *ngIf="submitted && g.dni.errors != null">
+                <span class="p-error" *ngIf="g.dni.errors.minlength">El DNI debe contener al menos 8 carácteres.<br></span>
+                <span class="p-error" *ngIf="g.dni.errors.required">El DNI es requerido.<br></span>
+            </div>
+        </div>
     </div>
 
     <div class="p-d-flex p-jc-center w-100 p-mb-3">
