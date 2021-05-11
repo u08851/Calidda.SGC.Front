@@ -2,9 +2,7 @@
 
     <div class="p-d-flex p-jc-center btn-group p-mb-5 p-mt-2">
         <button *ngIf="tipoSelect == 1" (click)="change(1)" pButton class="p-button-outlined p-button-rounded active w-100" label="Acta de confidencialidad de Miembros"></button>
-        <button *ngIf="tipoSelect == 1" (click)="change(2)" pButton class="p-button-outlined p-button-rounded w-100" label="Acta de confidencialidad de Invitados"></button>
         <button *ngIf="tipoSelect == 2" (click)="change(1)" pButton class="p-button-outlined p-button-rounded w-100" label="Acta de confidencialidad de Miembros"></button>
-        <button *ngIf="tipoSelect == 2" (click)="change(2)" pButton class="p-button-outlined p-button-rounded active w-100" label="Acta de confidencialidad de Invitados"></button>
     </div>
 
     <p-fileUpload #fubauto mode="basic" name="demo" accept="application/pdf" maxFileSize="5000000" customUpload="true"

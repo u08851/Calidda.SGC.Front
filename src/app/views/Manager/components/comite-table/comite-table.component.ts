@@ -12,6 +12,7 @@ export class ComiteTableComponent implements OnInit {
   products: any[] = [
     {
       "fechac": "fechac",
+      "horaC": "horaC",
       "cod": "cod",
       "name": "name",
       "direccion": "direccion",
@@ -22,6 +23,7 @@ export class ComiteTableComponent implements OnInit {
     },
     {
       "fechac": "fechac",
+      "horaC": "horaC",
       "cod": "cod",
       "name": "name",
       "direccion": "direccion",
@@ -44,6 +46,7 @@ export class ComiteTableComponent implements OnInit {
 
     this.cols = [
       { header: 'Fec. de Creación', field: 'fechac' },
+      { header: 'Hora de Creación', field: 'horaC' },
       { header: 'Cód', field: 'cod' },
       { header: 'Nombre del Comité', field: 'name' },
       { header: 'Direccón del Comité', field: 'direccion' },

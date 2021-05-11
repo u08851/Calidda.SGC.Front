@@ -11,6 +11,7 @@ import { SecretariaTableComponent } from './components/indicadores-inicio-tables
 import { FrecuenciaTableComponent } from './components/indicadores-inicio-tables/frecuencia-table/frecuencia-table.component';
 import { ReportTableComponent } from './components/report-table/report-table.component';
 import { ProfileComponent } from 'src/app/shared/components/profile/profile.component';
+import { TotalTableComponent } from './components/indicadores-inicio-tables/total-table/total-table.component';
 
 export const ManagerRoutes: Routes = [
     {
@@ -67,7 +68,12 @@ export const ManagerRoutes: Routes = [
             {
                 path: 'profile',
                 component: ProfileComponent
-            }
+            },
+            {
+                path: 'total-table',
+                component: TotalTableComponent
+            },
+            
         ],
     },
 ];

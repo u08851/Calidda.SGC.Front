@@ -105,8 +105,7 @@ export class TableDocumentosComponent implements OnInit {
     this.cols2 = [
       { header: 'Fecha de carga', field: 'fecha' },
       { header: 'Hora de carga', field: 'hora' },
-      { header: 'Nombre', field: 'nombre' },
-      { header: 'Tipo', field: 'tipo' },
+      { header: 'Nombre del documento', field: 'nombre' },
       { header: 'Estado', field: 'estado' },
     ];
   }
