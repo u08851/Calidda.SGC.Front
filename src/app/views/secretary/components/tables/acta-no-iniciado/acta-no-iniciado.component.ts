@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-reuniones-table',
-  templateUrl: './reuniones-table.component.html',
-  styleUrls: ['./reuniones-table.component.scss']
+  selector: 'app-acta-no-iniciado',
+  templateUrl: './acta-no-iniciado.component.html',
+  styleUrls: ['./acta-no-iniciado.component.scss']
 })
-export class ReunionesTableComponent implements OnInit {
+export class ActaNoIniciadoComponent implements OnInit {
 
   date3: Date;
   date4: Date;
@@ -13,26 +13,21 @@ export class ReunionesTableComponent implements OnInit {
 
   products: any[] = [
     {
-      reuniones: 'reuniones',
-      codReunion: 'codReunion',
+      codActa: 'codActa',
       fechaReunion: 'fechaReunion',
       horaReunion: 'horaReunion',
-      tipoReunion: 'tipoReunion',
       asistencia: 'asistencia'
     },
     {
-      reuniones: 'reuniones',
-      codReunion: 'codReunion',
+      codActa: 'codActa',
       fechaReunion: 'fechaReunion',
       horaReunion: 'horaReunion',
-      tipoReunion: 'tipoReunion',
       asistencia: 'asistencia'
     },
   ];
-
   cols: any[];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.es = {
@@ -80,14 +75,11 @@ export class ReunionesTableComponent implements OnInit {
       clear: 'Borrar',
     };
 
-
     this.cols = [
-      { header: 'Reuniones', field: 'reuniones' },
-      { header: 'Código de reunión', field: 'codReunion' },
+      { header: 'Código de acta', field: 'codActa' },
       { header: 'Fecha de la reunión', field: 'fechaReunion' },
       { header: 'Hora de la reunión', field: 'horaReunion' },
-      { header: 'Tipo de reunión', field: 'tipoReunion' },
-      { header: 'Asistencia de Miembros', field: 'asistencia' }
+      { header: 'Asistencia', field: 'asistencia' }
     ];
   }
 

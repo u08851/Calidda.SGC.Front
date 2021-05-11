@@ -47,6 +47,16 @@ import { AssistanceTableComponent } from './components/comite-direction/assistan
 import { ScheduleComiteComponent } from './components/comite-direction/schedule-comite/schedule-comite.component';
 import { ListTableComponent } from './components/list-table/list-table.component';
 import { AttachFileComponent } from './components/attach-file/attach-file.component';
+import { ReunionesReprogramadasComponent } from './components/tables/reuniones-reprogramadas/reuniones-reprogramadas.component';
+import { TotalReunionesComponent } from './components/tables/total-reuniones/total-reuniones.component';
+import { ReunionesPresencialesComponent } from './components/tables/reuniones-presenciales/reuniones-presenciales.component';
+import { ReunionesVirtualesComponent } from './components/tables/reuniones-virtuales/reuniones-virtuales.component';
+import { ActaProcesoComponent } from './components/tables/acta-proceso/acta-proceso.component';
+import { ActaNoIniciadoComponent } from './components/tables/acta-no-iniciado/acta-no-iniciado.component';
+import { TotalActasComponent } from './components/tables/total-actas/total-actas.component';
+import { ReporteActasComponent } from './components/tables/reporte-actas/reporte-actas.component';
+import { TotalCompromisosComponent } from './components/tables/total-compromisos/total-compromisos.component';
+import { AssistanceMemberComponent } from './dialog/assistance-member/assistance-member.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +104,17 @@ import { AttachFileComponent } from './components/attach-file/attach-file.compon
   AssistanceTableComponent,
   ScheduleComiteComponent,
   ListTableComponent,
-  AttachFileComponent
+  AttachFileComponent,
+  ReunionesReprogramadasComponent,
+  TotalReunionesComponent,
+  ReunionesPresencialesComponent,
+  ReunionesVirtualesComponent,
+  ActaProcesoComponent,
+  ActaNoIniciadoComponent,
+  TotalActasComponent,
+  ReporteActasComponent,
+  TotalCompromisosComponent,
+  AssistanceMemberComponent
   ],
   imports: [
     CommonModule,

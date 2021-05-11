@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-reuniones-table',
-  templateUrl: './reuniones-table.component.html',
-  styleUrls: ['./reuniones-table.component.scss']
+  selector: 'app-total-reuniones',
+  templateUrl: './total-reuniones.component.html',
+  styleUrls: ['./total-reuniones.component.scss']
 })
-export class ReunionesTableComponent implements OnInit {
+export class TotalReunionesComponent implements OnInit {
 
   date3: Date;
   date4: Date;
@@ -16,20 +16,23 @@ export class ReunionesTableComponent implements OnInit {
       reuniones: 'reuniones',
       codReunion: 'codReunion',
       fechaReunion: 'fechaReunion',
+      freprogramacion: 'freprogramacion',
       horaReunion: 'horaReunion',
-      tipoReunion: 'tipoReunion',
-      asistencia: 'asistencia'
+      hreprogramacion: 'hreprogramacion',
+      asistencia: 'asistencia',
+      tipoReunion: 'tipoReunion'
     },
     {
       reuniones: 'reuniones',
       codReunion: 'codReunion',
       fechaReunion: 'fechaReunion',
+      freprogramacion: 'freprogramacion',
       horaReunion: 'horaReunion',
-      tipoReunion: 'tipoReunion',
-      asistencia: 'asistencia'
+      hreprogramacion: 'hreprogramacion',
+      asistencia: 'asistencia',
+      tipoReunion: 'tipoReunion'
     },
   ];
-
   cols: any[];
 
   constructor() { }
@@ -80,14 +83,15 @@ export class ReunionesTableComponent implements OnInit {
       clear: 'Borrar',
     };
 
-
     this.cols = [
       { header: 'Reuniones', field: 'reuniones' },
       { header: 'Código de reunión', field: 'codReunion' },
-      { header: 'Fecha de la reunión', field: 'fechaReunion' },
-      { header: 'Hora de la reunión', field: 'horaReunion' },
-      { header: 'Tipo de reunión', field: 'tipoReunion' },
-      { header: 'Asistencia de Miembros', field: 'asistencia' }
+      { header: 'Fecha de reunión', field: 'fechaReunion' },
+      { header: 'Fecha de reprogramación', field: 'freprogramacion' },
+      { header: 'Hora de reunión', field: 'horaReunion' },
+      { header: 'Hora de reprogramación', field: 'hreprogramacion' },
+      { header: 'Asistencia', field: 'asistencia' },
+      { header: 'Tipo de reunión', field: 'tipoReunion' }
     ];
   }
 

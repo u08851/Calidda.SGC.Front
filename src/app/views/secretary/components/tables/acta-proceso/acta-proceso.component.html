@@ -1,15 +1,14 @@
 <div class="indicadores">
   <p class="indicadores-p">
-    Compromisos |
+    Actas |
     <span class="indicadores-span">
-        En proceso
-      <i class="material-icons graph-green"> bar_chart </i>
+      Actas en proceso
+      <i class="material-icons graph-black"> bar_chart </i>
     </span>
   </p>
 
   <!-- Form -->
   <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mt-2">
-
     <!-- calendario DESDE -->
     <div class="p-col-12 p-md-6 p-lg-4">
       <span class="p-float-label">
@@ -36,9 +35,10 @@
       </span>
     </div>
 
+    <!-- exportar -->
     <div class="p-col-12 p-md-6 p-lg-4 p-text-right">
       <p-button label="Exportar" icon="pi pi-cloud-download"></p-button>
-    </div>
+  </div>
   </div>
 </div>
 
@@ -68,34 +68,35 @@
         <th *ngFor="let col of columns" class="p-text-left">
           {{ col.header }}
         </th>
-        <th></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr>
-        <td class="p-text-left">Acta</td>
-        <td>tyn</td>
+        <td class="p-text-left">C23</td>
+        <td>20/11/2020</td>
+        <td>3:00pm</td>
         <td>
-          <div class="p-d-flex p-ai-center">
-            <p-avatar
-              image="assets/images/img-perfil-test.jpg"
-              styleClass="p-mr-2"
-              shape="circle"
-            >
-            </p-avatar>
-            <span>Rocio del Valle</span>
-          </div>
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi"
+            class="p-button-rounded p-button-info p-button-text icon-table-size"
+          >
+            <span class="material-icons-outlined"> people_outline </span>
+          </button>
         </td>
-        <td class="p-text-left">3:00pm</td>
+        <td>12%</td>
         <td class="p-text-left">
-            <p class="bg-tables bg_percent" [style.background]="'#f9e6b7'" [style.color]="'#FAB200'">64%</p>
-        </td>
-        <td>
-            <div class="p-d-flex p-ai-center">
-                <!-- variables:  --red --green  -->
-                <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--green)'"></i>
-                En fecha
-            </div>
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi"
+            class="p-button-rounded p-button-info p-button-text icon-table-size"
+          >
+            <span class="material-icons-outlined"> article </span>
+          </button>
         </td>
       </tr>
     </ng-template>

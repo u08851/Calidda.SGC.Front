@@ -9,17 +9,9 @@
 
   <!-- Form -->
   <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mt-2">
-    <!-- Buscar nombre -->
-    <div class="p-col-12 p-md-6 p-lg-3">
-      <span class="p-float-label p-input-icon-right">
-        <i class="pi pi-search"></i>
-        <input type="text" pInputText />
-        <label for="inputtext">Buscar nombre</label>
-      </span>
-    </div>
 
     <!-- calendario DESDE -->
-    <div class="p-col-12 p-md-6 p-lg-3">
+    <div class="p-col-12 p-md-6 p-lg-4">
       <span class="p-float-label">
         <p-calendar
           [(ngModel)]="date3"
@@ -32,7 +24,7 @@
     </div>
 
     <!-- calendario HASTA -->
-    <div class="p-col-12 p-md-6 p-lg-3">
+    <div class="p-col-12 p-md-6 p-lg-4">
       <span class="p-float-label">
         <p-calendar
           [(ngModel)]="date4"
@@ -42,6 +34,11 @@
         ></p-calendar>
         <label for="inputtext">Hasta</label>
       </span>
+    </div>
+
+    <!-- exportar -->
+    <div class="p-col-12 p-md-6 p-lg-4 p-text-right">
+      <p-button label="Exportar" icon="pi pi-cloud-download"></p-button>
     </div>
   </div>
 </div>
@@ -59,11 +56,12 @@
   >
     <ng-template pTemplate="colgroup" let-columns>
       <colgroup>
-        <col [style.width]="20 + '%'" />
-        <col [style.width]="20 + '%'" />
-        <col [style.width]="20 + '%'" />
-        <col [style.width]="20 + '%'" />
-        <col [style.width]="20 + '%'" />
+        <col [style.width]="16.6 + '%'" />
+        <col [style.width]="16.6 + '%'" />
+        <col [style.width]="16.6 + '%'" />
+        <col [style.width]="16.6 + '%'" />
+        <col [style.width]="16.6 + '%'" />
+        <col [style.width]="16.6 + '%'" />
       </colgroup>
     </ng-template>
     <ng-template pTemplate="header" let-columns>
@@ -77,9 +75,11 @@
     <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr>
         <td class="p-text-left">Reunión</td>
+        <td>C213</td>
         <td>20/11/2020</td>
         <td>3:00pm</td>
-        <td>
+        <td>s</td>
+        <td class="p-text-center">
           <button
             pButton
             pRipple
@@ -88,17 +88,6 @@
             class="p-button-rounded p-button-info p-button-text icon-table-size"
           >
             <span class="material-icons-outlined"> people_outline </span>
-          </button>
-        </td>
-        <td class="p-text-left">
-          <button
-            pButton
-            pRipple
-            type="button"
-            icon="pi"
-            class="p-button-rounded p-button-info p-button-text icon-table-size"
-          >
-            <span class="material-icons-outlined"> fact_check </span>
           </button>
         </td>
       </tr>

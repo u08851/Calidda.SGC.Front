@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-reuniones-table',
-  templateUrl: './reuniones-table.component.html',
-  styleUrls: ['./reuniones-table.component.scss']
+  selector: 'app-reuniones-virtuales',
+  templateUrl: './reuniones-virtuales.component.html',
+  styleUrls: ['./reuniones-virtuales.component.scss'],
 })
-export class ReunionesTableComponent implements OnInit {
-
+export class ReunionesVirtualesComponent implements OnInit {
   date3: Date;
   date4: Date;
   es: any;
@@ -15,24 +14,23 @@ export class ReunionesTableComponent implements OnInit {
     {
       reuniones: 'reuniones',
       codReunion: 'codReunion',
-      fechaReunion: 'fechaReunion',
-      horaReunion: 'horaReunion',
-      tipoReunion: 'tipoReunion',
-      asistencia: 'asistencia'
+      fechaEmision: 'fechaEmision',
+      horaLimite: 'horaLimite',
+      fechaLimite: 'fechaLimite',
+      participante: 'participante',
     },
     {
       reuniones: 'reuniones',
       codReunion: 'codReunion',
-      fechaReunion: 'fechaReunion',
-      horaReunion: 'horaReunion',
-      tipoReunion: 'tipoReunion',
-      asistencia: 'asistencia'
+      fechaEmision: 'fechaEmision',
+      horaLimite: 'horaLimite',
+      fechaLimite: 'fechaLimite',
+      participante: 'participante',
     },
   ];
-
   cols: any[];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.es = {
@@ -80,15 +78,13 @@ export class ReunionesTableComponent implements OnInit {
       clear: 'Borrar',
     };
 
-
     this.cols = [
       { header: 'Reuniones', field: 'reuniones' },
       { header: 'Código de reunión', field: 'codReunion' },
-      { header: 'Fecha de la reunión', field: 'fechaReunion' },
-      { header: 'Hora de la reunión', field: 'horaReunion' },
-      { header: 'Tipo de reunión', field: 'tipoReunion' },
-      { header: 'Asistencia de Miembros', field: 'asistencia' }
+      { header: 'Fecha de emisión', field: 'fechaEmision' },
+      { header: 'Hora límite de votación', field: 'horaLimite' },
+      { header: 'Fecha límite de votación', field: 'fechaLimite' },
+      { header: 'Participantes de votación', field: 'participante' },
     ];
   }
-
 }

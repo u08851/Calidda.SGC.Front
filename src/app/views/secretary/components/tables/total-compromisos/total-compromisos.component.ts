@@ -1,38 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-reuniones-table',
-  templateUrl: './reuniones-table.component.html',
-  styleUrls: ['./reuniones-table.component.scss']
+  selector: 'app-total-compromisos',
+  templateUrl: './total-compromisos.component.html',
+  styleUrls: ['./total-compromisos.component.scss'],
 })
-export class ReunionesTableComponent implements OnInit {
-
+export class TotalCompromisosComponent implements OnInit {
   date3: Date;
   date4: Date;
   es: any;
 
   products: any[] = [
     {
-      reuniones: 'reuniones',
-      codReunion: 'codReunion',
-      fechaReunion: 'fechaReunion',
-      horaReunion: 'horaReunion',
-      tipoReunion: 'tipoReunion',
-      asistencia: 'asistencia'
+      codActa: 'codActa',
+      compromiso: 'compromiso',
+      responsable: 'responsable',
+      fechaEntrega: 'fechaEntrega',
+      avance: 'avance',
+      estado: 'estado',
     },
     {
-      reuniones: 'reuniones',
-      codReunion: 'codReunion',
-      fechaReunion: 'fechaReunion',
-      horaReunion: 'horaReunion',
-      tipoReunion: 'tipoReunion',
-      asistencia: 'asistencia'
+      codActa: 'codActa',
+      compromiso: 'compromiso',
+      responsable: 'responsable',
+      fechaEntrega: 'fechaEntrega',
+      avance: 'avance',
+      estado: 'estado',
     },
   ];
 
   cols: any[];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.es = {
@@ -80,15 +79,13 @@ export class ReunionesTableComponent implements OnInit {
       clear: 'Borrar',
     };
 
-
     this.cols = [
-      { header: 'Reuniones', field: 'reuniones' },
-      { header: 'Código de reunión', field: 'codReunion' },
-      { header: 'Fecha de la reunión', field: 'fechaReunion' },
-      { header: 'Hora de la reunión', field: 'horaReunion' },
-      { header: 'Tipo de reunión', field: 'tipoReunion' },
-      { header: 'Asistencia de Miembros', field: 'asistencia' }
+      { header: 'Código de acta', field: 'codActa' },
+      { header: 'Título', field: 'compromiso' },
+      { header: 'Responsable', field: 'responsable' },
+      { header: 'Fecha de Entrega', field: 'fechaEntrega' },
+      { header: '% de Avance', field: 'avance' },
+      { header: 'Estado', field: 'estado' },
     ];
   }
-
 }

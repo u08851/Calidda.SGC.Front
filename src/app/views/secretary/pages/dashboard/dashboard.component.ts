@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { AssistanceMemberComponent } from '../../dialog/assistance-member/assistance-member.component';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -40,7 +41,8 @@ export class DashboardComponent implements OnInit {
   selectedCity1: string;
   cities: any[];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public dialogService: DialogService,
+    public  ref: DynamicDialogRef) {}
 
   ngOnInit(): void {
     this.cols = [
@@ -130,5 +132,16 @@ export class DashboardComponent implements OnInit {
 
   goToTableCompromisos() {
     this.router.navigateByUrl('/secretary/compromisos-table');
+  }
+
+
+  showAssistance() {
+    this.ref = this.dialogService.open(AssistanceMemberComponent , {
+      header: 'Asistencia de Miembros',
+      width: '65%',
+      contentStyle: { "max-height": "500px", "overflow": "inherit", "text-align":"left"  },
+      baseZIndex: 10000,
+      data: null
+    });
   }
 }

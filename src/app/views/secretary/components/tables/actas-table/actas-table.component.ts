@@ -12,19 +12,17 @@ export class ActasTableComponent implements OnInit {
 
   products: any[] = [
     {
-      reuniones: 'reuniones',
+      codActa: 'codActa',
       fechaReunion: 'fechaReunion',
       horaReunion: 'horaReunion',
       asistencia: 'asistencia',
-      agenda: 'agenda',
       acta: 'acta'
     },
     {
-      reuniones: 'reuniones',
+      codActa: 'codActa',
       fechaReunion: 'fechaReunion',
       horaReunion: 'horaReunion',
       asistencia: 'asistencia',
-      agenda: 'agenda',
       acta: 'acta'
     },
   ];
@@ -80,11 +78,10 @@ export class ActasTableComponent implements OnInit {
     };
 
     this.cols = [
-      { header: 'Reuniones', field: 'reuniones' },
+      { header: 'Código de acta', field: 'codActa' },
       { header: 'Fecha de la reunión', field: 'fechaReunion' },
       { header: 'Hora de la reunión', field: 'horaReunion' },
       { header: 'Asistencia de Miembros', field: 'asistencia' },
-      { header: 'Agenda de la Reunión', field: 'agenda' },
       { header: 'Acta', field: 'acta' }
     ];
   }

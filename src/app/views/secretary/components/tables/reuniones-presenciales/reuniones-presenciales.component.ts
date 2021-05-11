@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-reuniones-table',
-  templateUrl: './reuniones-table.component.html',
-  styleUrls: ['./reuniones-table.component.scss']
+  selector: 'app-reuniones-presenciales',
+  templateUrl: './reuniones-presenciales.component.html',
+  styleUrls: ['./reuniones-presenciales.component.scss']
 })
-export class ReunionesTableComponent implements OnInit {
+export class ReunionesPresencialesComponent implements OnInit {
 
   date3: Date;
   date4: Date;
@@ -17,19 +17,18 @@ export class ReunionesTableComponent implements OnInit {
       codReunion: 'codReunion',
       fechaReunion: 'fechaReunion',
       horaReunion: 'horaReunion',
-      tipoReunion: 'tipoReunion',
-      asistencia: 'asistencia'
+      asistencia: 'asistencia',
+      estado: 'estado'
     },
     {
       reuniones: 'reuniones',
       codReunion: 'codReunion',
       fechaReunion: 'fechaReunion',
       horaReunion: 'horaReunion',
-      tipoReunion: 'tipoReunion',
-      asistencia: 'asistencia'
+      asistencia: 'asistencia',
+      estado: 'estado'
     },
   ];
-
   cols: any[];
 
   constructor() { }
@@ -86,8 +85,8 @@ export class ReunionesTableComponent implements OnInit {
       { header: 'Código de reunión', field: 'codReunion' },
       { header: 'Fecha de la reunión', field: 'fechaReunion' },
       { header: 'Hora de la reunión', field: 'horaReunion' },
-      { header: 'Tipo de reunión', field: 'tipoReunion' },
-      { header: 'Asistencia de Miembros', field: 'asistencia' }
+      { header: 'Asistencia de Miembros', field: 'asistencia' },
+      { header: 'Estado de reunión', field: 'estado' },
     ];
   }
 

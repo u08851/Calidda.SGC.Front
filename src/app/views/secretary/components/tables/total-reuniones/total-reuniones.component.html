@@ -1,15 +1,14 @@
 <div class="indicadores">
   <p class="indicadores-p">
-    Compromisos |
+    Reuniones |
     <span class="indicadores-span">
-        En proceso
-      <i class="material-icons graph-green"> bar_chart </i>
+        Total de Reuniones
+      <i class="material-icons graph-gray"> bar_chart </i>
     </span>
   </p>
 
   <!-- Form -->
   <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mt-2">
-
     <!-- calendario DESDE -->
     <div class="p-col-12 p-md-6 p-lg-4">
       <span class="p-float-label">
@@ -36,6 +35,7 @@
       </span>
     </div>
 
+    <!-- exportar -->
     <div class="p-col-12 p-md-6 p-lg-4 p-text-right">
       <p-button label="Exportar" icon="pi pi-cloud-download"></p-button>
     </div>
@@ -55,12 +55,14 @@
   >
     <ng-template pTemplate="colgroup" let-columns>
       <colgroup>
-        <col [style.width]="20 + '%'" />
-        <col [style.width]="20 + '%'" />
-        <col [style.width]="20 + '%'" />
-        <col [style.width]="20 + '%'" />
-        <col [style.width]="20 + '%'" />
-        <col [style.width]="20 + '%'" />
+        <col [style.width]="12.5 + '%'" />
+        <col [style.width]="11 + '%'" />
+        <col [style.width]="11 + '%'" />
+        <col [style.width]="15 + '%'" />
+        <col [style.width]="10 + '%'" />
+        <col [style.width]="15 + '%'" />
+        <col [style.width]="12.5 + '%'" />
+        <col [style.width]="10 + '%'" />
       </colgroup>
     </ng-template>
     <ng-template pTemplate="header" let-columns>
@@ -73,30 +75,14 @@
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr>
-        <td class="p-text-left">Acta</td>
-        <td>tyn</td>
-        <td>
-          <div class="p-d-flex p-ai-center">
-            <p-avatar
-              image="assets/images/img-perfil-test.jpg"
-              styleClass="p-mr-2"
-              shape="circle"
-            >
-            </p-avatar>
-            <span>Rocio del Valle</span>
-          </div>
-        </td>
-        <td class="p-text-left">3:00pm</td>
-        <td class="p-text-left">
-            <p class="bg-tables bg_percent" [style.background]="'#f9e6b7'" [style.color]="'#FAB200'">64%</p>
-        </td>
-        <td>
-            <div class="p-d-flex p-ai-center">
-                <!-- variables:  --red --green  -->
-                <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--green)'"></i>
-                En fecha
-            </div>
-        </td>
+        <td class="p-text-left">Reunión</td>
+        <td>C213</td>
+        <td>20/11/2020</td>
+        <td>21/11/2020</td>
+        <td>3:00pm</td>
+        <td class="p-text-left">4:00pm</td>
+        <td>as</td>
+        <td class="p-text-left">sdvv</td>
       </tr>
     </ng-template>
   </p-table>

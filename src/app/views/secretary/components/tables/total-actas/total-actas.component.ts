@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-reuniones-table',
-  templateUrl: './reuniones-table.component.html',
-  styleUrls: ['./reuniones-table.component.scss']
+  selector: 'app-total-actas',
+  templateUrl: './total-actas.component.html',
+  styleUrls: ['./total-actas.component.scss']
 })
-export class ReunionesTableComponent implements OnInit {
+export class TotalActasComponent implements OnInit {
 
   date3: Date;
   date4: Date;
@@ -13,26 +13,26 @@ export class ReunionesTableComponent implements OnInit {
 
   products: any[] = [
     {
-      reuniones: 'reuniones',
-      codReunion: 'codReunion',
+      codActa: 'codActa',
       fechaReunion: 'fechaReunion',
       horaReunion: 'horaReunion',
-      tipoReunion: 'tipoReunion',
+      porcentaje: 'porcentaje',
+      tipoReu: 'tipoReu',
       asistencia: 'asistencia'
     },
     {
-      reuniones: 'reuniones',
-      codReunion: 'codReunion',
+      codActa: 'codActa',
       fechaReunion: 'fechaReunion',
       horaReunion: 'horaReunion',
-      tipoReunion: 'tipoReunion',
+      porcentaje: 'porcentaje',
+      tipoReu: 'tipoReu',
       asistencia: 'asistencia'
     },
   ];
 
   cols: any[];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.es = {
@@ -80,14 +80,13 @@ export class ReunionesTableComponent implements OnInit {
       clear: 'Borrar',
     };
 
-
     this.cols = [
-      { header: 'Reuniones', field: 'reuniones' },
-      { header: 'Código de reunión', field: 'codReunion' },
+      { header: 'Código de acta', field: 'codActa' },
       { header: 'Fecha de la reunión', field: 'fechaReunion' },
       { header: 'Hora de la reunión', field: 'horaReunion' },
-      { header: 'Tipo de reunión', field: 'tipoReunion' },
-      { header: 'Asistencia de Miembros', field: 'asistencia' }
+      { header: 'Porcentaje de avance', field: 'porcentaje' },
+      { header: 'Tipo de reunión', field: 'tipoReu' },
+      { header: 'Asistencia', field: 'asistencia' }
     ];
   }
 
