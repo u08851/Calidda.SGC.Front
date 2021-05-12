@@ -348,6 +348,69 @@ export class DashboardComponent implements OnInit {
         }
       }
     }
+    if(id == 2){
+  
+      let sinR = [];
+      var temp = {};
+      var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
+      var result: any;
+  
+      if (evento === "Enter" || evento === "click"|| evento === undefined) {
+        if(
+          this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
+          this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null ||
+          this.selectedCity1 == null ||
+          this.textFilterDE.length == 0
+        ){
+          this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
+          return false;
+        }else{
+          this.comiteServices.getListComite(
+            2,
+            this.datePipe.transform(this.date3, 'dd-MM-yyyy'),
+            this.datePipe.transform(this.date4, 'dd-MM-yyyy'),
+            this.selectedCity1.empresaId,
+            this.textFilterDE).subscribe(
+            (response) =>{
+              this.message = "Reporte de 6 meses anteriores"
+              sinR = response.data;
+              
+              try{
+                sinR.forEach(function (a) {
+                  temp[a.code] = temp[a.code] || { category: a.code };
+                  temp[a.code][groups[a.nombre]] = a.count;
+                });
+                result = Object.keys(temp).map(function (k) { return temp[k]; });
+                  
+                let val1 = 0;
+                let val2 = 0;
+                let val3 = 0;
+    
+                for(let g = 0; g < result.length; g++){
+                  val1 += result[g].value1
+                  val2 += result[g].value2
+                  val3 += result[g].value3
+                }
+    
+                this.val1 = val1.toString();
+                this.val2 = val2.toString();
+                this.val3 = val3.toString();
+                this.val4 = val1 + val2+ val3;
+                
+                this.barEmpresaDireccion.dataReceived(sinR);
+              }catch{
+                this.val1 = "0";
+                this.val2 = "0";
+                this.val3 = "0";
+                this.val4 = 0;
+                this.barEmpresaDireccion.dataReceived("");
+              }
+              
+            }
+          )
+        }
+      }
+    }
   }
 
   showWarn(mensaje: string) {
