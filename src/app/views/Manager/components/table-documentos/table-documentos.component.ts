@@ -113,7 +113,7 @@ export class TableDocumentosComponent implements OnInit {
 
   showImportDocument() {
     this.ref = this.dialogService.open(ImportDocumentComponent, {
-      header: 'Importar Documento',
+      header: 'Importar Acta de confidencialidad Miembros',
       width: '50%',
       contentStyle: { "max-height": "500px", "overflow": "auto" },
       baseZIndex: 10000
