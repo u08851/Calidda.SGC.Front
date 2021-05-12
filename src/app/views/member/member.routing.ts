@@ -24,6 +24,10 @@ export const MemberRoutes: Routes = [
             {
                 path: 'detail-comite',
                 component: DetailComiteComponent,
+            },
+            {
+                path: 'dashboard',
+                component: DashboardComponent
             }
         ],  
     },
