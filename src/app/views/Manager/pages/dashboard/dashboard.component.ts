@@ -167,7 +167,7 @@ export class DashboardComponent implements OnInit {
       empresaId: this.selectedCity1.empresaId,
       direccion: this.textFilterDE
     };
-    this.router.navigateByUrl('/manager/empresa-direccion-table', { state: { item: data }});
+    this.router.navigateByUrl('/manager/report', { state: { item: data }});
   }
 
   goToTableActiveSecretaria(){

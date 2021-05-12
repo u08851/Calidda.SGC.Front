@@ -99,6 +99,9 @@ $dark-blue: var(--dark-blue);
         opacity: 1;
         width: 100%;
         padding: 15px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
 
         &:hover {
           cursor: pointer;
