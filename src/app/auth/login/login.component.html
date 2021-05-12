@@ -14,28 +14,38 @@
                         <div class="p-field">
                             <label for="login" [ngClass]="{ 'is-invalid-text': submitted && g.login.errors }">Usuario</label>
                             <input type="text" pInputText class="form-control" formControlName="login" [ngClass]="{ 'is-invalid-input': submitted && g.login.errors }" oninput="this.value=this.value.trim()==''?'':this.value" />
-                            <div *ngIf="submitted && g.login.errors != null">
-                                <span class="p-error" *ngIf="g.login.errors.minlength">El usuario debe contener al menos un carácter.<br></span>
-                                <span class="p-error" *ngIf="g.login.errors.required">El usuario es requerido.<br></span>
+                            <div class="p-text-left" *ngIf="submitted && g.login.errors != null">
+                                <small class="p-error" *ngIf="g.login.errors.minlength">El usuario debe contener al menos un carácter.<br></small>
+                                <small class="p-error" *ngIf="g.login.errors.required">El usuario es requerido.</small>
                             </div>
                         </div>
 
                         <!-- contraseña -->
                         <div class="p-field">
-                            <label for="password" [ngClass]="{ 'is-invalid-text': submitted && g.password.errors }">Contraseña</label>
-                            <p-password styleClass="style-input-password" [toggleMask]="true" formControlName="password" [ngClass]="{ 'is-invalid-input': submitted && g.password.errors }" oninput="this.value=this.value.trim()==''?'':this.value"></p-password>
-                            <div *ngIf="submitted && g.password.errors != null">
-                                <span class="p-error" *ngIf="g.password.errors.minlength">La contraseña debe contener al menos un carácter.<br></span>
-                                <span class="p-error" *ngIf="g.password.errors.required">La contraseña es requerido.<br></span>
+                            <label for="password"
+                                [ngClass]="{ 'is-invalid-text': submitted && g.password.errors }">Contraseña</label>
+                            <p-password
+                                styleClass="style-input-password"
+                                promptLabel = "Ingrese una Contraseña"
+                                weakLabel="Debil"
+                                mediumLabel="Medio"
+                                strongLabel="Fuerte"
+                                [toggleMask]="true" formControlName="password"
+                                [ngClass]="{ 'is-invalid-input': submitted && g.password.errors }"
+                                oninput="this.value=this.value.trim()==''?'':this.value">
+                            </p-password>
+                            <div class="p-text-left" *ngIf="submitted && g.password.errors != null">
+                                <small class="p-error" *ngIf="g.password.errors.minlength">La contraseña debe contener al menos un carácter.<br></small>
+                                <small class="p-error" *ngIf="g.password.errors.required">La contraseña es requerido.</small>
                             </div>
                         </div>
-
                         <!-- captcha -->
                         <!-- <div class="p-d-flex p-jc-center p-m-4">
-              <div class="g-recaptcha" data-sitekey="Your site key goes here"></div>
-           </div> -->
+                            <div class="g-recaptcha" data-sitekey="Your site key goes here"></div>
+                        </div> -->
 
-                        <p-captcha siteKey="6Lf2XQkTAAAAANcvOwYqPxWL4iZDksFqHpS39GDA" (onResponse)="showResponse($event)"></p-captcha>
+                        <p-captcha siteKey="6Lf2XQkTAAAAANcvOwYqPxWL4iZDksFqHpS39GDA"
+                            (onResponse)="showResponse($event)"></p-captcha>
 
                         <div class="p-my-5">
                             <a class="link-password" routerLink="/reset" href="http://">¿Olvidaste tu contraseña?</a>
