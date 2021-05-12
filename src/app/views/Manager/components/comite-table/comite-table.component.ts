@@ -4,6 +4,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ComiteBusquedaModel } from 'src/app/models/comite.model';
 import { ComiteServices } from 'src/app/services/comite.service';
 import { ComiteHistoryComponent } from '../../dialog/comite-history/comite-history.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-comite-table',
@@ -48,7 +49,8 @@ export class ComiteTableComponent implements OnInit {
   constructor(
     public dialogService: DialogService,
     public  ref: DynamicDialogRef,
-    private comiteServices:ComiteServices
+    private comiteServices:ComiteServices,
+    private sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit(): void {
@@ -114,6 +116,11 @@ export class ComiteTableComponent implements OnInit {
       }
     )
   }
+
+  getSantizeUrl(url : string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
+  }
+
 
 
 }

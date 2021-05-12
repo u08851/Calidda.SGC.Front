@@ -42,6 +42,7 @@ export class ComiteBusquedaModel{
   empresa:string;
   frecuencia: string;
   pais: string;
+  url: string;
   count: number;
 }
 
