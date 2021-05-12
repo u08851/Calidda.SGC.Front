@@ -10,6 +10,7 @@ import { BarEmpresaDireccionComponent } from '../../components/graficos/bar-empr
 import { BarPaisComponent } from '../../components/graficos/bar-pais/bar-pais.component';
 import { BarTodosComponent } from '../../components/graficos/bar-todos/bar-todos.component';
 import { DonutComponent } from '../../components/graficos/donut/donut.component';
+import { TodosTableComponent } from '../../components/indicadores-inicio-tables/todos-table/todos-table.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,6 +23,7 @@ export class DashboardComponent implements OnInit {
   date3: Date;
   date4: Date;
   textFilterDE:string;
+  textFilterSE:string;
   es: any;
   val1: string;
   val2: string;
@@ -49,6 +51,8 @@ export class DashboardComponent implements OnInit {
   @ViewChild(BarEmpresaDireccionComponent) barEmpresaDireccion: BarEmpresaDireccionComponent;
   @ViewChild(BarPaisComponent) barPais: BarPaisComponent;
   @ViewChild(DonutComponent) donuts: DonutComponent;
+
+  @ViewChild(TodosTableComponent) todoTable: TodosTableComponent;
 
   constructor(
     private router: Router,
@@ -113,23 +117,83 @@ export class DashboardComponent implements OnInit {
 
 
   goToTableActive(){
-    this.router.navigateByUrl('/manager/todos-table');
+    if(
+      this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
+      this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null
+    ){
+      this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
+      return false;
+    }
+    var data = {
+      date3: this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ? new Date() : this.date3,
+      date4: this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null ? new Date() : this.date4,
+      type: 0
+    };
+    this.router.navigateByUrl('/manager/todos-table', { state: { item: data }});
   }
 
   goToTableActivePais(){
-    this.router.navigateByUrl('/manager/pais-table');
+    if(
+      this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
+      this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null ||
+      this.selectedCountry == null
+    ){
+      this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
+      return false;
+    }
+    var data = {
+      date3: this.date3,
+      date4: this.date4,
+      type: 1,
+      paisId: this.selectedCountry.paisId
+    };
+    this.router.navigateByUrl('/manager/pais-table', { state: { item: data }});
   }
 
   goToTableActiveEmpresa(){
-    this.router.navigateByUrl('/manager/empresa-direccion-table');
+    if(
+      this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
+      this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null ||
+      this.selectedCity1 == null ||
+      this.textFilterDE.length == 0
+    ){
+      this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
+      return false;
+    }
+    var data = {
+      date3: this.date3,
+      date4: this.date4,
+      type: 2,
+      empresaId: this.selectedCity1.empresaId,
+      direccion: this.textFilterDE
+    };
+    this.router.navigateByUrl('/manager/empresa-direccion-table', { state: { item: data }});
   }
 
   goToTableActiveSecretaria(){
-    this.router.navigateByUrl('/manager/secrearia-table');
+    var data = {
+      date3: this.date3,
+      date4: this.date4,
+      type: 3,
+      secretaria: this.textFilterSE
+    };
+    this.router.navigateByUrl('/manager/secrearia-table', { state: { item: data }});
   }
 
   goToTableActiveFrecuencia(){
-    this.router.navigateByUrl('/manager/frecuencia-table');
+    if(
+      this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
+      this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null
+    ){
+      this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
+      return false;
+    }
+    var data = {
+      date3: this.date3,
+      date4: this.date4,
+      type: 4
+    };
+    this.router.navigateByUrl('/manager/frecuencia-table', { state: { item: data }});
   }
 
   listarPais(){

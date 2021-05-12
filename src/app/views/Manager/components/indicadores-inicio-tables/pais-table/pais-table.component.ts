@@ -1,14 +1,19 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { ComiteServices } from 'src/app/services/comite.service';
+import { AppConstants } from 'src/app/shared/constants/app.constants';
 
 @Component({
   selector: 'app-pais-table',
   templateUrl: './pais-table.component.html',
   styleUrls: ['./pais-table.component.scss'],
+  providers: [DatePipe]
 })
 export class PaisTableComponent implements OnInit {
   date3: Date;
   date4: Date;
+  idPais: number;
   es: any;
 
   products2: any[];
@@ -23,7 +28,9 @@ export class PaisTableComponent implements OnInit {
   size: number = 5;
 
   constructor(
-    private comiteServices:ComiteServices
+    private comiteServices:ComiteServices,
+    private datePipe: DatePipe,
+    private messageService: MessageService,
   ) {}
 
   ngOnInit(): void {
@@ -89,11 +96,65 @@ export class PaisTableComponent implements OnInit {
   }
 
   getListComiteActiveList(){
-    this.comiteServices.getListComiteActivePais(this.term,this.term1,this.term2,this.page,this.size).subscribe(
+
+    try{
+      this.date3 = history.state.item.date3;
+      this.date4 = history.state.item.date4;
+      this.idPais = history.state.item.paisId;
+    }catch{
+      this.date3 = new Date();
+      this.date4 = new Date();
+      this.idPais = 0;
+    }
+    
+    this.comiteServices.getListComiteActive(
+      1,
+      this.datePipe.transform(this.date3, 'dd-MM-yyyy'),
+      this.datePipe.transform(this.date4, 'dd-MM-yyyy'),
+      this.idPais.toString(),
+      null,
+      this.page,
+      this.size).subscribe(
       (result: any) => {
         this.products2 = result.data
       }
     )
+  }
+
+  onKeydown(event) {
+    var evento = "";
+    try{
+      evento = event.originalEvent.type
+    }
+    catch{
+      evento = event.key
+    }
+    if (evento === "Enter" || evento === "click"|| evento === undefined) {
+      if(
+        this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
+        this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null
+      ){
+        this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
+        return false;
+      }else{
+        this.comiteServices.getListComiteActive(
+          1,
+          this.datePipe.transform(this.date3, 'dd-MM-yyyy'),
+          this.datePipe.transform(this.date4, 'dd-MM-yyyy'),
+          this.idPais.toString(),
+          null,
+          this.page,
+          this.size).subscribe(
+          (result: any) => {
+            this.products2 = result.data
+          }
+        )
+      }
+    }
+  }
+
+  showWarn(mensaje: string) {
+    this.messageService.add({ severity: 'warn', summary: AppConstants.TitleModal.Warning, detail: mensaje });
   }
 
 }
