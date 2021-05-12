@@ -102,6 +102,24 @@
 //end buttons
 
 //file Uplod
+.style-fileupload-1{
+  width: 100%;
+  background: transparent;
+  color: black;
+  border: 1px solid var(--info-color);
+  padding: 2rem 1rem;
+  border-radius: 1rem;
+  justify-content: center;
+  color: var(--info-color);
+  &:hover {
+    background: #0d90cb05 !important;
+    border: 1px solid var(--info-color) !important;
+    color: var(--info-color) !important;
+  }
+  .p-button-icon {
+    display: none;
+  }
+}
 .style-fileupload {
   .p-button.p-fileupload-choose {
     width: 100%;
@@ -128,7 +146,7 @@
 .p-fileupload .p-fileupload-buttonbar {
   border: 0;
 }
-
+//End file Uplod
 .style-chip-1 {
   .p-inputtext {
     border: 0;

@@ -5,7 +5,10 @@
         <button *ngIf="tipoSelect == 2" (click)="change(1)" pButton class="p-button-outlined p-button-rounded w-100" label="Acta de confidencialidad de Miembros"></button>
     </div>
 
-    <p-fileUpload #fubauto mode="basic" name="demo" accept="application/pdf" maxFileSize="5000000" customUpload="true"
+    <p-fileUpload 
+        styleClass="style-fileupload-1"
+        #fubauto mode="basic"
+        name="demo" accept="application/pdf" maxFileSize="5000000" customUpload="true"
         (onSelect)="uploadDocument($event)" chooseLabel="Subir archivos PDF, no mayor a 5MB"></p-fileUpload>
     <br>
 
