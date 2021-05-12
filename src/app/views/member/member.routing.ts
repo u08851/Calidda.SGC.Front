@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { ComitesComponent } from '../member/pages/comites/comites.component';
 import { DetailComiteComponent } from '../member/components/detail-comite/detail-comite.component';
 import { DasboardComiteComponent } from './components/dasboard-comite/dasboard-comite.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
 export const MemberRoutes: Routes = [
@@ -10,7 +11,7 @@ export const MemberRoutes: Routes = [
         children: [
             {
                 path: '',
-                // component: DashboardComponent,
+                component: DashboardComponent,
             },
             {
                 path: 'comites',
@@ -23,6 +24,10 @@ export const MemberRoutes: Routes = [
             {
                 path: 'detail-comite',
                 component: DetailComiteComponent,
+            },
+            {
+                path: 'dashboard',
+                component: DashboardComponent
             }
         ],  
     },
