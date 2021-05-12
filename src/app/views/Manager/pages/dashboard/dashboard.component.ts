@@ -153,9 +153,9 @@ export class DashboardComponent implements OnInit {
     if(id != 4){
   
       let sinR = [];
-      var temp = {};
-      var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
-      var result: any;
+      let temp = {};
+      let groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
+      let result: any;
   
       if (evento === "Enter" || evento === "click"|| evento === undefined) {
         if(
@@ -209,6 +209,60 @@ export class DashboardComponent implements OnInit {
             }
           )
         }
+      }
+    }
+    if(id == 4){
+  
+      let sinR = [];
+      let temp = {};
+      let groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
+      let result: any;
+  
+      if (evento === "Enter" || evento === "click"|| evento === undefined) {
+        
+          this.comiteServices.getListComite(
+            4,
+            this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
+            this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
+            null,
+            null).subscribe(
+            (response) =>{
+              this.message = "Reporte de 6 meses anteriores"
+              sinR = response.data;
+              
+              try{
+                var groupBy = function (miarray, prop) {
+                  return miarray.reduce(function(groups, item) {
+                      var val = item[prop];
+                      groups[val] = groups[val] || {nombre: item.nombre, count: 0};
+                      groups[val].count += item.count;
+                      return groups;
+                  }, {});
+                }
+    
+                result = groupBy(sinR,'nombre')
+                
+                this.val11 = result.Semanal.count;
+                this.val22 = result.Quincenal.count;
+                this.val33 = result.Trimestral.count;
+                this.val44 = result.Mensual.count;
+                this.val55 = result.Semestral.count;
+                this.val66 = result.Anual.count;
+                
+                this.donuts.dataReceived(sinR);
+              }catch{
+                this.val11 = "0";
+                this.val22 = "0";
+                this.val33 = "0";
+                this.val44 = "0";
+                this.val55 = "0";
+                this.val66 = "0";
+                this.donuts.dataReceived("");
+              }
+              
+            }
+          )
+        
       }
     }
   }
@@ -404,6 +458,64 @@ export class DashboardComponent implements OnInit {
                 this.val3 = "0";
                 this.val4 = 0;
                 this.barEmpresaDireccion.dataReceived("");
+              }
+              
+            }
+          )
+        }
+      }
+    }
+    if(id == 4){
+  
+      let sinR = [];
+      var result: any;
+  
+      if (evento === "Enter" || evento === "click"|| evento === undefined) {
+        if(
+          this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
+          this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null
+        ){
+          this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
+          return false;
+        }else{
+          this.comiteServices.getListComite(
+            4,
+            this.datePipe.transform(this.date3, 'dd-MM-yyyy'),
+            this.datePipe.transform(this.date4, 'dd-MM-yyyy'),
+            null,
+            null).subscribe(
+            (response) =>{
+              this.message = "Reporte de 6 meses anteriores"
+              sinR = response.data;
+              
+              try{
+                sinR = response.data;
+                var groupBy = function (miarray, prop) {
+                  return miarray.reduce(function(groups, item) {
+                      var val = item[prop];
+                      groups[val] = groups[val] || {nombre: item.nombre, count: 0};
+                      groups[val].count += item.count;
+                      return groups;
+                  }, {});
+                }
+                result = groupBy(sinR,'nombre')
+                
+                this.val11 = result.Semanal.count;
+                this.val22 = result.Quincenal.count;
+                this.val33 = result.Trimestral.count;
+                this.val44 = result.Mensual.count;
+                this.val55 = result.Semestral.count;
+                this.val66 = result.Anual.count;
+                
+                this.donuts.dataReceived(sinR);
+              }catch{
+                this.val11 = "0";
+                this.val22 = "0";
+                this.val33 = "0";
+                this.val44 = "0";
+                this.val55 = "0";
+                this.val66 = "0";
+                this.donuts.dataReceived("");
               }
               
             }

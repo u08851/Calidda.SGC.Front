@@ -40,6 +40,9 @@ export class ComiteServices {
     if(type == 2){
       return this._http.get<any>(`${this.BASE_URL}/Inicio?type=2&termD=${term1}&termH=${term2}&termN=${term3}&termW=${term4}`);
     }
+    if(type == 4){
+      return this._http.get<any>(`${this.BASE_URL}/Inicio?type=4&termD=${term1}&termH=${term2}`);
+    }
   }
 
   getListComiteActive(term:string,term1:string,term2:string,page:number,size:number){
