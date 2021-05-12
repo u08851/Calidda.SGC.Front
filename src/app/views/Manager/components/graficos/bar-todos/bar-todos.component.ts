@@ -4,6 +4,7 @@ import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import { Router } from '@angular/router';
 import { ComiteServices } from 'src/app/services/comite.service';
+import { DatePipe } from '@angular/common';
 
 // Themes begin
 am4core.useTheme(am4themes_animated);
@@ -13,13 +14,17 @@ am4core.useTheme(am4themes_animated);
   selector: 'app-bar-todos',
   templateUrl: './bar-todos.component.html',
   styleUrls: ['./bar-todos.component.scss'],
+  providers: [DatePipe]
 })
 export class BarTodosComponent implements OnInit {
 
+  date3: any;
+  date4: any;
 
   constructor(
     private routing: Router,
-    private comiteServices:ComiteServices
+    private comiteServices:ComiteServices,
+    private datePipe: DatePipe,
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +45,7 @@ export class BarTodosComponent implements OnInit {
       temp[a.code][groups[a.nombre]] = a.count;
     });
     result = Object.keys(temp).map(function (k) { return temp[k]; });
-        
+
     let val1 = 0;
     let val2 = 0;
     let val3 = 0;
@@ -50,13 +55,6 @@ export class BarTodosComponent implements OnInit {
       val2 += result[g].value2
       val3 += result[g].value3
     }
-
-    localStorage.removeItem("val1");
-    localStorage.removeItem("val2");
-    localStorage.removeItem("val3");
-    localStorage.setItem("val1",val1.toString())
-    localStorage.setItem("val2",val2.toString())
-    localStorage.setItem("val3",val3.toString())
 
     chart.data = result;
 
@@ -174,7 +172,6 @@ export class BarTodosComponent implements OnInit {
     series1.columns.template.events.on("hit", function(ev) {
       this.routing.navigateByUrl("/manager/report");
     }, this);
-        
   }
 
   ngAfterViewInit() {
@@ -186,7 +183,12 @@ export class BarTodosComponent implements OnInit {
     var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
     var result: any;
 
-    this.comiteServices.getListComite(0,null,null,null,null).subscribe(
+    this.comiteServices.getListComite(
+      0,
+      this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
+      this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
+      null,
+      null).subscribe(
       (response) =>{
         sinR = response.data;
         sinR.forEach(function (a) {
@@ -194,23 +196,6 @@ export class BarTodosComponent implements OnInit {
           temp[a.code][groups[a.nombre]] = a.count;
         });
         result = Object.keys(temp).map(function (k) { return temp[k]; });
-        
-        let val1 = 0;
-        let val2 = 0;
-        let val3 = 0;
-
-        for(let g = 0; g < result.length; g++){
-          val1 += result[g].value1
-          val2 += result[g].value2
-          val3 += result[g].value3
-        }
-
-        localStorage.removeItem("val1");
-        localStorage.removeItem("val2");
-        localStorage.removeItem("val3");
-        localStorage.setItem("val1",val1.toString())
-        localStorage.setItem("val2",val2.toString())
-        localStorage.setItem("val3",val3.toString())
 
         chart.data = result;
 
@@ -328,9 +313,9 @@ export class BarTodosComponent implements OnInit {
         series1.columns.template.events.on("hit", function(ev) {
           this.routing.navigateByUrl("/manager/report");
         }, this);
+
       }
     )
-    
   }
 
 }
