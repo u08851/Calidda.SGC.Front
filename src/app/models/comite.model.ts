@@ -30,3 +30,19 @@ export class ComiteRequestModel {
 
 
 }
+
+
+export class ComiteBusquedaModel{
+  fechaCreacion: string;
+  horaCreacion: string;
+  codigo: string;
+  nombre: string;
+  direccion:string;
+  responsable: string;
+  empresa:string;
+  frecuencia: string;
+  pais: string;
+  url: string;
+  count: number;
+}
+

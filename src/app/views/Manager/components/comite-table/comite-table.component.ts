@@ -1,6 +1,10 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ComiteBusquedaModel } from 'src/app/models/comite.model';
+import { ComiteServices } from 'src/app/services/comite.service';
 import { ComiteHistoryComponent } from '../../dialog/comite-history/comite-history.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-comite-table',
@@ -37,9 +41,16 @@ export class ComiteTableComponent implements OnInit {
   cols: any[];
   items: any[];
 
+  comites:ComiteBusquedaModel[];
+  term: string = "ALL1";
+  page: number = 0;
+  size: number = 5;
+
   constructor(
     public dialogService: DialogService,
-    public  ref: DynamicDialogRef
+    public  ref: DynamicDialogRef,
+    private comiteServices:ComiteServices,
+    private sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit(): void {
@@ -79,6 +90,8 @@ export class ComiteTableComponent implements OnInit {
         }
       }
     ];
+
+    this.getListComitexFiltros();
   }
 
   showHistory() {
@@ -94,5 +107,20 @@ export class ComiteTableComponent implements OnInit {
   showConfirmation() {
     this.displayModal = true;
   }
+
+
+  getListComitexFiltros(){
+    this.comiteServices.getListComitexFiltros(this.term,this.term,this.term,this.page,this.size).subscribe(
+      (result: any) => {
+        this.comites = result.data
+      }
+    )
+  }
+
+  getSantizeUrl(url : string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
+  }
+
+
 
 }
