@@ -9,14 +9,6 @@
 
   <!-- Form -->
   <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mt-2">
-    <!-- Buscar país -->
-    <div class="p-col-12 p-md-6 p-lg-3">
-      <span class="p-float-label p-input-icon-right">
-        <i class="pi pi-search"></i>
-        <input type="text" pInputText />
-        <label for="inputtext">Buscar país</label>
-      </span>
-    </div>
 
     <!-- calendario DESDE -->
     <div class="p-col-12 p-md-6 p-lg-3">
@@ -26,6 +18,7 @@
           [locale]="es"
           [showIcon]="true"
           inputId="icon"
+          (onSelect)="onKeydown($event)"
         ></p-calendar>
         <label for="inputtext">Desde</label>
       </span>
@@ -39,6 +32,7 @@
           [locale]="es"
           [showIcon]="true"
           inputId="icon"
+          (onSelect)="onKeydown($event)"
         ></p-calendar>
         <label for="inputtext">Hasta</label>
       </span>

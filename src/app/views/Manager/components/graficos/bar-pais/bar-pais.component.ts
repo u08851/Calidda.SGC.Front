@@ -3,6 +3,7 @@ import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import { ComiteServices } from 'src/app/services/comite.service';
+import { DatePipe } from '@angular/common';
 
 // Themes begin
 am4core.useTheme(am4themes_animated);
@@ -11,10 +12,12 @@ am4core.useTheme(am4themes_animated);
   selector: 'app-bar-pais',
   templateUrl: './bar-pais.component.html',
   styleUrls: ['./bar-pais.component.scss'],
+  providers: [DatePipe]
 })
 export class BarPaisComponent implements OnInit {
   constructor(
-    private comiteServices:ComiteServices
+    private comiteServices:ComiteServices,
+    private datePipe: DatePipe,
   ) {}
 
   ngOnInit(): void {}
@@ -44,10 +47,6 @@ export class BarPaisComponent implements OnInit {
       val2 += result[g].value2
       val3 += result[g].value3
     }
-
-    localStorage.setItem("val1",val1.toString())
-    localStorage.setItem("val2",val2.toString())
-    localStorage.setItem("val3",val3.toString())
 
     chart.data = result;
 
@@ -79,7 +78,7 @@ export class BarPaisComponent implements OnInit {
     gradient.addColor(am4core.color('#FAB200'));
     gradient.rotation = 270;
     series1.columns.template.fill = gradient;
-    
+        
     series1.sequencedInterpolation = true;
     series1.sequencedInterpolationDelay = 100;
 
@@ -109,7 +108,7 @@ export class BarPaisComponent implements OnInit {
     gradient2.addColor(am4core.color('#00A1DE'));
     gradient2.rotation = 270;
     series2.columns.template.fill = gradient2;
-    
+        
     series2.sequencedInterpolation = true;
     series2.sequencedInterpolationDelay = 100;
 
@@ -161,7 +160,7 @@ export class BarPaisComponent implements OnInit {
     chart.legend.markers.template.height = 8;
     chart.legend.visible = true;
     chart.legend.fill = am4core.color('series1' && 'series2' && 'series3');
-        
+
   }
 
   ngAfterViewInit() {
@@ -173,7 +172,12 @@ export class BarPaisComponent implements OnInit {
     var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
     var result: any;
 
-    this.comiteServices.getListComite(8,null,null,null,null).subscribe(
+    this.comiteServices.getListComite(
+      0,
+      this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
+      this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
+      null,
+      null).subscribe(
       (response) =>{
         sinR = response.data;
         sinR.forEach(function (a) {
@@ -181,20 +185,6 @@ export class BarPaisComponent implements OnInit {
           temp[a.code][groups[a.nombre]] = a.count;
         });
         result = Object.keys(temp).map(function (k) { return temp[k]; });
-
-        let val1 = 0;
-        let val2 = 0;
-        let val3 = 0;
-
-        for(let g = 0; g < result.length; g++){
-          val1 += result[g].value1
-          val2 += result[g].value2
-          val3 += result[g].value3
-        }
-
-        localStorage.setItem("val1",val1.toString())
-        localStorage.setItem("val2",val2.toString())
-        localStorage.setItem("val3",val3.toString())
 
         chart.data = result;
 
@@ -308,10 +298,9 @@ export class BarPaisComponent implements OnInit {
         chart.legend.markers.template.height = 8;
         chart.legend.visible = true;
         chart.legend.fill = am4core.color('series1' && 'series2' && 'series3');
-        
+
       }
     )
-    
   }
 
 }

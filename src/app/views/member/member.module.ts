@@ -9,6 +9,11 @@ import { DasboardComiteComponent } from './components/dasboard-comite/dasboard-c
 import { ListComiteTableComponent } from './components/list-comite-table/list-comite-table.component';
 import { DetailComiteComponent } from './components/detail-comite/detail-comite.component';
 import { ConfidentialityComponent } from './dialog/confidentiality/confidentiality.component';
+import { ComitesBarComponent } from './components/graficos/comites-bar/comites-bar.component';
+import { ReunionesBarComponent } from './components/graficos/reuniones-bar/reuniones-bar.component';
+import { ReunionesDonutComponent } from './components/graficos/reuniones-donut/reuniones-donut.component';
+import { VotacionesBarComponent } from './components/graficos/votaciones-bar/votaciones-bar.component';
+import { CompromisosBarComponent } from './components/graficos/compromisos-bar/compromisos-bar.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +22,12 @@ import { ConfidentialityComponent } from './dialog/confidentiality/confidentiali
     DasboardComiteComponent,
     ListComiteTableComponent,
     DetailComiteComponent,
-    ConfidentialityComponent
+    ConfidentialityComponent,
+    ComitesBarComponent,
+    ReunionesBarComponent,
+    ReunionesDonutComponent,
+    VotacionesBarComponent,
+    CompromisosBarComponent
 ],
   imports: [
     CommonModule,

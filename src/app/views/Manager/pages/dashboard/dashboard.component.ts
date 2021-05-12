@@ -1,13 +1,16 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { ComiteServices } from 'src/app/services/comite.service';
 import { EmpresaServices } from 'src/app/services/empresa.service';
 import { PaisServices } from 'src/app/services/pais.service';
+import { AppConstants } from 'src/app/shared/constants/app.constants';
 import { BarEmpresaDireccionComponent } from '../../components/graficos/bar-empresa-direccion/bar-empresa-direccion.component';
 import { BarPaisComponent } from '../../components/graficos/bar-pais/bar-pais.component';
 import { BarTodosComponent } from '../../components/graficos/bar-todos/bar-todos.component';
 import { DonutComponent } from '../../components/graficos/donut/donut.component';
+import { TodosTableComponent } from '../../components/indicadores-inicio-tables/todos-table/todos-table.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,18 +23,19 @@ export class DashboardComponent implements OnInit {
   date3: Date;
   date4: Date;
   textFilterDE:string;
+  textFilterSE:string;
   es: any;
-  val1: string = localStorage.getItem("val1");
-  val2: string = localStorage.getItem("val2");
-  val3: string = localStorage.getItem("val3");
-  val4: number = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
+  val1: string;
+  val2: string;
+  val3: string;
+  val4: number;
   message:string="Reporte de 6 meses anteriores";
-  val11: string = localStorage.getItem("val11");
-  val22: string = localStorage.getItem("val22");
-  val33: string = localStorage.getItem("val33");
-  val44: string = localStorage.getItem("val44");
-  val55: string = localStorage.getItem("val55");
-  val66: string = localStorage.getItem("val66");
+  val11: string;
+  val22: string;
+  val33: string;
+  val44: string;
+  val55: string;
+  val66: string;
 
   selectedCountry: any;
   countries: any[];
@@ -48,12 +52,15 @@ export class DashboardComponent implements OnInit {
   @ViewChild(BarPaisComponent) barPais: BarPaisComponent;
   @ViewChild(DonutComponent) donuts: DonutComponent;
 
+  @ViewChild(TodosTableComponent) todoTable: TodosTableComponent;
+
   constructor(
     private router: Router,
     private datePipe: DatePipe,
     private comiteServices:ComiteServices,
     private paisServices:PaisServices,
     private empresaServices:EmpresaServices,
+    private messageService: MessageService,
   ) {}
 
   ngOnInit(): void {
@@ -110,1779 +117,83 @@ export class DashboardComponent implements OnInit {
 
 
   goToTableActive(){
-    this.router.navigateByUrl('/manager/todos-table');
+    if(
+      this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
+      this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null
+    ){
+      this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
+      return false;
+    }
+    var data = {
+      date3: this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ? new Date() : this.date3,
+      date4: this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null ? new Date() : this.date4,
+      type: 0
+    };
+    this.router.navigateByUrl('/manager/todos-table', { state: { item: data }});
   }
 
   goToTableActivePais(){
-    this.router.navigateByUrl('/manager/pais-table');
+    if(
+      this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
+      this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null ||
+      this.selectedCountry == null
+    ){
+      this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
+      return false;
+    }
+    var data = {
+      date3: this.date3,
+      date4: this.date4,
+      type: 1,
+      paisId: this.selectedCountry.paisId
+    };
+    this.router.navigateByUrl('/manager/pais-table', { state: { item: data }});
   }
 
   goToTableActiveEmpresa(){
-    this.router.navigateByUrl('/manager/empresa-direccion-table');
+    if(
+      this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
+      this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null ||
+      this.selectedCity1 == null ||
+      this.textFilterDE.length == 0
+    ){
+      this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
+      return false;
+    }
+    var data = {
+      date3: this.date3,
+      date4: this.date4,
+      type: 2,
+      empresaId: this.selectedCity1.empresaId,
+      direccion: this.textFilterDE
+    };
+    this.router.navigateByUrl('/manager/empresa-direccion-table', { state: { item: data }});
   }
 
   goToTableActiveSecretaria(){
-    this.router.navigateByUrl('/manager/secrearia-table');
+    var data = {
+      date3: this.date3,
+      date4: this.date4,
+      type: 3,
+      secretaria: this.textFilterSE
+    };
+    this.router.navigateByUrl('/manager/secrearia-table', { state: { item: data }});
   }
 
   goToTableActiveFrecuencia(){
-    this.router.navigateByUrl('/manager/frecuencia-table');
-  }
-
-  onKeydown(event,id:any) {
-    var evento = "";
-    if(id == 0){
-      try{
-        evento = event.originalEvent.type
-      }
-      catch{
-        try{
-          evento = event.key
-        }
-        catch{
-          evento = "Enter"
-        }
-      }
-      if(this.datePipe.transform(this.date3, 'dd-MM-yyyy') != null){
-        this.textFilter2 = this.datePipe.transform(this.date3, 'dd-MM-yyyy');
-      }
-      else{
-        this.textFilter2 = "";
-      }
-      if(this.datePipe.transform(this.date4, 'dd-MM-yyyy') != null){
-        this.textFilter3 = this.datePipe.transform(this.date4, 'dd-MM-yyyy');
-      }else{
-        this.textFilter3 = "";
-      }
-  
-      let sinR = [];
-      var temp = {};
-      var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
-      var result: any;
-  
-      if (evento === "Enter" || evento === "click") {
-        if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.textFilter0.length != 0){
-          this.comiteServices.getListComite(4,null,null,this.textFilter0,null).subscribe(
-            (response) =>{
-              this.message = "Reporte de 6 meses anteriores"
-              sinR = response.data;
-              
-              try{
-                sinR.forEach(function (a) {
-                  temp[a.code] = temp[a.code] || { category: a.code };
-                  temp[a.code][groups[a.nombre]] = a.count;
-                });
-                result = Object.keys(temp).map(function (k) { return temp[k]; });
-                  
-                let val1 = 0;
-                let val2 = 0;
-                let val3 = 0;
-    
-                for(let g = 0; g < result.length; g++){
-                  val1 += result[g].value1
-                  val2 += result[g].value2
-                  val3 += result[g].value3
-                }
-    
-                localStorage.removeItem("val1");
-                localStorage.removeItem("val2");
-                localStorage.removeItem("val3");
-                localStorage.setItem("val1",val1.toString())
-                localStorage.setItem("val2",val2.toString())
-                localStorage.setItem("val3",val3.toString())
-    
-                this.val1 = localStorage.getItem("val1");
-                this.val2 = localStorage.getItem("val2");
-                this.val3 = localStorage.getItem("val3");
-                this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                
-                this.barTodos.dataReceived(sinR);
-              }catch{
-                this.barTodos.dataReceived("");
-              }
-              
-            }
-          )
-        }else{
-          if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.textFilter0.length == 0){
-            this.comiteServices.getListComite(0,null,null,null,null).subscribe(
-              (response) =>{
-                this.message = "Reporte de los 6 últimos meses"
-                sinR = response.data;
-                
-                try{
-                  sinR.forEach(function (a) {
-                    temp[a.code] = temp[a.code] || { category: a.code };
-                    temp[a.code][groups[a.nombre]] = a.count;
-                  });
-                  result = Object.keys(temp).map(function (k) { return temp[k]; });
-                    
-                  let val1 = 0;
-                  let val2 = 0;
-                  let val3 = 0;
-      
-                  for(let g = 0; g < result.length; g++){
-                    val1 += result[g].value1
-                    val2 += result[g].value2
-                    val3 += result[g].value3
-                  }
-      
-                  localStorage.removeItem("val1");
-                  localStorage.removeItem("val2");
-                  localStorage.removeItem("val3");
-                  localStorage.setItem("val1",val1.toString())
-                  localStorage.setItem("val2",val2.toString())
-                  localStorage.setItem("val3",val3.toString())
-      
-                  this.val1 = localStorage.getItem("val1");
-                  this.val2 = localStorage.getItem("val2");
-                  this.val3 = localStorage.getItem("val3");
-                  this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                  
-                  this.barTodos.dataReceived(sinR);
-                }catch{
-                  this.barTodos.dataReceived("");
-                }
-              }
-            )
-          }else{
-            if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.textFilter0.length == 0){
-              this.comiteServices.getListComite(2,null,this.textFilter3,null,null).subscribe(
-                (response) =>{
-                  this.message = "Reporte de los 6 últimos meses " + this.textFilter3
-                  sinR = response.data;
-                  
-                  try{
-                    sinR.forEach(function (a) {
-                      temp[a.code] = temp[a.code] || { category: a.code };
-                      temp[a.code][groups[a.nombre]] = a.count;
-                    });
-                    result = Object.keys(temp).map(function (k) { return temp[k]; });
-                      
-                    let val1 = 0;
-                    let val2 = 0;
-                    let val3 = 0;
-        
-                    for(let g = 0; g < result.length; g++){
-                      val1 += result[g].value1
-                      val2 += result[g].value2
-                      val3 += result[g].value3
-                    }
-        
-                    localStorage.removeItem("val1");
-                    localStorage.removeItem("val2");
-                    localStorage.removeItem("val3");
-                    localStorage.setItem("val1",val1.toString())
-                    localStorage.setItem("val2",val2.toString())
-                    localStorage.setItem("val3",val3.toString())
-        
-                    this.val1 = localStorage.getItem("val1");
-                    this.val2 = localStorage.getItem("val2");
-                    this.val3 = localStorage.getItem("val3");
-                    this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                    
-                    this.barTodos.dataReceived(sinR);
-                  }catch{
-                    this.barTodos.dataReceived("");
-                  }
-                }
-              )
-            }else{
-              if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.textFilter0.length == 0){
-                this.comiteServices.getListComite(1,this.textFilter2,null,null,null).subscribe(
-                  (response) =>{
-                    this.message = "Reporte fecha ingresada"
-                    sinR = response.data;
-                    
-                    try{
-                      sinR.forEach(function (a) {
-                        temp[a.code] = temp[a.code] || { category: a.code };
-                        temp[a.code][groups[a.nombre]] = a.count;
-                      });
-                      result = Object.keys(temp).map(function (k) { return temp[k]; });
-                        
-                      let val1 = 0;
-                      let val2 = 0;
-                      let val3 = 0;
-          
-                      for(let g = 0; g < result.length; g++){
-                        val1 += result[g].value1
-                        val2 += result[g].value2
-                        val3 += result[g].value3
-                      }
-          
-                      localStorage.removeItem("val1");
-                      localStorage.removeItem("val2");
-                      localStorage.removeItem("val3");
-                      localStorage.setItem("val1",val1.toString())
-                      localStorage.setItem("val2",val2.toString())
-                      localStorage.setItem("val3",val3.toString())
-          
-                      this.val1 = localStorage.getItem("val1");
-                      this.val2 = localStorage.getItem("val2");
-                      this.val3 = localStorage.getItem("val3");
-                      this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                      
-                      this.barTodos.dataReceived(sinR);
-                    }catch{
-                      this.barTodos.dataReceived("");
-                    }
-                  }
-                )
-              }else{
-                if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.textFilter0.length == 0){
-                  this.comiteServices.getListComite(3,this.textFilter2,this.textFilter3,null,null).subscribe(
-                    (response) =>{
-                      this.message = "Reporte de rango de fechas"
-                      sinR = response.data;
-                      
-                      try{
-                        sinR.forEach(function (a) {
-                          temp[a.code] = temp[a.code] || { category: a.code };
-                          temp[a.code][groups[a.nombre]] = a.count;
-                        });
-                        result = Object.keys(temp).map(function (k) { return temp[k]; });
-                          
-                        let val1 = 0;
-                        let val2 = 0;
-                        let val3 = 0;
-            
-                        for(let g = 0; g < result.length; g++){
-                          val1 += result[g].value1
-                          val2 += result[g].value2
-                          val3 += result[g].value3
-                        }
-            
-                        localStorage.removeItem("val1");
-                        localStorage.removeItem("val2");
-                        localStorage.removeItem("val3");
-                        localStorage.setItem("val1",val1.toString())
-                        localStorage.setItem("val2",val2.toString())
-                        localStorage.setItem("val3",val3.toString())
-            
-                        this.val1 = localStorage.getItem("val1");
-                        this.val2 = localStorage.getItem("val2");
-                        this.val3 = localStorage.getItem("val3");
-                        this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                        
-                        this.barTodos.dataReceived(sinR);
-                      }catch{
-                        this.barTodos.dataReceived("");
-                      }
-                    }
-                  )
-                }else{
-                  if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.textFilter0.length != 0){
-                    this.comiteServices.getListComite(5,this.textFilter2,null,this.textFilter0,null).subscribe(
-                      (response) =>{
-                        this.message = "Reporte de fecha y nombre ingresado"
-                        sinR = response.data;
-                        
-                        try{
-                          sinR.forEach(function (a) {
-                            temp[a.code] = temp[a.code] || { category: a.code };
-                            temp[a.code][groups[a.nombre]] = a.count;
-                          });
-                          result = Object.keys(temp).map(function (k) { return temp[k]; });
-                            
-                          let val1 = 0;
-                          let val2 = 0;
-                          let val3 = 0;
-              
-                          for(let g = 0; g < result.length; g++){
-                            val1 += result[g].value1
-                            val2 += result[g].value2
-                            val3 += result[g].value3
-                          }
-              
-                          localStorage.removeItem("val1");
-                          localStorage.removeItem("val2");
-                          localStorage.removeItem("val3");
-                          localStorage.setItem("val1",val1.toString())
-                          localStorage.setItem("val2",val2.toString())
-                          localStorage.setItem("val3",val3.toString())
-              
-                          this.val1 = localStorage.getItem("val1");
-                          this.val2 = localStorage.getItem("val2");
-                          this.val3 = localStorage.getItem("val3");
-                          this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                          
-                          this.barTodos.dataReceived(sinR);
-                        }catch{
-                          this.barTodos.dataReceived("");
-                        }
-                      }
-                    )
-                  }else{
-                    if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.textFilter0.length != 0){
-                      this.comiteServices.getListComite(6,null,this.textFilter3,this.textFilter0,null).subscribe(
-                        (response) =>{
-                          this.message = "Reporte de fecha y nombre ingresado"
-                          sinR = response.data;
-                          
-                          try{
-                            sinR.forEach(function (a) {
-                              temp[a.code] = temp[a.code] || { category: a.code };
-                              temp[a.code][groups[a.nombre]] = a.count;
-                            });
-                            result = Object.keys(temp).map(function (k) { return temp[k]; });
-                              
-                            let val1 = 0;
-                            let val2 = 0;
-                            let val3 = 0;
-                
-                            for(let g = 0; g < result.length; g++){
-                              val1 += result[g].value1
-                              val2 += result[g].value2
-                              val3 += result[g].value3
-                            }
-                
-                            localStorage.removeItem("val1");
-                            localStorage.removeItem("val2");
-                            localStorage.removeItem("val3");
-                            localStorage.setItem("val1",val1.toString())
-                            localStorage.setItem("val2",val2.toString())
-                            localStorage.setItem("val3",val3.toString())
-                
-                            this.val1 = localStorage.getItem("val1");
-                            this.val2 = localStorage.getItem("val2");
-                            this.val3 = localStorage.getItem("val3");
-                            this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                            
-                            this.barTodos.dataReceived(sinR);
-                          }catch{
-                            this.barTodos.dataReceived("");
-                          }
-                        }
-                      )
-                    }else{
-                      if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.textFilter0.length != 0){
-                        this.comiteServices.getListComite(7,this.textFilter2,this.textFilter3,this.textFilter0,null).subscribe(
-                          (response) =>{
-                            this.message = "Reporte de rango de fechas y nombre ingresado"
-                            sinR = response.data;
-                            
-                            try{
-                              sinR.forEach(function (a) {
-                                temp[a.code] = temp[a.code] || { category: a.code };
-                                temp[a.code][groups[a.nombre]] = a.count;
-                              });
-                              result = Object.keys(temp).map(function (k) { return temp[k]; });
-                                
-                              let val1 = 0;
-                              let val2 = 0;
-                              let val3 = 0;
-                  
-                              for(let g = 0; g < result.length; g++){
-                                val1 += result[g].value1
-                                val2 += result[g].value2
-                                val3 += result[g].value3
-                              }
-                  
-                              localStorage.removeItem("val1");
-                              localStorage.removeItem("val2");
-                              localStorage.removeItem("val3");
-                              localStorage.setItem("val1",val1.toString())
-                              localStorage.setItem("val2",val2.toString())
-                              localStorage.setItem("val3",val3.toString())
-                  
-                              this.val1 = localStorage.getItem("val1");
-                              this.val2 = localStorage.getItem("val2");
-                              this.val3 = localStorage.getItem("val3");
-                              this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                              
-                              this.barTodos.dataReceived(sinR);
-                            }catch{
-                              this.barTodos.dataReceived("");
-                            }
-                          }
-                        )
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+    if(
+      this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
+      this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null
+    ){
+      this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
+      return false;
     }
-    if(id == 1){
-      try{
-        evento = event.originalEvent.type
-      }
-      catch{
-        try{
-          evento = event.key
-        }
-        catch{
-          evento = "Enter"
-        }
-      }
-      if(this.datePipe.transform(this.date3, 'dd-MM-yyyy') != null){
-        this.textFilter2 = this.datePipe.transform(this.date3, 'dd-MM-yyyy');
-      }
-      else{
-        this.textFilter2 = "";
-      }
-      if(this.datePipe.transform(this.date4, 'dd-MM-yyyy') != null){
-        this.textFilter3 = this.datePipe.transform(this.date4, 'dd-MM-yyyy');
-      }else{
-        this.textFilter3 = "";
-      }
-  
-      let sinR = [];
-      var temp = {};
-      var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
-      var result: any;
-  
-      if (evento === "Enter" || evento === "click") {
-        if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.selectedCountry == null){
-          this.comiteServices.getListComite(8,null,null,null,null).subscribe(
-            (response) =>{
-              this.message = "Reporte de los 6 últimos meses"
-              sinR = response.data;
-              
-              try{
-                sinR.forEach(function (a) {
-                  temp[a.code] = temp[a.code] || { category: a.code };
-                  temp[a.code][groups[a.nombre]] = a.count;
-                });
-                result = Object.keys(temp).map(function (k) { return temp[k]; });
-                  
-                let val1 = 0;
-                let val2 = 0;
-                let val3 = 0;
-    
-                for(let g = 0; g < result.length; g++){
-                  val1 += result[g].value1
-                  val2 += result[g].value2
-                  val3 += result[g].value3
-                }
-    
-                localStorage.removeItem("val1");
-                localStorage.removeItem("val2");
-                localStorage.removeItem("val3");
-                localStorage.setItem("val1",val1.toString())
-                localStorage.setItem("val2",val2.toString())
-                localStorage.setItem("val3",val3.toString())
-    
-                this.val1 = localStorage.getItem("val1");
-                this.val2 = localStorage.getItem("val2");
-                this.val3 = localStorage.getItem("val3");
-                this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                
-                this.barPais.dataReceived(sinR);
-              }catch{
-                this.barPais.dataReceived("");
-              }
-            }
-          )
-        }else{
-          if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.selectedCountry != null){
-            this.comiteServices.getListComite(9,null,null,this.selectedCountry.paisId,null).subscribe(
-              (response) =>{
-                this.message = "Reporte del páis elegido"
-                sinR = response.data;
-                
-                try{
-                  sinR.forEach(function (a) {
-                    temp[a.code] = temp[a.code] || { category: a.code };
-                    temp[a.code][groups[a.nombre]] = a.count;
-                  });
-                  result = Object.keys(temp).map(function (k) { return temp[k]; });
-                    
-                  let val1 = 0;
-                  let val2 = 0;
-                  let val3 = 0;
-      
-                  for(let g = 0; g < result.length; g++){
-                    val1 += result[g].value1
-                    val2 += result[g].value2
-                    val3 += result[g].value3
-                  }
-      
-                  localStorage.removeItem("val1");
-                  localStorage.removeItem("val2");
-                  localStorage.removeItem("val3");
-                  localStorage.setItem("val1",val1.toString())
-                  localStorage.setItem("val2",val2.toString())
-                  localStorage.setItem("val3",val3.toString())
-      
-                  this.val1 = localStorage.getItem("val1");
-                  this.val2 = localStorage.getItem("val2");
-                  this.val3 = localStorage.getItem("val3");
-                  this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                  
-                  this.barPais.dataReceived(sinR);
-                }catch{
-                  this.barPais.dataReceived("");
-                }
-              }
-            )
-          }else{
-            if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.selectedCountry == null){
-              this.comiteServices.getListComite(10,this.textFilter2,null,null,null).subscribe(
-                (response) =>{
-                  this.message = "Reporte de la fecha inicial ingresada"
-                  sinR = response.data;
-                  
-                  try{
-                    sinR.forEach(function (a) {
-                      temp[a.code] = temp[a.code] || { category: a.code };
-                      temp[a.code][groups[a.nombre]] = a.count;
-                    });
-                    result = Object.keys(temp).map(function (k) { return temp[k]; });
-                      
-                    let val1 = 0;
-                    let val2 = 0;
-                    let val3 = 0;
-        
-                    for(let g = 0; g < result.length; g++){
-                      val1 += result[g].value1
-                      val2 += result[g].value2
-                      val3 += result[g].value3
-                    }
-        
-                    localStorage.removeItem("val1");
-                    localStorage.removeItem("val2");
-                    localStorage.removeItem("val3");
-                    localStorage.setItem("val1",val1.toString())
-                    localStorage.setItem("val2",val2.toString())
-                    localStorage.setItem("val3",val3.toString())
-        
-                    this.val1 = localStorage.getItem("val1");
-                    this.val2 = localStorage.getItem("val2");
-                    this.val3 = localStorage.getItem("val3");
-                    this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                    
-                    this.barPais.dataReceived(sinR);
-                  }catch{
-                    this.barPais.dataReceived("");
-                  }
-                }
-              )
-            }else{
-              if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.selectedCountry == null){
-                this.comiteServices.getListComite(11,null,this.textFilter3,null,null).subscribe(
-                  (response) =>{
-                    this.message = "Reporte de la fecha elegida"
-                    sinR = response.data;
-                    
-                    try{
-                      sinR.forEach(function (a) {
-                        temp[a.code] = temp[a.code] || { category: a.code };
-                        temp[a.code][groups[a.nombre]] = a.count;
-                      });
-                      result = Object.keys(temp).map(function (k) { return temp[k]; });
-                        
-                      let val1 = 0;
-                      let val2 = 0;
-                      let val3 = 0;
-          
-                      for(let g = 0; g < result.length; g++){
-                        val1 += result[g].value1
-                        val2 += result[g].value2
-                        val3 += result[g].value3
-                      }
-          
-                      localStorage.removeItem("val1");
-                      localStorage.removeItem("val2");
-                      localStorage.removeItem("val3");
-                      localStorage.setItem("val1",val1.toString())
-                      localStorage.setItem("val2",val2.toString())
-                      localStorage.setItem("val3",val3.toString())
-          
-                      this.val1 = localStorage.getItem("val1");
-                      this.val2 = localStorage.getItem("val2");
-                      this.val3 = localStorage.getItem("val3");
-                      this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                      
-                      this.barPais.dataReceived(sinR);
-                    }catch{
-                      this.barPais.dataReceived("");
-                    }
-                  }
-                )
-              }else{
-                if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.selectedCountry == null){
-                  this.comiteServices.getListComite(12,this.textFilter2,this.textFilter3,null,null).subscribe(
-                    (response) =>{
-                      this.message = "Reporte del rango de fecha"
-                      sinR = response.data;
-                      
-                      try{
-                        sinR.forEach(function (a) {
-                          temp[a.code] = temp[a.code] || { category: a.code };
-                          temp[a.code][groups[a.nombre]] = a.count;
-                        });
-                        result = Object.keys(temp).map(function (k) { return temp[k]; });
-                          
-                        let val1 = 0;
-                        let val2 = 0;
-                        let val3 = 0;
-            
-                        for(let g = 0; g < result.length; g++){
-                          val1 += result[g].value1
-                          val2 += result[g].value2
-                          val3 += result[g].value3
-                        }
-            
-                        localStorage.removeItem("val1");
-                        localStorage.removeItem("val2");
-                        localStorage.removeItem("val3");
-                        localStorage.setItem("val1",val1.toString())
-                        localStorage.setItem("val2",val2.toString())
-                        localStorage.setItem("val3",val3.toString())
-            
-                        this.val1 = localStorage.getItem("val1");
-                        this.val2 = localStorage.getItem("val2");
-                        this.val3 = localStorage.getItem("val3");
-                        this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                        
-                        this.barPais.dataReceived(sinR);
-                      }catch{
-                        this.barPais.dataReceived("");
-                      }
-                    }
-                  )
-                }else{
-                  if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.selectedCountry != null){
-                    this.comiteServices.getListComite(13,this.textFilter2,null,this.selectedCountry.paisId,null).subscribe(
-                      (response) =>{
-                        this.message = "Reporte de la fecha inicial y país elegida"
-                        sinR = response.data;
-                        
-                        try{
-                          sinR.forEach(function (a) {
-                            temp[a.code] = temp[a.code] || { category: a.code };
-                            temp[a.code][groups[a.nombre]] = a.count;
-                          });
-                          result = Object.keys(temp).map(function (k) { return temp[k]; });
-                            
-                          let val1 = 0;
-                          let val2 = 0;
-                          let val3 = 0;
-              
-                          for(let g = 0; g < result.length; g++){
-                            val1 += result[g].value1
-                            val2 += result[g].value2
-                            val3 += result[g].value3
-                          }
-              
-                          localStorage.removeItem("val1");
-                          localStorage.removeItem("val2");
-                          localStorage.removeItem("val3");
-                          localStorage.setItem("val1",val1.toString())
-                          localStorage.setItem("val2",val2.toString())
-                          localStorage.setItem("val3",val3.toString())
-              
-                          this.val1 = localStorage.getItem("val1");
-                          this.val2 = localStorage.getItem("val2");
-                          this.val3 = localStorage.getItem("val3");
-                          this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                          
-                          this.barPais.dataReceived(sinR);
-                        }catch{
-                          this.barPais.dataReceived("");
-                        }
-                      }
-                    )
-                  }else{
-                    if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.selectedCountry != null){
-                      this.comiteServices.getListComite(14,null,this.textFilter3,this.selectedCountry.paisId,null).subscribe(
-                        (response) =>{
-                          this.message = "Reporte del país y fecha elegida"
-                          sinR = response.data;
-                          
-                          try{
-                            sinR.forEach(function (a) {
-                              temp[a.code] = temp[a.code] || { category: a.code };
-                              temp[a.code][groups[a.nombre]] = a.count;
-                            });
-                            result = Object.keys(temp).map(function (k) { return temp[k]; });
-                              
-                            let val1 = 0;
-                            let val2 = 0;
-                            let val3 = 0;
-                
-                            for(let g = 0; g < result.length; g++){
-                              val1 += result[g].value1
-                              val2 += result[g].value2
-                              val3 += result[g].value3
-                            }
-                
-                            localStorage.removeItem("val1");
-                            localStorage.removeItem("val2");
-                            localStorage.removeItem("val3");
-                            localStorage.setItem("val1",val1.toString())
-                            localStorage.setItem("val2",val2.toString())
-                            localStorage.setItem("val3",val3.toString())
-                
-                            this.val1 = localStorage.getItem("val1");
-                            this.val2 = localStorage.getItem("val2");
-                            this.val3 = localStorage.getItem("val3");
-                            this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                            
-                            this.barPais.dataReceived(sinR);
-                          }catch{
-                            this.barPais.dataReceived("");
-                          }
-                        }
-                      )
-                    }else{
-                      if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.selectedCountry != null){
-                        this.comiteServices.getListComite(15,this.textFilter2,this.textFilter3,this.selectedCountry.paisId,null).subscribe(
-                          (response) =>{
-                            this.message = "Reporte del rango de fecha y país elegido"
-                            sinR = response.data;
-                            
-                            try{
-                              sinR.forEach(function (a) {
-                                temp[a.code] = temp[a.code] || { category: a.code };
-                                temp[a.code][groups[a.nombre]] = a.count;
-                              });
-                              result = Object.keys(temp).map(function (k) { return temp[k]; });
-                                
-                              let val1 = 0;
-                              let val2 = 0;
-                              let val3 = 0;
-                  
-                              for(let g = 0; g < result.length; g++){
-                                val1 += result[g].value1
-                                val2 += result[g].value2
-                                val3 += result[g].value3
-                              }
-                  
-                              localStorage.removeItem("val1");
-                              localStorage.removeItem("val2");
-                              localStorage.removeItem("val3");
-                              localStorage.setItem("val1",val1.toString())
-                              localStorage.setItem("val2",val2.toString())
-                              localStorage.setItem("val3",val3.toString())
-                  
-                              this.val1 = localStorage.getItem("val1");
-                              this.val2 = localStorage.getItem("val2");
-                              this.val3 = localStorage.getItem("val3");
-                              this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                              
-                              this.barPais.dataReceived(sinR);
-                            }catch{
-                              this.barPais.dataReceived("");
-                            }
-                          }
-                        )
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    if(id == 2){
-      try{
-        evento = event.originalEvent.type
-      }
-      catch{
-        try{
-          evento = event.key
-        }
-        catch{
-          evento = "Enter"
-        }
-      }
-      if(this.datePipe.transform(this.date3, 'dd-MM-yyyy') != null){
-        this.textFilter2 = this.datePipe.transform(this.date3, 'dd-MM-yyyy');
-      }
-      else{
-        this.textFilter2 = "";
-      }
-      if(this.datePipe.transform(this.date4, 'dd-MM-yyyy') != null){
-        this.textFilter3 = this.datePipe.transform(this.date4, 'dd-MM-yyyy');
-      }else{
-        this.textFilter3 = "";
-      }
-  
-      let sinR = [];
-      var temp = {};
-      var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
-      var result: any;
-  
-      if (evento === "Enter" || evento === "click") {
-        if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.selectedCity1 == null && this.textFilterDE.length == 0){
-          this.comiteServices.getListComite(20,null,null,null,null).subscribe(
-            (response) =>{
-              this.message = "Reporte de 6 meses anteriores"
-              sinR = response.data;
-              
-              try{
-                sinR.forEach(function (a) {
-                  temp[a.code] = temp[a.code] || { category: a.code };
-                  temp[a.code][groups[a.nombre]] = a.count;
-                });
-                result = Object.keys(temp).map(function (k) { return temp[k]; });
-                  
-                let val1 = 0;
-                let val2 = 0;
-                let val3 = 0;
-    
-                for(let g = 0; g < result.length; g++){
-                  val1 += result[g].value1
-                  val2 += result[g].value2
-                  val3 += result[g].value3
-                }
-    
-                localStorage.removeItem("val1");
-                localStorage.removeItem("val2");
-                localStorage.removeItem("val3");
-                localStorage.setItem("val1",val1.toString())
-                localStorage.setItem("val2",val2.toString())
-                localStorage.setItem("val3",val3.toString())
-    
-                this.val1 = localStorage.getItem("val1");
-                this.val2 = localStorage.getItem("val2");
-                this.val3 = localStorage.getItem("val3");
-                this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                
-                this.barEmpresaDireccion.dataReceived(sinR);
-              }catch{
-                this.barEmpresaDireccion.dataReceived("");
-              }
-              
-            }
-          )
-        }else{
-          if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.selectedCity1 == null && this.textFilterDE.length == 0){
-            this.comiteServices.getListComite(21,this.textFilter2,null,null,null).subscribe(
-              (response) =>{
-                this.message = "Reporte de 6 meses anteriores"
-                sinR = response.data;
-                
-                try{
-                  sinR.forEach(function (a) {
-                    temp[a.code] = temp[a.code] || { category: a.code };
-                    temp[a.code][groups[a.nombre]] = a.count;
-                  });
-                  result = Object.keys(temp).map(function (k) { return temp[k]; });
-                    
-                  let val1 = 0;
-                  let val2 = 0;
-                  let val3 = 0;
-      
-                  for(let g = 0; g < result.length; g++){
-                    val1 += result[g].value1
-                    val2 += result[g].value2
-                    val3 += result[g].value3
-                  }
-      
-                  localStorage.removeItem("val1");
-                  localStorage.removeItem("val2");
-                  localStorage.removeItem("val3");
-                  localStorage.setItem("val1",val1.toString())
-                  localStorage.setItem("val2",val2.toString())
-                  localStorage.setItem("val3",val3.toString())
-      
-                  this.val1 = localStorage.getItem("val1");
-                  this.val2 = localStorage.getItem("val2");
-                  this.val3 = localStorage.getItem("val3");
-                  this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                  
-                  this.barEmpresaDireccion.dataReceived(sinR);
-                }catch{
-                  this.barEmpresaDireccion.dataReceived("");
-                }
-                
-              }
-            )
-          }else{
-            if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.selectedCity1 == null && this.textFilterDE.length == 0){
-              this.comiteServices.getListComite(22,null,this.textFilter3,null,null).subscribe(
-                (response) =>{
-                  this.message = "Reporte de 6 meses anteriores"
-                  sinR = response.data;
-                  
-                  try{
-                    sinR.forEach(function (a) {
-                      temp[a.code] = temp[a.code] || { category: a.code };
-                      temp[a.code][groups[a.nombre]] = a.count;
-                    });
-                    result = Object.keys(temp).map(function (k) { return temp[k]; });
-                      
-                    let val1 = 0;
-                    let val2 = 0;
-                    let val3 = 0;
-        
-                    for(let g = 0; g < result.length; g++){
-                      val1 += result[g].value1
-                      val2 += result[g].value2
-                      val3 += result[g].value3
-                    }
-        
-                    localStorage.removeItem("val1");
-                    localStorage.removeItem("val2");
-                    localStorage.removeItem("val3");
-                    localStorage.setItem("val1",val1.toString())
-                    localStorage.setItem("val2",val2.toString())
-                    localStorage.setItem("val3",val3.toString())
-        
-                    this.val1 = localStorage.getItem("val1");
-                    this.val2 = localStorage.getItem("val2");
-                    this.val3 = localStorage.getItem("val3");
-                    this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                    
-                    this.barEmpresaDireccion.dataReceived(sinR);
-                  }catch{
-                    this.barEmpresaDireccion.dataReceived("");
-                  }
-                  
-                }
-              )
-            }else{
-              if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.selectedCity1 != null && this.textFilterDE.length == 0){
-                this.comiteServices.getListComite(23,null,null,this.selectedCity1.nombre,null).subscribe(
-                  (response) =>{
-                    this.message = "Reporte de 6 meses anteriores"
-                    sinR = response.data;
-                    
-                    try{
-                      sinR.forEach(function (a) {
-                        temp[a.code] = temp[a.code] || { category: a.code };
-                        temp[a.code][groups[a.nombre]] = a.count;
-                      });
-                      result = Object.keys(temp).map(function (k) { return temp[k]; });
-                        
-                      let val1 = 0;
-                      let val2 = 0;
-                      let val3 = 0;
-          
-                      for(let g = 0; g < result.length; g++){
-                        val1 += result[g].value1
-                        val2 += result[g].value2
-                        val3 += result[g].value3
-                      }
-          
-                      localStorage.removeItem("val1");
-                      localStorage.removeItem("val2");
-                      localStorage.removeItem("val3");
-                      localStorage.setItem("val1",val1.toString())
-                      localStorage.setItem("val2",val2.toString())
-                      localStorage.setItem("val3",val3.toString())
-          
-                      this.val1 = localStorage.getItem("val1");
-                      this.val2 = localStorage.getItem("val2");
-                      this.val3 = localStorage.getItem("val3");
-                      this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                      
-                      this.barEmpresaDireccion.dataReceived(sinR);
-                    }catch{
-                      this.barEmpresaDireccion.dataReceived("");
-                    }
-                    
-                  }
-                )
-              }else{
-                if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.selectedCity1 == null && this.textFilterDE.length != 0){
-                  this.comiteServices.getListComite(24,null,null,null,this.textFilterDE).subscribe(
-                    (response) =>{
-                      this.message = "Reporte de 6 meses anteriores"
-                      sinR = response.data;
-                      
-                      try{
-                        sinR.forEach(function (a) {
-                          temp[a.code] = temp[a.code] || { category: a.code };
-                          temp[a.code][groups[a.nombre]] = a.count;
-                        });
-                        result = Object.keys(temp).map(function (k) { return temp[k]; });
-                          
-                        let val1 = 0;
-                        let val2 = 0;
-                        let val3 = 0;
-            
-                        for(let g = 0; g < result.length; g++){
-                          val1 += result[g].value1
-                          val2 += result[g].value2
-                          val3 += result[g].value3
-                        }
-            
-                        localStorage.removeItem("val1");
-                        localStorage.removeItem("val2");
-                        localStorage.removeItem("val3");
-                        localStorage.setItem("val1",val1.toString())
-                        localStorage.setItem("val2",val2.toString())
-                        localStorage.setItem("val3",val3.toString())
-            
-                        this.val1 = localStorage.getItem("val1");
-                        this.val2 = localStorage.getItem("val2");
-                        this.val3 = localStorage.getItem("val3");
-                        this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                        
-                        this.barEmpresaDireccion.dataReceived(sinR);
-                      }catch{
-                        this.barEmpresaDireccion.dataReceived("");
-                      }
-                      
-                    }
-                  )
-                }else{
-                  if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.selectedCity1 == null && this.textFilterDE.length == 0){
-                    this.comiteServices.getListComite(25,this.textFilter2,this.textFilter3,null,null).subscribe(
-                      (response) =>{
-                        this.message = "Reporte de 6 meses anteriores"
-                        sinR = response.data;
-                        
-                        try{
-                          sinR.forEach(function (a) {
-                            temp[a.code] = temp[a.code] || { category: a.code };
-                            temp[a.code][groups[a.nombre]] = a.count;
-                          });
-                          result = Object.keys(temp).map(function (k) { return temp[k]; });
-                            
-                          let val1 = 0;
-                          let val2 = 0;
-                          let val3 = 0;
-              
-                          for(let g = 0; g < result.length; g++){
-                            val1 += result[g].value1
-                            val2 += result[g].value2
-                            val3 += result[g].value3
-                          }
-              
-                          localStorage.removeItem("val1");
-                          localStorage.removeItem("val2");
-                          localStorage.removeItem("val3");
-                          localStorage.setItem("val1",val1.toString())
-                          localStorage.setItem("val2",val2.toString())
-                          localStorage.setItem("val3",val3.toString())
-              
-                          this.val1 = localStorage.getItem("val1");
-                          this.val2 = localStorage.getItem("val2");
-                          this.val3 = localStorage.getItem("val3");
-                          this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                          
-                          this.barEmpresaDireccion.dataReceived(sinR);
-                        }catch{
-                          this.barEmpresaDireccion.dataReceived("");
-                        }
-                        
-                      }
-                    )
-                  }else{
-                    if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.selectedCity1 != null && this.textFilterDE.length == 0){
-                      this.comiteServices.getListComite(26,this.textFilter2,null,this.selectedCity1.nombre,null).subscribe(
-                        (response) =>{
-                          this.message = "Reporte de 6 meses anteriores"
-                          sinR = response.data;
-                          
-                          try{
-                            sinR.forEach(function (a) {
-                              temp[a.code] = temp[a.code] || { category: a.code };
-                              temp[a.code][groups[a.nombre]] = a.count;
-                            });
-                            result = Object.keys(temp).map(function (k) { return temp[k]; });
-                              
-                            let val1 = 0;
-                            let val2 = 0;
-                            let val3 = 0;
-                
-                            for(let g = 0; g < result.length; g++){
-                              val1 += result[g].value1
-                              val2 += result[g].value2
-                              val3 += result[g].value3
-                            }
-                
-                            localStorage.removeItem("val1");
-                            localStorage.removeItem("val2");
-                            localStorage.removeItem("val3");
-                            localStorage.setItem("val1",val1.toString())
-                            localStorage.setItem("val2",val2.toString())
-                            localStorage.setItem("val3",val3.toString())
-                
-                            this.val1 = localStorage.getItem("val1");
-                            this.val2 = localStorage.getItem("val2");
-                            this.val3 = localStorage.getItem("val3");
-                            this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                            
-                            this.barEmpresaDireccion.dataReceived(sinR);
-                          }catch{
-                            this.barEmpresaDireccion.dataReceived("");
-                          }
-                          
-                        }
-                      )
-                    }else{
-                      if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.selectedCity1 == null && this.textFilterDE.length != 0){
-                        this.comiteServices.getListComite(27,this.textFilter2,null,null,this.textFilterDE).subscribe(
-                          (response) =>{
-                            this.message = "Reporte de 6 meses anteriores"
-                            sinR = response.data;
-                            
-                            try{
-                              sinR.forEach(function (a) {
-                                temp[a.code] = temp[a.code] || { category: a.code };
-                                temp[a.code][groups[a.nombre]] = a.count;
-                              });
-                              result = Object.keys(temp).map(function (k) { return temp[k]; });
-                                
-                              let val1 = 0;
-                              let val2 = 0;
-                              let val3 = 0;
-                  
-                              for(let g = 0; g < result.length; g++){
-                                val1 += result[g].value1
-                                val2 += result[g].value2
-                                val3 += result[g].value3
-                              }
-                  
-                              localStorage.removeItem("val1");
-                              localStorage.removeItem("val2");
-                              localStorage.removeItem("val3");
-                              localStorage.setItem("val1",val1.toString())
-                              localStorage.setItem("val2",val2.toString())
-                              localStorage.setItem("val3",val3.toString())
-                  
-                              this.val1 = localStorage.getItem("val1");
-                              this.val2 = localStorage.getItem("val2");
-                              this.val3 = localStorage.getItem("val3");
-                              this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                              
-                              this.barEmpresaDireccion.dataReceived(sinR);
-                            }catch{
-                              this.barEmpresaDireccion.dataReceived("");
-                            }
-                            
-                          }
-                        )
-                      }else{
-                        if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.selectedCity1 != null && this.textFilterDE.length == 0){
-                          this.comiteServices.getListComite(28,null,this.textFilter3,this.selectedCity1.nombre,null).subscribe(
-                            (response) =>{
-                              this.message = "Reporte de 6 meses anteriores"
-                              sinR = response.data;
-                              
-                              try{
-                                sinR.forEach(function (a) {
-                                  temp[a.code] = temp[a.code] || { category: a.code };
-                                  temp[a.code][groups[a.nombre]] = a.count;
-                                });
-                                result = Object.keys(temp).map(function (k) { return temp[k]; });
-                                  
-                                let val1 = 0;
-                                let val2 = 0;
-                                let val3 = 0;
-                    
-                                for(let g = 0; g < result.length; g++){
-                                  val1 += result[g].value1
-                                  val2 += result[g].value2
-                                  val3 += result[g].value3
-                                }
-                    
-                                localStorage.removeItem("val1");
-                                localStorage.removeItem("val2");
-                                localStorage.removeItem("val3");
-                                localStorage.setItem("val1",val1.toString())
-                                localStorage.setItem("val2",val2.toString())
-                                localStorage.setItem("val3",val3.toString())
-                    
-                                this.val1 = localStorage.getItem("val1");
-                                this.val2 = localStorage.getItem("val2");
-                                this.val3 = localStorage.getItem("val3");
-                                this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                                
-                                this.barEmpresaDireccion.dataReceived(sinR);
-                              }catch{
-                                this.barEmpresaDireccion.dataReceived("");
-                              }
-                              
-                            }
-                          )
-                        }else{
-                          if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.selectedCity1 == null && this.textFilterDE.length != 0){
-                            this.comiteServices.getListComite(29,null,this.textFilter3,null,this.textFilterDE).subscribe(
-                              (response) =>{
-                                this.message = "Reporte de 6 meses anteriores"
-                                sinR = response.data;
-                                
-                                try{
-                                  sinR.forEach(function (a) {
-                                    temp[a.code] = temp[a.code] || { category: a.code };
-                                    temp[a.code][groups[a.nombre]] = a.count;
-                                  });
-                                  result = Object.keys(temp).map(function (k) { return temp[k]; });
-                                    
-                                  let val1 = 0;
-                                  let val2 = 0;
-                                  let val3 = 0;
-                      
-                                  for(let g = 0; g < result.length; g++){
-                                    val1 += result[g].value1
-                                    val2 += result[g].value2
-                                    val3 += result[g].value3
-                                  }
-                      
-                                  localStorage.removeItem("val1");
-                                  localStorage.removeItem("val2");
-                                  localStorage.removeItem("val3");
-                                  localStorage.setItem("val1",val1.toString())
-                                  localStorage.setItem("val2",val2.toString())
-                                  localStorage.setItem("val3",val3.toString())
-                      
-                                  this.val1 = localStorage.getItem("val1");
-                                  this.val2 = localStorage.getItem("val2");
-                                  this.val3 = localStorage.getItem("val3");
-                                  this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                                  
-                                  this.barEmpresaDireccion.dataReceived(sinR);
-                                }catch{
-                                  this.barEmpresaDireccion.dataReceived("");
-                                }
-                                
-                              }
-                            )
-                          }else{
-                            if(this.textFilter2.length == 0 && this.textFilter3.length == 0 && this.selectedCity1 != null && this.textFilterDE.length != 0){
-                              this.comiteServices.getListComite(30,null,null,this.selectedCity1.nombre,this.textFilterDE).subscribe(
-                                (response) =>{
-                                  this.message = "Reporte de 6 meses anteriores"
-                                  sinR = response.data;
-                                  
-                                  try{
-                                    sinR.forEach(function (a) {
-                                      temp[a.code] = temp[a.code] || { category: a.code };
-                                      temp[a.code][groups[a.nombre]] = a.count;
-                                    });
-                                    result = Object.keys(temp).map(function (k) { return temp[k]; });
-                                      
-                                    let val1 = 0;
-                                    let val2 = 0;
-                                    let val3 = 0;
-                        
-                                    for(let g = 0; g < result.length; g++){
-                                      val1 += result[g].value1
-                                      val2 += result[g].value2
-                                      val3 += result[g].value3
-                                    }
-                        
-                                    localStorage.removeItem("val1");
-                                    localStorage.removeItem("val2");
-                                    localStorage.removeItem("val3");
-                                    localStorage.setItem("val1",val1.toString())
-                                    localStorage.setItem("val2",val2.toString())
-                                    localStorage.setItem("val3",val3.toString())
-                        
-                                    this.val1 = localStorage.getItem("val1");
-                                    this.val2 = localStorage.getItem("val2");
-                                    this.val3 = localStorage.getItem("val3");
-                                    this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                                    
-                                    this.barEmpresaDireccion.dataReceived(sinR);
-                                  }catch{
-                                    this.barEmpresaDireccion.dataReceived("");
-                                  }
-                                  
-                                }
-                              )
-                            }else{
-                              if(this.textFilter2.length != 0 && this.textFilter3.length == 0 && this.selectedCity1 != null && this.textFilterDE.length != 0){
-                                this.comiteServices.getListComite(31,this.textFilter2,null,this.selectedCity1.nombre,this.textFilterDE).subscribe(
-                                  (response) =>{
-                                    this.message = "Reporte de 6 meses anteriores"
-                                    sinR = response.data;
-                                    
-                                    try{
-                                      sinR.forEach(function (a) {
-                                        temp[a.code] = temp[a.code] || { category: a.code };
-                                        temp[a.code][groups[a.nombre]] = a.count;
-                                      });
-                                      result = Object.keys(temp).map(function (k) { return temp[k]; });
-                                        
-                                      let val1 = 0;
-                                      let val2 = 0;
-                                      let val3 = 0;
-                          
-                                      for(let g = 0; g < result.length; g++){
-                                        val1 += result[g].value1
-                                        val2 += result[g].value2
-                                        val3 += result[g].value3
-                                      }
-                          
-                                      localStorage.removeItem("val1");
-                                      localStorage.removeItem("val2");
-                                      localStorage.removeItem("val3");
-                                      localStorage.setItem("val1",val1.toString())
-                                      localStorage.setItem("val2",val2.toString())
-                                      localStorage.setItem("val3",val3.toString())
-                          
-                                      this.val1 = localStorage.getItem("val1");
-                                      this.val2 = localStorage.getItem("val2");
-                                      this.val3 = localStorage.getItem("val3");
-                                      this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                                      
-                                      this.barEmpresaDireccion.dataReceived(sinR);
-                                    }catch{
-                                      this.barEmpresaDireccion.dataReceived("");
-                                    }
-                                    
-                                  }
-                                )
-                              }else{
-                                if(this.textFilter2.length == 0 && this.textFilter3.length != 0 && this.selectedCity1 != null && this.textFilterDE.length != 0){
-                                  this.comiteServices.getListComite(32,null,this.textFilter3,this.selectedCity1.nombre,this.textFilterDE).subscribe(
-                                    (response) =>{
-                                      this.message = "Reporte de 6 meses anteriores"
-                                      sinR = response.data;
-                                      
-                                      try{
-                                        sinR.forEach(function (a) {
-                                          temp[a.code] = temp[a.code] || { category: a.code };
-                                          temp[a.code][groups[a.nombre]] = a.count;
-                                        });
-                                        result = Object.keys(temp).map(function (k) { return temp[k]; });
-                                          
-                                        let val1 = 0;
-                                        let val2 = 0;
-                                        let val3 = 0;
-                            
-                                        for(let g = 0; g < result.length; g++){
-                                          val1 += result[g].value1
-                                          val2 += result[g].value2
-                                          val3 += result[g].value3
-                                        }
-                            
-                                        localStorage.removeItem("val1");
-                                        localStorage.removeItem("val2");
-                                        localStorage.removeItem("val3");
-                                        localStorage.setItem("val1",val1.toString())
-                                        localStorage.setItem("val2",val2.toString())
-                                        localStorage.setItem("val3",val3.toString())
-                            
-                                        this.val1 = localStorage.getItem("val1");
-                                        this.val2 = localStorage.getItem("val2");
-                                        this.val3 = localStorage.getItem("val3");
-                                        this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                                        
-                                        this.barEmpresaDireccion.dataReceived(sinR);
-                                      }catch{
-                                        this.barEmpresaDireccion.dataReceived("");
-                                      }
-                                      
-                                    }
-                                  )
-                                }else{
-                                  if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.selectedCity1 == null && this.textFilterDE.length != 0){
-                                    this.comiteServices.getListComite(33,this.textFilter2,this.textFilter3,null,this.textFilterDE).subscribe(
-                                      (response) =>{
-                                        this.message = "Reporte de 6 meses anteriores"
-                                        sinR = response.data;
-                                        
-                                        try{
-                                          sinR.forEach(function (a) {
-                                            temp[a.code] = temp[a.code] || { category: a.code };
-                                            temp[a.code][groups[a.nombre]] = a.count;
-                                          });
-                                          result = Object.keys(temp).map(function (k) { return temp[k]; });
-                                            
-                                          let val1 = 0;
-                                          let val2 = 0;
-                                          let val3 = 0;
-                              
-                                          for(let g = 0; g < result.length; g++){
-                                            val1 += result[g].value1
-                                            val2 += result[g].value2
-                                            val3 += result[g].value3
-                                          }
-                              
-                                          localStorage.removeItem("val1");
-                                          localStorage.removeItem("val2");
-                                          localStorage.removeItem("val3");
-                                          localStorage.setItem("val1",val1.toString())
-                                          localStorage.setItem("val2",val2.toString())
-                                          localStorage.setItem("val3",val3.toString())
-                              
-                                          this.val1 = localStorage.getItem("val1");
-                                          this.val2 = localStorage.getItem("val2");
-                                          this.val3 = localStorage.getItem("val3");
-                                          this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                                          
-                                          this.barEmpresaDireccion.dataReceived(sinR);
-                                        }catch{
-                                          this.barEmpresaDireccion.dataReceived("");
-                                        }
-                                        
-                                      }
-                                    )
-                                  }else{
-                                    if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.selectedCity1 != null && this.textFilterDE.length == 0){
-                                      this.comiteServices.getListComite(34,this.textFilter2,this.textFilter3,this.selectedCity1.nombre,null).subscribe(
-                                        (response) =>{
-                                          this.message = "Reporte de 6 meses anteriores"
-                                          sinR = response.data;
-                                          
-                                          try{
-                                            sinR.forEach(function (a) {
-                                              temp[a.code] = temp[a.code] || { category: a.code };
-                                              temp[a.code][groups[a.nombre]] = a.count;
-                                            });
-                                            result = Object.keys(temp).map(function (k) { return temp[k]; });
-                                              
-                                            let val1 = 0;
-                                            let val2 = 0;
-                                            let val3 = 0;
-                                
-                                            for(let g = 0; g < result.length; g++){
-                                              val1 += result[g].value1
-                                              val2 += result[g].value2
-                                              val3 += result[g].value3
-                                            }
-                                
-                                            localStorage.removeItem("val1");
-                                            localStorage.removeItem("val2");
-                                            localStorage.removeItem("val3");
-                                            localStorage.setItem("val1",val1.toString())
-                                            localStorage.setItem("val2",val2.toString())
-                                            localStorage.setItem("val3",val3.toString())
-                                
-                                            this.val1 = localStorage.getItem("val1");
-                                            this.val2 = localStorage.getItem("val2");
-                                            this.val3 = localStorage.getItem("val3");
-                                            this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                                            
-                                            this.barEmpresaDireccion.dataReceived(sinR);
-                                          }catch{
-                                            this.barEmpresaDireccion.dataReceived("");
-                                          }
-                                          
-                                        }
-                                      )
-                                    }else{
-                                      if(this.textFilter2.length != 0 && this.textFilter3.length != 0 && this.selectedCity1 != null && this.textFilterDE.length != 0){
-                                        this.comiteServices.getListComite(35,this.textFilter2,this.textFilter3,this.selectedCity1.nombre,this.textFilterDE).subscribe(
-                                          (response) =>{
-                                            this.message = "Reporte de 6 meses anteriores"
-                                            sinR = response.data;
-                                            
-                                            try{
-                                              sinR.forEach(function (a) {
-                                                temp[a.code] = temp[a.code] || { category: a.code };
-                                                temp[a.code][groups[a.nombre]] = a.count;
-                                              });
-                                              result = Object.keys(temp).map(function (k) { return temp[k]; });
-                                                
-                                              let val1 = 0;
-                                              let val2 = 0;
-                                              let val3 = 0;
-                                  
-                                              for(let g = 0; g < result.length; g++){
-                                                val1 += result[g].value1
-                                                val2 += result[g].value2
-                                                val3 += result[g].value3
-                                              }
-                                  
-                                              localStorage.removeItem("val1");
-                                              localStorage.removeItem("val2");
-                                              localStorage.removeItem("val3");
-                                              localStorage.setItem("val1",val1.toString())
-                                              localStorage.setItem("val2",val2.toString())
-                                              localStorage.setItem("val3",val3.toString())
-                                  
-                                              this.val1 = localStorage.getItem("val1");
-                                              this.val2 = localStorage.getItem("val2");
-                                              this.val3 = localStorage.getItem("val3");
-                                              this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-                                              
-                                              this.barEmpresaDireccion.dataReceived(sinR);
-                                            }catch{
-                                              this.barEmpresaDireccion.dataReceived("");
-                                            }
-                                            
-                                          }
-                                        )
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    if(id == 3){
-    }
-    if(id == 4){
-      try{
-        evento = event.originalEvent.type
-      }
-      catch{
-        try{
-          evento = event.key
-        }
-        catch{
-          evento = "Enter"
-        }
-      }
-      if(this.datePipe.transform(this.date3, 'dd-MM-yyyy') != null){
-        this.textFilter2 = this.datePipe.transform(this.date3, 'dd-MM-yyyy');
-      }
-      else{
-        this.textFilter2 = "";
-      }
-      if(this.datePipe.transform(this.date4, 'dd-MM-yyyy') != null){
-        this.textFilter3 = this.datePipe.transform(this.date4, 'dd-MM-yyyy');
-      }else{
-        this.textFilter3 = "";
-      }
-
-      let sinR = [];
-      var result: any;
-      
-      if (evento === "Enter" || evento === "click") {
-        if(this.textFilter2.length == 0 && this.textFilter3.length == 0){
-          this.comiteServices.getListComite(16,null,null,null,null).subscribe(
-            (response) =>{
-              sinR = response.data;
-
-              try{
-                var groupBy = function (miarray, prop) {
-                  return miarray.reduce(function(groups, item) {
-                      var val = item[prop];
-                      groups[val] = groups[val] || {nombre: item.nombre, count: 0};
-                      groups[val].count += item.count;
-                      return groups;
-                  }, {});
-                }
-  
-                result = groupBy(sinR,'nombre')
-  
-                localStorage.removeItem("val11");
-                localStorage.removeItem("val22");
-                localStorage.removeItem("val33");
-                localStorage.removeItem("val44");
-                localStorage.removeItem("val55");
-                localStorage.removeItem("val66");
-                localStorage.setItem("val11",result.Semanal.count.toString())
-                localStorage.setItem("val22",result.Quincenal.count.toString())
-                localStorage.setItem("val33",result.Trimestral.count.toString())
-                localStorage.setItem("val44",result.Mensual.count.toString())
-                localStorage.setItem("val55",result.Semestral.count.toString())
-                localStorage.setItem("val66",result.Anual.count.toString())
-
-                this.val11 = localStorage.getItem("val11");
-                this.val22 = localStorage.getItem("val22");
-                this.val33 = localStorage.getItem("val33");
-                this.val44 = localStorage.getItem("val44");
-                this.val55 = localStorage.getItem("val55");
-                this.val66 = localStorage.getItem("val3");
-
-                this.donuts.dataReceived(sinR);
-              }catch{
-                this.donuts.dataReceived("");
-                localStorage.setItem("val11","0")
-                localStorage.setItem("val22","0")
-                localStorage.setItem("val33","0")
-                localStorage.setItem("val44","0")
-                localStorage.setItem("val55","0")
-                localStorage.setItem("val66","0")
-
-                this.val11 = localStorage.getItem("val11");
-                this.val22 = localStorage.getItem("val22");
-                this.val33 = localStorage.getItem("val33");
-                this.val44 = localStorage.getItem("val44");
-                this.val55 = localStorage.getItem("val55");
-                this.val66 = localStorage.getItem("val3");
-              }
-             
-            }
-          )
-        }else{
-          if(this.textFilter2.length != 0 && this.textFilter3.length == 0){
-            this.comiteServices.getListComite(17,this.textFilter2,null,null,null).subscribe(
-              (response) =>{
-                sinR = response.data;
-                
-                try{
-                  var groupBy = function (miarray, prop) {
-                    return miarray.reduce(function(groups, item) {
-                        var val = item[prop];
-                        groups[val] = groups[val] || {nombre: item.nombre, count: 0};
-                        groups[val].count += item.count;
-                        return groups;
-                    }, {});
-                  }
-    
-                  result = groupBy(sinR,'nombre')
-    
-                  localStorage.removeItem("val11");
-                  localStorage.removeItem("val22");
-                  localStorage.removeItem("val33");
-                  localStorage.removeItem("val44");
-                  localStorage.removeItem("val55");
-                  localStorage.removeItem("val66");
-                  localStorage.setItem("val11",result.Semanal.count.toString())
-                  localStorage.setItem("val22",result.Quincenal.count.toString())
-                  localStorage.setItem("val33",result.Trimestral.count.toString())
-                  localStorage.setItem("val44",result.Mensual.count.toString())
-                  localStorage.setItem("val55",result.Semestral.count.toString())
-                  localStorage.setItem("val66",result.Anual.count.toString())
-
-                  this.val11 = localStorage.getItem("val11");
-                  this.val22 = localStorage.getItem("val22");
-                  this.val33 = localStorage.getItem("val33");
-                  this.val44 = localStorage.getItem("val44");
-                  this.val55 = localStorage.getItem("val55");
-                  this.val66 = localStorage.getItem("val3");
-  
-                  this.donuts.dataReceived(sinR);
-                }catch{
-                  this.donuts.dataReceived("");
-                  localStorage.setItem("val11","0")
-                  localStorage.setItem("val22","0")
-                  localStorage.setItem("val33","0")
-                  localStorage.setItem("val44","0")
-                  localStorage.setItem("val55","0")
-                  localStorage.setItem("val66","0")
-
-                  this.val11 = localStorage.getItem("val11");
-                  this.val22 = localStorage.getItem("val22");
-                  this.val33 = localStorage.getItem("val33");
-                  this.val44 = localStorage.getItem("val44");
-                  this.val55 = localStorage.getItem("val55");
-                  this.val66 = localStorage.getItem("val3");
-                }
-              }
-            )
-          }else{
-            if(this.textFilter2.length == 0 && this.textFilter3.length != 0){
-              this.comiteServices.getListComite(18,null,this.textFilter3,null,null).subscribe(
-                (response) =>{
-                  sinR = response.data;
-
-                  try{
-                    var groupBy = function (miarray, prop) {
-                      return miarray.reduce(function(groups, item) {
-                          var val = item[prop];
-                          groups[val] = groups[val] || {nombre: item.nombre, count: 0};
-                          groups[val].count += item.count;
-                          return groups;
-                      }, {});
-                    }
-      
-                    result = groupBy(sinR,'nombre')
-      
-                    localStorage.removeItem("val11");
-                    localStorage.removeItem("val22");
-                    localStorage.removeItem("val33");
-                    localStorage.removeItem("val44");
-                    localStorage.removeItem("val55");
-                    localStorage.removeItem("val66");
-                    localStorage.setItem("val11",result.Semanal.count.toString())
-                    localStorage.setItem("val22",result.Quincenal.count.toString())
-                    localStorage.setItem("val33",result.Trimestral.count.toString())
-                    localStorage.setItem("val44",result.Mensual.count.toString())
-                    localStorage.setItem("val55",result.Semestral.count.toString())
-                    localStorage.setItem("val66",result.Anual.count.toString())
-
-                    this.val11 = localStorage.getItem("val11");
-                    this.val22 = localStorage.getItem("val22");
-                    this.val33 = localStorage.getItem("val33");
-                    this.val44 = localStorage.getItem("val44");
-                    this.val55 = localStorage.getItem("val55");
-                    this.val66 = localStorage.getItem("val3");
-
-                    this.donuts.dataReceived(sinR);
-                  }catch{
-                    this.donuts.dataReceived("");
-                    localStorage.setItem("val11","0")
-                    localStorage.setItem("val22","0")
-                    localStorage.setItem("val33","0")
-                    localStorage.setItem("val44","0")
-                    localStorage.setItem("val55","0")
-                    localStorage.setItem("val66","0")
-
-                    this.val11 = localStorage.getItem("val11");
-                    this.val22 = localStorage.getItem("val22");
-                    this.val33 = localStorage.getItem("val33");
-                    this.val44 = localStorage.getItem("val44");
-                    this.val55 = localStorage.getItem("val55");
-                    this.val66 = localStorage.getItem("val3");
-                  }
-                }
-              )
-            }else{
-              if(this.textFilter2.length != 0 && this.textFilter3.length != 0){
-                this.comiteServices.getListComite(19,this.textFilter2,this.textFilter3,null,null).subscribe(
-                  (response) =>{
-                    sinR = response.data;
-                    
-                    try{
-                      var groupBy = function (miarray, prop) {
-                        return miarray.reduce(function(groups, item) {
-                            var val = item[prop];
-                            groups[val] = groups[val] || {nombre: item.nombre, count: 0};
-                            groups[val].count += item.count;
-                            return groups;
-                        }, {});
-                      }
-        
-                      result = groupBy(sinR,'nombre')
-        
-                      localStorage.removeItem("val11");
-                      localStorage.removeItem("val22");
-                      localStorage.removeItem("val33");
-                      localStorage.removeItem("val44");
-                      localStorage.removeItem("val55");
-                      localStorage.removeItem("val66");
-                      localStorage.setItem("val11",result.Semanal.count.toString())
-                      localStorage.setItem("val22",result.Quincenal.count.toString())
-                      localStorage.setItem("val33",result.Trimestral.count.toString())
-                      localStorage.setItem("val44",result.Mensual.count.toString())
-                      localStorage.setItem("val55",result.Semestral.count.toString())
-                      localStorage.setItem("val66",result.Anual.count.toString())
-
-                      this.val11 = localStorage.getItem("val11");
-                      this.val22 = localStorage.getItem("val22");
-                      this.val33 = localStorage.getItem("val33");
-                      this.val44 = localStorage.getItem("val44");
-                      this.val55 = localStorage.getItem("val55");
-                      this.val66 = localStorage.getItem("val3");
-      
-                      this.donuts.dataReceived(sinR);
-                    }catch{
-                      this.donuts.dataReceived("");
-                      localStorage.setItem("val11","0")
-                      localStorage.setItem("val22","0")
-                      localStorage.setItem("val33","0")
-                      localStorage.setItem("val44","0")
-                      localStorage.setItem("val55","0")
-                      localStorage.setItem("val66","0")
-
-                      this.val11 = localStorage.getItem("val11");
-                      this.val22 = localStorage.getItem("val22");
-                      this.val33 = localStorage.getItem("val33");
-                      this.val44 = localStorage.getItem("val44");
-                      this.val55 = localStorage.getItem("val55");
-                      this.val66 = localStorage.getItem("val3");
-                    }
-                    
-                  }
-                )
-              }
-            }
-          }
-        }
-      }
-      
-    }
+    var data = {
+      date3: this.date3,
+      date4: this.date4,
+      type: 4
+    };
+    this.router.navigateByUrl('/manager/frecuencia-table', { state: { item: data }});
   }
 
   listarPais(){
@@ -1901,168 +212,385 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+  getListModo(id:number){
+    var evento = undefined;
+    if(id != 4){
+  
+      let sinR = [];
+      let temp = {};
+      let groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
+      let result: any;
+  
+      if (evento === "Enter" || evento === "click"|| evento === undefined) {
+        if(
+          this.datePipe.transform(new Date(), 'dd-MM-yyyy') == null ||
+          this.datePipe.transform(new Date(), 'dd-MM-yyyy') == null
+        ){
+          this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
+          return false;
+        }else{
+          this.comiteServices.getListComite(
+            0,
+            this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
+            this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
+            null,
+            null).subscribe(
+            (response) =>{
+              this.message = "Reporte de 6 meses anteriores"
+              sinR = response.data;
+              
+              try{
+                sinR.forEach(function (a) {
+                  temp[a.code] = temp[a.code] || { category: a.code };
+                  temp[a.code][groups[a.nombre]] = a.count;
+                });
+                result = Object.keys(temp).map(function (k) { return temp[k]; });
+                  
+                let val1 = 0;
+                let val2 = 0;
+                let val3 = 0;
+    
+                for(let g = 0; g < result.length; g++){
+                  val1 += result[g].value1
+                  val2 += result[g].value2
+                  val3 += result[g].value3
+                }
+    
+                this.val1 = val1.toString();
+                this.val2 = val2.toString();
+                this.val3 = val3.toString();
+                this.val4 = val1 + val2+ val3;
+                
+                this.barTodos.dataReceived(sinR);
+              }catch{
+                this.val1 = "0";
+                this.val2 = "0";
+                this.val3 = "0";
+                this.val4 = 0;
+                this.barTodos.dataReceived("");
+              }
+              
+            }
+          )
+        }
+      }
+    }
+    if(id == 4){
+  
+      let sinR = [];
+      let temp = {};
+      let groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
+      let result: any;
+  
+      if (evento === "Enter" || evento === "click"|| evento === undefined) {
+        
+          this.comiteServices.getListComite(
+            4,
+            this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
+            this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
+            null,
+            null).subscribe(
+            (response) =>{
+              this.message = "Reporte de 6 meses anteriores"
+              sinR = response.data;
+              
+              try{
+                var groupBy = function (miarray, prop) {
+                  return miarray.reduce(function(groups, item) {
+                      var val = item[prop];
+                      groups[val] = groups[val] || {nombre: item.nombre, count: 0};
+                      groups[val].count += item.count;
+                      return groups;
+                  }, {});
+                }
+    
+                result = groupBy(sinR,'nombre')
+                
+                this.val11 = result.Semanal.count;
+                this.val22 = result.Quincenal.count;
+                this.val33 = result.Trimestral.count;
+                this.val44 = result.Mensual.count;
+                this.val55 = result.Semestral.count;
+                this.val66 = result.Anual.count;
+                
+                this.donuts.dataReceived(sinR);
+              }catch{
+                this.val11 = "0";
+                this.val22 = "0";
+                this.val33 = "0";
+                this.val44 = "0";
+                this.val55 = "0";
+                this.val66 = "0";
+                this.donuts.dataReceived("");
+              }
+              
+            }
+          )
+        
+      }
+    }
+  }
+
   onTabClicked(event: any) {
     this.getListModo(event.index);
  }
 
-  getListModo(id:number){
-    /*this.date3 = new Date("");
-    this.date4 = new Date("");*/
-    this.textFilter0 = "";
-    this.selectedCountry = {};
-    
-    let sinR = [];
-    var temp = {};
-    var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
-    var result: any;
-
+  onKeydown(event,id:any) {
+    var evento = "";
+    try{
+      evento = event.originalEvent.type
+    }
+    catch{
+      evento = event.key
+    }
     if(id == 0){
-      this.comiteServices.getListComite(0,null,null,null,null).subscribe(
-        (response) =>{
-          this.message = "Reporte de los 6 últimos meses"
-          sinR = response.data;
-          
-          try{
-            sinR.forEach(function (a) {
-              temp[a.code] = temp[a.code] || { category: a.code };
-              temp[a.code][groups[a.nombre]] = a.count;
-            });
-            result = Object.keys(temp).map(function (k) { return temp[k]; });
+  
+      let sinR = [];
+      var temp = {};
+      var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
+      var result: any;
+  
+      if (evento === "Enter" || evento === "click"|| evento === undefined) {
+        if(
+          this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
+          this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null
+        ){
+          this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
+          return false;
+        }else{
+          this.comiteServices.getListComite(
+            0,
+            this.datePipe.transform(this.date3, 'dd-MM-yyyy'),
+            this.datePipe.transform(this.date4, 'dd-MM-yyyy'),
+            null,
+            null).subscribe(
+            (response) =>{
+              this.message = "Reporte de 6 meses anteriores"
+              sinR = response.data;
               
-            let val1 = 0;
-            let val2 = 0;
-            let val3 = 0;
-
-            for(let g = 0; g < result.length; g++){
-              val1 += result[g].value1
-              val2 += result[g].value2
-              val3 += result[g].value3
+              try{
+                sinR.forEach(function (a) {
+                  temp[a.code] = temp[a.code] || { category: a.code };
+                  temp[a.code][groups[a.nombre]] = a.count;
+                });
+                result = Object.keys(temp).map(function (k) { return temp[k]; });
+                  
+                let val1 = 0;
+                let val2 = 0;
+                let val3 = 0;
+    
+                for(let g = 0; g < result.length; g++){
+                  val1 += result[g].value1
+                  val2 += result[g].value2
+                  val3 += result[g].value3
+                }
+    
+                this.val1 = val1.toString();
+                this.val2 = val2.toString();
+                this.val3 = val3.toString();
+                this.val4 = val1 + val2+ val3;
+                
+                this.barTodos.dataReceived(sinR);
+              }catch{
+                this.val1 = "0";
+                this.val2 = "0";
+                this.val3 = "0";
+                this.val4 = 0;
+                this.barTodos.dataReceived("");
+              }
+              
             }
-
-            localStorage.removeItem("val1");
-            localStorage.removeItem("val2");
-            localStorage.removeItem("val3");
-            localStorage.setItem("val1",val1.toString())
-            localStorage.setItem("val2",val2.toString())
-            localStorage.setItem("val3",val3.toString())
-
-            this.val1 = localStorage.getItem("val1");
-            this.val2 = localStorage.getItem("val2");
-            this.val3 = localStorage.getItem("val3");
-            this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-            
-            this.barTodos.dataReceived(sinR);
-          }catch{
-            this.barTodos.dataReceived("");
-          }
+          )
         }
-      )
+      }
     }
     if(id == 1){
-      this.comiteServices.getListComite(8,null,null,null,null).subscribe(
-        (response) =>{
-          this.message = "Reporte de los 6 últimos meses"
-          sinR = response.data;
-          
-          try{
-            sinR.forEach(function (a) {
-              temp[a.code] = temp[a.code] || { category: a.code };
-              temp[a.code][groups[a.nombre]] = a.count;
-            });
-            result = Object.keys(temp).map(function (k) { return temp[k]; });
+  
+      let sinR = [];
+      var temp = {};
+      var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
+      var result: any;
+  
+      if (evento === "Enter" || evento === "click"|| evento === undefined) {
+        if(
+          this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
+          this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null ||
+          this.selectedCountry == null
+        ){
+          this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
+          return false;
+        }else{
+          this.comiteServices.getListComite(
+            1,
+            this.datePipe.transform(this.date3, 'dd-MM-yyyy'),
+            this.datePipe.transform(this.date4, 'dd-MM-yyyy'),
+            this.selectedCountry.paisId,
+            null).subscribe(
+            (response) =>{
+              this.message = "Reporte de 6 meses anteriores"
+              sinR = response.data;
               
-            let val1 = 0;
-            let val2 = 0;
-            let val3 = 0;
-
-            for(let g = 0; g < result.length; g++){
-              val1 += result[g].value1
-              val2 += result[g].value2
-              val3 += result[g].value3
+              try{
+                sinR.forEach(function (a) {
+                  temp[a.code] = temp[a.code] || { category: a.code };
+                  temp[a.code][groups[a.nombre]] = a.count;
+                });
+                result = Object.keys(temp).map(function (k) { return temp[k]; });
+                  
+                let val1 = 0;
+                let val2 = 0;
+                let val3 = 0;
+    
+                for(let g = 0; g < result.length; g++){
+                  val1 += result[g].value1
+                  val2 += result[g].value2
+                  val3 += result[g].value3
+                }
+    
+                this.val1 = val1.toString();
+                this.val2 = val2.toString();
+                this.val3 = val3.toString();
+                this.val4 = val1 + val2+ val3;
+                
+                this.barPais.dataReceived(sinR);
+              }catch{
+                this.val1 = "0";
+                this.val2 = "0";
+                this.val3 = "0";
+                this.val4 = 0;
+                this.barPais.dataReceived("");
+              }
+              
             }
-
-            localStorage.removeItem("val1");
-            localStorage.removeItem("val2");
-            localStorage.removeItem("val3");
-            localStorage.setItem("val1",val1.toString())
-            localStorage.setItem("val2",val2.toString())
-            localStorage.setItem("val3",val3.toString())
-
-            this.val1 = localStorage.getItem("val1");
-            this.val2 = localStorage.getItem("val2");
-            this.val3 = localStorage.getItem("val3");
-            this.val4 = parseInt(localStorage.getItem("val1")) + parseInt(localStorage.getItem("val2")) + parseInt(localStorage.getItem("val3"))
-            this.barPais.dataReceived(sinR);
-          }catch{
-            this.barPais.dataReceived("");
-          }
+          )
         }
-      )
+      }
     }
     if(id == 2){
-
-    }
-    if(id == 3){
-
+  
+      let sinR = [];
+      var temp = {};
+      var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
+      var result: any;
+  
+      if (evento === "Enter" || evento === "click"|| evento === undefined) {
+        if(
+          this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
+          this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null ||
+          this.selectedCity1 == null ||
+          this.textFilterDE.length == 0
+        ){
+          this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
+          return false;
+        }else{
+          this.comiteServices.getListComite(
+            2,
+            this.datePipe.transform(this.date3, 'dd-MM-yyyy'),
+            this.datePipe.transform(this.date4, 'dd-MM-yyyy'),
+            this.selectedCity1.empresaId,
+            this.textFilterDE).subscribe(
+            (response) =>{
+              this.message = "Reporte de 6 meses anteriores"
+              sinR = response.data;
+              
+              try{
+                sinR.forEach(function (a) {
+                  temp[a.code] = temp[a.code] || { category: a.code };
+                  temp[a.code][groups[a.nombre]] = a.count;
+                });
+                result = Object.keys(temp).map(function (k) { return temp[k]; });
+                  
+                let val1 = 0;
+                let val2 = 0;
+                let val3 = 0;
+    
+                for(let g = 0; g < result.length; g++){
+                  val1 += result[g].value1
+                  val2 += result[g].value2
+                  val3 += result[g].value3
+                }
+    
+                this.val1 = val1.toString();
+                this.val2 = val2.toString();
+                this.val3 = val3.toString();
+                this.val4 = val1 + val2+ val3;
+                
+                this.barEmpresaDireccion.dataReceived(sinR);
+              }catch{
+                this.val1 = "0";
+                this.val2 = "0";
+                this.val3 = "0";
+                this.val4 = 0;
+                this.barEmpresaDireccion.dataReceived("");
+              }
+              
+            }
+          )
+        }
+      }
     }
     if(id == 4){
-      this.comiteServices.getListComite(16,null,null,null,null).subscribe(
-        (response) =>{
-          sinR = response.data;
-
-          try{
-            var groupBy = function (miarray, prop) {
-              return miarray.reduce(function(groups, item) {
-                  var val = item[prop];
-                  groups[val] = groups[val] || {nombre: item.nombre, count: 0};
-                  groups[val].count += item.count;
-                  return groups;
-              }, {});
+  
+      let sinR = [];
+      var result: any;
+  
+      if (evento === "Enter" || evento === "click"|| evento === undefined) {
+        if(
+          this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
+          this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null
+        ){
+          this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
+          return false;
+        }else{
+          this.comiteServices.getListComite(
+            4,
+            this.datePipe.transform(this.date3, 'dd-MM-yyyy'),
+            this.datePipe.transform(this.date4, 'dd-MM-yyyy'),
+            null,
+            null).subscribe(
+            (response) =>{
+              this.message = "Reporte de 6 meses anteriores"
+              sinR = response.data;
+              
+              try{
+                sinR = response.data;
+                var groupBy = function (miarray, prop) {
+                  return miarray.reduce(function(groups, item) {
+                      var val = item[prop];
+                      groups[val] = groups[val] || {nombre: item.nombre, count: 0};
+                      groups[val].count += item.count;
+                      return groups;
+                  }, {});
+                }
+                result = groupBy(sinR,'nombre')
+                
+                this.val11 = result.Semanal.count;
+                this.val22 = result.Quincenal.count;
+                this.val33 = result.Trimestral.count;
+                this.val44 = result.Mensual.count;
+                this.val55 = result.Semestral.count;
+                this.val66 = result.Anual.count;
+                
+                this.donuts.dataReceived(sinR);
+              }catch{
+                this.val11 = "0";
+                this.val22 = "0";
+                this.val33 = "0";
+                this.val44 = "0";
+                this.val55 = "0";
+                this.val66 = "0";
+                this.donuts.dataReceived("");
+              }
+              
             }
-
-            result = groupBy(sinR,'nombre')
-
-            localStorage.removeItem("val11");
-            localStorage.removeItem("val22");
-            localStorage.removeItem("val33");
-            localStorage.removeItem("val44");
-            localStorage.removeItem("val55");
-            localStorage.removeItem("val66");
-            localStorage.setItem("val11",result.Semanal.count.toString())
-            localStorage.setItem("val22",result.Quincenal.count.toString())
-            localStorage.setItem("val33",result.Trimestral.count.toString())
-            localStorage.setItem("val44",result.Mensual.count.toString())
-            localStorage.setItem("val55",result.Semestral.count.toString())
-            localStorage.setItem("val66",result.Anual.count.toString())
-
-            this.val11 = localStorage.getItem("val11");
-            this.val22 = localStorage.getItem("val22");
-            this.val33 = localStorage.getItem("val33");
-            this.val44 = localStorage.getItem("val44");
-            this.val55 = localStorage.getItem("val55");
-            this.val66 = localStorage.getItem("val3");
-
-            this.donuts.dataReceived(sinR);
-          }catch{
-            this.donuts.dataReceived("");
-            localStorage.setItem("val11","0")
-            localStorage.setItem("val22","0")
-            localStorage.setItem("val33","0")
-            localStorage.setItem("val44","0")
-            localStorage.setItem("val55","0")
-            localStorage.setItem("val66","0")
-
-            this.val11 = localStorage.getItem("val11");
-            this.val22 = localStorage.getItem("val22");
-            this.val33 = localStorage.getItem("val33");
-            this.val44 = localStorage.getItem("val44");
-            this.val55 = localStorage.getItem("val55");
-            this.val66 = localStorage.getItem("val3");
-          }
-         
+          )
         }
-      )
+      }
     }
+  }
+
+  showWarn(mensaje: string) {
+    this.messageService.add({ severity: 'warn', summary: AppConstants.TitleModal.Warning, detail: mensaje });
   }
 
 }

@@ -83,16 +83,6 @@ export class SecretariaTableComponent implements OnInit {
   }
 
   getListComiteActiveList() {
-    this.comiteServices
-      .getListComiteActiveSecretaria(
-        this.term,
-        this.term1,
-        this.term2,
-        this.page,
-        this.size
-      )
-      .subscribe((result: any) => {
-        this.products2 = result.data;
-      });
+    
   }
 }

@@ -1,1 +1,377 @@
-<p>dashboard works!</p>
+<div>
+  <div class="title">
+    <p>Inicio</p>
+    <p>Filtrar por:</p>
+  </div>
+
+  <!-- Form -->
+  <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
+    <!-- calendario DESDE -->
+    <div class="p-col-12 p-md-6 p-lg-3">
+      <span class="p-float-label">
+        <p-calendar
+          [(ngModel)]="date3"
+          [locale]="es"
+          [showIcon]="true"
+          inputId="icon"
+        ></p-calendar>
+        <label for="inputtext">Desde</label>
+      </span>
+    </div>
+
+    <!-- calendario HASTA -->
+    <div class="p-col-12 p-md-6 p-lg-3">
+      <span class="p-float-label">
+        <p-calendar
+          [(ngModel)]="date4"
+          [locale]="es"
+          [showIcon]="true"
+          inputId="icon"
+        ></p-calendar>
+        <label for="inputtext">Hasta</label>
+      </span>
+    </div>
+  </div>
+
+  <div class="card">
+    <p-tabView styleClass="p-tab-style-1">
+      <!-- TAB-1 COMITÉS -->
+      <p-tabPanel header="Comités">
+        <!-- INDICADORES -->
+        <div class="p-grid">
+          <!-- Comités Perteneciente -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box">
+              <div class="box-detalle">
+                <p>16</p>
+                <i class="material-icons yellow"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Comités Perteneciente</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comités miembro titular   -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box">
+              <div class="box-detalle">
+                <p>32</p>
+                <i class="material-icons blue"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Comités miembro titular</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comités miembro suplente -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box">
+              <div class="box-detalle">
+                <p>64</p>
+                <i class="material-icons dark"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p class="fz-12">Comités miembro suplente</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Total de comités -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box" routerLink="/manager/total-table">
+              <div class="box-detalle">
+                <p>21</p>
+                <i class="material-icons gray"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Total de comités</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grafico -->
+        <div class="p-grid graphic-box">
+          <p>Reporte (Últimos 6 meses)</p>
+          <div class="p-col-12">
+            <app-comites-bar></app-comites-bar>
+          </div>
+        </div>
+      </p-tabPanel>
+
+      <!-- TAB-2 REUNIONES -->
+      <p-tabPanel header="Reuniones">
+        <!-- INDICADORES -->
+        <div class="p-grid">
+          <!-- Reuniones convocadas -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box">
+              <div class="box-detalle">
+                <p>3</p>
+                <i class="material-icons graph-gray"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Reuniones convocadas</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reuniones asistidas -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box">
+              <div class="box-detalle">
+                <p>3</p>
+                <i class="material-icons graph-light-blue"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Reuniones asistidas</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reuniones faltantes -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box" routerLink="/secretary/reuniones-reprogramadas">
+              <div class="box-detalle">
+                <p>5</p>
+                <i class="material-icons darkblue"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Reuniones faltantes</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Total reuniones -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div
+              class="box" routerLink="/secretary/total-reuniones"
+              [style.border-left]="'8px solid var(--primary-color)'"
+            >
+              <div class="box-detalle">
+                <p>24</p>
+                <i
+                  class="material-icons-outlined"
+                  [style.color]="'var(--primary-color)'"
+                >
+                  ballot
+                </i>
+              </div>
+              <div class="box-info">
+                <p>Total reuniones</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grafico -->
+        <div class="p-grid graphic-box">
+          <p>Reporte (Últimos 6 meses)</p>
+          <div class="p-col-12">
+            <app-reuniones-bar></app-reuniones-bar>
+          </div>
+        </div>
+
+        <!-- Gráfico donut-->
+        <div class="graphic-box">
+          <p>Reuniones | Comité de Administrador</p>
+          <div class="p-grid">
+            <div class="p-col-12 p-md-6 p-lg-7">
+              <app-reuniones-donut></app-reuniones-donut>
+            </div>
+            <div class="p-col-12 p-md-6 p-lg-5 p-d-flex p-ai-center">
+              <div class="pie-legend">
+                <div
+                  class="pie-legend-info"
+                  [style.background]="'#72C7E7'"
+                  routerLink="/secretary/reporte-actas"
+                >
+                  <i class="material-icons-outlined" [style.font-size]="'28px'">
+                    ballot
+                  </i>
+                  <p>24</p>
+                  <p>Reuniones Presenciales</p>
+                </div>
+                <div class="pie-legend-info" [style.background]="'#707070'">
+                  <i class="material-icons-outlined" [style.font-size]="'28px'">
+                    assignment
+                  </i>
+                  <p>24</p>
+                  <p>Reuniones Virtuales</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+
+      <!-- TAB-3 VOTACIONES -->
+      <p-tabPanel header="Votaciones">
+
+        <!-- INDICADORES -->
+        <div class="p-grid">
+          <!-- Votaciones a favor -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box">
+              <div class="box-detalle">
+                <p>3</p>
+                <i class="material-icons yellow"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Votaciones a favor</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Abstenciones -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box">
+              <div class="box-detalle">
+                <p>3</p>
+                <i class="material-icons graph-green"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Abstenciones</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Votaciones en contra -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div class="box" routerLink="/secretary/reuniones-reprogramadas">
+              <div class="box-detalle">
+                <p>5</p>
+                <i class="material-icons dark"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Votaciones en contra</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Total votaciones -->
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <div
+              class="box" routerLink="/secretary/total-reuniones"
+              [style.border-left]="'8px solid #00A34B'"
+            >
+              <div class="box-detalle">
+                <p>24</p>
+              </div>
+              <div class="box-info">
+                <p>Total votaciones</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grafico -->
+        <div class="p-grid graphic-box">
+          <p>Reporte (Últimos 6 meses)</p>
+          <div class="p-col-12">
+            <app-votaciones-bar></app-votaciones-bar>
+          </div>
+        </div>
+      </p-tabPanel>
+
+      <!-- TAB-4 COMPROMISOS -->
+      <p-tabPanel header="Compromisos">
+        <!-- INDICADORES -->
+        <div class="p-grid">
+          <!-- Compromisos en proceso -->
+          <div class="p-col-12 p-md-6 p-lg-4">
+            <div class="box">
+              <div class="box-detalle">
+                <p>3</p>
+                <i class="material-icons graph-green"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Compromisos en proceso</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Compromisos cerrados -->
+          <div class="p-col-12 p-md-6 p-lg-4">
+            <div class="box">
+              <div class="box-detalle">
+                <p>3</p>
+                <i class="material-icons lightGray"> bar_chart </i>
+              </div>
+              <div class="box-info">
+                <p>Compromisos cerrados</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Total compromisos -->
+          <div class="p-col-12 p-md-6 p-lg-4">
+            <div
+              class="box" routerLink="/secretary/total-reuniones"
+              [style.border-left]="'8px solid #87D741'"
+            >
+              <div class="box-detalle">
+                <p>24</p>
+              </div>
+              <div class="box-info">
+                <p>Total votaciones</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grafico -->
+        <div class="p-grid graphic-box">
+          <p>Reporte (Últimos 6 meses)</p>
+          <div class="p-col-12">
+            <app-compromisos-bar></app-compromisos-bar>
+          </div>
+        </div>
+      </p-tabPanel>
+
+      <!-- TAB-5 ASISTENCIAS -->
+      <p-tabPanel header="Asistencias">
+        <!-- Table -->
+        <div class="p-card p-px-3 br-05">
+          <p-table
+            [columns]="cols"
+            [value]="products"
+            styleClass="style-table-direccion"
+            [paginator]="true"
+            [rows]="3"
+            [showCurrentPageReport]="true"
+            currentPageReportTemplate="{first} - {last} of {totalRecords}"
+          >
+            <ng-template pTemplate="colgroup" let-columns>
+              <colgroup>
+                <col [style.width]="16.6 + '%'" />
+                <col [style.width]="16.6 + '%'" />
+                <col [style.width]="16.6 + '%'" />
+                <col [style.width]="16.6 + '%'" />
+                <col [style.width]="16.6 + '%'" />
+              </colgroup>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th *ngFor="let col of columns" class="p-text-left">
+                  {{ col.header }}
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr>
+                <td class="p-text-left">Reunión</td>
+                <td class="p-text-left">AC-2021</td>
+                <td class="p-text-left"><p class="bg-tables" [style.background]="'#E5F7EB'" [style.color]="'#81D99E'">20</p></td>
+                <td class="p-text-left"><p class="bg-tables" [style.background]="'#FAE3E5'" [style.color]="'#E86D68'">15</p></td>
+                <td class="p-text-left"><p class="bg-tables bg_percent" [style.background]="'#f9e6b7'" [style.color]="'#FAB200'">64%</p></td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>
