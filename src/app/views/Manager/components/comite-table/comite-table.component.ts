@@ -1,10 +1,11 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ComiteBusquedaModel } from 'src/app/models/comite.model';
 import { ComiteServices } from 'src/app/services/comite.service';
 import { ComiteHistoryComponent } from '../../dialog/comite-history/comite-history.component';
 import { DomSanitizer } from '@angular/platform-browser';
+import { EventHandlerVars } from '@angular/compiler/src/compiler_util/expression_converter';
+import { ComiteCrudModel, ComiteRequestModel } from 'src/app/models/comite.model';
 
 @Component({
   selector: 'app-comite-table',
@@ -12,7 +13,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./comite-table.component.scss']
 })
 export class ComiteTableComponent implements OnInit {
-  displayModal:boolean;
+  displayModal: boolean;
   products: any[] = [
     {
       "fechac": "fechac",
@@ -41,15 +42,19 @@ export class ComiteTableComponent implements OnInit {
   cols: any[];
   items: any[];
 
-  comites:ComiteBusquedaModel[];
+  comites: ComiteCrudModel[];
   term: string = "ALL1";
   page: number = 0;
   size: number = 5;
 
+  dataDelete: any;
+  item: any;
+  MyItem: any;
+
   constructor(
     public dialogService: DialogService,
-    public  ref: DynamicDialogRef,
-    private comiteServices:ComiteServices,
+    public ref: DynamicDialogRef,
+    private comiteServices: ComiteServices,
     private sanitizer: DomSanitizer,
   ) { }
 
@@ -109,18 +114,54 @@ export class ComiteTableComponent implements OnInit {
   }
 
 
-  getListComitexFiltros(){
-    this.comiteServices.getListComitexFiltros(this.term,this.term,this.term,this.page,this.size).subscribe(
+  getListComitexFiltros() {
+    this.comiteServices.getListComitexFiltros(this.term, this.term, this.term, this.page, this.size).subscribe(
       (result: any) => {
         this.comites = result.data
       }
     )
   }
 
-  getSantizeUrl(url : string) {
+  getSantizeUrl(url: string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
+  darBajaComite() {
+
+    let data = this.dataDelete;
+    var odata = new ComiteRequestModel();
+
+    console.log(data);
+
+    odata.comiteId=data.comiteId;
+    odata.empresaId = data.empresaId;
+    odata.paisId=data.paisId;
+    odata.usuarioId=data.responsableId;
+    odata.nombre = data.nombre;
+    odata.correo=data.correo;
+    odata.direccionId = data.direccionId;
+    odata.codigo=data.codigo;
+
+    this.comiteServices.darBajaComite(odata).subscribe(
+      (response: any) => {
+
+        this.refrescarLista();
+        this.displayModal = false;
+      }
+    )
+  }
+
+
+
+  refrescarLista() {
+    this.getListComitexFiltros();
+  }
+
+
+  toggleMenu(menu, event, rowData) {
+    this.dataDelete = rowData;
+    menu.toggle(event);
+  }
 
 
 }

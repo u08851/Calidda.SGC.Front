@@ -17,7 +17,7 @@ export class ComiteActiveModel{
 
 export class ComiteRequestModel {
 
-  comiteId: string;
+  comiteId: number;
   empresaId:number;
   paisId:number;
   usuarioId:number;
@@ -26,17 +26,21 @@ export class ComiteRequestModel {
   direccionId:number;
   codigo: string;
   estado:number;
+  frecuenciaId:number;
 
 
 
 }
 
 
-export class ComiteBusquedaModel{
+export class ComiteCrudModel{
+
+  comiteId: number;
   fechaCreacion: string;
   horaCreacion: string;
   codigo: string;
   nombre: string;
+  direccionId:number;
   direccion:string;
   responsable: string;
   empresa:string;

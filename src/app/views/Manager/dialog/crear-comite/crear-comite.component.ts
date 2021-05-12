@@ -110,15 +110,14 @@ export class CrearComiteComponent implements OnInit {
         //CREATE
         let data = this.comiteForm.value;
         var odata = new ComiteRequestModel();
-        odata.nombre = data.nombre;
-        odata.estado = 1;
-        odata.direccionId = data.direccionId.direccionId;
-        odata.empresaId = data.empresaId.empresaId;
-        odata.correo=data.correo;
-        odata.usuarioId=data.usuarioId;
-        odata.paisId=data.paisId.paisId;
-        odata.codigo="";
 
+        odata.empresaId = data.empresaId.empresaId;
+        odata.paisId=data.paisId.paisId;
+        odata.usuarioId=data.usuarioId;
+        odata.nombre = data.nombre;
+        odata.correo=data.correo;
+        odata.direccionId = data.direccionId.direccionId;
+        odata.codigo="";
         this.nombreComite=odata.nombre;
 
         this.comiteServices.addComite(odata).subscribe(
@@ -131,8 +130,15 @@ export class CrearComiteComponent implements OnInit {
         //UPDATE
         let data = this.comiteForm.value;
         var odata = new ComiteRequestModel();
+
+        odata.comiteId=data.comiteId;
+        odata.empresaId = data.empresaId.empresaId;
+        odata.paisId=data.paisId.paisId;
+        odata.usuarioId=data.usuarioId;
         odata.nombre = data.nombre;
-        odata.paisId = data.paisId.paisId;
+        odata.correo=data.correo;
+        odata.direccionId = data.direccionId.direccionId;
+        this.nombreComite=odata.nombre;
 
 
         this.empresaServices.updateEmpresa(odata).subscribe(

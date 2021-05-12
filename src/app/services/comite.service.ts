@@ -51,5 +51,8 @@ export class ComiteServices {
     return this._http.get<ComiteActiveModel>(`${this.BASE_URL2}/ListComitesxFiltros?termN=${term}&termD=${term1}&termH=${term2}&page=${page}&size=${size}`);
   }
 
+  darBajaComite(model: ComiteRequestModel) {
+    return this._http.put(`${this.BASE_URL2}/DarBaja`, model);
+  }
 
 }
