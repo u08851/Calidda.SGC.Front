@@ -6,6 +6,8 @@ import { ComiteHistoryComponent } from '../../dialog/comite-history/comite-histo
 import { DomSanitizer } from '@angular/platform-browser';
 import { EventHandlerVars } from '@angular/compiler/src/compiler_util/expression_converter';
 import { ComiteCrudModel, ComiteRequestModel } from 'src/app/models/comite.model';
+import { MessageService } from 'primeng/api';
+import { AppConstants } from 'src/app/shared/constants/app.constants';
 
 @Component({
   selector: 'app-comite-table',
@@ -56,7 +58,13 @@ export class ComiteTableComponent implements OnInit {
     public ref: DynamicDialogRef,
     private comiteServices: ComiteServices,
     private sanitizer: DomSanitizer,
+    public messageService:MessageService
   ) { }
+
+  showSuccess(mensaje :string) {
+    this.messageService.add({severity:'success', summary: AppConstants.TitleModal.Success, detail: mensaje});
+  }
+
 
   ngOnInit(): void {
 
@@ -130,23 +138,16 @@ export class ComiteTableComponent implements OnInit {
 
     let data = this.dataDelete;
     var odata = new ComiteRequestModel();
-
-    console.log(data);
-
     odata.comiteId=data.comiteId;
-    odata.empresaId = data.empresaId;
-    odata.paisId=data.paisId;
-    odata.usuarioId=data.responsableId;
-    odata.nombre = data.nombre;
-    odata.correo=data.correo;
-    odata.direccionId = data.direccionId;
-    odata.codigo=data.codigo;
 
     this.comiteServices.darBajaComite(odata).subscribe(
       (response: any) => {
 
-        this.refrescarLista();
-        this.displayModal = false;
+        if(response.valid){
+          this.showSuccess(AppConstants.MessageModal.DESAC_SUCCESS);
+          this.refrescarLista();
+          this.displayModal = false;
+        }
       }
     )
   }
