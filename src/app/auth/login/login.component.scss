@@ -64,6 +64,9 @@ $color-white: var(--surface-a);
             input {
                 margin-bottom: 0.5rem;
             }
+            .p-error {
+                font-size: 12px;
+            }
         }
     }
     .is-invalid-input {

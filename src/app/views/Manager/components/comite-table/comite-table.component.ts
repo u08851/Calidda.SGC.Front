@@ -1,6 +1,13 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ComiteServices } from 'src/app/services/comite.service';
 import { ComiteHistoryComponent } from '../../dialog/comite-history/comite-history.component';
+import { DomSanitizer } from '@angular/platform-browser';
+import { EventHandlerVars } from '@angular/compiler/src/compiler_util/expression_converter';
+import { ComiteCrudModel, ComiteRequestModel } from 'src/app/models/comite.model';
+import { MessageService } from 'primeng/api';
+import { AppConstants } from 'src/app/shared/constants/app.constants';
 
 @Component({
   selector: 'app-comite-table',
@@ -8,7 +15,7 @@ import { ComiteHistoryComponent } from '../../dialog/comite-history/comite-histo
   styleUrls: ['./comite-table.component.scss']
 })
 export class ComiteTableComponent implements OnInit {
-  displayModal:boolean;
+  displayModal: boolean;
   products: any[] = [
     {
       "fechac": "fechac",
@@ -37,10 +44,27 @@ export class ComiteTableComponent implements OnInit {
   cols: any[];
   items: any[];
 
+  comites: ComiteCrudModel[];
+  term: string = "ALL1";
+  page: number = 0;
+  size: number = 5;
+
+  dataDelete: any;
+  item: any;
+  MyItem: any;
+
   constructor(
     public dialogService: DialogService,
-    public  ref: DynamicDialogRef
+    public ref: DynamicDialogRef,
+    private comiteServices: ComiteServices,
+    private sanitizer: DomSanitizer,
+    public messageService:MessageService
   ) { }
+
+  showSuccess(mensaje :string) {
+    this.messageService.add({severity:'success', summary: AppConstants.TitleModal.Success, detail: mensaje});
+  }
+
 
   ngOnInit(): void {
 
@@ -79,6 +103,8 @@ export class ComiteTableComponent implements OnInit {
         }
       }
     ];
+
+    this.getListComitexFiltros();
   }
 
   showHistory() {
@@ -94,5 +120,49 @@ export class ComiteTableComponent implements OnInit {
   showConfirmation() {
     this.displayModal = true;
   }
+
+
+  getListComitexFiltros() {
+    this.comiteServices.getListComitexFiltros(this.term, this.term, this.term, this.page, this.size).subscribe(
+      (result: any) => {
+        this.comites = result.data
+      }
+    )
+  }
+
+  getSantizeUrl(url: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
+  }
+
+  darBajaComite() {
+
+    let data = this.dataDelete;
+    var odata = new ComiteRequestModel();
+    odata.comiteId=data.comiteId;
+
+    this.comiteServices.darBajaComite(odata).subscribe(
+      (response: any) => {
+
+        if(response.valid){
+          this.showSuccess(AppConstants.MessageModal.DESAC_SUCCESS);
+          this.refrescarLista();
+          this.displayModal = false;
+        }
+      }
+    )
+  }
+
+
+
+  refrescarLista() {
+    this.getListComitexFiltros();
+  }
+
+
+  toggleMenu(menu, event, rowData) {
+    this.dataDelete = rowData;
+    menu.toggle(event);
+  }
+
 
 }

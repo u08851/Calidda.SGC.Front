@@ -47,8 +47,8 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
             <tr>
-                <td>{{rowData.nombre}}</td>
-                <td>
+                <td  class="p-text-center">{{rowData.nombre}}</td>
+                <td  class="p-text-center">
                     <img [style.width]="'25px'" [src]="getSantizeUrl(rowData.imagen)" alt="bandera" /> {{rowData.paisDto.nombre}}
                 </td>
                 <td>

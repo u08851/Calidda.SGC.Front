@@ -4,6 +4,7 @@ import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import { ComiteServices } from 'src/app/services/comite.service';
+import { DatePipe } from '@angular/common';
 
 /* Chart code */
 // Themes begin
@@ -14,10 +15,12 @@ am4core.useTheme(am4themes_animated);
   selector: 'app-donut',
   templateUrl: './donut.component.html',
   styleUrls: ['./donut.component.scss'],
+  providers: [DatePipe]
 })
 export class DonutComponent implements OnInit {
   constructor(
-    private comiteServices:ComiteServices
+    private comiteServices:ComiteServices,
+    private datePipe: DatePipe,
   ) {}
 
   ngOnInit(): void {}
@@ -26,12 +29,12 @@ export class DonutComponent implements OnInit {
     // Create chart instance
     let chart = am4core.create("Donutchartdiv", am4charts.PieChart);
     chart.innerRadius = 70;
-
+    
     let sinR = [];
     var result: any;
 
     sinR = value;
-    var groupBy = function (miarray, prop) {
+    var groupBy = function (miarray:any, prop:any) {
       return miarray.reduce(function(groups, item) {
           var val = item[prop];
           groups[val] = groups[val] || {nombre: item.nombre, count: 0};
@@ -39,21 +42,7 @@ export class DonutComponent implements OnInit {
           return groups;
       }, {});
     }
-
     result = groupBy(sinR,'nombre')
-
-    localStorage.removeItem("val11");
-    localStorage.removeItem("val22");
-    localStorage.removeItem("val33");
-    localStorage.removeItem("val44");
-    localStorage.removeItem("val55");
-    localStorage.removeItem("val66");
-    localStorage.setItem("val11",result.Semanal.count.toString())
-    localStorage.setItem("val22",result.Quincenal.count.toString())
-    localStorage.setItem("val33",result.Trimestral.count.toString())
-    localStorage.setItem("val44",result.Mensual.count.toString())
-    localStorage.setItem("val55",result.Semestral.count.toString())
-    localStorage.setItem("val66",result.Anual.count.toString())
 
     // Add data
     chart.data = [
@@ -123,22 +112,25 @@ export class DonutComponent implements OnInit {
     chart.legend.markers.template.width = 18;
     chart.legend.markers.template.height = 8;
     chart.legend.visible = true;
-        
   }
-
+  
   ngAfterViewInit() {
-
-    // Create chart instance
     let chart = am4core.create("Donutchartdiv", am4charts.PieChart);
     chart.innerRadius = 70;
-
+    
     let sinR = [];
     var result: any;
 
-    this.comiteServices.getListComite(16,null,null,null,null).subscribe(
+    this.comiteServices.getListComite(
+      0,
+      this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
+      this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
+      null,
+      null).subscribe(
       (response) =>{
+        
         sinR = response.data;
-        var groupBy = function (miarray, prop) {
+        var groupBy = function (miarray:any, prop:any) {
           return miarray.reduce(function(groups, item) {
               var val = item[prop];
               groups[val] = groups[val] || {nombre: item.nombre, count: 0};
@@ -146,21 +138,7 @@ export class DonutComponent implements OnInit {
               return groups;
           }, {});
         }
-
         result = groupBy(sinR,'nombre')
-
-        localStorage.removeItem("val11");
-        localStorage.removeItem("val22");
-        localStorage.removeItem("val33");
-        localStorage.removeItem("val44");
-        localStorage.removeItem("val55");
-        localStorage.removeItem("val66");
-        localStorage.setItem("val11",result.Semanal.count.toString())
-        localStorage.setItem("val22",result.Quincenal.count.toString())
-        localStorage.setItem("val33",result.Trimestral.count.toString())
-        localStorage.setItem("val44",result.Mensual.count.toString())
-        localStorage.setItem("val55",result.Semestral.count.toString())
-        localStorage.setItem("val66",result.Anual.count.toString())
 
         // Add data
         chart.data = [
@@ -230,8 +208,9 @@ export class DonutComponent implements OnInit {
         chart.legend.markers.template.width = 18;
         chart.legend.markers.template.height = 8;
         chart.legend.visible = true;
+        
       }
     )
-
   }
+
 }

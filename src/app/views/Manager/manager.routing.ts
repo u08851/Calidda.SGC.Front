@@ -42,16 +42,16 @@ export const ManagerRoutes: Routes = [
                 component: CrearComiteComponent
             },
             {
-                path: 'todos-table',
-                component: TodosTableComponent
-            },
-            {
                 path: 'pais-table',
                 component: PaisTableComponent
             },
             {
-                path: 'empresa-direccion-table',
+                path: 'report',
                 component: EmpresaDireccionTableComponent
+            },
+            {
+                path: 'report-total',
+                component: TodosTableComponent
             },
             {
                 path: 'secrearia-table',
@@ -61,10 +61,10 @@ export const ManagerRoutes: Routes = [
                 path: 'frecuencia-table',
                 component: FrecuenciaTableComponent
             },
-            {
-                path: 'report',
-                component: ReportTableComponent
-            },
+            // {
+            //     path: 'report',
+            //     component: ReportTableComponent
+            // },
             {
                 path: 'profile',
                 component: ProfileComponent

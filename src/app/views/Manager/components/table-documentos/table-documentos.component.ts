@@ -105,6 +105,7 @@ export class TableDocumentosComponent implements OnInit {
     this.cols2 = [
       { header: 'Fecha de carga', field: 'fecha' },
       { header: 'Hora de carga', field: 'hora' },
+      // { header: 'Tipo', field: 'tipo' },
       { header: 'Nombre del documento', field: 'nombre' },
       { header: 'Estado', field: 'estado' },
     ];
@@ -112,7 +113,7 @@ export class TableDocumentosComponent implements OnInit {
 
   showImportDocument() {
     this.ref = this.dialogService.open(ImportDocumentComponent, {
-      header: 'Importar Documento',
+      header: 'Importar Acta de confidencialidad Miembros',
       width: '50%',
       contentStyle: { "max-height": "500px", "overflow": "auto" },
       baseZIndex: 10000

@@ -17,7 +17,7 @@ export class ComiteActiveModel{
 
 export class ComiteRequestModel {
 
-  comiteId: string;
+  comiteId: number;
   empresaId:number;
   paisId:number;
   usuarioId:number;
@@ -26,7 +26,32 @@ export class ComiteRequestModel {
   direccionId:number;
   codigo: string;
   estado:number;
-
-
-
+  frecuenciaId?:number;
+  fechaHora?:Date;
+  fechaHoraUltima?:Date;
 }
+
+
+export class ComiteCrudModel{
+
+  comiteId: number;
+  fechaCreacion: string;
+  horaCreacion: string;
+  fechaHora?:Date;
+  fechaHoraUltima?:Date;
+  codigo: string;
+  nombre: string;
+  direccionId:number;
+  direccion:string;
+  responsableId: number;
+  responsable: string;
+  empresaId: number;
+  empresa:string;
+  frecuenciaId: number;
+  frecuencia: string;
+  paisId: number;
+  pais: string;
+  url: string;
+  count: number;
+}
+
