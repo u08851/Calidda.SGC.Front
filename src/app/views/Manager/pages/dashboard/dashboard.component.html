@@ -210,8 +210,17 @@
                 <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
                     <!-- Buscar empresa -->
                     <div class="p-col-12 p-md-6 p-lg-3">
-                        <p-dropdown (onChange)="onKeydown($event,2)" [options]="cities" [(ngModel)]="selectedCity1" placeholder="Buscar empresa"
-                            optionLabel="nombre" [showClear]="true"></p-dropdown>
+                        <p-autoComplete
+                            [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="selectedCity1"
+                            (onSelect)="searchEmpresa($event)"
+                            [suggestions]="cities"
+                            field="label"
+                            [minLength]="1"
+                            emptyMessage="No se han encontrado resultados"
+                            placeholder="Ingrese al menos 1 caracter...">
+                        </p-autoComplete>
+
                     </div>
 
                     <!-- Buscar direccion del comite -->

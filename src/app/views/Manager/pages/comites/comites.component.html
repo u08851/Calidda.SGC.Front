@@ -42,8 +42,17 @@
     <!-- Nombre del comité -->
     <div class="p-col-12 p-md-6 p-lg-3">
         <span class="p-float-label p-input-icon-right">
-            <i class="pi pi-search"></i>
-            <input type="text" pInputText />
+            <!-- <i class="pi pi-search"></i> -->
+            <p-autoComplete
+                [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="selectedComite"
+                (completeMethod)="searchComite($event)"
+                [suggestions]="comites"
+                field="label"
+                [minLength]="1"
+                emptyMessage="No se han encontrado resultados"
+                >
+            </p-autoComplete>
             <label for="inputtext">Nombre del comité</label>
         </span>
     </div>
@@ -51,8 +60,18 @@
     <!-- Código del comité -->
     <div class="p-col-12 p-md-6 p-lg-3">
         <span class="p-float-label p-input-icon-right">
-            <i class="pi pi-search"></i>
-            <input type="text" pInputText />
+            <!-- <i class="pi pi-search"></i> -->
+            
+            <p-autoComplete
+            [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="selectedCodComite"
+            (completeMethod)="searchComite($event)"
+            [suggestions]="comites"
+            field="cod"
+            [minLength]="1"
+            emptyMessage="No se han encontrado resultados"
+            >
+        </p-autoComplete>
             <label for="inputtext">Código del comité</label>
         </span>
     </div>

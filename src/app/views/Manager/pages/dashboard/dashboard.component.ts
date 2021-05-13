@@ -589,6 +589,15 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+
+
+  searchEmpresa(event) {
+    // this.mylookupservice.getResults(event.query).then(data => {
+    //     this.results = data;
+    // });
+}
+
+
   showWarn(mensaje: string) {
     this.messageService.add({ severity: 'warn', summary: AppConstants.TitleModal.Warning, detail: mensaje });
   }
