@@ -14,6 +14,8 @@ import { ReunionesBarComponent } from './components/graficos/reuniones-bar/reuni
 import { ReunionesDonutComponent } from './components/graficos/reuniones-donut/reuniones-donut.component';
 import { VotacionesBarComponent } from './components/graficos/votaciones-bar/votaciones-bar.component';
 import { CompromisosBarComponent } from './components/graficos/compromisos-bar/compromisos-bar.component';
+import { ConfirmMeetingComponent } from './components/confirm-meeting/confirm-meeting.component';
+import { DetailVoteComponent } from './components/detail-vote/detail-vote.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { CompromisosBarComponent } from './components/graficos/compromisos-bar/c
     ReunionesBarComponent,
     ReunionesDonutComponent,
     VotacionesBarComponent,
-    CompromisosBarComponent
+    CompromisosBarComponent,
+    ConfirmMeetingComponent,
+    DetailVoteComponent
 ],
   imports: [
     CommonModule,
