@@ -121,7 +121,7 @@ export class ComiteTableComponent implements OnInit {
       width: '65%',
       contentStyle: { "max-height": "500px", "overflow": "auto" },
       baseZIndex: 10000,
-      data: null
+      data: this.data
     });
   }
 

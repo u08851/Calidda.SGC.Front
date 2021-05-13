@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { HistoricoComiteModel } from 'src/app/models/historicocomite.model';
+import { HistoricoComiteServices } from 'src/app/services/historicocomite.service';
 
 @Component({
   selector: 'app-comite-history',
@@ -7,23 +10,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComiteHistoryComponent implements OnInit {
 
-  data: any[];
+  data2: any[];
 
-  constructor() { }
+  listaHistoricoComites: HistoricoComiteModel[];
+  historicoComite=new HistoricoComiteModel();
+
+  constructor(
+    public config: DynamicDialogConfig,
+    private historicoComiteServices:HistoricoComiteServices
+
+  ) { }
 
   ngOnInit(): void {
-    this.data = [
-      {
-        fechaResgistro: '20/11/2020',
-        horaRegistro: '20/11/2020',
-        detalles: 'Se asigno un nuevo Responsable Rosario Chiarella al comité'
-      },
-      {
-        fechaResgistro: '20/11/2020',
-        horaRegistro: '20/11/2020',
-        detalles: 'Se cambio la periodicidad de semanal a mensual.'
-      }
-    ]
+
+    if(this.config.data == null){
+      this.listaHistoricoComites=[];
+    }
+    else{
+      this.getListHistoricoComitebyComite(this.config.data);
+    }
   }
+
+  getListHistoricoComitebyComite(data) {
+
+
+    console.log(this.historicoComite);
+    this.historicoComite.comiteId=data.comiteId;
+
+    console.log(this.historicoComite);
+
+    this.historicoComiteServices.getListHistoricoComiteByComite(this.historicoComite.comiteId).subscribe(
+      (result: any) => {
+        this.listaHistoricoComites = result.data
+      }
+    )
+
+  }
+
 
 }
