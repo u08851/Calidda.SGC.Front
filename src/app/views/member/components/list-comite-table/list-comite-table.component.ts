@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-comite-table.component.scss']
 })
 export class ListComiteTableComponent implements OnInit {
+  displayModal:boolean;
 
   data: any[] = [
     {
@@ -20,7 +21,7 @@ export class ListComiteTableComponent implements OnInit {
       },
       "button": {
         "label": "Confirmar Invitación",
-        "routing": "",
+        "routing": "/member/confirm-meeting",
       },
     },
     {
@@ -50,7 +51,7 @@ export class ListComiteTableComponent implements OnInit {
       },
       "button": {
         "label": "Votar",
-        "routing": "",
+        "routing": "/member/detail-vote",
       },
     },
   ];
@@ -98,4 +99,7 @@ export class ListComiteTableComponent implements OnInit {
 
   }
 
+  showConfirmParticipation() {
+    this.displayModal = true;
+  }
 }

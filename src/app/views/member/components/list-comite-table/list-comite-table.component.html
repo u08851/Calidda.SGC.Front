@@ -31,10 +31,10 @@
                                 {{rowData[col.field]}}
                             </span>
                             <button *ngIf="col.field == 'tipoR'" class="p-ml-2 w-100" pButton pRipple type="button"
-                                icon="pi" [label]="rowData.button.label" routerLink="/secretary/in-person-meeting">
+                                icon="pi" [label]="rowData.button.label" routerLink="{{rowData.button.routing}}">
                             </button>
                             <ng-template #estatus>
-                                <!-- clases:  --red --green --info  -->
+                                <!-- clases:  --red --green --info -->
                                 <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8 red"></i>
                                 {{rowData[col.field].name}}
                             </ng-template>
@@ -54,3 +54,19 @@
         </p-table>
     </div>
 </div>
+
+<!-- Dialog confirmar participación-->
+<p-dialog [(visible)]="displayModal" [modal]="true" [style]="{ width: '400px' }" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false" [closable]="false" styleClass="style-dialog-confirmation">
+    <div class="dialog-content">
+
+        <i class="material-icons red">error_outline</i>
+        <p class="p-m-0">
+            ¿Confirmas tu participación?
+        </p>
+    </div>
+    <ng-template pTemplate="footer">
+        <button (click)="displayModal = false" pButton label="Confirmar"></button>
+        <button class="stylebtn" (click)="displayModal = false" pButton label="Rechazar"></button>
+    </ng-template>
+</p-dialog>

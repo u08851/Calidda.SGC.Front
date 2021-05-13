@@ -1,0 +1,63 @@
+<div class="card p-flex-column">
+  <p-tabView styleClass="p-tab-style-3">
+    <p-tabPanel [selected]="true" header="Detalle de la votación">
+      <!-- INFORMACIÓN BÁSICA -->
+      <div class="tab-content">
+        <div class="p-d-flex p-jc-end">
+          <p class="blue p-mr-2">Fecha límite para votar:</p>
+          <p class="dark">21/04/2021</p>
+        </div>
+
+        <p class="blue">Tema de la votación</p>
+        <p class="dark">Se acordó la entrega de los pendientes.</p>
+
+        <div class="p-mt-3">
+          <p class="blue">Pregunta 1</p>
+          <p class="dark p-m-3">¿Cuál es tu voto?</p>
+
+          <div class="p-m-3">
+            <div class="p-field-radiobutton">
+              <p-radioButton
+                name="opt"
+                value="A favor"
+                [(ngModel)]="opt"
+                inputId="opt1"
+              ></p-radioButton>
+              <label for="opt1">A favor </label>
+            </div>
+            <div class="p-field-radiobutton">
+              <p-radioButton
+                name="opt"
+                value="En contra"
+                [(ngModel)]="opt"
+                inputId="opt2"
+              ></p-radioButton>
+              <label for="opt2">En contra</label>
+            </div>
+            <div class="p-field-radiobutton">
+              <p-radioButton
+                name="opt"
+                value="Abstención"
+                [(ngModel)]="opt"
+                inputId="opt3"
+              ></p-radioButton>
+              <label for="opt3">Abstención</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ENVIAR VOTACIÓN -->
+        <div class="p-grid">
+          <div class="p-col-12 p-text-center">
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Enviar votación"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+</div>

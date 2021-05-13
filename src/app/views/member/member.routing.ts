@@ -3,6 +3,8 @@ import { ComitesComponent } from '../member/pages/comites/comites.component';
 import { DetailComiteComponent } from '../member/components/detail-comite/detail-comite.component';
 import { DasboardComiteComponent } from './components/dasboard-comite/dasboard-comite.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ConfirmMeetingComponent } from './components/confirm-meeting/confirm-meeting.component';
+import { DetailVoteComponent } from './components/detail-vote/detail-vote.component';
 
 
 export const MemberRoutes: Routes = [
@@ -28,6 +30,14 @@ export const MemberRoutes: Routes = [
             {
                 path: 'dashboard',
                 component: DashboardComponent
+            },
+            {
+                path: 'confirm-meeting',
+                component: ConfirmMeetingComponent
+            },
+            {
+                path: 'detail-vote',
+                component: DetailVoteComponent
             }
         ],  
     },

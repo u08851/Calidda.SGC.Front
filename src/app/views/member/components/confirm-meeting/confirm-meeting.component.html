@@ -1,0 +1,422 @@
+<div class="card p-flex-column">
+  <div>
+    <p class="appearance-tab">Detalle de comité</p>
+    <!-- <label class="p-custom-text">Ingresa los datos requeridos</label> -->
+  </div>
+  <p-tabView styleClass="p-tab-style-2">
+    <p-tabPanel
+      [selected]="true"
+      header="Comité: COC21-2"
+      [style.background]="'#ffffff'"
+    >
+      <!-- INFORMACIÓN BÁSICA -->
+      <div class="tab-content">
+        <div class="p-grid">
+          <!-- NOMBRE -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center p-flex-wrap">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'22%'">
+              Nombre:
+            </p>
+            <p>Comité cálidda</p>
+          </div>
+
+          <!-- RESPONSABLE -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center p-flex-wrap">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'30%'">
+              Responsable:
+            </p>
+            <div class="p-d-flex p-ai-center">
+              <p-avatar
+                image="assets/images/img22.jpg"
+                styleClass="p-mr-2"
+                shape="circle"
+              ></p-avatar>
+              <p>Karina López</p>
+            </div>
+          </div>
+
+          <!-- ASUNTO -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center p-flex-wrap">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'22%'">
+              Asunto:
+            </p>
+            <p [style.color]="'var(--primary-color)'">Reunión calidda</p>
+          </div>
+
+          <!-- OBJETIVO -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center p-flex-wrap">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'21%'">
+              Objetivo:
+            </p>
+            <p>Revisar balance</p>
+          </div>
+
+          <!-- FECHA -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center p-flex-wrap">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'22%'">
+              Fecha:
+            </p>
+            <p>30/11/2020 - 20/11/2020</p>
+          </div>
+
+          <!-- DETALLE -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center p-flex-wrap">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'20%'">
+              Detalle:
+            </p>
+            <p>Entrega de avances finales para</p>
+          </div>
+
+          <!-- HORA -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center p-flex-wrap">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'22%'">
+              Hora:
+            </p>
+            <p>10:00am - 11:00am</p>
+          </div>
+
+          <!-- FORMATO -->
+          <div class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center p-flex-wrap">
+            <p [style.color]="'var(--primary-color)'" [style.width]="'22%'">
+              Formato:
+            </p>
+            <div class="p-d-flex p-ai-center p-jc-between style_format">
+              <span class="material-icons-outlined"> link </span>
+              <p class="p-ml-2 p-mr-2">Archivocalidda.ppt</p>
+              <i class="pi pi-cloud-download"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESPONSABILIDAD -->
+        <div class="border-1px-gray rounded-1 p-p-3 p-mb-3 p-mt-3">
+          <div class="p-grid">
+            <p class="p-col-12 p-custom-title">Responsabilidad</p>
+
+            <!-- ORDEN -->
+            <div
+              class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center p-flex-wrap"
+            >
+              <p [style.color]="'var(--primary-color)'" [style.width]="'22%'">
+                Orden:
+              </p>
+              <p>N°1</p>
+            </div>
+
+            <!-- TEMA -->
+            <div
+              class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center p-flex-wrap"
+            >
+              <p [style.color]="'var(--primary-color)'" [style.width]="'22%'">
+                Tema:
+              </p>
+              <p>Generación de reportes y análisis</p>
+            </div>
+
+            <p class="p-col-12 blue-dark fw-500">Hora de presentación</p>
+            <!-- Hora de presentación -->
+            <div
+              class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center p-flex-wrap"
+            >
+              <p [style.color]="'var(--primary-color)'" [style.width]="'42%'">
+                Hora de presentación:
+              </p>
+              <p>11:00pm</p>
+            </div>
+
+            <!-- Hora de fin -->
+            <div
+              class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center p-flex-wrap"
+            >
+              <p [style.color]="'var(--primary-color)'" [style.width]="'22%'">
+                Hora de fin:
+              </p>
+              <p>1:00pm</p>
+            </div>
+
+            <p class="p-col-12 blue-dark fw-500">
+              Fecha y hora límite de entrega de archivos
+            </p>
+            <!-- Fecha -->
+            <div
+              class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center p-flex-wrap"
+            >
+              <p [style.color]="'var(--primary-color)'" [style.width]="'42%'">
+                Fecha:
+              </p>
+              <p>20/11/2021</p>
+            </div>
+
+            <!-- Hora -->
+            <div
+              class="p-col-12 p-md-6 p-lg-6 p-d-flex p-ai-center p-flex-wrap"
+            >
+              <p [style.color]="'var(--primary-color)'" [style.width]="'22%'">
+                Hora:
+              </p>
+              <p>1:00pm</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ASISTENCIA -->
+        <div class="border-1px-gray rounded-1 p-p-3 p-mb-3 p-mt-3">
+          <div class="p-grid">
+            <p class="p-col-12 p-custom-title">Responsabilidad</p>
+            <div class="p-col-12 p-md-6 p-lg-3 p-field-checkbox">
+              <p-checkbox
+                name="group1"
+                value="Confirmar"
+                [(ngModel)]="selectedCities"
+                inputId="ny"
+              ></p-checkbox>
+              <label for="ny">Confirmar</label>
+            </div>
+            <div class="p-col-12 p-md-6 p-lg-3 p-field-checkbox">
+              <p-checkbox
+                name="group1"
+                value="Rechazar"
+                [(ngModel)]="selectedCities"
+                inputId="sf"
+              ></p-checkbox>
+              <label for="sf">Rechazar</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUPLENTES -->
+        <div class="border-1px-gray rounded-1 p-p-3 p-mb-3 p-mt-3">
+          <div class="p-grid p-fluid p-formgrid gray">
+            <p class="p-col-12 p-custom-title p-mb-2">Suplentes</p>
+
+            <!-- Nombres y Apellidos -->
+            <div class="p-field p-col-12 p-md-3">
+              <label>Nombres y Apellidos</label>
+              <input type="text" pInputText />
+            </div>
+
+            <!-- Correo electrónico -->
+            <div class="p-field p-col-12 p-md-3">
+              <label>Correo electrónico</label>
+              <input type="text" pInputText />
+            </div>
+
+            <!-- Celular -->
+            <div class="p-field p-col-12 p-md-3">
+              <label>Celular</label>
+              <input type="text" pInputText />
+            </div>
+
+            <!-- Cargo en la empresa -->
+            <div class="p-col-12 p-md-3 p-d-flex p-ai-center">
+              <div class="p-field">
+                <label>Cargo en la empresa</label>
+                <input type="text" pInputText />
+              </div>
+              <div class="p-d-flex p-ai-center">
+                <button
+                  pButton
+                  type="button"
+                  icon="pi pi-trash"
+                  class="p-button-rounded p-button-text"
+                ></button>
+              </div>
+            </div>
+
+            <!-- Estado -->
+            <div class="p-field p-col-12 p-md-3">
+              <label>Estado</label>
+              <p-dropdown
+                placeholder="Activo"
+                optionLabel="Activo"
+                [showClear]="true"
+              ></p-dropdown>
+            </div>
+
+            <!-- Facultades dentro del comité -->
+            <div class="p-field p-col-12 p-md-3">
+              <label>Facultades dentro del comité</label>
+              <p-dropdown
+                placeholder="Ninguno"
+                optionLabel="Ninguno"
+                [showClear]="true"
+              ></p-dropdown>
+            </div>
+
+            <!-- Empresa -->
+            <div class="p-field p-col-12 p-md-3">
+              <label>Empresa</label>
+              <input type="text" pInputText />
+            </div>
+
+            <!-- País -->
+            <div class="p-field p-col-12 p-md-3">
+              <label>País</label>
+              <p-dropdown
+                [options]="countries"
+                [(ngModel)]="selectedCountry"
+                optionLabel="name"
+                [filter]="true"
+                filterBy="name"
+                [showClear]="true"
+                placeholder="País"
+              >
+                <ng-template pTemplate="selectedItem">
+                  <div
+                    class="country-item country-item-value"
+                    *ngIf="selectedCountry"
+                  >
+                    <img
+                      src="assets/images/flag/PE.svg"
+                      [class]="
+                        'flag flag-' + selectedCountry.code.toLowerCase()
+                      "
+                    />
+                    <div>{{ selectedCountry.name }}</div>
+                  </div>
+                </ng-template>
+                <ng-template let-country pTemplate="item">
+                  <div class="country-item">
+                    <img
+                      src="assets/images/flag/PE.svg"
+                      [class]="'flag flag-' + country.code.toLowerCase()"
+                    />
+                    <div>{{ country.name }}</div>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+            </div>
+          </div>
+
+          <!-- agregar suplentes -->
+          <div class="p-d-flex">
+            <button
+              class="p-button-outlined p-b-0"
+              icon="pi"
+              pButton
+              label="Añadir suplente"
+            >
+              <span class="material-icons-outlined"> add_circle </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- INVITADOS -->
+        <div class="border-1px-gray rounded-1 p-p-3 p-mb-3 p-mt-3">
+          <div class="p-grid p-fluid p-formgrid gray">
+            <p class="p-col-12 p-custom-title p-mb-2">Invitados</p>
+
+            <!-- Nombres y Apellidos -->
+            <div class="p-field p-col-12 p-md-3">
+              <label>Nombres y Apellidos</label>
+              <input type="text" pInputText />
+            </div>
+
+            <!-- Correo electrónico -->
+            <div class="p-field p-col-12 p-md-3">
+              <label>Correo electrónico</label>
+              <input type="text" pInputText />
+            </div>
+
+            <!-- Celular -->
+            <div class="p-field p-col-12 p-md-3">
+              <label>Celular</label>
+              <input type="text" pInputText />
+            </div>
+
+            <!-- Cargo en la empresa -->
+            <div class="p-col-12 p-md-3 p-d-flex p-ai-center">
+              <div class="p-field">
+                <label>Cargo en la empresa</label>
+                <input type="text" pInputText />
+              </div>
+              <div class="p-d-flex p-ai-center">
+                <button
+                  pButton
+                  type="button"
+                  icon="pi pi-trash"
+                  class="p-button-rounded p-button-text"
+                ></button>
+              </div>
+            </div>
+
+            <!-- Empresa -->
+            <div class="p-field p-col-12 p-md-3">
+              <label>Empresa</label>
+              <input type="text" pInputText />
+            </div>
+
+            <!-- País -->
+            <div class="p-field p-col-12 p-md-3">
+              <label>País</label>
+              <p-dropdown
+                [options]="countries"
+                [(ngModel)]="selectedCountry"
+                optionLabel="name"
+                [filter]="true"
+                filterBy="name"
+                [showClear]="true"
+                placeholder="País"
+              >
+                <ng-template pTemplate="selectedItem">
+                  <div
+                    class="country-item country-item-value"
+                    *ngIf="selectedCountry"
+                  >
+                    <img
+                      src="assets/images/flag/PE.svg"
+                      [class]="
+                        'flag flag-' + selectedCountry.code.toLowerCase()
+                      "
+                    />
+                    <div>{{ selectedCountry.name }}</div>
+                  </div>
+                </ng-template>
+                <ng-template let-country pTemplate="item">
+                  <div class="country-item">
+                    <img
+                      src="assets/images/flag/PE.svg"
+                      [class]="'flag flag-' + country.code.toLowerCase()"
+                    />
+                    <div>{{ country.name }}</div>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+            </div>
+
+            <!-- Motivo de participación -->
+            <div class="p-field p-col-12 p-md-6">
+              <label>Motivo de participación</label>
+              <input type="text" pInputText />
+            </div>
+          </div>
+
+          <!-- agregar invitados -->
+          <div class="p-d-flex">
+            <button
+              class="p-button-outlined p-b-0"
+              icon="pi"
+              pButton
+              label="Añadir invitados"
+            >
+              <span class="material-icons-outlined"> add_circle </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- INICIAR ACTA -->
+        <div class="p-grid">
+          <div class="p-col-12 p-text-center">
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Enviar tu respuesta"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+</div>
+
