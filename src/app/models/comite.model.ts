@@ -53,5 +53,6 @@ export class ComiteCrudModel{
   pais: string;
   url: string;
   count: number;
+  estado:number;
 }
 

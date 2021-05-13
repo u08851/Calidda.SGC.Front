@@ -1,7 +1,7 @@
 export const AppConstants = {
 
     TitleModal: {
-        
+
         Success: "Éxito",
         Warning: "Advertencia",
         Delete: "Error",
@@ -22,5 +22,14 @@ export const AppConstants = {
         SERVICES_ERROR: "Ha ocurrido un error inesperado.",
         FIELD_IMPORT_ERROR: "Debe agregar un archivo."
 
-    }
+    },
+
+    EstadoComite: {
+
+      ESTADO_CREADO: "1006",
+      ESTADO_ACTIVO: "1007",
+      ESTADO_CONFIGURACION: "1008",
+      ESTADO_BAJA: "1009",
+
+  }
 }
