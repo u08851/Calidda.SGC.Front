@@ -82,7 +82,6 @@ export class CreateUserComponent implements OnInit {
     this.selectedEmpresa = {empresaId: this.config.data.empresaDto.empresaId,nombre: this.config.data.empresaDto.nombre}
     this.selectedRol = {rolId: this.config.data.rolId,nombre: this.config.data.rol}
 
-    console.log(this.selectedCountry);
   }
 
   showWarn(mensaje :string) {

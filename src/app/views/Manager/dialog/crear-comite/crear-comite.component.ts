@@ -14,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
+
 interface Demo {
   name: string;
   code: string;
@@ -75,6 +76,7 @@ export class CrearComiteComponent implements OnInit {
     this._activatedRoute.params.subscribe(data => {
       this.changeTitle = data.comiteId == null ? true : false;
       this.data=data;
+      this.idComite=this.data.comiteId;
     })
 
   }
@@ -96,7 +98,6 @@ export class CrearComiteComponent implements OnInit {
       this.valida = true;
     }
 
-    console.log(this.data);
   }
 
   get g() { return this.comiteForm.controls; }
@@ -133,13 +134,10 @@ export class CrearComiteComponent implements OnInit {
 
     this.selectedEmpresa = {empresaId: this.data.empresaId,nombre: this.data.empresa}
 
-    console.log(this.selectedEmpresa);
-
     this.listarPaisxEmpresa( this.data.empresaId);
     this.selectedCountry = {paisId: this.data.paisId,nombre: this.data.pais,sigla: this.data.url}
     this.selectedDireccion = {direccionId: this.data.direccionId,nombre: this.data.direccion}
     this.usuarioSelected={usuarioId: this.data.responsableId,label: this.data.responsable}
-
 
   }
 
@@ -163,6 +161,7 @@ export class CrearComiteComponent implements OnInit {
 
       if (this.valida) {
         //CREATE
+
         let data = this.comiteForm.value;
         var odata = new ComiteRequestModel();
 
@@ -177,15 +176,20 @@ export class CrearComiteComponent implements OnInit {
 
         this.comiteServices.addComite(odata).subscribe(
           (response: any) => {
-            this.showModalDialog();
+            if(response.valid){
+              this.showModalDialog();
+            }
           }
         )
       } else {
         //UPDATE
+
         let data = this.comiteForm.value;
         var odata = new ComiteRequestModel();
 
-        odata.comiteId = data.comiteId;
+
+
+        odata.comiteId = this.idComite;
         odata.empresaId = data.empresaId.empresaId;
         odata.paisId = data.paisId.paisId;
         odata.usuarioId = data.usuarioId;
@@ -196,7 +200,9 @@ export class CrearComiteComponent implements OnInit {
 
         this.comiteServices.updateComite(odata).subscribe(
           (response: any) => {
-            this.showModalDialog();
+            if(response.valid){
+              this.showModalDialog();
+            }
           }
         )
       }
@@ -224,13 +230,10 @@ export class CrearComiteComponent implements OnInit {
   }
 
   listarPaisxEmpresa(idEmpresa: number) {
-
-    console.log(idEmpresa);
     this.paisServices.getPaisByEmpresa(idEmpresa).subscribe(
       (response: any) => {
 
         this.countries = response;
-        console.log(response);
         this.selectedCountry = { paisId: this.countries[0].paisId, nombre: this.countries[0].nombre, sigla: this.countries[0].sigla }
       }
     )
@@ -254,7 +257,6 @@ export class CrearComiteComponent implements OnInit {
 
     this.usuariosServices.getUsuariosByEmpresa(idEmpresa).subscribe(
       (response: any) => {
-        console.log(response.data);
         this.listaUsuarios = response.data;
       }
     )
@@ -268,7 +270,6 @@ export class CrearComiteComponent implements OnInit {
     this.filteredUsuarios = _.map(this.listaUsuarios, p => {
 
       if (_.toUpper(p.personaDto.nombre).includes(_.toUpper(event.query))) {
-        console.log(p);
         return p;
       }
     });
