@@ -28,7 +28,7 @@ export class CreateUserComponent implements OnInit {
   selectedEmpresa = {};
   userForm:FormGroup;
   submitted: boolean = false;
-  
+
   constructor(
     private paisServices:PaisServices,
     private empresaServices:EmpresaServices,
@@ -40,7 +40,7 @@ export class CreateUserComponent implements OnInit {
     public rolServices:RolServices,
   )
   {}
-  
+
   ngOnInit(): void {
     this.crearFormulario();
     this.listarPais();
@@ -81,12 +81,14 @@ export class CreateUserComponent implements OnInit {
     this.selectedCountry = {paisId: this.config.data.personaDto.paisId,nombre: this.config.data.paisDto.nombre,sigla: this.config.data.paisDto.sigla}
     this.selectedEmpresa = {empresaId: this.config.data.empresaDto.empresaId,nombre: this.config.data.empresaDto.nombre}
     this.selectedRol = {rolId: this.config.data.rolId,nombre: this.config.data.rol}
+
+    console.log(this.selectedCountry);
   }
 
   showWarn(mensaje :string) {
     this.messageService.add({severity:'warn', summary: AppConstants.TitleModal.Warning, detail: mensaje});
   }
-  
+
   showModalDialog() {
     this.submitted = true;
 
@@ -115,7 +117,7 @@ export class CreateUserComponent implements OnInit {
         odata.paisId= data.paisId.paisId;
         odata.rolId = data.rolId.rolId;
         odata.rolUsuarioId = 0;
-        
+
         this.userServices.addUser(odata).subscribe(
           (response: any) => {
             if(response.valid){
@@ -137,7 +139,7 @@ export class CreateUserComponent implements OnInit {
         odata.paisId= data.paisId.paisId;
         odata.rolId = data.rolId.rolId;
         odata.rolUsuarioId = this.config.data.rolUsuarioId;
-        
+
         this.userServices.editUser(odata).subscribe(
           (response: any) => {
             this.displayModal = true;
@@ -148,7 +150,7 @@ export class CreateUserComponent implements OnInit {
       this.userForm.markAllAsTouched();
       this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
     }
-  } 
+  }
 
   getListCompany(){
     this.empresaServices.getListEmpresa("ALL1",0,0).subscribe(

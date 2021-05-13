@@ -21,8 +21,11 @@
         <div class="p-col-12 p-md-6 p-lg-4">
             <div class="p-field">
                 <label [ngClass]="{ 'is-invalid-text': submitted && g.empresaId.errors }">Empresa del comité</label>
-                <p-dropdown [options]="listaEmpresas" (onChange)="changeEmpresa($event)" formControlName="empresaId" optionLabel="nombre" placeholder="Seleccione...">
+                <p-dropdown [options]="listaEmpresas" [(ngModel)]="selectedEmpresa" (onChange)="changeEmpresa($event)" formControlName="empresaId" placeholder={{valorPlaceHolder}} optionLabel="nombre">
 
+                    <ng-template pTemplate="selectedItem">
+                        <span class="p-ml-2" style="line-height:1; margin-bottom: 5px;">{{selectedEmpresa.nombre}}</span>
+                    </ng-template>
                 </p-dropdown>
                 <div *ngIf="submitted && g.empresaId.errors != null">
                     <span class="p-error" *ngIf="g.empresaId.errors.required">La empresa es requerido.<br></span>
@@ -82,7 +85,12 @@
         <div class="p-col-12 p-md-6 p-lg-4">
             <div class="p-field">
                 <label [ngClass]="{ 'is-invalid-text': submitted && g.direccionId.errors }">Dirección dueña del comité</label>
-                <p-dropdown [options]="listaDirecciones" formControlName="direccionId" placeholder="Seleccione..." optionLabel="nombre"></p-dropdown>
+                <p-dropdown [options]="listaDirecciones" formControlName="direccionId" [(ngModel)]="selectedDireccion" optionLabel="nombre" placeholder={{valorPlaceHolder}}>
+                    <ng-template pTemplate="selectedItem">
+                        <span class="p-ml-2" style="line-height:1; margin-bottom: 5px;">{{selectedDireccion.nombre}}</span>
+                    </ng-template>
+
+                </p-dropdown>
                 <div *ngIf="submitted && g.direccionId.errors != null">
                     <span class="p-error" *ngIf="g.direccionId.errors.required">La dirección es requerida.<br></span>
                 </div>
@@ -101,7 +109,7 @@
         <i class="material-icons"> check_circle_outline </i>
         <h3>Confirmación</h3>
         <p class="p-m-0">
-            El comité <strong>“Comité {{nombreComite}}”</strong> ha sido creado correctamente
+            El comité <strong>“Comité {{nombreComite}}”</strong> {{valorMensaje}}
         </p>
     </div>
     <ng-template pTemplate="footer">
