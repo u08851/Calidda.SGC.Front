@@ -13,6 +13,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { AppConstants } from 'src/app/shared/constants/app.constants';
+import { HistoricoComiteServices } from 'src/app/services/historicocomite.service';
+import { HistoricoComiteModel } from 'src/app/models/historicocomite.model';
 
 
 interface Demo {
@@ -55,6 +57,7 @@ export class CrearComiteComponent implements OnInit {
   data: any;
   active:boolean;
   activeResponsable:boolean;
+  historicoComite= new HistoricoComiteModel();
 
   showWarn(mensaje: string) {
     this.messageService.add({ severity: 'warn', summary: AppConstants.TitleModal.Warning, detail: mensaje });
@@ -73,7 +76,8 @@ export class CrearComiteComponent implements OnInit {
     private usuariosServices: UserServices,
     private paisServices: PaisServices,
     public router: Router,
-    private _activatedRoute: ActivatedRoute) {
+    private _activatedRoute: ActivatedRoute,
+    private historicoComiteServices:HistoricoComiteServices) {
 
     this._activatedRoute.params.subscribe(data => {
       this.changeTitle = data.comiteId == null ? true : false;
@@ -88,6 +92,7 @@ export class CrearComiteComponent implements OnInit {
     this.listarDireccion();
     this.crearFormulario();
     this.activeResponsable=false;
+    this.active=false;
 
     if (!this.changeTitle) {
       this.valida = false;
@@ -175,7 +180,7 @@ export class CrearComiteComponent implements OnInit {
           (response: any) => {
             if(response.valid){
               this.valorMensaje= odata.nombre;
-              this.showModalDialog();
+              this.guardarHistoricoComite(response.data);
             }
           }
         )
@@ -197,7 +202,7 @@ export class CrearComiteComponent implements OnInit {
           (response: any) => {
             if(response.valid){
               this.valorMensaje= this.usuarioSelected.label;
-              this.showModalDialog();
+              this.guardarHistoricoComite(odata);
             }
           }
         )
@@ -207,7 +212,33 @@ export class CrearComiteComponent implements OnInit {
       this.comiteForm.markAllAsTouched();
       this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
     }
+
+
   }
+
+
+  guardarHistoricoComite(data)
+  {
+
+    if(this.valida)
+    {
+      this.historicoComite.descripcion="Se creó el comite "+ data.nombre;
+    }
+    else{
+      this.historicoComite.descripcion="Se cambió el secretario   "+ this.valorMensaje;
+    }
+
+    this.historicoComite.comiteId=data.comiteId;
+
+    this.historicoComiteServices.addHistoricoComite(this.historicoComite).subscribe(
+      (response: any) => {
+        if(response.valid){
+          this.displayModal = true;
+        }
+      }
+    )
+  }
+
 
   listarEmpresa() {
     this.empresaServices.getListEmpresa("ALL1", 0, 0).subscribe(

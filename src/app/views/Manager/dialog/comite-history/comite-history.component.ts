@@ -41,6 +41,7 @@ export class ComiteHistoryComponent implements OnInit {
 
     this.historicoComiteServices.getListHistoricoComiteByComite(this.historicoComite.comiteId).subscribe(
       (result: any) => {
+
         this.listaHistoricoComites = result.data
       }
     )

@@ -9,6 +9,8 @@ import { ComiteCrudModel, ComiteRequestModel } from 'src/app/models/comite.model
 import { MessageService } from 'primeng/api';
 import { AppConstants } from 'src/app/shared/constants/app.constants';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HistoricoComiteServices } from 'src/app/services/historicocomite.service';
+import { HistoricoComiteModel } from 'src/app/models/historicocomite.model';
 
 @Component({
   selector: 'app-comite-table',
@@ -51,6 +53,7 @@ export class ComiteTableComponent implements OnInit {
   size: number = 5;
   title: string;
   data: any;
+  historicoComite= new HistoricoComiteModel();
 
   constructor(
     public dialogService: DialogService,
@@ -59,7 +62,9 @@ export class ComiteTableComponent implements OnInit {
     private sanitizer: DomSanitizer,
     public messageService:MessageService,
     private activatedRoute: ActivatedRoute,
-    private _router: Router
+    private historicoComiteServices:HistoricoComiteServices,
+    private _router: Router,
+
 
   ) {
     this.title = this.activatedRoute.snapshot.data.title;
@@ -154,13 +159,26 @@ export class ComiteTableComponent implements OnInit {
         if(response.valid){
           this.showSuccess(AppConstants.MessageModal.DESAC_SUCCESS);
           this.refrescarLista();
-          this.displayModal = false;
+          //this.displayModal = false;
+          this.guardarHistoricoComite(data);
         }
       }
     )
   }
 
+  guardarHistoricoComite(data)
+  {
 
+  this.historicoComite.comiteId=data.comiteId;
+  this.historicoComite.descripcion="Se dio de baja al comite "+ data.nombre;
+    this.historicoComiteServices.addHistoricoComite(this.historicoComite).subscribe(
+      (response: any) => {
+        if(response.valid){
+          this.displayModal = false;
+        }
+      }
+    )
+  }
 
   refrescarLista() {
     this.getListComitexFiltros();

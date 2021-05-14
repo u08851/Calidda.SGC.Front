@@ -8,7 +8,7 @@
         <div class="p-col-12 p-md-6 p-lg-4">
             <div class="p-field">
                 <label for="nombre" [ngClass]="{ 'is-invalid-text': submitted && g.nombre.errors }">Nombre del comité</label>
-                <input disabled="active" formControlName="nombre" [ngClass]="{ 'is-invalid-input': submitted && g.nombre.errors }" oninput="this.value=this.value.trim()==''?'':this.value" pInputText />
+                <input formControlName="nombre" [ngClass]="{ 'is-invalid-input': submitted && g.nombre.errors }" oninput="this.value=this.value.trim()==''?'':this.value" pInputText />
                 <div *ngIf="submitted && g.nombre.errors != null">
                     <span class="p-error" *ngIf="g.nombre.errors.minlength">El nombre debe contener al menos un carácter.<br></span>
                     <span class="p-error" *ngIf="g.nombre.errors.required">El nombre es requerido.<br></span>
@@ -37,8 +37,8 @@
         <div class="p-col-12 p-md-6 p-lg-4">
             <div class="p-field">
                 <label [ngClass]="{ 'is-invalid-text': submitted && g.paisId.errors }">País</label>
-                <p-dropdown formControlName="paisId" [ngClass]="{ 'is-invalid-input': submitted && g.paisId.errors }" oninput="this.value=this.value.trim()==''?'':this.value" [disabled]="true" [options]="countries" [(ngModel)]="selectedCountry" optionLabel="nombre" [showClear]="false"
-                    placeholder="" dropdownIcon="">
+                <p-dropdown formControlName="paisId" [ngClass]="{ 'is-invalid-input': submitted && g.paisId.errors }" oninput="this.value=this.value.trim()==''?'':this.value" [disabled]="active" [options]="countries" [(ngModel)]="selectedCountry" optionLabel="nombre"
+                    [showClear]="false" placeholder="" dropdownIcon="">
                     <ng-template pTemplate="selectedItem">
                         <div class="p-d-flex p-ai-center">
                             <img style="width: 20px;" [src]="selectedCountry.sigla" />
@@ -74,7 +74,7 @@
         <div class="p-col-12 p-md-6 p-lg-4">
             <div class="p-field">
                 <label [ngClass]="{ 'is-invalid-text': submitted && g.correo.errors }">Correo electrónico</label>
-                <input disabled="activeResponsable" pInputText formControlName="correo" />
+                <input pInputText formControlName="correo" readonly />
                 <div *ngIf="submitted && g.correo.errors != null">
                     <span class="p-error" *ngIf="g.correo.errors.required">El correo es requerido.<br></span>
                 </div>
