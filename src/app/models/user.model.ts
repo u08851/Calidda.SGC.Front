@@ -43,3 +43,8 @@ export class UserRequestModel{
   rolUsuarioId: number;
   
 }
+
+export class SecreUser{
+  userId: number;
+  nombre: string;
+}
