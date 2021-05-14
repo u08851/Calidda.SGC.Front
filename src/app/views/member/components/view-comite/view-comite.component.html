@@ -1,0 +1,22 @@
+<p-tabView styleClass="p-tab-style-3">
+    <p-tabPanel header="Información básica">
+        <div class="tab-content">
+            <app-basic-information></app-basic-information>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Acta">
+        <div class="tab-content">
+            <app-acta></app-acta>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Video">
+        <div class="tab-content">
+            <app-video></app-video>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Compromisos" [selected]="true">
+        <div class="tab-content">
+            <app-commitment></app-commitment>
+        </div>
+    </p-tabPanel>
+</p-tabView>
