@@ -1,0 +1,20 @@
+<p class="title p-mb-3">Añadir sub tarea</p>
+<div class="p-fluid p-formgrid p-grid form-input-sm p-mb-3">
+    <div class="p-field p-col-12 p-md-6">
+        <label>Responsable</label>
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+                <p-avatar image="assets/images/img-perfil-test.jpg" styleClass="p-mr-2" shape="circle">
+                </p-avatar>
+            </span>
+            <input class="p-bl-0 bl-0" type="text" pInputText placeholder="Username">
+        </div>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+        <label>Fecha</label>
+        <p-calendar [(ngModel)]="date" [showIcon]="true"></p-calendar>
+    </div>
+</div>
+<div class="p-col-12 p-d-flex p-jc-center p-ai-center">
+    <button pButton label="Añadir"></button>
+</div>

@@ -1,5 +1,5 @@
 <p-tabView styleClass="p-tab-style-3">
-    <p-tabPanel header="Información básica">
+    <p-tabPanel header="Información básica" [selected]="true">
         <div class="tab-content">
             <app-basic-information></app-basic-information>
         </div>
@@ -14,7 +14,7 @@
             <app-video></app-video>
         </div>
     </p-tabPanel>
-    <p-tabPanel header="Compromisos" [selected]="true">
+    <p-tabPanel header="Compromisos">
         <div class="tab-content">
             <app-commitment></app-commitment>
         </div>

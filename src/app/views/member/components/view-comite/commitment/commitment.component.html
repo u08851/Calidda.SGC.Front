@@ -81,7 +81,11 @@
                     </div>
                 </div>
                 <div class="p-d-flex  p-mt-3">
-                    <button class="p-button-outlined p-b-0" pButton label="Añadir sub tarea" icon="pi pi-plus-circle"></button>
+                    <button
+                        class="p-button-outlined p-b-0" pButton label="Añadir sub tarea"    
+                        (click)="showAddSubTarea()"
+                        icon="pi pi-plus-circle">
+                    </button>
                 </div>
             </div>
         </div>

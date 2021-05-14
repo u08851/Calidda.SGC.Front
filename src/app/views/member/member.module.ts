@@ -23,6 +23,7 @@ import { VideoComponent } from './components/view-comite/video/video.component';
 import { CommitmentComponent } from './components/view-comite/commitment/commitment.component';
 import { AttendeesComponent } from './components/view-comite/attendees/attendees.component';
 import { VotacionComponent } from './components/view-comite/votacion/votacion.component';
+import { SubTareaComponent } from './dialog/sub-tarea/sub-tarea.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { VotacionComponent } from './components/view-comite/votacion/votacion.co
     VideoComponent,
     CommitmentComponent,
     AttendeesComponent,
-    VotacionComponent
+    VotacionComponent,
+    SubTareaComponent
 ],
   imports: [
     CommonModule,
