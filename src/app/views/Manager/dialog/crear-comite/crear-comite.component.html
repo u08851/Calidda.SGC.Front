@@ -8,7 +8,8 @@
         <div class="p-col-12 p-md-6 p-lg-4">
             <div class="p-field">
                 <label for="nombre" [ngClass]="{ 'is-invalid-text': submitted && g.nombre.errors }">Nombre del comité</label>
-                <input formControlName="nombre" [ngClass]="{ 'is-invalid-input': submitted && g.nombre.errors }" oninput="this.value=this.value.trim()==''?'':this.value" pInputText />
+                <input *ngIf="!active" formControlName="nombre" [ngClass]="{ 'is-invalid-input': submitted && g.nombre.errors }" oninput="this.value=this.value.trim()==''?'':this.value" pInputText />
+                <input *ngIf="active" disabled=true formControlName="nombre" [ngClass]="{ 'is-invalid-input': submitted && g.nombre.errors }" oninput="this.value=this.value.trim()==''?'':this.value" pInputText />
                 <div *ngIf="submitted && g.nombre.errors != null">
                     <span class="p-error" *ngIf="g.nombre.errors.minlength">El nombre debe contener al menos un carácter.<br></span>
                     <span class="p-error" *ngIf="g.nombre.errors.required">El nombre es requerido.<br></span>
@@ -74,7 +75,7 @@
         <div class="p-col-12 p-md-6 p-lg-4">
             <div class="p-field">
                 <label [ngClass]="{ 'is-invalid-text': submitted && g.correo.errors }">Correo electrónico</label>
-                <input pInputText formControlName="correo" readonly />
+                <input pInputText formControlName="correo" disabled/>
                 <div *ngIf="submitted && g.correo.errors != null">
                     <span class="p-error" *ngIf="g.correo.errors.required">El correo es requerido.<br></span>
                 </div>
