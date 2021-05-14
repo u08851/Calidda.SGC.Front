@@ -170,8 +170,8 @@ export class BarSecretariaComponent implements OnInit {
 
     this.comiteServices.getListComite(
       0,
-      this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
-      this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
+      this.datePipe.transform(new Date(), 'MM-dd-yyyy'),
+      this.datePipe.transform(new Date(), 'MM-dd-yyyy'),
       null,
       null).subscribe(
       (response) =>{

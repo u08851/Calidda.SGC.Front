@@ -240,14 +240,14 @@ export class TableDocumentosComponent implements OnInit {
     }else{
       this.textFilter1 = this.textFilter1.masterDetailId
     }
-    if(this.datePipe.transform(this.textFilter20, 'dd-MM-yyyy') != null){
-      this.textFilter2 = this.datePipe.transform(this.textFilter20, 'dd-MM-yyyy');
+    if(this.datePipe.transform(this.textFilter20, 'MM-dd-yyyy') != null){
+      this.textFilter2 = this.datePipe.transform(this.textFilter20, 'MM-dd-yyyy');
     }
     else{
       this.textFilter2 = "";
     }
-    if(this.datePipe.transform(this.textFilter30, 'dd-MM-yyyy') != null){
-      this.textFilter3 = this.datePipe.transform(this.textFilter30, 'dd-MM-yyyy');
+    if(this.datePipe.transform(this.textFilter30, 'MM-dd-yyyy') != null){
+      this.textFilter3 = this.datePipe.transform(this.textFilter30, 'MM-dd-yyyy');
     }
     else{
       this.textFilter3 = "";
