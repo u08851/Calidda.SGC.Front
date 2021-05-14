@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ComiteActiveModel } from '../models/comite.model';
@@ -60,5 +60,13 @@ export class ComiteServices {
   darBajaComite(model: ComiteRequestModel) {
     return this._http.put(`${this.BASE_URL2}/DarBaja`, model);
   }
+
+  exportarExcelTotalComiteActivos(fechaDesde: string,fechaHasta: string){
+    const url = `${this.BASE_URL}/ExcelTotalComiteActivos/`+fechaDesde+"/"+fechaHasta;
+    let headers = new HttpHeaders();
+    headers = headers.append("Accept","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+    return this._http.post(url,null,{headers: headers,responseType: 'blob'})
+  }
+
 
 }
