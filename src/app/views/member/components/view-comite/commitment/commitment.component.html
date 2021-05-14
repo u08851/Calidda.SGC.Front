@@ -1,0 +1,155 @@
+<p-panel   [toggleable]="true" expandIcon="pi pi-chevron-circle-down" collapseIcon="pi pi-chevron-circle-up">
+    <ng-template pTemplate="header">
+        <p class="title">Compromisos</p>
+    </ng-template>
+    <div class="p-grid">
+        <div class="p-col-12 p-md-4">
+            <div class="p-card b-shadow-none bg-blue-2 p-p-3 h-100">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    <p class="title p-mb-3">Pendiente</p>
+                    <div class="hx-bar red"></div>
+                </div>
+                <div class="p-card p-mb-3">
+                    <div class="p-card-body">
+                        <div class="p-d-flex p-jc-between">
+                            <div class="p-d-flex p-ai-center">
+                                <p-avatar image="assets/images/img11.jpg" styleClass="p-mr-2" shape="circle"></p-avatar>
+                                <div class="p-d-flex p-flex-column">
+                                    <p class="p-d-block line-h-1-5">Rocio del Valle</p>
+                                    <label class="info">Calida</label>
+                                </div>
+                            </div>
+                            <span class="red">Pendiente</span>
+                        </div>
+                        <div class="">
+                            <p class="gray p-mb-1"> - Entrega de compromisos y pendientes </p>
+                            <p class="gray op-5 p-text-right"> 20/11/2020</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-card">
+                    <div class="p-card-body">
+                        <div class="p-d-flex p-jc-between">
+                            <div class="p-d-flex p-ai-center">
+                                <p-avatar image="assets/images/img11.jpg" styleClass="p-mr-2" shape="circle"></p-avatar>
+                                <div class="p-d-flex p-flex-column">
+                                    <p class="p-d-block line-h-1-5">Rocio del Valle</p>
+                                    <label class="info">Calida</label>
+                                </div>
+                            </div>
+                            <span class="red">Pendiente</span>
+                        </div>
+                        <div class="">
+                            <p class="gray p-mb-1"> - Entrega de compromisos y pendientes </p>
+                            <p class="gray op-5 p-text-right"> 20/11/2020</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="p-col-12 p-md-4">
+            <div class="p-card b-shadow-none bg-blue-2 p-p-3 h-100">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    <p class="title p-mb-3">En Proceso</p>
+                    <div class="hx-bar orange"></div>
+                </div>
+                <div class="p-card p-mb-3">
+                    <div class="p-card-body">
+                        <div class="p-d-flex p-jc-between">
+                            <div class="p-d-flex p-ai-center">
+                                <p-avatar image="assets/images/img11.jpg" styleClass="p-mr-2" shape="circle"></p-avatar>
+                                <div class="p-d-flex p-flex-column">
+                                    <p class="p-d-block line-h-1-5">Rocio del Valle</p>
+                                    <label class="info">Calida</label>
+                                </div>
+                            </div>
+                            <span class="orange">En proceso</span>
+                        </div>
+                        <div class="">
+                            <p class="gray p-mb-1"> - Entrega de compromisos y pendientes </p>
+                            <p class="gray op-5 p-text-right"> 20/11/2020</p>
+                        </div>
+                    </div>
+                    <div class="p-card-footer">
+                        <div class="p-d-flex p-jc-center">
+                            <button 
+                                [routerLink]="['/secretary/detail-compromiso', 1]" 
+                                class="p-mb-3" icon="pi pi-eye" pButton label="Ver Detalles">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-d-flex  p-mt-3">
+                    <button
+                        class="p-button-outlined p-b-0" pButton label="Añadir sub tarea"    
+                        (click)="showAddSubTarea()"
+                        icon="pi pi-plus-circle">
+                    </button>
+                </div>
+            </div>
+        </div>
+    
+        <div class="p-col-12 p-md-4">
+            <div class="p-card b-shadow-none bg-blue-2 p-p-3 h-100">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    <p class="title p-mb-3">Finalizado</p>
+                    <div class="hx-bar green"></div>
+                </div>
+                <div class="p-card p-mb-3">
+                    <div class="p-card-body">
+                        <div class="p-d-flex p-jc-between">
+                            <div class="p-d-flex p-ai-center">
+                                <p-avatar image="assets/images/img11.jpg" styleClass="p-mr-2" shape="circle"></p-avatar>
+                                <div class="p-d-flex p-flex-column">
+                                    <p class="p-d-block line-h-1-5">Rocio del Valle</p>
+                                    <label class="info">Calida</label>
+                                </div>
+                            </div>
+                            <span class="green">Finalizado</span>
+                        </div>
+                        <div class="">
+                            <p class="gray p-mb-1"> - Entrega de compromisos y pendientes </p>
+                            <p class="gray op-5 p-text-right"> 20/11/2020</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="p-card p-mb-3">
+                    <div class="p-card-body">
+                        <div class="p-d-flex p-jc-between">
+                            <div class="p-d-flex p-ai-center">
+                                <p-avatar image="assets/images/img11.jpg" styleClass="p-mr-2" shape="circle"></p-avatar>
+                                <div class="p-d-flex p-flex-column">
+                                    <p class="p-d-block line-h-1-5">Rocio del Valle</p>
+                                    <label class="info">Calida</label>
+                                </div>
+                            </div>
+                            <span class="green">Finalizado</span>
+                        </div>
+                        <div class="">
+                            <p class="gray p-mb-1"> - Entrega de compromisos y pendientes </p>
+                            <p class="gray op-5 p-text-right"> 20/11/2020</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-panel>
+
+<!-- Dialog alertar a responsable-->
+<p-dialog [(visible)]="displayModal" [modal]="true" [style]="{ width: '400px' }" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false" [closable]="false" styleClass="style-dialog-confirmation">
+    <div class="dialog-content">
+        
+        <i class="pi pi-check-circle"></i>
+        <h3>Confirmación</h3>
+        <p class="p-m-0">
+            La alerta fue enviada correctamente
+        </p>
+    </div>
+    <ng-template pTemplate="footer">
+        <button (click)="displayModal = false"  pButton  label="Aceptar"></button>
+    </ng-template>
+</p-dialog>

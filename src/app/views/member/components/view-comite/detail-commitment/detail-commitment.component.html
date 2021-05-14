@@ -1,0 +1,26 @@
+<!-- Banner -->
+<div class="pi-container p-mb-3">
+    <div class="pi-banner">
+        <div class="pi-banner-content">
+            <h1>Relación de comites</h1>
+            <p class="white fw-300 p-mb-6">Cód: C2031</p>
+        </div>
+    </div>
+</div>
+<p-tabView styleClass="p-tab-style-3" [activeIndex]="activeIndex">
+    <p-tabPanel header="Compromisos Pendientes">
+        <div class="tab-content">
+            <app-detail-commitment-table></app-detail-commitment-table>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Compromisos en Proceso">
+        <div class="tab-content">
+            <app-detail-commitment-table></app-detail-commitment-table>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Compromisos Cerrados">
+        <div class="tab-content">
+            <app-detail-commitment-table></app-detail-commitment-table>
+        </div>
+    </p-tabPanel>
+</p-tabView>
