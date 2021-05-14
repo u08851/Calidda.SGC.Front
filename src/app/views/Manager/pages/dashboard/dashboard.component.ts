@@ -183,7 +183,8 @@ export class DashboardComponent implements OnInit {
       date3: this.date3,
       date4: this.date4,
       type: 3,
-      secretaria: this.textFilterSE.userId
+      secretaria: this.textFilterSE.userId,
+      secretariaNombre: this.textFilterSE.nombre
     };
     this.router.navigateByUrl('/manager/secrearia-table', { state: { item: data }});
   }

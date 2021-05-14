@@ -25,6 +25,9 @@ export class SecretariaTableComponent implements OnInit {
   size: number = 5;
   date3: Date;
   date4: Date;
+  
+  nameVisible: string;"";
+
   es: any;
   constructor(
     private comiteServices: ComiteServices,
@@ -97,10 +100,12 @@ export class SecretariaTableComponent implements OnInit {
       this.date3 = history.state.item.date3;
       this.date4 = history.state.item.date4;
       this.idUser = history.state.item.userId;
+      this.nameVisible = history.state.item.secretariaNombre;
     }catch{
       this.date3 = new Date();
       this.date4 = new Date();
       this.idUser = 0;
+      this.nameVisible = "";
     }
 
     this.comiteServices.getListComiteActive(
