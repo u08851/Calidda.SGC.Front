@@ -1,0 +1,112 @@
+<div class="card p-flex-column">
+  <p-tabView styleClass="p-tab-style-3">
+    <p-tabPanel [selected]="true" header="Información básica">
+      <!-- INFORMACIÓN BÁSICA -->
+      <div class="tab-content">
+        <p class="title info">Reunión: C2031</p>
+        <div class="p-grid p-mt-3">
+            <div class="p-field p-grid p-col-12 p-md-6">
+                <div class="p-d-flex w-100">
+                    <label class="p-mr-1 info p-col-6 p-md-5" for="">Título de la reunión:</label>
+                    Comité cálidda
+                </div>
+            </div>
+            <div class="p-field p-grid p-col-12 p-md-6">
+                <div class="p-d-flex w-100">
+                    <label class="p-mr-1 info p-col-6 p-md-2" for="">Fecha:</label>
+                    20/01/2021
+                </div>
+            </div>
+            <div class="p-field p-grid p-col-12 p-md-6">
+                <div class="p-d-flex w-100">
+                    <label class="p-mr-1 info p-col-6 p-md-4" for="">Hora de inicio:</label>
+                    10:00am
+                </div>
+            </div>
+            <div class="p-field p-grid p-col-12 p-md-6">
+                <div class="p-d-flex w-100">
+                    <label class="p-mr-1 info p-col-6 p-md-4" for="">Tipo de reunión:</label>
+                    Presencial
+                </div>
+            </div>
+            <div class="p-field p-grid p-col-12 p-md-6">
+                <div class="p-d-flex w-100">
+                    <label class="p-mr-1 info p-col-6 p-md-4" for="">Hora de fin:</label>
+                    10:00am
+                </div>
+            </div>
+            <div class="p-field p-grid p-col-12 p-md-6">
+                <div class="p-d-flex w-100">
+                    <label class="p-mr-1 info p-col-6 p-md-5" for="">Código de comité:</label>
+                    C2031
+                </div>
+            </div>
+            <div class="p-field p-grid p-col-12 p-md-6">
+                <div class="p-d-flex w-100">
+                    <label class="p-mr-1 info p-col-6 p-md-5" for="">Link de la reunión:</label>
+                    www.sgc.com/kadjdas$/
+                </div>
+            </div>
+        </div>
+      </div>
+    </p-tabPanel>
+
+    <p-tabPanel header="Agenda">
+      <!-- INFORMACIÓN BÁSICA -->
+      <div class="tab-content">
+        <p class="title info">Agenda de la reunión</p>
+        <div class="p-mt-3 p-mb-3">
+          <p class="blue">Tema</p>
+          <p class="dark p-m-2">
+            Generación de reportes y análisis del proceso.
+          </p>
+        </div>
+        <div class="p-mt-3 p-mb-3">
+          <p class="blue">Fecha límite de carga:</p>
+          <p class="dark p-m-2">20/01/2021</p>
+        </div>
+
+        <div
+          class="p-d-flex p-flex-column p-jc-center p-ai-center p-p-3 rounded-1 p-mb-4 bg-blue-light"
+        >
+          <p class="p-custom-title p-mb-2">Adjuntar archivo:</p>
+          <p-chips
+            *ngIf="selectedFiles.length > 0"
+            styleClass="style-chip-1"
+            [(ngModel)]="selectedFiles"
+            icon="pi"
+            (onRemove)="onRemove($event)"
+          >
+            <ng-template let-item pTemplate="item">
+              {{ item.name }}
+            </ng-template>
+          </p-chips>
+          <p-fileUpload
+            multiple="multiple"
+            chooseLabel="Adjuntar"
+            uploadLabel="Cargar"
+            customUpload="true"
+            name="demo[]"
+            url="./upload.php"
+            accept="image/*"
+            maxFileSize="1000000"
+            (onSelect)="onSelect($event)"
+            [showCancelButton]="false"
+          ></p-fileUpload>
+        </div>
+
+        <!-- ENVIAR -->
+        <div class="p-grid">
+          <div class="p-col-12 p-text-center">
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Enviar"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+</div>
