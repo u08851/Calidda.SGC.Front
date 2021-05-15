@@ -8,6 +8,9 @@ import { EventHandlerVars } from '@angular/compiler/src/compiler_util/expression
 import { ComiteCrudModel, ComiteRequestModel } from 'src/app/models/comite.model';
 import { MessageService } from 'primeng/api';
 import { AppConstants } from 'src/app/shared/constants/app.constants';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HistoricoComiteServices } from 'src/app/services/historicocomite.service';
+import { HistoricoComiteModel } from 'src/app/models/historicocomite.model';
 
 @Component({
   selector: 'app-comite-table',
@@ -48,18 +51,26 @@ export class ComiteTableComponent implements OnInit {
   term: string = "ALL1";
   page: number = 0;
   size: number = 5;
-
-  dataDelete: any;
-  item: any;
-  MyItem: any;
+  title: string;
+  data: any;
+  historicoComite= new HistoricoComiteModel();
 
   constructor(
     public dialogService: DialogService,
     public ref: DynamicDialogRef,
     private comiteServices: ComiteServices,
     private sanitizer: DomSanitizer,
-    public messageService:MessageService
-  ) { }
+    public messageService:MessageService,
+    private activatedRoute: ActivatedRoute,
+    private historicoComiteServices:HistoricoComiteServices,
+    private _router: Router,
+
+
+  ) {
+    this.title = this.activatedRoute.snapshot.data.title;
+
+    console.log(this.title);
+  }
 
   showSuccess(mensaje :string) {
     this.messageService.add({severity:'success', summary: AppConstants.TitleModal.Success, detail: mensaje});
@@ -86,7 +97,9 @@ export class ComiteTableComponent implements OnInit {
       {
         label: 'Editar Comité',
         icon: 'pi icon-edit',
-        routerLink: "/manager/crear-comites"
+        command: (event) => {
+          this.goEditComite();
+        },
       },
       {
         label: 'Ver histórico',
@@ -113,7 +126,7 @@ export class ComiteTableComponent implements OnInit {
       width: '65%',
       contentStyle: { "max-height": "500px", "overflow": "auto" },
       baseZIndex: 10000,
-      data: null
+      data: this.data
     });
   }
 
@@ -136,7 +149,7 @@ export class ComiteTableComponent implements OnInit {
 
   darBajaComite() {
 
-    let data = this.dataDelete;
+    let data = this.data;
     var odata = new ComiteRequestModel();
     odata.comiteId=data.comiteId;
 
@@ -146,21 +159,39 @@ export class ComiteTableComponent implements OnInit {
         if(response.valid){
           this.showSuccess(AppConstants.MessageModal.DESAC_SUCCESS);
           this.refrescarLista();
+          //this.displayModal = false;
+          this.guardarHistoricoComite(data);
+        }
+      }
+    )
+  }
+
+  guardarHistoricoComite(data)
+  {
+
+  this.historicoComite.comiteId=data.comiteId;
+  this.historicoComite.descripcion="Se dio de baja al comite "+ data.nombre;
+    this.historicoComiteServices.addHistoricoComite(this.historicoComite).subscribe(
+      (response: any) => {
+        if(response.valid){
           this.displayModal = false;
         }
       }
     )
   }
 
-
-
   refrescarLista() {
     this.getListComitexFiltros();
   }
 
 
+
+  goEditComite() {
+    this._router.navigate(['manager/crear-comites',this.data]);
+
+  }
   toggleMenu(menu, event, rowData) {
-    this.dataDelete = rowData;
+    this.data = rowData;
     menu.toggle(event);
   }
 

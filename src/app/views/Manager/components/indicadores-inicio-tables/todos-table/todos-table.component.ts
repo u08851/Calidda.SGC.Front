@@ -87,7 +87,7 @@ export class TodosTableComponent implements OnInit {
     ];
 
     this.getListComiteActiveList();
-    
+
   }
 
   getDateList(value:string){
@@ -103,11 +103,11 @@ export class TodosTableComponent implements OnInit {
       this.date3 = new Date();
       this.date4 = new Date();
     }
-    
+
     this.comiteServices.getListComiteActive(
       0,
-      this.datePipe.transform(this.date3, 'dd-MM-yyyy'),
-      this.datePipe.transform(this.date4, 'dd-MM-yyyy'),
+      this.datePipe.transform(this.date3, 'MM-dd-yyyy'),
+      this.datePipe.transform(this.date4, 'MM-dd-yyyy'),
       null,
       null,
       this.page,
@@ -128,16 +128,16 @@ export class TodosTableComponent implements OnInit {
     }
     if (evento === "Enter" || evento === "click"|| evento === undefined) {
       if(
-        this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
-        this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null
+        this.datePipe.transform(this.date3, 'MM-dd-yyyy') == null ||
+        this.datePipe.transform(this.date4, 'MM-dd-yyyy') == null
       ){
         this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
         return false;
       }else{
         this.comiteServices.getListComiteActive(
           0,
-          this.datePipe.transform(this.date3, 'dd-MM-yyyy'),
-          this.datePipe.transform(this.date4, 'dd-MM-yyyy'),
+          this.datePipe.transform(this.date3, 'MM-dd-yyyy'),
+          this.datePipe.transform(this.date4, 'MM-dd-yyyy'),
           null,
           null,
           this.page,
@@ -154,4 +154,27 @@ export class TodosTableComponent implements OnInit {
     this.messageService.add({ severity: 'warn', summary: AppConstants.TitleModal.Warning, detail: mensaje });
   }
 
+  exportarExcelTotalComiteActivos()
+  {
+
+    let nombreReporte="TotalComiteActivos";
+    this.comiteServices.exportarExcelTotalComiteActivos(this.date3,this.date4).
+    subscribe(data => {
+      if(data.size>1){
+          this.downloadFile(data,nombreReporte);
+      }else{
+        this.showWarn("No hay registros a exportar");
+      }
+    })
+  }
+
+  downloadFile(data,nameReporte:string) {
+
+    const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const url = window.URL.createObjectURL(blob);
+      var anchor = document.createElement("a");
+      anchor.download =   nameReporte+".xlsx";
+      anchor.href = url;
+      anchor.click();
+  }
 }

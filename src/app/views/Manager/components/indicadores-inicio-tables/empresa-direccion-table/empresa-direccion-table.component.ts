@@ -111,8 +111,8 @@ export class EmpresaDireccionTableComponent implements OnInit {
     
     this.comiteServices.getListComiteActive(
       2,
-      this.datePipe.transform(this.date3, 'dd-MM-yyyy'),
-      this.datePipe.transform(this.date4, 'dd-MM-yyyy'),
+      this.datePipe.transform(this.date3, 'MM-dd-yyyy'),
+      this.datePipe.transform(this.date4, 'MM-dd-yyyy'),
       this.empresaId.toString(),
       this.direccionId,
       this.page,
@@ -133,16 +133,16 @@ export class EmpresaDireccionTableComponent implements OnInit {
     }
     if (evento === "Enter" || evento === "click"|| evento === undefined) {
       if(
-        this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
-        this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null
+        this.datePipe.transform(this.date3, 'MM-dd-yyyy') == null ||
+        this.datePipe.transform(this.date4, 'MM-dd-yyyy') == null
       ){
         this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
         return false;
       }else{
         this.comiteServices.getListComiteActive(
           2,
-          this.datePipe.transform(this.date3, 'dd-MM-yyyy'),
-          this.datePipe.transform(this.date4, 'dd-MM-yyyy'),
+          this.datePipe.transform(this.date3, 'MM-dd-yyyy'),
+          this.datePipe.transform(this.date4, 'MM-dd-yyyy'),
           this.empresaId.toString(),
           this.direccionId,
           this.page,

@@ -16,8 +16,15 @@ import { VotacionesBarComponent } from './components/graficos/votaciones-bar/vot
 import { CompromisosBarComponent } from './components/graficos/compromisos-bar/compromisos-bar.component';
 import { ConfirmMeetingComponent } from './components/confirm-meeting/confirm-meeting.component';
 import { DetailVoteComponent } from './components/detail-vote/detail-vote.component';
+import { ViewComiteComponent } from './components/view-comite/view-comite.component';
+import { ActaComponent } from './components/view-comite/acta/acta.component';
+import { BasicInformationComponent } from './components/view-comite/basic-information/basic-information.component';
+import { VideoComponent } from './components/view-comite/video/video.component';
+import { CommitmentComponent } from './components/view-comite/commitment/commitment.component';
+import { AttendeesComponent } from './components/view-comite/attendees/attendees.component';
+import { VotacionComponent } from './components/view-comite/votacion/votacion.component';
+import { SubTareaComponent } from './dialog/sub-tarea/sub-tarea.component';
 import { ConfigComiteComponent } from './components/config-comite/config-comite.component';
-
 @NgModule({
   declarations: [
     ComitesComponent,
@@ -33,6 +40,14 @@ import { ConfigComiteComponent } from './components/config-comite/config-comite.
     CompromisosBarComponent,
     ConfirmMeetingComponent,
     DetailVoteComponent,
+    ViewComiteComponent,
+    ActaComponent,
+    BasicInformationComponent,
+    VideoComponent,
+    CommitmentComponent,
+    AttendeesComponent,
+    VotacionComponent,
+    SubTareaComponent,
     ConfigComiteComponent
 ],
   imports: [

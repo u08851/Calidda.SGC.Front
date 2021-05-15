@@ -5,9 +5,11 @@ import { MessageService } from 'primeng/api';
 import { ComiteServices } from 'src/app/services/comite.service';
 import { EmpresaServices } from 'src/app/services/empresa.service';
 import { PaisServices } from 'src/app/services/pais.service';
+import { UserServices } from 'src/app/services/user.service';
 import { AppConstants } from 'src/app/shared/constants/app.constants';
 import { BarEmpresaDireccionComponent } from '../../components/graficos/bar-empresa-direccion/bar-empresa-direccion.component';
 import { BarPaisComponent } from '../../components/graficos/bar-pais/bar-pais.component';
+import { BarSecretariaComponent } from '../../components/graficos/bar-secretaria/bar-secretaria.component';
 import { BarTodosComponent } from '../../components/graficos/bar-todos/bar-todos.component';
 import { DonutComponent } from '../../components/graficos/donut/donut.component';
 import { TodosTableComponent } from '../../components/indicadores-inicio-tables/todos-table/todos-table.component';
@@ -23,7 +25,7 @@ export class DashboardComponent implements OnInit {
   date3: Date;
   date4: Date;
   textFilterDE:string;
-  textFilterSE:string;
+  textFilterSE: any;
   es: any;
   val1: string;
   val2: string;
@@ -39,6 +41,7 @@ export class DashboardComponent implements OnInit {
 
   selectedCountry: any;
   countries: any[];
+  scretariaList: any[];
 
   selectedCity1: any;
   cities: any[];
@@ -47,10 +50,13 @@ export class DashboardComponent implements OnInit {
   textFilter2: any = "";
   textFilter3: any = "";
 
+  filteredCountriesSingle: any[];
+
   @ViewChild(BarTodosComponent) barTodos: BarTodosComponent;
   @ViewChild(BarEmpresaDireccionComponent) barEmpresaDireccion: BarEmpresaDireccionComponent;
   @ViewChild(BarPaisComponent) barPais: BarPaisComponent;
   @ViewChild(DonutComponent) donuts: DonutComponent;
+  @ViewChild(BarSecretariaComponent) barSecretaria: BarSecretariaComponent;
 
   @ViewChild(TodosTableComponent) todoTable: TodosTableComponent;
 
@@ -61,6 +67,7 @@ export class DashboardComponent implements OnInit {
     private paisServices:PaisServices,
     private empresaServices:EmpresaServices,
     private messageService: MessageService,
+    private userServices:UserServices,
   ) {}
 
   ngOnInit(): void {
@@ -112,30 +119,31 @@ export class DashboardComponent implements OnInit {
     // dropdown
     this.listarPais();
     this.getListCompany();
+    this.getListScretary();
     this.getListModo(0);
   }
 
 
   goToTableActive(){
     if(
-      this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
-      this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null
+      this.datePipe.transform(this.date3, 'MM-dd-yyyy') == null ||
+      this.datePipe.transform(this.date4, 'MM-dd-yyyy') == null
     ){
       this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
       return false;
     }
     var data = {
-      date3: this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ? new Date() : this.date3,
-      date4: this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null ? new Date() : this.date4,
+      date3: this.datePipe.transform(this.date3, 'MM-dd-yyyy') == null ? new Date() : this.date3,
+      date4: this.datePipe.transform(this.date4, 'MM-dd-yyyy') == null ? new Date() : this.date4,
       type: 0
     };
-    this.router.navigateByUrl('/manager/todos-table', { state: { item: data }});
+    this.router.navigateByUrl('/manager/report-total', { state: { item: data }});
   }
 
   goToTableActivePais(){
     if(
-      this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
-      this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null ||
+      this.datePipe.transform(this.date3, 'MM-dd-yyyy') == null ||
+      this.datePipe.transform(this.date4, 'MM-dd-yyyy') == null ||
       this.selectedCountry == null
     ){
       this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
@@ -152,8 +160,8 @@ export class DashboardComponent implements OnInit {
 
   goToTableActiveEmpresa(){
     if(
-      this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
-      this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null ||
+      this.datePipe.transform(this.date3, 'MM-dd-yyyy') == null ||
+      this.datePipe.transform(this.date4, 'MM-dd-yyyy') == null ||
       this.selectedCity1 == null ||
       this.textFilterDE.length == 0
     ){
@@ -175,15 +183,16 @@ export class DashboardComponent implements OnInit {
       date3: this.date3,
       date4: this.date4,
       type: 3,
-      secretaria: this.textFilterSE
+      secretaria: this.textFilterSE.userId,
+      secretariaNombre: this.textFilterSE.nombre
     };
     this.router.navigateByUrl('/manager/secrearia-table', { state: { item: data }});
   }
 
   goToTableActiveFrecuencia(){
     if(
-      this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
-      this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null
+      this.datePipe.transform(this.date3, 'MM-dd-yyyy') == null ||
+      this.datePipe.transform(this.date4, 'MM-dd-yyyy') == null
     ){
       this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
       return false;
@@ -212,6 +221,14 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+  getListScretary(){
+    this.userServices.getListUserSecretaria().subscribe(
+      (response: any) => {
+        this.scretariaList = response.data
+      }
+    )
+  }
+
   getListModo(id:number){
     var evento = undefined;
     if(id != 4){
@@ -223,16 +240,16 @@ export class DashboardComponent implements OnInit {
   
       if (evento === "Enter" || evento === "click"|| evento === undefined) {
         if(
-          this.datePipe.transform(new Date(), 'dd-MM-yyyy') == null ||
-          this.datePipe.transform(new Date(), 'dd-MM-yyyy') == null
+          this.datePipe.transform(new Date(), 'MM-dd-yyyy') == null ||
+          this.datePipe.transform(new Date(), 'MM-dd-yyyy') == null
         ){
           this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
           return false;
         }else{
           this.comiteServices.getListComite(
             0,
-            this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
-            this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
+            this.datePipe.transform(new Date(), 'MM-dd-yyyy'),
+            this.datePipe.transform(new Date(), 'MM-dd-yyyy'),
             null,
             null).subscribe(
             (response) =>{
@@ -286,8 +303,8 @@ export class DashboardComponent implements OnInit {
         
           this.comiteServices.getListComite(
             4,
-            this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
-            this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
+            this.datePipe.transform(new Date(), 'MM-dd-yyyy'),
+            this.datePipe.transform(new Date(), 'MM-dd-yyyy'),
             null,
             null).subscribe(
             (response) =>{
@@ -352,16 +369,16 @@ export class DashboardComponent implements OnInit {
   
       if (evento === "Enter" || evento === "click"|| evento === undefined) {
         if(
-          this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
-          this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null
+          this.datePipe.transform(this.date3, 'MM-dd-yyyy') == null ||
+          this.datePipe.transform(this.date4, 'MM-dd-yyyy') == null
         ){
           this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
           return false;
         }else{
           this.comiteServices.getListComite(
             0,
-            this.datePipe.transform(this.date3, 'dd-MM-yyyy'),
-            this.datePipe.transform(this.date4, 'dd-MM-yyyy'),
+            this.datePipe.transform(this.date3, 'MM-dd-yyyy'),
+            this.datePipe.transform(this.date4, 'MM-dd-yyyy'),
             null,
             null).subscribe(
             (response) =>{
@@ -413,8 +430,8 @@ export class DashboardComponent implements OnInit {
   
       if (evento === "Enter" || evento === "click"|| evento === undefined) {
         if(
-          this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
-          this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null ||
+          this.datePipe.transform(this.date3, 'MM-dd-yyyy') == null ||
+          this.datePipe.transform(this.date4, 'MM-dd-yyyy') == null ||
           this.selectedCountry == null
         ){
           this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
@@ -422,8 +439,8 @@ export class DashboardComponent implements OnInit {
         }else{
           this.comiteServices.getListComite(
             1,
-            this.datePipe.transform(this.date3, 'dd-MM-yyyy'),
-            this.datePipe.transform(this.date4, 'dd-MM-yyyy'),
+            this.datePipe.transform(this.date3, 'MM-dd-yyyy'),
+            this.datePipe.transform(this.date4, 'MM-dd-yyyy'),
             this.selectedCountry.paisId,
             null).subscribe(
             (response) =>{
@@ -475,8 +492,8 @@ export class DashboardComponent implements OnInit {
   
       if (evento === "Enter" || evento === "click"|| evento === undefined) {
         if(
-          this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
-          this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null ||
+          this.datePipe.transform(this.date3, 'MM-dd-yyyy') == null ||
+          this.datePipe.transform(this.date4, 'MM-dd-yyyy') == null ||
           this.selectedCity1 == null ||
           this.textFilterDE.length == 0
         ){
@@ -485,8 +502,8 @@ export class DashboardComponent implements OnInit {
         }else{
           this.comiteServices.getListComite(
             2,
-            this.datePipe.transform(this.date3, 'dd-MM-yyyy'),
-            this.datePipe.transform(this.date4, 'dd-MM-yyyy'),
+            this.datePipe.transform(this.date3, 'MM-dd-yyyy'),
+            this.datePipe.transform(this.date4, 'MM-dd-yyyy'),
             this.selectedCity1.empresaId,
             this.textFilterDE).subscribe(
             (response) =>{
@@ -529,6 +546,77 @@ export class DashboardComponent implements OnInit {
         }
       }
     }
+    if(id == 3){
+  
+      let sinR = [];
+      var temp = {};
+      var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
+      var result: any;
+      
+      if (evento === "Enter" || evento === "click"|| evento === undefined) {
+        if(this.filteredCountriesSingle.length < 1){
+          this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
+          return false;
+        }
+
+        let tt = this.filteredCountriesSingle.findIndex(x=>
+          x.nombre == this.textFilterSE.nombre);
+        
+        if(tt !== -1){
+          if(
+            this.datePipe.transform(this.date3, 'MM-dd-yyyy') == null ||
+            this.datePipe.transform(this.date4, 'MM-dd-yyyy') == null
+          ){
+            this.showWarn("No se pudo reconocer al secretario(a)");
+            return false;
+          }else{
+            this.comiteServices.getListComite(
+              3,
+              this.datePipe.transform(this.date3, 'MM-dd-yyyy'),
+              this.datePipe.transform(this.date4, 'MM-dd-yyyy'),
+              this.textFilterSE.userId,
+              null).subscribe(
+              (response) =>{
+                this.message = "Reporte de 6 meses anteriores"
+                sinR = response.data;
+                
+                try{
+                  sinR.forEach(function (a) {
+                    temp[a.code] = temp[a.code] || { category: a.code };
+                    temp[a.code][groups[a.nombre]] = a.count;
+                  });
+                  result = Object.keys(temp).map(function (k) { return temp[k]; });
+                    
+                  let val1 = 0;
+                  let val2 = 0;
+                  let val3 = 0;
+      
+                  for(let g = 0; g < result.length; g++){
+                    val1 += result[g].value1
+                    val2 += result[g].value2
+                    val3 += result[g].value3
+                  }
+      
+                  this.val1 = val1.toString();
+                  this.val2 = val2.toString();
+                  this.val3 = val3.toString();
+                  this.val4 = val1 + val2+ val3;
+                  
+                  this.barSecretaria.dataReceived(sinR);
+                }catch{
+                  this.val1 = "0";
+                  this.val2 = "0";
+                  this.val3 = "0";
+                  this.val4 = 0;
+                  this.barSecretaria.dataReceived("");
+                }
+                
+              }
+            )
+          }
+        }       
+      }
+    }
     if(id == 4){
   
       let sinR = [];
@@ -536,16 +624,16 @@ export class DashboardComponent implements OnInit {
   
       if (evento === "Enter" || evento === "click"|| evento === undefined) {
         if(
-          this.datePipe.transform(this.date3, 'dd-MM-yyyy') == null ||
-          this.datePipe.transform(this.date4, 'dd-MM-yyyy') == null
+          this.datePipe.transform(this.date3, 'MM-dd-yyyy') == null ||
+          this.datePipe.transform(this.date4, 'MM-dd-yyyy') == null
         ){
           this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
           return false;
         }else{
           this.comiteServices.getListComite(
             4,
-            this.datePipe.transform(this.date3, 'dd-MM-yyyy'),
-            this.datePipe.transform(this.date4, 'dd-MM-yyyy'),
+            this.datePipe.transform(this.date3, 'MM-dd-yyyy'),
+            this.datePipe.transform(this.date4, 'MM-dd-yyyy'),
             null,
             null).subscribe(
             (response) =>{
@@ -587,6 +675,22 @@ export class DashboardComponent implements OnInit {
         }
       }
     }
+  }
+
+  searchUser(event) {
+    let query = event.query;
+    this.filteredCountriesSingle = this.filterCountry(query, this.scretariaList);
+  }
+
+  filterCountry(query, adminentrylistSearch: any[]):any[] {
+    let filtered : any[] = [];
+    for(let i = 0; i < adminentrylistSearch.length; i++) {
+      let country = adminentrylistSearch[i];
+      if(country.nombre.toUpperCase().indexOf(query.toUpperCase()) == 0) {
+        filtered.push(country);
+      }
+    }
+    return filtered;
   }
 
   showWarn(mensaje: string) {

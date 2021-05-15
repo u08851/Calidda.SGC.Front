@@ -211,7 +211,7 @@
                     <!-- Buscar empresa -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <p-dropdown (onChange)="onKeydown($event,2)" [options]="cities" [(ngModel)]="selectedCity1" placeholder="Buscar empresa"
-                            optionLabel="nombre" [showClear]="true"></p-dropdown>
+                        optionLabel="nombre" [showClear]="true"></p-dropdown>
                     </div>
 
                     <!-- Buscar direccion del comite -->
@@ -316,15 +316,23 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label p-input-icon-right">
                             <i class="pi pi-search"></i>
-                            <input type="text" [(ngModel)]="textFilterSE" pInputText />
-                            <label for="inputtext">Buscar secretaria de comité</label>
+                            <p-autoComplete
+                                [ngModelOptions]="{standalone: true}"
+                                [(ngModel)]="textFilterSE"
+                                (completeMethod)="searchUser($event)"
+                                [suggestions]="filteredCountriesSingle"
+                                field="nombre"
+                                [minLength]="1"
+                                emptyMessage="No se han encontrado resultados"
+                                placeholder="Ingrese al menos 1 caracter...">
+                            </p-autoComplete>
                         </span>
                     </div>
 
                     <!-- calendario DESDE -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-calendar [(ngModel)]="date3" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,3)" [(ngModel)]="date3" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Desde</label>
                         </span>
                     </div>
@@ -332,7 +340,7 @@
                     <!-- calendario HASTA -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-calendar [(ngModel)]="date4" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,3)" [(ngModel)]="date4" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Hasta</label>
                         </span>
                     </div>

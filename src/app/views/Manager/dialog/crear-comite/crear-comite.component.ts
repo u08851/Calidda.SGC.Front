@@ -1,16 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService, SelectItem } from 'primeng/api';
 import { ComiteRequestModel } from 'src/app/models/comite.model';
 import { UserModel } from 'src/app/models/user.model';
 import { DirectionServices } from 'src/app/services/direccion.service';
 import { EmpresaServices } from 'src/app/services/empresa.service';
-import { AppConstants } from 'src/app/shared/constants/app.constants';
 import { UserServices } from 'src/app/services/user.service';
 import * as _ from 'lodash';
 import { ComiteServices } from 'src/app/services/comite.service';
 import { PaisServices } from 'src/app/services/pais.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { AppConstants } from 'src/app/shared/constants/app.constants';
+import { HistoricoComiteServices } from 'src/app/services/historicocomite.service';
+import { HistoricoComiteModel } from 'src/app/models/historicocomite.model';
+
 
 interface Demo {
   name: string;
@@ -32,7 +37,7 @@ export class CrearComiteComponent implements OnInit {
   selectedCountry: {};
   countries: any[];
   displayModal: boolean;
-  nombreComite:string;
+  nombreComite: string;
 
   submitted: boolean = false;
   listaEmpresas: any[];
@@ -43,7 +48,16 @@ export class CrearComiteComponent implements OnInit {
   filteredUsuarios: any[];
   listaUsuarios: UserModel[];
   resultado: any = [{}];
-  correo = '';
+  changeTitle: boolean = false;
+  idComite: number;
+  selectedEmpresa = {};
+  selectedDireccion = {};
+  valorPlaceHolder:string='';
+  valorMensaje:string='';
+  data: any;
+  active:boolean;
+  activeResponsable:boolean;
+  historicoComite= new HistoricoComiteModel();
 
   showWarn(mensaje: string) {
     this.messageService.add({ severity: 'warn', summary: AppConstants.TitleModal.Warning, detail: mensaje });
@@ -60,26 +74,44 @@ export class CrearComiteComponent implements OnInit {
     private direccionServices: DirectionServices,
     private messageService: MessageService,
     private usuariosServices: UserServices,
-    private paisServices :PaisServices,
-    public router:Router) {
+    private paisServices: PaisServices,
+    public router: Router,
+    private _activatedRoute: ActivatedRoute,
+    private historicoComiteServices:HistoricoComiteServices) {
+
+    this._activatedRoute.params.subscribe(data => {
+      this.changeTitle = data.comiteId == null ? true : false;
+      this.data=data;
+      this.idComite=this.data.comiteId;
+    })
+
   }
 
   ngOnInit(): void {
-
-    this.valida = true;
-    this.crearFormulario();
     this.listarEmpresa();
     this.listarDireccion();
+    this.crearFormulario();
+    this.activeResponsable=false;
+    this.active=false;
 
+    if (!this.changeTitle) {
+      this.valida = false;
+      this.active=true;
+      this.valorPlaceHolder="";
+      this.UpdateForm(this.data);
+    } else {
+      this.active=false;
+      this.valorPlaceHolder="Seleccione...";
+      this.valida = true;
+    }
 
   }
-
 
   get g() { return this.comiteForm.controls; }
 
 
   crearFormulario() {
-    this.comiteForm = this.fb.group({
+      this.comiteForm = this.fb.group({
 
       nombre: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(70)]],
       empresaId: ['', [Validators.required, Validators.minLength(1)]],
@@ -88,6 +120,31 @@ export class CrearComiteComponent implements OnInit {
       usuarioId: ['', [Validators.required, Validators.minLength(1)]],
       paisId: ['', [Validators.minLength(1)]],
     })
+  }
+
+  UpdateForm(data) {
+    this.comiteForm.patchValue({
+      nombre: data.nombre,
+      empresaId: data.empresaId,
+      direccionId: data.direccionId,
+      correo: data.correo,
+      usuarioId: data.responsableId,
+      paisId: data.paisId
+
+    })
+
+    this.selectedEmpresa = {empresaId: this.data.empresaId,nombre: this.data.empresa}
+
+    this.listarPaisxEmpresa(this.data.empresaId);
+    this.listarUsuariosbyEmpresa(this.data.empresaId);
+    this.selectedCountry = {paisId: this.data.paisId,nombre: this.data.pais,sigla: this.data.url}
+    this.selectedDireccion = {direccionId: this.data.direccionId,nombre: this.data.direccion}
+    this.usuarioSelected={usuarioId: this.data.responsableId,label: this.data.responsable}
+
+    if(this.data.estado==AppConstants.EstadoComite.ESTADO_BAJA)
+    {
+      this.activeResponsable=true;
+    }
 
   }
 
@@ -108,43 +165,45 @@ export class CrearComiteComponent implements OnInit {
 
       if (this.valida) {
         //CREATE
+
         let data = this.comiteForm.value;
         var odata = new ComiteRequestModel();
 
         odata.empresaId = data.empresaId.empresaId;
-        odata.paisId=data.paisId.paisId;
-        odata.usuarioId=data.usuarioId;
+        odata.paisId = data.paisId.paisId;
+        odata.usuarioId = data.usuarioId;
         odata.nombre = data.nombre;
-        odata.correo=data.correo;
+        odata.correo = data.correo;
         odata.direccionId = data.direccionId.direccionId;
-        odata.codigo="";
-        this.nombreComite=odata.nombre;
 
         this.comiteServices.addComite(odata).subscribe(
           (response: any) => {
-            //this.showSuccess(AppConstants.MessageModal.CREATE_SUCCESS);
-            this.showModalDialog();
+            if(response.valid){
+              this.valorMensaje= odata.nombre;
+              this.guardarHistoricoComite(response.data);
+            }
           }
         )
       } else {
         //UPDATE
+
         let data = this.comiteForm.value;
         var odata = new ComiteRequestModel();
 
-        odata.comiteId=data.comiteId;
+        odata.comiteId = this.idComite;
         odata.empresaId = data.empresaId.empresaId;
-        odata.paisId=data.paisId.paisId;
-        odata.usuarioId=data.usuarioId;
+        odata.paisId = data.paisId.paisId;
+        odata.usuarioId = data.usuarioId;
         odata.nombre = data.nombre;
-        odata.correo=data.correo;
+        odata.correo = data.correo;
         odata.direccionId = data.direccionId.direccionId;
-        this.nombreComite=odata.nombre;
 
-
-        this.empresaServices.updateEmpresa(odata).subscribe(
+        this.comiteServices.updateComite(odata).subscribe(
           (response: any) => {
-            this.showSuccess(AppConstants.MessageModal.EDIT_SUCCESS);
-
+            if(response.valid){
+              this.valorMensaje= this.usuarioSelected.label;
+              this.guardarHistoricoComite(odata);
+            }
           }
         )
       }
@@ -153,7 +212,33 @@ export class CrearComiteComponent implements OnInit {
       this.comiteForm.markAllAsTouched();
       this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
     }
+
+
   }
+
+
+  guardarHistoricoComite(data)
+  {
+
+    if(this.valida)
+    {
+      this.historicoComite.descripcion="Se creó el comite "+ data.nombre;
+    }
+    else{
+      this.historicoComite.descripcion="Se cambió el secretario   "+ this.valorMensaje;
+    }
+
+    this.historicoComite.comiteId=data.comiteId;
+
+    this.historicoComiteServices.addHistoricoComite(this.historicoComite).subscribe(
+      (response: any) => {
+        if(response.valid){
+          this.displayModal = true;
+        }
+      }
+    )
+  }
+
 
   listarEmpresa() {
     this.empresaServices.getListEmpresa("ALL1", 0, 0).subscribe(
@@ -171,14 +256,15 @@ export class CrearComiteComponent implements OnInit {
     )
   }
 
-  listarPaisxEmpresa(idEmpresa:number){
+  listarPaisxEmpresa(idEmpresa: number) {
     this.paisServices.getPaisByEmpresa(idEmpresa).subscribe(
       (response: any) => {
-
         this.countries = response;
-        this.selectedCountry = {paisId: this.countries[0].paisId,nombre:  this.countries[0].nombre,sigla:this.countries[0].sigla}
+        this.selectedCountry = { paisId: this.countries[0].paisId, nombre: this.countries[0].nombre, sigla: this.countries[0].sigla }
       }
     )
+
+
   }
 
   // dialog crear
@@ -187,27 +273,32 @@ export class CrearComiteComponent implements OnInit {
   }
 
   changeEmpresa(event): void {
-
+    this.filteredUsuarios = [];
     this.resultado = [];
     this.comiteForm.patchValue({ correo: '' })
-    this.usuarioSelected={};
+    this.usuarioSelected = {};
     let idEmpresa = event.value.empresaId;
 
     this.listarPaisxEmpresa(idEmpresa);
+    this.listarUsuariosbyEmpresa(idEmpresa);
+  }
 
+
+  listarUsuariosbyEmpresa(idEmpresa:number)
+  {
     this.usuariosServices.getUsuariosByEmpresa(idEmpresa).subscribe(
       (response: any) => {
         this.listaUsuarios = response.data;
       }
     )
-
   }
 
   filtered(event) {
 
     this.filteredUsuarios = [];
     this.filteredUsuarios = _.map(this.listaUsuarios, p => {
-      if (p.personaDto.nombre.includes(_.toUpper(event.query))) {
+
+      if (_.toUpper(p.personaDto.nombre).includes(_.toUpper(event.query))) {
         return p;
       }
     });
@@ -215,30 +306,29 @@ export class CrearComiteComponent implements OnInit {
 
     this.resultado = [];
     _.forEach(this.filteredUsuarios, (val: any) => {
-      if (val !=null) {
-        let ape = val.personaDto.apePaterno != null ? val.personaDto.apePaterno : '';
-        //ape=ape +" " +val.personaDto.apeMaterno != null ? val.personaDto.apeMaterno : '';
+      if (val != null) {
+        let apePaterno = val.personaDto.apePaterno != null ? val.personaDto.apePaterno : '';
+        let apeMaterno=val.personaDto.apeMaterno != null ? val.personaDto.apeMaterno : '';
         this.resultado.push({
-          'label': val.personaDto.nombre + ' ' + ape,
+          'label': val.personaDto.nombre + ' ' + apePaterno+ ' ' + apeMaterno,
           'value': val.usuarioId,
           'email': val.correo
 
-        });
-        this.comiteForm.patchValue({ usuarioId: val.usuarioId });
+        });;
       }
     });
     this.filteredUsuarios = this.resultado;
+
   }
 
   onSelectUsuario(event) {
 
-    this.correo = event.email;
     this.comiteForm.patchValue({ correo: event.email });
     this.comiteForm.patchValue({ usuarioId: event.value });
 
   }
 
-  eventClose(){
+  eventClose() {
     this.router.navigateByUrl('/manager/comites');
     this.displayModal = false;
 

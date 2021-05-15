@@ -8,7 +8,8 @@
         <div class="p-col-12 p-md-6 p-lg-4">
             <div class="p-field">
                 <label for="nombre" [ngClass]="{ 'is-invalid-text': submitted && g.nombre.errors }">Nombre del comité</label>
-                <input formControlName="nombre" [ngClass]="{ 'is-invalid-input': submitted && g.nombre.errors }" oninput="this.value=this.value.trim()==''?'':this.value" pInputText />
+                <input *ngIf="!active" formControlName="nombre" [ngClass]="{ 'is-invalid-input': submitted && g.nombre.errors }" oninput="this.value=this.value.trim()==''?'':this.value" pInputText />
+                <input *ngIf="active" disabled=true formControlName="nombre" [ngClass]="{ 'is-invalid-input': submitted && g.nombre.errors }" oninput="this.value=this.value.trim()==''?'':this.value" pInputText />
                 <div *ngIf="submitted && g.nombre.errors != null">
                     <span class="p-error" *ngIf="g.nombre.errors.minlength">El nombre debe contener al menos un carácter.<br></span>
                     <span class="p-error" *ngIf="g.nombre.errors.required">El nombre es requerido.<br></span>
@@ -21,8 +22,11 @@
         <div class="p-col-12 p-md-6 p-lg-4">
             <div class="p-field">
                 <label [ngClass]="{ 'is-invalid-text': submitted && g.empresaId.errors }">Empresa del comité</label>
-                <p-dropdown [options]="listaEmpresas" (onChange)="changeEmpresa($event)" formControlName="empresaId" optionLabel="nombre" placeholder="Seleccione...">
+                <p-dropdown [disabled]="active" [options]="listaEmpresas" [(ngModel)]="selectedEmpresa" (onChange)="changeEmpresa($event)" formControlName="empresaId" placeholder={{valorPlaceHolder}} optionLabel="nombre">
 
+                    <ng-template pTemplate="selectedItem">
+                        <span class="p-ml-2" style="line-height:1; margin-bottom: 5px;">{{selectedEmpresa.nombre}}</span>
+                    </ng-template>
                 </p-dropdown>
                 <div *ngIf="submitted && g.empresaId.errors != null">
                     <span class="p-error" *ngIf="g.empresaId.errors.required">La empresa es requerido.<br></span>
@@ -34,8 +38,8 @@
         <div class="p-col-12 p-md-6 p-lg-4">
             <div class="p-field">
                 <label [ngClass]="{ 'is-invalid-text': submitted && g.paisId.errors }">País</label>
-                <p-dropdown formControlName="paisId" [ngClass]="{ 'is-invalid-input': submitted && g.paisId.errors }" oninput="this.value=this.value.trim()==''?'':this.value" [disabled]="true" [options]="countries" [(ngModel)]="selectedCountry" optionLabel="nombre" [showClear]="false"
-                    placeholder="" dropdownIcon="">
+                <p-dropdown formControlName="paisId" [ngClass]="{ 'is-invalid-input': submitted && g.paisId.errors }" oninput="this.value=this.value.trim()==''?'':this.value" [disabled]="active" [options]="countries" [(ngModel)]="selectedCountry" optionLabel="nombre"
+                    [showClear]="false" placeholder="" dropdownIcon="">
                     <ng-template pTemplate="selectedItem">
                         <div class="p-d-flex p-ai-center">
                             <img style="width: 20px;" [src]="selectedCountry.sigla" />
@@ -58,8 +62,8 @@
             <div class="p-field">
                 <label [ngClass]="{ 'is-invalid-text': submitted && g.usuarioId.errors}">Secretaría de comité</label>
                 <!-- <input pInputText /> -->
-                <p-autoComplete [ngModelOptions]="{standalone: true}" [(ngModel)]="usuarioSelected" (onSelect)="onSelectUsuario($event)" [suggestions]="filteredUsuarios" (completeMethod)="filtered($event)" field="label" [minLength]="1" emptyMessage="No se han encontrado resultados"
-                    placeholder="Ingrese al menos 1 caracter...">
+                <p-autoComplete [disabled]="activeResponsable" [ngModelOptions]="{standalone: true}" [(ngModel)]="usuarioSelected" (onSelect)="onSelectUsuario($event)" [suggestions]="filteredUsuarios" (completeMethod)="filtered($event)" field="label" [minLength]="1"
+                    emptyMessage="No se han encontrado resultados" placeholder="Ingrese al menos 1 caracter...">
                 </p-autoComplete>
                 <div *ngIf="submitted && g.usuarioId.errors != null">
                     <span class="p-error" *ngIf="g.usuarioId.errors.required">El responsable es requerido.<br></span>
@@ -71,7 +75,7 @@
         <div class="p-col-12 p-md-6 p-lg-4">
             <div class="p-field">
                 <label [ngClass]="{ 'is-invalid-text': submitted && g.correo.errors }">Correo electrónico</label>
-                <input pInputText formControlName="correo" readonly />
+                <input pInputText formControlName="correo" disabled/>
                 <div *ngIf="submitted && g.correo.errors != null">
                     <span class="p-error" *ngIf="g.correo.errors.required">El correo es requerido.<br></span>
                 </div>
@@ -82,7 +86,12 @@
         <div class="p-col-12 p-md-6 p-lg-4">
             <div class="p-field">
                 <label [ngClass]="{ 'is-invalid-text': submitted && g.direccionId.errors }">Dirección dueña del comité</label>
-                <p-dropdown [options]="listaDirecciones" formControlName="direccionId" placeholder="Seleccione..." optionLabel="nombre"></p-dropdown>
+                <p-dropdown [disabled]="active" [options]="listaDirecciones" formControlName="direccionId" [(ngModel)]="selectedDireccion" optionLabel="nombre" placeholder={{valorPlaceHolder}}>
+                    <ng-template pTemplate="selectedItem">
+                        <span class="p-ml-2" style="line-height:1; margin-bottom: 5px;">{{selectedDireccion.nombre}}</span>
+                    </ng-template>
+
+                </p-dropdown>
                 <div *ngIf="submitted && g.direccionId.errors != null">
                     <span class="p-error" *ngIf="g.direccionId.errors.required">La dirección es requerida.<br></span>
                 </div>
@@ -100,9 +109,11 @@
     <div class="dialog-content">
         <i class="material-icons"> check_circle_outline </i>
         <h3>Confirmación</h3>
-        <p class="p-m-0">
-            El comité <strong>“Comité {{nombreComite}}”</strong> ha sido creado correctamente
-        </p>
+
+        <p class="p-m-0" *ngIf="valida"> El comité <strong>{{valorMensaje}}</strong> se creó correctamente</p>
+        <p class="p-m-0" *ngIf="!valida"> Has asignado correctamente a <strong>{{valorMensaje}}</strong> como nueva secretaria</p>
+
+
     </div>
     <ng-template pTemplate="footer">
         <p-button (click)="eventClose()" label="Ir a mis comités"></p-button>

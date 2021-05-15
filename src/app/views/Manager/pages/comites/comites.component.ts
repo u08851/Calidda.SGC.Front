@@ -8,7 +8,9 @@ import { MenuItem } from 'primeng/api';
 })
 export class ComitesComponent implements OnInit {
   items: MenuItem[];
-
+  selectedComite:string;
+  comites:any[];
+  selectedCodComite:string;
   // Calendar
   date3: Date;
   date4: Date;
@@ -49,5 +51,16 @@ export class ComitesComponent implements OnInit {
       today: 'Hoy',
       clear: 'Borrar'
     }
+
+    // this.comites = [
+    //   {cod: "01", label: "Comite 1"},
+    // ]
+  }
+
+  searchComite(event) {
+      this.comites = [
+        {cod: "01", label: "Comite 1"},
+        {cod: "02", label: "Comite 2"},
+      ]
   }
 }

@@ -1,4 +1,4 @@
-<p-table [value]="data" [scrollable]="true" scrollHeight="200px">
+<p-table [value]="listaHistoricoComites" [scrollable]="true" scrollHeight="200px">
     <ng-template pTemplate="colgroup">
         <colgroup>
             <col style="width: 30%" />
@@ -15,9 +15,9 @@
     </ng-template>
     <ng-template pTemplate="body" let-history>
         <tr>
-            <td>{{history.fechaResgistro}}</td>
-            <td>{{history.horaRegistro}}</td>
-            <td>{{history.detalles}}</td>
+            <td>{{history.fechaRegistro |date:"dd-MM-yyyy" }}</td>
+            <td>{{history.fechaRegistro | date:"shortTime"}}</td>
+            <td>{{history.descripcion}}</td>
         </tr>
     </ng-template>
 </p-table>

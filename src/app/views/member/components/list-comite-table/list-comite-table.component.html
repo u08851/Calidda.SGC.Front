@@ -4,7 +4,7 @@
       [columns]="cols"
       [value]="data"
       [paginator]="true"
-      [rows]="3"
+      [rows]="5"
       styleClass="style-table-direccion"
       [showCurrentPageReport]="true"
       [resizableColumns]="true"
@@ -60,7 +60,7 @@
               type="button"
               icon="pi"
               *ngIf="rowData.estado.cod == '0'"
-              routerLink="/secretary/view-comite"
+              routerLink="/member/view-comite"
               class="p-button-rounded p-button-info p-button-text icon-size"
               styleClass="icon-size"
             >

@@ -5,6 +5,7 @@ import { DasboardComiteComponent } from './components/dasboard-comite/dasboard-c
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ConfirmMeetingComponent } from './components/confirm-meeting/confirm-meeting.component';
 import { DetailVoteComponent } from './components/detail-vote/detail-vote.component';
+import { ViewComiteComponent } from './components/view-comite/view-comite.component';
 import { ConfigComiteComponent } from './components/config-comite/config-comite.component';
 
 
@@ -27,6 +28,10 @@ export const MemberRoutes: Routes = [
             {
                 path: 'detail-comite',
                 component: DetailComiteComponent,
+            },
+            {
+                path: 'view-comite',
+                component: ViewComiteComponent
             },
             {
                 path: 'dashboard',
