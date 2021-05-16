@@ -232,12 +232,12 @@ export class DashboardComponent implements OnInit {
   getListModo(id:number){
     var evento = undefined;
     if(id != 4){
-  
+
       let sinR = [];
       let temp = {};
       let groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
       let result: any;
-  
+
       if (evento === "Enter" || evento === "click"|| evento === undefined) {
         if(
           this.datePipe.transform(new Date(), 'MM-dd-yyyy') == null ||
@@ -255,29 +255,29 @@ export class DashboardComponent implements OnInit {
             (response) =>{
               this.message = "Reporte de 6 meses anteriores"
               sinR = response.data;
-              
+
               try{
                 sinR.forEach(function (a) {
                   temp[a.code] = temp[a.code] || { category: a.code };
                   temp[a.code][groups[a.nombre]] = a.count;
                 });
                 result = Object.keys(temp).map(function (k) { return temp[k]; });
-                  
+
                 let val1 = 0;
                 let val2 = 0;
                 let val3 = 0;
-    
+
                 for(let g = 0; g < result.length; g++){
                   val1 += result[g].value1
                   val2 += result[g].value2
                   val3 += result[g].value3
                 }
-    
+
                 this.val1 = val1.toString();
                 this.val2 = val2.toString();
                 this.val3 = val3.toString();
                 this.val4 = val1 + val2+ val3;
-                
+
                 this.barTodos.dataReceived(sinR);
               }catch{
                 this.val1 = "0";
@@ -286,21 +286,21 @@ export class DashboardComponent implements OnInit {
                 this.val4 = 0;
                 this.barTodos.dataReceived("");
               }
-              
+
             }
           )
         }
       }
     }
     if(id == 4){
-  
+
       let sinR = [];
       let temp = {};
       let groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
       let result: any;
-  
+
       if (evento === "Enter" || evento === "click"|| evento === undefined) {
-        
+
           this.comiteServices.getListComite(
             4,
             this.datePipe.transform(new Date(), 'MM-dd-yyyy'),
@@ -310,7 +310,7 @@ export class DashboardComponent implements OnInit {
             (response) =>{
               this.message = "Reporte de 6 meses anteriores"
               sinR = response.data;
-              
+
               try{
                 var groupBy = function (miarray, prop) {
                   return miarray.reduce(function(groups, item) {
@@ -320,16 +320,16 @@ export class DashboardComponent implements OnInit {
                       return groups;
                   }, {});
                 }
-    
+
                 result = groupBy(sinR,'nombre')
-                
+
                 this.val11 = result.Semanal.count;
                 this.val22 = result.Quincenal.count;
                 this.val33 = result.Trimestral.count;
                 this.val44 = result.Mensual.count;
                 this.val55 = result.Semestral.count;
                 this.val66 = result.Anual.count;
-                
+
                 this.donuts.dataReceived(sinR);
               }catch{
                 this.val11 = "0";
@@ -340,10 +340,10 @@ export class DashboardComponent implements OnInit {
                 this.val66 = "0";
                 this.donuts.dataReceived("");
               }
-              
+
             }
           )
-        
+
       }
     }
   }
@@ -361,12 +361,12 @@ export class DashboardComponent implements OnInit {
       evento = event.key
     }
     if(id == 0){
-  
+
       let sinR = [];
       var temp = {};
       var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
       var result: any;
-  
+
       if (evento === "Enter" || evento === "click"|| evento === undefined) {
         if(
           this.datePipe.transform(this.date3, 'MM-dd-yyyy') == null ||
@@ -384,29 +384,29 @@ export class DashboardComponent implements OnInit {
             (response) =>{
               this.message = "Reporte de 6 meses anteriores"
               sinR = response.data;
-              
+
               try{
                 sinR.forEach(function (a) {
                   temp[a.code] = temp[a.code] || { category: a.code };
                   temp[a.code][groups[a.nombre]] = a.count;
                 });
                 result = Object.keys(temp).map(function (k) { return temp[k]; });
-                  
+
                 let val1 = 0;
                 let val2 = 0;
                 let val3 = 0;
-    
+
                 for(let g = 0; g < result.length; g++){
                   val1 += result[g].value1
                   val2 += result[g].value2
                   val3 += result[g].value3
                 }
-    
+
                 this.val1 = val1.toString();
                 this.val2 = val2.toString();
                 this.val3 = val3.toString();
                 this.val4 = val1 + val2+ val3;
-                
+
                 this.barTodos.dataReceived(sinR);
               }catch{
                 this.val1 = "0";
@@ -415,19 +415,19 @@ export class DashboardComponent implements OnInit {
                 this.val4 = 0;
                 this.barTodos.dataReceived("");
               }
-              
+
             }
           )
         }
       }
     }
     if(id == 1){
-  
+
       let sinR = [];
       var temp = {};
       var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
       var result: any;
-  
+
       if (evento === "Enter" || evento === "click"|| evento === undefined) {
         if(
           this.datePipe.transform(this.date3, 'MM-dd-yyyy') == null ||
@@ -446,29 +446,29 @@ export class DashboardComponent implements OnInit {
             (response) =>{
               this.message = "Reporte de 6 meses anteriores"
               sinR = response.data;
-              
+
               try{
                 sinR.forEach(function (a) {
                   temp[a.code] = temp[a.code] || { category: a.code };
                   temp[a.code][groups[a.nombre]] = a.count;
                 });
                 result = Object.keys(temp).map(function (k) { return temp[k]; });
-                  
+
                 let val1 = 0;
                 let val2 = 0;
                 let val3 = 0;
-    
+
                 for(let g = 0; g < result.length; g++){
                   val1 += result[g].value1
                   val2 += result[g].value2
                   val3 += result[g].value3
                 }
-    
+
                 this.val1 = val1.toString();
                 this.val2 = val2.toString();
                 this.val3 = val3.toString();
                 this.val4 = val1 + val2+ val3;
-                
+
                 this.barPais.dataReceived(sinR);
               }catch{
                 this.val1 = "0";
@@ -477,19 +477,19 @@ export class DashboardComponent implements OnInit {
                 this.val4 = 0;
                 this.barPais.dataReceived("");
               }
-              
+
             }
           )
         }
       }
     }
     if(id == 2){
-  
+
       let sinR = [];
       var temp = {};
       var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
       var result: any;
-  
+
       if (evento === "Enter" || evento === "click"|| evento === undefined) {
         if(
           this.datePipe.transform(this.date3, 'MM-dd-yyyy') == null ||
@@ -509,29 +509,29 @@ export class DashboardComponent implements OnInit {
             (response) =>{
               this.message = "Reporte de 6 meses anteriores"
               sinR = response.data;
-              
+
               try{
                 sinR.forEach(function (a) {
                   temp[a.code] = temp[a.code] || { category: a.code };
                   temp[a.code][groups[a.nombre]] = a.count;
                 });
                 result = Object.keys(temp).map(function (k) { return temp[k]; });
-                  
+
                 let val1 = 0;
                 let val2 = 0;
                 let val3 = 0;
-    
+
                 for(let g = 0; g < result.length; g++){
                   val1 += result[g].value1
                   val2 += result[g].value2
                   val3 += result[g].value3
                 }
-    
+
                 this.val1 = val1.toString();
                 this.val2 = val2.toString();
                 this.val3 = val3.toString();
                 this.val4 = val1 + val2+ val3;
-                
+
                 this.barEmpresaDireccion.dataReceived(sinR);
               }catch{
                 this.val1 = "0";
@@ -540,19 +540,19 @@ export class DashboardComponent implements OnInit {
                 this.val4 = 0;
                 this.barEmpresaDireccion.dataReceived("");
               }
-              
+
             }
           )
         }
       }
     }
     if(id == 3){
-  
+
       let sinR = [];
       var temp = {};
       var groups = { 'Creado': 'value0','Activo': 'value1', 'En Configuración': 'value2', 'De Baja': 'value3' };
       var result: any;
-      
+
       if (evento === "Enter" || evento === "click"|| evento === undefined) {
         if(this.filteredCountriesSingle.length < 1){
           this.showWarn(AppConstants.MessageModal.FIELD_ERROR);
@@ -561,7 +561,7 @@ export class DashboardComponent implements OnInit {
 
         let tt = this.filteredCountriesSingle.findIndex(x=>
           x.nombre == this.textFilterSE.nombre);
-        
+
         if(tt !== -1){
           if(
             this.datePipe.transform(this.date3, 'MM-dd-yyyy') == null ||
@@ -579,29 +579,29 @@ export class DashboardComponent implements OnInit {
               (response) =>{
                 this.message = "Reporte de 6 meses anteriores"
                 sinR = response.data;
-                
+
                 try{
                   sinR.forEach(function (a) {
                     temp[a.code] = temp[a.code] || { category: a.code };
                     temp[a.code][groups[a.nombre]] = a.count;
                   });
                   result = Object.keys(temp).map(function (k) { return temp[k]; });
-                    
+
                   let val1 = 0;
                   let val2 = 0;
                   let val3 = 0;
-      
+
                   for(let g = 0; g < result.length; g++){
                     val1 += result[g].value1
                     val2 += result[g].value2
                     val3 += result[g].value3
                   }
-      
+
                   this.val1 = val1.toString();
                   this.val2 = val2.toString();
                   this.val3 = val3.toString();
                   this.val4 = val1 + val2+ val3;
-                  
+
                   this.barSecretaria.dataReceived(sinR);
                 }catch{
                   this.val1 = "0";
@@ -610,18 +610,18 @@ export class DashboardComponent implements OnInit {
                   this.val4 = 0;
                   this.barSecretaria.dataReceived("");
                 }
-                
+
               }
             )
           }
-        }       
+        }
       }
     }
     if(id == 4){
-  
+
       let sinR = [];
       var result: any;
-  
+
       if (evento === "Enter" || evento === "click"|| evento === undefined) {
         if(
           this.datePipe.transform(this.date3, 'MM-dd-yyyy') == null ||
@@ -639,7 +639,7 @@ export class DashboardComponent implements OnInit {
             (response) =>{
               this.message = "Reporte de 6 meses anteriores"
               sinR = response.data;
-              
+
               try{
                 sinR = response.data;
                 var groupBy = function (miarray, prop) {
@@ -651,14 +651,14 @@ export class DashboardComponent implements OnInit {
                   }, {});
                 }
                 result = groupBy(sinR,'nombre')
-                
+
                 this.val11 = result.Semanal.count;
                 this.val22 = result.Quincenal.count;
                 this.val33 = result.Trimestral.count;
                 this.val44 = result.Mensual.count;
                 this.val55 = result.Semestral.count;
                 this.val66 = result.Anual.count;
-                
+
                 this.donuts.dataReceived(sinR);
               }catch{
                 this.val11 = "0";
@@ -669,7 +669,7 @@ export class DashboardComponent implements OnInit {
                 this.val66 = "0";
                 this.donuts.dataReceived("");
               }
-              
+
             }
           )
         }
@@ -695,6 +695,31 @@ export class DashboardComponent implements OnInit {
 
   showWarn(mensaje: string) {
     this.messageService.add({ severity: 'warn', summary: AppConstants.TitleModal.Warning, detail: mensaje });
+  }
+
+  exportarExcelTotalComiteActivos()
+  {
+
+    console.log('ola');
+    let nombreReporte="TotalComiteActivos";
+    this.comiteServices.exportarExcelTotalComiteActivos(this.datePipe.transform(this.date3, 'MM-dd-yyyy'),this.datePipe.transform(this.date4, 'MM-dd-yyyy')).
+    subscribe(data => {
+      if(data.size>1){
+          this.downloadFile(data,nombreReporte);
+      }else{
+        this.showWarn("No hay registros a exportar");
+      }
+    })
+  }
+
+  downloadFile(data,nameReporte:string) {
+
+    const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const url = window.URL.createObjectURL(blob);
+      var anchor = document.createElement("a");
+      anchor.download =   nameReporte+".xlsx";
+      anchor.href = url;
+      anchor.click();
   }
 
 }

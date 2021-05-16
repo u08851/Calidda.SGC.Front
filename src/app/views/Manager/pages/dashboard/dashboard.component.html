@@ -28,7 +28,8 @@
                     </div>
 
                     <div class="p-col-12 p-md-6 p-lg-3 p-text-right">
-                        <p-button label="Exportar" icon="pi pi-cloud-download"></p-button>
+                        <!--<p-button label="Exportar" icon="pi pi-cloud-download" (click)="exportarExcelTotalComiteActivos()"></p-button>-->
+                        <button label="Exportar" icon="pi pi-cloud-download" (click)="exportarExcelTotalComiteActivos();" pButton type="button" label="Exportar"></button>
                     </div>
                 </div>
 
@@ -62,7 +63,7 @@
 
                     <!-- Comités de baja -->
                     <div class="p-col-12 p-md-6 p-lg-3">
-                        <div class="box"  routerLink="/manager/report">
+                        <div class="box" routerLink="/manager/report">
                             <div class="box-detalle">
                                 <p>{{ val3 }}</p>
                                 <i class="material-icons dark"> bar_chart </i>
@@ -102,8 +103,7 @@
                 <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
                     <!-- Buscar país -->
                     <div class="p-col-12 p-md-6 p-lg-3">
-                        <p-dropdown (onChange)="onKeydown($event,1)" [options]="countries" [(ngModel)]="selectedCountry" optionLabel="nombre"
-                            [filter]="true" filterBy="nombre" [showClear]="true" placeholder="Buscar país">
+                        <p-dropdown (onChange)="onKeydown($event,1)" [options]="countries" [(ngModel)]="selectedCountry" optionLabel="nombre" [filter]="true" filterBy="nombre" [showClear]="true" placeholder="Buscar país">
                             <ng-template pTemplate="selectedItem">
                                 <div class="country-item country-item-value" *ngIf="selectedCountry">
                                     <img style="width: 20px;" [src]="selectedCountry.sigla" />
@@ -112,7 +112,7 @@
                             </ng-template>
                             <ng-template let-country pTemplate="item">
                                 <div class="country-item">
-                                    <img [src]="country.sigla"/>
+                                    <img [src]="country.sigla" />
                                     <div>{{ country.nombre }}</div>
                                 </div>
                             </ng-template>
@@ -210,8 +210,7 @@
                 <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
                     <!-- Buscar empresa -->
                     <div class="p-col-12 p-md-6 p-lg-3">
-                        <p-dropdown (onChange)="onKeydown($event,2)" [options]="cities" [(ngModel)]="selectedCity1" placeholder="Buscar empresa"
-                        optionLabel="nombre" [showClear]="true"></p-dropdown>
+                        <p-dropdown (onChange)="onKeydown($event,2)" [options]="cities" [(ngModel)]="selectedCity1" placeholder="Buscar empresa" optionLabel="nombre" [showClear]="true"></p-dropdown>
                     </div>
 
                     <!-- Buscar direccion del comite -->

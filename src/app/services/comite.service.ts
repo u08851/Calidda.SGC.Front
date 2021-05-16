@@ -62,7 +62,7 @@ export class ComiteServices {
   }
 
   exportarExcelTotalComiteActivos(fechaDesde: string,fechaHasta: string){
-    const url = `${this.BASE_URL}/ExcelTotalComiteActivos/`+fechaDesde+"/"+fechaHasta;
+    const url = `${this.BASE_URL2}/ExcelTotalComiteActivos/`+fechaDesde+"/"+fechaHasta;
     let headers = new HttpHeaders();
     headers = headers.append("Accept","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
     return this._http.post(url,null,{headers: headers,responseType: 'blob'})
