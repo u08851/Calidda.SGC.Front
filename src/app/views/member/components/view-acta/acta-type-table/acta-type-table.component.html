@@ -1,0 +1,24 @@
+<p-table [columns]="cols" [value]="data" styleClass="style-table">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+                <div class="p-d-flex p-ai-center">
+                    <p-avatar
+                        *ngIf="col.field == 'name' || col.field == 'responsable'"
+                        image="assets/images/img11.jpg"
+                        styleClass="p-mr-2"
+                        shape="circle">
+                    </p-avatar>
+                    {{rowData[col.field]}}
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

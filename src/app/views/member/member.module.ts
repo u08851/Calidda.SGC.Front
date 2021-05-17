@@ -24,6 +24,9 @@ import { CommitmentComponent } from './components/view-comite/commitment/commitm
 import { AttendeesComponent } from './components/view-comite/attendees/attendees.component';
 import { VotacionComponent } from './components/view-comite/votacion/votacion.component';
 import { SubTareaComponent } from './dialog/sub-tarea/sub-tarea.component';
+import { ViewActaComponent } from './components/view-acta/view-acta.component';
+import { ActaTypeComponent } from './components/view-acta/acta-type/acta-type.component';
+import { ActaTypeTableComponent } from './components/view-acta/acta-type-table/acta-type-table.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,10 @@ import { SubTareaComponent } from './dialog/sub-tarea/sub-tarea.component';
     CommitmentComponent,
     AttendeesComponent,
     VotacionComponent,
-    SubTareaComponent
+    SubTareaComponent,
+    ViewActaComponent,
+    ActaTypeComponent,
+    ActaTypeTableComponent
 ],
   imports: [
     CommonModule,

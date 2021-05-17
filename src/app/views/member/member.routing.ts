@@ -6,6 +6,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ConfirmMeetingComponent } from './components/confirm-meeting/confirm-meeting.component';
 import { DetailVoteComponent } from './components/detail-vote/detail-vote.component';
 import { ViewComiteComponent } from './components/view-comite/view-comite.component';
+import { ViewActaComponent } from './components/view-acta/view-acta.component';
 
 
 export const MemberRoutes: Routes = [
@@ -31,6 +32,10 @@ export const MemberRoutes: Routes = [
             {
                 path: 'view-comite',
                 component: ViewComiteComponent
+            },
+            {
+                path: 'acta',
+                component: ViewActaComponent
             },
             {
                 path: 'dashboard',

@@ -1,5 +1,4 @@
 <p class="title info p-mb-3">Acta de Reunión - C2031</p>
-
 <div class="p-grid p-col-12 p-md-12 p-style-input-fill dark">
     <div class="p-field p-grid p-col-12 p-md-6">
         <div class="p-d-flex w-100">
@@ -50,15 +49,16 @@
         </div>
     </div>
     <div class="p-card p-col-12 border-1px-gray p-p-3 p-mb-3">
-        <p class="title p-mb-3">Aprobara Acta</p>
+        <p class="title p-mb-3">Aprobar Acta</p>
         <div class="p-d-flex p-jc-center">
-            <button class="stylebtn"  pButton label="Visualizar acta" icon="pi pi-eye"></button>
+            <button routerLink="/member/acta" class="stylebtn" pButton label="Visualizar acta"
+                icon="pi pi-eye"></button>
         </div>
     </div>
     <div class="p-card p-col-12 border-1px-gray p-p-3">
-        <p class="title p-mb-3">Aprobara Acta</p>
+        <p class="title p-mb-3">Firmar Acta</p>
         <div class="p-d-flex p-jc-center">
-            <button [style.width]="'15%'"  pButton label="Firmar" icon="pi">
+            <button [style.width]="'15%'" pButton label="Firmar" icon="pi">
                 <span class="material-icons-outlined">
                     drive_file_rename_outline
                 </span>

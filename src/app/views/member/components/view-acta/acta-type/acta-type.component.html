@@ -1,0 +1,9 @@
+<p-panel  [toggleable]="true" expandIcon ="pi pi-chevron-circle-down" collapseIcon="pi pi-chevron-circle-up">
+    <ng-template pTemplate="header">
+        <div class="p-d-flex p-ai-center p-jc-between w-100">
+            <p class="title"> {{typActa.description}} </p>
+            <p *ngIf="typActa.id == 1" class="p-mr-4"> Nº de asistentes: <strong>6</strong> </p>
+        </div>
+    </ng-template>
+    <app-acta-type-table [cols]="cols" [typeId]="typActa.id"></app-acta-type-table>
+</p-panel>
