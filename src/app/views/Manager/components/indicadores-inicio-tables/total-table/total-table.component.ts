@@ -64,7 +64,6 @@ export class TotalTableComponent implements OnInit {
 
     this.cols = [
       { header: 'Fecha de creacion', field: 'fechaC' },
-      { header: 'País', field: 'pais' },
       { header: 'Nombre del comité', field: 'nombre' },
       { header: 'Secretario del comité', field: 'secretaria' },
       { header: 'Fecha de último sesión', field: 'fechaU' },

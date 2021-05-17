@@ -81,7 +81,7 @@ export class PaisTableComponent implements OnInit {
 
     this.cols2 = [
       { header: 'Fecha de creacion', field: 'fechaCreacion' },
-      { header: 'País', field: 'pais' },
+      // { header: 'País', field: 'pais' },
       { header: 'Nombre del comité', field: 'nombre' },
       { header: 'Secretario del comité', field: 'secretario' },
       { header: 'Fecha de último sesión', field: 'fechaUltimo' },
