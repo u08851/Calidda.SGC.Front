@@ -82,8 +82,7 @@ export class TodosTableComponent implements OnInit {
       { header: 'Fecha de creacion', field: 'fechaCreacion' },
       { header: 'Nombre del comité', field: 'nombre' },
       { header: 'Secretario del comité', field: 'secretario' },
-      { header: 'Fecha de último sesión', field: 'fechaUltimo' },
-      { header: 'Estado', field: 'status' },
+      { header: 'Fecha de último sesión', field: 'fechaUltimo' }
     ];
 
     this.getListComiteActiveList();

@@ -137,7 +137,7 @@ export class DashboardComponent implements OnInit {
       date4: this.datePipe.transform(this.date4, 'MM-dd-yyyy') == null ? new Date() : this.date4,
       type: 0
     };
-    this.router.navigateByUrl('/manager/report-total', { state: { item: data }});
+    this.router.navigateByUrl('/manager/total-report', { state: { item: data }});
   }
 
   goToTableActivePais(){
@@ -155,7 +155,7 @@ export class DashboardComponent implements OnInit {
       type: 1,
       paisId: this.selectedCountry.paisId
     };
-    this.router.navigateByUrl('/manager/pais-table', { state: { item: data }});
+    this.router.navigateByUrl('/manager/pais-report', { state: { item: data }});
   }
 
   goToTableActiveEmpresa(){
@@ -175,7 +175,7 @@ export class DashboardComponent implements OnInit {
       empresaId: this.selectedCity1.empresaId,
       direccion: this.textFilterDE
     };
-    this.router.navigateByUrl('/manager/report', { state: { item: data }});
+    this.router.navigateByUrl('/manager/empresa-direction-report', { state: { item: data }});
   }
 
   goToTableActiveSecretaria(){
@@ -186,7 +186,7 @@ export class DashboardComponent implements OnInit {
       secretaria: this.textFilterSE.userId,
       secretariaNombre: this.textFilterSE.nombre
     };
-    this.router.navigateByUrl('/manager/secrearia-table', { state: { item: data }});
+    this.router.navigateByUrl('/manager/secretaria-report', { state: { item: data }});
   }
 
   goToTableActiveFrecuencia(){
@@ -202,7 +202,7 @@ export class DashboardComponent implements OnInit {
       date4: this.date4,
       type: 4
     };
-    this.router.navigateByUrl('/manager/frecuencia-table', { state: { item: data }});
+    this.router.navigateByUrl('/manager/frecuencia-report', { state: { item: data }});
   }
 
   listarPais(){

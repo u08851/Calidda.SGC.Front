@@ -49,11 +49,10 @@
     <p-table [columns]="cols" [value]="products" styleClass="style-table-direccion" [paginator]="true" [rows]="5" [showCurrentPageReport]="true" currentPageReportTemplate="{first} - {last} of {totalRecords}">
         <ng-template pTemplate="colgroup" let-columns>
             <colgroup>
-                <col [style.width]="20 + '%'" />
-                <col [style.width]="20 + '%'" />
-                <col [style.width]="20 + '%'" />
-                <col [style.width]="20 + '%'" />
-                <col [style.width]="20 + '%'" />
+                <col [style.width]="25 + '%'" />
+                <col [style.width]="25 + '%'" />
+                <col [style.width]="25 + '%'" />
+                <col [style.width]="25 + '%'" />
             </colgroup>
         </ng-template>
         <ng-template pTemplate="header" let-columns>
@@ -75,15 +74,6 @@
                     </div>
                 </td>
                 <td class="p-text-left">{{ getDateList(rowData.fechaU) }}</td>
-                <td [style.text-align]= "center">
-                    <!-- En configuración -- orange -->
-                    <!-- Activo ---  green -->  
-                    <!-- Activo ---  green -->  
-                    <!-- De baja --- red -->
-
-                    <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8 orange"></i>
-                    En configuración
-                </td>
             </tr>
         </ng-template>
     </p-table>

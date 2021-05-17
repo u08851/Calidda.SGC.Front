@@ -42,38 +42,33 @@ export const ManagerRoutes: Routes = [
                 component: CrearComiteComponent
             },
             {
-                path: 'pais-table',
-                component: PaisTableComponent
-            },
-            {
-                path: 'report',
-                component: EmpresaDireccionTableComponent
-            },
-            {
-                path: 'report-total',
+                path: 'all-report',
                 component: TodosTableComponent
             },
             {
-                path: 'secrearia-table',
+                path: 'pais-report',
+                component: PaisTableComponent
+            },
+            {
+                path: 'empresa-direction-report',
+                component: EmpresaDireccionTableComponent
+            },
+            {
+                path: 'secretaria-report',
                 component: SecretariaTableComponent
             },
             {
-                path: 'frecuencia-table',
+                path: 'frecuencia-report',
                 component: FrecuenciaTableComponent
             },
-            // {
-            //     path: 'report',
-            //     component: ReportTableComponent
-            // },
+            {
+                path: 'total-report',
+                component: TotalTableComponent
+            },
             {
                 path: 'profile',
                 component: ProfileComponent
-            },
-            {
-                path: 'total-table',
-                component: TotalTableComponent
-            },
-            
+            }
         ],
     },
 ];
