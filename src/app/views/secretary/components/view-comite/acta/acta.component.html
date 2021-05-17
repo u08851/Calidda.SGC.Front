@@ -71,7 +71,7 @@
     <p class="title fz-14 p-mb-3">Aprobación de Acta</p>
     <p><span class="info">Fecha limite de aprovación: </span>27/04/2021</p>
 
-    <p-table [columns]="cols" [value]="data" styleClass="style-table" [paginator]="true" [rows]="3"
+    <p-table [columns]="cols" [value]="data" styleClass="style-table" [paginator]="true" [rows]="5"
         [showCurrentPageReport]="true">
         <ng-template pTemplate="colgroup" let-columns>
             <colgroup>
@@ -122,7 +122,7 @@
         <p class="p-mb-3"><span class="info">Fecha limite de Firma: </span>27/04/2021</p>
         <button pButton label="Enviar a Firma" icon="pi"></button>
     </div>
-    <p-table [columns]="colsFirmaActa" [value]="dataFActa" styleClass="style-table" [paginator]="true" [rows]="3" responsive="true"
+    <p-table [columns]="colsFirmaActa" [value]="dataFActa" styleClass="style-table" [paginator]="true" [rows]="5" responsive="true"
         [showCurrentPageReport]="true">
         <ng-template pTemplate="colgroup" let-columns>
             <colgroup class="colgroup">

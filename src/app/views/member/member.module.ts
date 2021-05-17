@@ -28,6 +28,7 @@ import { ViewActaComponent } from './components/view-acta/view-acta.component';
 import { ActaTypeComponent } from './components/view-acta/acta-type/acta-type.component';
 import { ActaTypeTableComponent } from './components/view-acta/acta-type-table/acta-type-table.component';
 
+import { ConfigComiteComponent } from './components/config-comite/config-comite.component';
 @NgModule({
   declarations: [
     ComitesComponent,
@@ -53,7 +54,8 @@ import { ActaTypeTableComponent } from './components/view-acta/acta-type-table/a
     SubTareaComponent,
     ViewActaComponent,
     ActaTypeComponent,
-    ActaTypeTableComponent
+    ActaTypeTableComponent,
+    ConfigComiteComponent
 ],
   imports: [
     CommonModule,

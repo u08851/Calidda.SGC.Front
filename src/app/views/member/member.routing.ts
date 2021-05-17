@@ -7,6 +7,7 @@ import { ConfirmMeetingComponent } from './components/confirm-meeting/confirm-me
 import { DetailVoteComponent } from './components/detail-vote/detail-vote.component';
 import { ViewComiteComponent } from './components/view-comite/view-comite.component';
 import { ViewActaComponent } from './components/view-acta/view-acta.component';
+import { ConfigComiteComponent } from './components/config-comite/config-comite.component';
 
 
 export const MemberRoutes: Routes = [
@@ -48,6 +49,10 @@ export const MemberRoutes: Routes = [
             {
                 path: 'detail-vote',
                 component: DetailVoteComponent
+            },
+            {
+                path: 'config-comite',
+                component: ConfigComiteComponent
             }
         ],  
     },

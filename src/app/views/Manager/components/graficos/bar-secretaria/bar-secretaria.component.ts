@@ -157,10 +157,11 @@ export class BarSecretariaComponent implements OnInit {
     chart.legend.markers.template.height = 8;
     chart.legend.visible = true;
     chart.legend.fill = am4core.color('series1' && 'series2' && 'series3');
+
   }
 
   ngAfterViewInit() {
-    let chart = am4core.create('chartdiv', am4charts.XYChart);
+    let chart = am4core.create('chartSecretaria', am4charts.XYChart);
     chart.maskBullets = false;
     
     let sinR = [];

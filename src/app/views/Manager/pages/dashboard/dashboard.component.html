@@ -58,7 +58,7 @@
 
                     <!-- Comités de baja -->
                     <div class="p-col-12 p-md-6 p-lg-3">
-                        <div class="box"  routerLink="/manager/report">
+                        <div class="box" routerLink="/manager/report">
                             <div class="box-detalle">
                                 <p>{{ val3 }}</p>
                                 <i class="material-icons dark"> bar_chart </i>
@@ -98,8 +98,7 @@
                 <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
                     <!-- Buscar país -->
                     <div class="p-col-12 p-md-6 p-lg-3">
-                        <p-dropdown (onChange)="onKeydown($event,1)" [options]="countries" [(ngModel)]="selectedCountry" optionLabel="nombre"
-                            [filter]="true" filterBy="nombre" [showClear]="true" placeholder="Buscar país">
+                        <p-dropdown (onChange)="onKeydown($event,1)" [options]="countries" [(ngModel)]="selectedCountry" optionLabel="nombre" [filter]="true" filterBy="nombre" [showClear]="true" placeholder="Buscar país">
                             <ng-template pTemplate="selectedItem">
                                 <div class="country-item country-item-value" *ngIf="selectedCountry">
                                     <img style="width: 20px;" [src]="selectedCountry.sigla" />
@@ -108,7 +107,7 @@
                             </ng-template>
                             <ng-template let-country pTemplate="item">
                                 <div class="country-item">
-                                    <img [src]="country.sigla"/>
+                                    <img [src]="country.sigla" />
                                     <div>{{ country.nombre }}</div>
                                 </div>
                             </ng-template>
@@ -202,17 +201,7 @@
                 <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
                     <!-- Buscar empresa -->
                     <div class="p-col-12 p-md-6 p-lg-3">
-                        <p-autoComplete
-                            [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="selectedCity1"
-                            (onSelect)="searchEmpresa($event)"
-                            [suggestions]="cities"
-                            field="label"
-                            [minLength]="1"
-                            emptyMessage="No se han encontrado resultados"
-                            placeholder="Ingrese al menos 1 caracter...">
-                        </p-autoComplete>
-
+                        <p-dropdown (onChange)="onKeydown($event,2)" [options]="cities" [(ngModel)]="selectedCity1" placeholder="Buscar empresa" optionLabel="nombre" [showClear]="true"></p-dropdown>
                     </div>
 
                     <!-- Buscar direccion del comite -->
@@ -313,15 +302,23 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label p-input-icon-right">
                             <i class="pi pi-search"></i>
-                            <input type="text" [(ngModel)]="textFilterSE" pInputText />
-                            <label for="inputtext">Buscar secretaria de comité</label>
+                            <p-autoComplete
+                                [ngModelOptions]="{standalone: true}"
+                                [(ngModel)]="textFilterSE"
+                                (completeMethod)="searchUser($event)"
+                                [suggestions]="filteredCountriesSingle"
+                                field="nombre"
+                                [minLength]="1"
+                                emptyMessage="No se han encontrado resultados"
+                                placeholder="Ingrese al menos 1 caracter...">
+                            </p-autoComplete>
                         </span>
                     </div>
 
                     <!-- calendario DESDE -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-calendar [(ngModel)]="date3" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,3)" [(ngModel)]="date3" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Desde</label>
                         </span>
                     </div>
@@ -329,7 +326,7 @@
                     <!-- calendario HASTA -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-calendar [(ngModel)]="date4" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,3)" [(ngModel)]="date4" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Hasta</label>
                         </span>
                     </div>

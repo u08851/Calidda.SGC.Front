@@ -1,72 +1,112 @@
 <div class="p-card br-05 p-p-3">
-    <div class="border-1px-gray br-05 p-p-3">
-        <p-table [columns]="cols" [value]="data" [paginator]="true" [rows]="3" styleClass="style-table-direccion"
-            [showCurrentPageReport]="true" [resizableColumns]="true"
-            currentPageReportTemplate="{first} - {last} of {totalRecords}">
-            <ng-template pTemplate="colgroup" let-columns>
-                <colgroup>
-                    <col [style.width]="10 + '%'" />
-                    <col [style.width]="10  + '%'" />
-                    <col [style.width]="10 + '%'" />
-                    <col [style.width]="10 + '%'" />
-                    <col [style.width]="25 + '%'" />
-                    <col [style.width]="11 + '%'" />
-                    <col [style.width]="8 + '%'" />
-                </colgroup>
-            </ng-template>
-            <ng-template pTemplate="header" let-columns>
-                <tr>
-                    <th *ngFor="let col of columns" pResizableColumn>
-                        {{col.header}}
-                    </th>
-                    <th></th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-rowData let-columns="columns">
-                <tr>
-                    <td class="b-dander" *ngFor="let col of columns">
-
-                        <div class="p-d-flex p-ai-center">
-                            <span *ngIf="col.field != 'estado'; else estatus">
-                                {{rowData[col.field]}}
-                            </span>
-                            <button *ngIf="col.field == 'tipoR'" class="p-ml-2 w-100" pButton pRipple type="button"
-                                icon="pi" [label]="rowData.button.label" routerLink="{{rowData.button.routing}}">
-                            </button>
-                            <ng-template #estatus>
-                                <!-- clases:  --red --green --info -->
-                                <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8 red"></i>
-                                {{rowData[col.field].name}}
-                            </ng-template>
-                        </div>
-                    </td>
-                    <td>
-                        <button pButton pRipple type="button" icon="pi" *ngIf="rowData.estado.cod == '0'"
-                            routerLink="/member/view-comite"
-                            class="p-button-rounded p-button-info p-button-text icon-size" styleClass="icon-size">
-                            <span class="material-icons-outlined">
-                                visibility
-                            </span>
-                        </button>
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
-    </div>
+  <div class="border-1px-gray br-05 p-p-3">
+    <p-table
+      [columns]="cols"
+      [value]="data"
+      [paginator]="true"
+      [rows]="5"
+      styleClass="style-table-direccion"
+      [showCurrentPageReport]="true"
+      [resizableColumns]="true"
+      currentPageReportTemplate="{first} - {last} of {totalRecords}"
+    >
+      <ng-template pTemplate="colgroup" let-columns>
+        <colgroup>
+          <col [style.width]="10 + '%'" />
+          <col [style.width]="10 + '%'" />
+          <col [style.width]="10 + '%'" />
+          <col [style.width]="10 + '%'" />
+          <col [style.width]="25 + '%'" />
+          <col [style.width]="11 + '%'" />
+          <col [style.width]="8 + '%'" />
+        </colgroup>
+      </ng-template>
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns" pResizableColumn>
+            {{ col.header }}
+          </th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+          <td class="b-dander" *ngFor="let col of columns">
+            <div class="p-d-flex p-ai-center">
+              <span *ngIf="col.field != 'estado'; else estatus">
+                {{ rowData[col.field] }}
+              </span>
+              <button
+                *ngIf="col.field == 'tipoR'"
+                class="p-ml-2 w-100"
+                pButton
+                pRipple
+                type="button"
+                icon="pi"
+                [label]="rowData.button.label"
+                routerLink="{{ rowData.button.routing }}"
+              ></button>
+              <ng-template #estatus>
+                <!-- clases:  --red --green --info -->
+                <i class="pi pi-circle-on p-mr-2 p-mt-1 fz-8 red"></i>
+                {{ rowData[col.field].name }}
+              </ng-template>
+            </div>
+          </td>
+          <td>
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi"
+              *ngIf="rowData.estado.cod == '0'"
+              routerLink="/member/view-comite"
+              class="p-button-rounded p-button-info p-button-text icon-size"
+              styleClass="icon-size"
+            >
+              <span class="material-icons-outlined"> visibility </span>
+            </button>
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi"
+              *ngIf="rowData.estado.cod == '1'"
+              routerLink="/member/config-comite"
+              class="p-button-rounded p-button-info p-button-text icon-size"
+              styleClass="icon-size"
+            >
+              <span class="material-icons-outlined"> settings </span>
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
 </div>
 
 <!-- Dialog confirmar participación-->
-<p-dialog [(visible)]="displayModal" [modal]="true" [style]="{ width: '400px' }" [baseZIndex]="10000"
-    [draggable]="false" [resizable]="false" [closable]="false" styleClass="style-dialog-confirmation">
-    <div class="dialog-content">
-
-        <i class="material-icons red">error_outline</i>
-        <p class="p-m-0">
-            ¿Confirmas tu participación?
-        </p>
-    </div>
-    <ng-template pTemplate="footer">
-        <button (click)="displayModal = false" pButton label="Confirmar"></button>
-        <button class="stylebtn" (click)="displayModal = false" pButton label="Rechazar"></button>
-    </ng-template>
+<p-dialog
+  [(visible)]="displayModal"
+  [modal]="true"
+  [style]="{ width: '400px' }"
+  [baseZIndex]="10000"
+  [draggable]="false"
+  [resizable]="false"
+  [closable]="false"
+  styleClass="style-dialog-confirmation"
+>
+  <div class="dialog-content">
+    <i class="material-icons red">error_outline</i>
+    <p class="p-m-0">¿Confirmas tu participación?</p>
+  </div>
+  <ng-template pTemplate="footer">
+    <button (click)="displayModal = false" pButton label="Confirmar"></button>
+    <button
+      class="stylebtn"
+      (click)="displayModal = false"
+      pButton
+      label="Rechazar"
+    ></button>
+  </ng-template>
 </p-dialog>

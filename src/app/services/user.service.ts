@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { PaisModel } from '../models/pais.model';
-import { UserModel, UserRequestModel } from '../models/user.model';
+import { SecreUser, UserModel, UserRequestModel } from '../models/user.model';
 
 
 @Injectable({
@@ -22,6 +22,10 @@ export class UserServices {
 
   getListUser(term:string,term1:string,term2:string,page:number,size:number){
     return this._http.get<UserModel>(`${this.BASE_URL}/searchAll/${term}/${term1}/${term2}/${page}/${size}`);
+  }
+
+  getListUserSecretaria(){
+    return this._http.get<SecreUser>(`${this.BASE_URL}/allSecre`);
   }
 
   addUser(model:UserRequestModel){
