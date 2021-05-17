@@ -11,7 +11,7 @@
                 <i *ngIf="checked == true" class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--green)'"></i>
                 <i *ngIf="checked != true" class="pi pi-circle-on p-mr-2 p-mt-1 fz-8" [style.color]="'var(--red)'"></i>
                 <label *ngIf="checked == true" class="p-mr-2">Activo</label>
-                <label *ngIf="checked != true" class="p-mr-2">Desactivo</label>
+                <label *ngIf="checked != true" class="p-mr-2">Inactivo</label>
                 <p-inputSwitch [(ngModel)]="checked" formControlName="statusId"></p-inputSwitch>
             </div>
         </div>
@@ -74,15 +74,24 @@
             </div>
             <!-- <input type="text" pInputText> -->
         </div>
-        <div class="p-field p-col-12 p-md-12">
-            <label for="correo" [ngClass]="{ 'is-invalid-text': submitted && g.correo.errors }">Correo Electronico ss</label>
+
+        <div class="p-field p-col-12 p-md-6">
+            <label for="dni" [ngClass]="{ 'is-invalid-text': submitted && g.dni.errors }">DNI</label>
+            <input formControlName="dni" [ngClass]="{ 'is-invalid-input': submitted && g.dni.errors }" oninput="this.value=this.value.trim()==''?'':this.value" maxlength="8" type="text" pInputText>
+            <div *ngIf="submitted && g.dni.errors != null">
+                <span class="p-error" *ngIf="g.dni.errors.minlength">El DNI debe contener al menos 8 carácteres.<br></span>
+                <span class="p-error" *ngIf="g.dni.errors.required">El DNI es requerido.<br></span>
+            </div>
+        </div> 
+
+        <div class="p-field p-col-12 p-md-6">
+            <label for="correo" [ngClass]="{ 'is-invalid-text': submitted && g.correo.errors }">Correo Electronico</label>
             <input formControlName="correo" [ngClass]="{ 'is-invalid-input': submitted && g.correo.errors }" oninput="this.value=this.value.trim()==''?'':this.value" type="text" pInputText>
             <div *ngIf="submitted && g.correo.errors != null">
                 <span class="p-error" *ngIf="g.correo.errors.minlength">El correo debe contener al menos un carácter.<br></span>
                 <span class="p-error" *ngIf="g.correo.errors.required">El correo es requerido.<br></span>
             </div>
         </div>
-
 
         <div class="p-field p-col-12 p-md-6">
             <label for="celular" [ngClass]="{ 'is-invalid-text': submitted && g.celular.errors }">Celular</label>
@@ -92,6 +101,7 @@
                 <span class="p-error" *ngIf="g.celular.errors.required">El celular es requerido.<br></span>
             </div>
         </div>
+
         <div class="p-field p-col-12 p-md-6">
             <label for="rolId" [ngClass]="{ 'is-invalid-text': submitted && g.rolId.errors }">Rol</label>
             <p-dropdown formControlName="rolId" [options]="dataRol" [(ngModel)]="selectedRol" optionLabel="nombre" optionDisabled="inactive">
@@ -104,14 +114,7 @@
             </p-dropdown>
         </div>
 
-        <div class="p-field p-col-12 p-md-6">
-            <label for="dni" [ngClass]="{ 'is-invalid-text': submitted && g.dni.errors }">DNI</label>
-            <input formControlName="dni" [ngClass]="{ 'is-invalid-input': submitted && g.dni.errors }" oninput="this.value=this.value.trim()==''?'':this.value" maxlength="8" type="text" pInputText>
-            <div *ngIf="submitted && g.dni.errors != null">
-                <span class="p-error" *ngIf="g.dni.errors.minlength">El DNI debe contener al menos 8 carácteres.<br></span>
-                <span class="p-error" *ngIf="g.dni.errors.required">El DNI es requerido.<br></span>
-            </div>
-        </div>
+        
     </div>
 
     <div class="p-d-flex p-jc-center w-100 p-mb-3">
