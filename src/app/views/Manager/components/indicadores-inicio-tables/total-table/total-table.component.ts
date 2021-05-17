@@ -10,40 +10,7 @@ export class TotalTableComponent implements OnInit {
   date3: Date;
   date4: Date;
   es: any;
-
-  products: any[] = [
-    {
-      "fechaC": "20/11/20",
-      "nombre": "Comité de dirección",
-      "secretaria": "Rocio del valle",
-      "fechaU": "20/11/20",
-      "estado": {
-        'cod': '0',
-        'name':'En configuración'
-      }
-    },
-    {
-      "fechaC": "20/11/20",
-      "nombre": "Comité de dirección",
-      "secretaria": "Jared Ro",
-      "fechaU": "20/11/20",
-      "estado": {
-        'cod': '1',
-        'name':'Baja'
-      }
-    },
-    {
-      "cod": "RE-2455",
-      "fechaC": "20/11/20",
-      "nombre": "Comité de dirección",
-      "secretaria": "Javier Prado",
-      "fechaU": "20/11/20",
-      "estado": {
-        'cod': '2',
-        'name':'Activo'
-      }
-    },
-  ];
+  data: any[] = DATA;
 
   cols: any[];
 
@@ -97,6 +64,7 @@ export class TotalTableComponent implements OnInit {
 
     this.cols = [
       { header: 'Fecha de creacion', field: 'fechaC' },
+      { header: 'País', field: 'pais' },
       { header: 'Nombre del comité', field: 'nombre' },
       { header: 'Secretario del comité', field: 'secretaria' },
       { header: 'Fecha de último sesión', field: 'fechaU' },
@@ -105,3 +73,38 @@ export class TotalTableComponent implements OnInit {
   }
 
 }
+
+
+const DATA = [
+  {
+    "fechaC": "20/11/20",
+    "nombre": "Comité de dirección",
+    "secretaria": "Rocio del valle",
+    "fechaU": "20/11/20",
+    "estado": {
+      'cod': '0',
+      'name':'En configuración'
+    }
+  },
+  {
+    "fechaC": "20/11/20",
+    "nombre": "Comité de dirección",
+    "secretaria": "Jared Ro",
+    "fechaU": "20/11/20",
+    "estado": {
+      'cod': '1',
+      'name':'Baja'
+    }
+  },
+  {
+    "cod": "RE-2455",
+    "fechaC": "20/11/20",
+    "nombre": "Comité de dirección",
+    "secretaria": "Javier Prado",
+    "fechaU": "20/11/20",
+    "estado": {
+      'cod': '2',
+      'name':'Activo'
+    }
+  },
+];
