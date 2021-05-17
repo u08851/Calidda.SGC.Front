@@ -105,9 +105,6 @@
       padding: 0.5rem 1rem;
       border: none;
     }
-    .p-datatable-tbody > tr td:last-child {
-      text-align: right;
-    }
   
     @extend %style-paginator;
     

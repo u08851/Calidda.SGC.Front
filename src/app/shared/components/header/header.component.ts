@@ -22,10 +22,9 @@ export class HeaderComponent implements OnInit {
       {
         label: 'Mi Perfil',
         icon: 'pi icon-account_circle',
-        routerLink: '/manager',
+        routerLink: '/manager/profile',
         command: () => {
-          this.headerService.setUser(1);
-          this.message('success', 'Has iniciado el perfil', 'Aministrador de Sistema');
+          // this.message('success', 'Has iniciado el perfil', 'Aministrador de Sistema');
         },
       },
 
