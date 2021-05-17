@@ -336,6 +336,25 @@
   }
 }
 
+.stylePanel-profile {
+  .p-menuitem-link .p-menuitem-text {
+    font-size: 13px;
+  }
+  .p-menuitem-link .p-menuitem-icon {
+    font-size: 20px;
+    color: #2E4259;
+  }
+  .ink:not(.p-disabled):hover {
+    background: #E7F6FB;
+  }
+  .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text {
+    color: #00A1DE;
+  }
+  .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon {
+    color: #00A1DE;
+  }
+}
+
 .hx-bar {
   padding: 0.2rem;
   width: 30px;

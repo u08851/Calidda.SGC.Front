@@ -20,8 +20,18 @@ export class HeaderComponent implements OnInit {
 
     this.items = [
       {
+        label: 'Mi Perfil',
+        icon: 'pi icon-account_circle',
+        routerLink: '/manager',
+        command: () => {
+          this.headerService.setUser(1);
+          this.message('success', 'Has iniciado el perfil', 'Aministrador de Sistema');
+        },
+      },
+
+      {
         label: 'Administrador de Sistema',
-        icon: 'pi pi-cog',
+        icon: 'pi icon-admin_panel_settings',
         routerLink: '/manager',
         command: () => {
           this.headerService.setUser(1);
@@ -30,7 +40,7 @@ export class HeaderComponent implements OnInit {
       },
       {
         label: 'Secretaría del Comité',
-        icon: 'pi pi-bookmark',
+        icon: 'pi  icon-inventory',
         routerLink: '/secretary',
         command: () => {
           this.headerService.setUser(2);
@@ -39,7 +49,7 @@ export class HeaderComponent implements OnInit {
       },
       {
         label: 'Miembro del Comité',
-        icon: 'pi pi-briefcase',
+        icon: 'pi icon-people_outline',
         routerLink: '/member',
         command: () => {
           this.headerService.setUser(3);
