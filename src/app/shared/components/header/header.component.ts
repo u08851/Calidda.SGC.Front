@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
 
       {
         label: 'Administrador de Sistema',
-        icon: 'pi icon-admin_panel_settings',
+        icon: 'pi icon-admin_settings',
         routerLink: '/manager',
         command: () => {
           this.headerService.setUser(1);

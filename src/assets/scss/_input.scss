@@ -14,7 +14,7 @@
   width: 100%;
 
   &:enabled:hover {
-    border-color: #babcbe;
+    border-color: var(--primary-color);
   }
 
   &:enabled:focus {
@@ -162,6 +162,9 @@
 
   .p-dropdown-label.p-placeholder {
     color: var(--primary-color);
+  }
+  &:not(.p-disabled).p-focus {
+    box-shadow: none;
   }
 }
 
