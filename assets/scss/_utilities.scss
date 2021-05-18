@@ -38,7 +38,7 @@
 }
 
 .gray {
-  color: #6e6e6e;
+  color: #6e6e6e !important;
 }
 
 .purple {
@@ -210,3 +210,17 @@
 .bg-blue-light {
   background: #f6f7f9;
 }
+
+
+// icons
+.icon-barchart {
+  color: #435468;
+  line-height: 0;
+}
+.indicadores-p .icon-barchart {
+  font-size: 1.5rem;
+}
+.icon-barchart::before {
+  width: auto;
+}
+//End icons
