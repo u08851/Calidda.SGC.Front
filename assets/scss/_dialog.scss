@@ -1,0 +1,80 @@
+.p-dialog {
+
+    @media screen and(max-width: 768px) {
+      width: 80% !important;
+    }
+
+    .p-dialog-content {
+        max-height: 90% !important;
+        font-size: 13px;
+
+        .p-inputgroup-addon {
+            padding: 0.2rem;
+            background: #F6F7F9;
+        }
+        .p-field > label {
+          color: var(--dark-blue);
+          opacity: 0.8;
+        }
+    }
+    .p-dialog-header {
+      
+      padding: 1rem;
+      align-items: start;
+
+        .p-dialog-header-icon {
+          border: 2px solid var(--primary-color);
+          color: var(--primary-color);
+          width: 1.6rem;
+          height: 1.6rem;
+          font-size: 13px;
+          &:hover {
+            border: 2px solid var(--primary-color);
+          // color: var(--primary-color);
+          }
+        }
+
+    }
+    .p-dialog-header .p-dialog-title {
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem 0;
+        color: var(--info);
+    }
+    .p-dialog-footer {
+      text-align: center;
+    }
+}
+.p-dialog-mask.p-component-overlay {
+    background-color: rgb(0 0 0 / 83%);
+}
+
+.p-button {
+    min-width: 105px;
+}
+
+
+.style-dialog-confirmation {
+    .dialog-content {
+        text-align: center;
+      
+        i {
+          color: #87d741;
+          font-size: 72px;
+        }
+        h3 {
+          color: #00a1de;
+          font-size: 22px;
+          padding: 20px 0;
+        }
+        p {
+          color: #2e4259;
+        }
+      
+      }
+}
+
+//
+.ovf-inherit .p-dialog-content {
+  overflow: hidden !important;
+}

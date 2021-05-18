@@ -1,0 +1,131 @@
+.w-100 {
+  width: 100% !important;
+}
+.b-0 {
+  border: 0 !important;
+}
+.bl-0 {
+  border-left: 0 !important;
+}
+
+//colors
+.red {
+  color: #e31919 !important;
+}
+.green {
+  color: #00a34b !important;
+}
+.orange {
+  color: #fab200 !important;
+}
+.info {
+  color: #00a1de !important;
+}
+
+.yellow {
+  color: #fab200;
+}
+
+.blue {
+  color: #00a1de;
+}
+
+.dark {
+  color: #435468;
+}
+
+.gray {
+  color: #6e6e6e;
+}
+
+.purple {
+  color: #aa0976;
+}
+
+.darkblue {
+  color: #5198f7;
+}
+
+.green {
+  color: #81d99e;
+}
+
+.lightblue {
+  color: #8fdcf8;
+}
+
+.limon {
+  color: #b4b75c;
+}
+
+.oranges {
+  color: #f3b065;
+}
+
+.blue-dark{
+  color: #2E4259;
+}
+.white {
+  color: #ffffff !important;
+}
+//
+.color-primary {
+  color: var(--primary-color) !important;
+}
+
+.op-8 {
+    opacity: 0.8 !important;
+}
+
+
+//borders
+.br-05 {
+    border-radius: 0.5rem !important;
+  }
+  
+// sizes
+.fz-8 {
+  font-size: 8px;
+}
+.fz-9 {
+  font-size: 9px;
+}
+.fz-10 {
+  font-size: 10px;
+}
+.fz-11 {
+  font-size: 11px;
+}
+.fz-14 {
+  font-size: 14px;
+}
+
+//texts
+.fw-bold {
+  font-weight: bold;
+}
+.fw-200 {
+  font-weight: 200;
+}
+.fw-300 {
+  font-weight: 300;
+}
+.fw-400 {
+  font-weight: 400;
+}
+.fw-500 {
+  font-weight: 500;
+}
+.fw-600 {
+  font-weight: 600;
+}
+.line-h {
+  line-height: 0;
+}
+.fs-italic {
+  font-style: italic;
+}
+
+.cPointer{
+  cursor: pointer;
+}

@@ -1,0 +1,58 @@
+:root {
+  --primary-color: #00a1de !important;
+  --danger-color: #f00248;
+  --warning-color: #ffa602;
+  --success-color: #2ecc71;
+  --default-color: #7a7a7a;
+  --info-color: #00a1de;
+  --dark-blue: #2e4259;
+
+  --red:   #e31919;
+  --green: #87d741;
+  --orange:#fab200;
+  --info:  #00a1de;
+
+  --text-color: #7a7a7a !important;
+  font-family: "Galano Grotesque", sans-serif;
+  background: transparent linear-gradient(180deg, #f3f7fd 0%, #cde8f2 100%) 0%
+    0% no-repeat padding-box;
+  width: 100%;
+  height: 100%;
+
+  @media screen and (min-width: 1025px) {
+    height: -webkit-fill-available;
+  }
+}
+
+body {
+  background: transparent linear-gradient(180deg, #f3f7fd 0%, #cde8f2 100%) 0%
+    0% no-repeat padding-box;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.red {
+  color: #e31919;
+}
+.green {
+  color: #00a34b;
+}
+.orange {
+  color: #fab200;
+}
+.info {
+  color: #00a1de;
+}
+
+
+//Material Icons Class
+.exit_to_app, .east {
+  position:relative;
+  display:inline-block;
+}
+.exit_to_app:after {
+  content: "exit_to_app";
+}
+.east {
+  content: 'east';
+}

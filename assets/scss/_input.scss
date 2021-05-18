@@ -1,0 +1,166 @@
+// custom input
+.style-input-1 .p-inputtext {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.87);
+  background: transparent;
+  padding: 0.6rem 0rem 0.5rem;
+  border: 0px solid #ced3d9;
+  // border-bottom: 1px solid #ced3d9;
+  border-bottom: 2.5px solid var(--primary-color);
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s,
+    box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
+  appearance: none;
+  border-radius: 0px;
+  width: 100%;
+
+  &:enabled:hover {
+    border-color: #babcbe;
+  }
+
+  &:enabled:focus {
+    box-shadow: none;
+  }
+
+  &:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: none;
+    border-color: var(--primary-color);
+  }
+}
+
+.style-input-1 .p-calendar-w-btn {
+  border: none;
+  background: transparent;
+  border-radius: 4px;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s,
+    box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
+  width: 100%;
+
+  &.p-inputtext {
+    background-image: none;
+    background-color: transparent;
+    border: 0 none;
+  }
+
+  &.p-inputtext:enabled:focus {
+    box-shadow: none;
+  }
+  &.p-datepicker-trigger.p-button {
+    background-color: transparent;
+    border: 0 none;
+  }
+  &.p-datepicker-trigger.p-button span {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  &.p-datepicker-trigger.p-button:enabled:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
+  &.p-datepicker-trigger.p-button:enabled:active,
+  &.p-datepicker-trigger.p-button:focus {
+    background: rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid var(--primary-color);
+  }
+  &:not(.p-disabled):hover {
+    border-color: rgba(0, 0, 0, 0.87);
+  }
+  &:not(.p-disabled).p-focus {
+    border-color: none;
+    box-shadow: none;
+  }
+
+  .p-datepicker-trigger.p-button {
+    background-color: transparent;
+    border-bottom: 3px solid var(--primary-color);
+  }
+}
+
+.p-style-input-fill {
+  font-size: 13px;
+  .p-float-label {
+    width: 100%;
+
+    &> label {
+      font-size: 13px;
+      left: 0rem !important;
+      transition-duration: 0.2s;
+    }
+  }
+  .p-input-icon-right > i:last-of-type {
+    color: var(--primary-color);
+  }
+  .p-float-label input:focus ~ label,
+  .p-float-label input.p-filled ~ label,
+  .p-float-label textarea:focus ~ label,
+  .p-float-label textarea.p-filled ~ label,
+  .p-float-label .p-inputwrapper-focus ~ label,
+  .p-float-label .p-inputwrapper-filled ~ label {
+    background: transparent;
+  }
+
+  .p-input-icon-right > .p-inputtext {
+    padding-right: 3rem;
+  }
+  .p-input-icon-right > i:last-of-type {
+    color: #00a1de;
+  }
+  .p-calendar-w-btn .p-datepicker-trigger.p-button span {
+    color: #00a1de;
+  }
+
+  @extend .style-input-1;
+}
+
+.p-float-label > label {
+  color: var(--primary-color);
+}
+
+.form-input-sm {
+    input, .p-inputtext {
+      padding: 0.6rem 0.5rem;
+    }
+}
+
+:host::ng-deep.p-dropdown {
+  width: 14rem;
+}
+
+.country-item-value {
+  img.flag {
+      width: 17px;
+  }
+}
+
+.country-item {
+  display: flex;
+  align-items: center;
+  img {
+      width: 20px;
+      margin-right: 10px;
+  }
+}
+
+.style-input-1 .p-dropdown {
+  background: none;
+  border: none;
+  border-bottom: 0px solid #00a1de;
+  outline: none;
+
+  .p-dropdown.p-dropdown-clearable .p-dropdown-label {
+    padding-right: 2rem;
+    border-bottom: 1px solid var(--primary-color);
+  }
+
+  .p-dropdown-trigger {
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--primary-color);
+  }
+
+  .p-dropdown-panel .p-dropdown-header .p-dropdown-filter-icon {
+    color: var(--primary-color);
+  }
+
+  .p-dropdown-label.p-placeholder {
+    color: var(--primary-color);
+  }
+}

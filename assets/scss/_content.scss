@@ -1,0 +1,82 @@
+.pi-container {
+  background: #f4f4f4;
+  height: 100%;
+
+  .pi-banner {
+    background: url("../images/wallpaper.png") no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 5px 5px 0px 0px;
+    
+    &-content {
+      padding: 1rem 2rem;
+    }
+
+    h1 {
+      letter-spacing: 0px;
+      color: #ffffff;
+      opacity: 1;
+      font-size: 20px;
+      font-weight: 500;
+      padding: 22px 0px;
+    }
+
+    .leyenda {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      top: 100px;
+      bottom: 0;
+      right: 0;
+      color: #ffffff;
+      margin-right: 26px;
+
+      div {
+        margin: 0 8px;
+
+        i {
+          margin: 0 8px;
+          border: 1px solid #ffffff;
+          border-radius: 50%;
+          font-size: 8px;
+          vertical-align: middle;
+          margin-top: -2px;
+        }
+
+        .created {
+          color: #00a34b;
+        }
+        .active {
+          color: #72c7e7;
+        }
+        .config {
+          color: #fab200;
+        }
+        .low {
+          color: #e31919;
+        }
+      }
+    }
+  }
+}
+
+
+// INDICADORES DASHBOARD
+.indicadores {
+  font-weight: 600;
+  padding: 0.5rem 0 1.5rem 1.2rem;
+
+  &-p {
+      color: var(--primary-color);
+  }
+
+  &-span {
+      color: #435468;
+      display: inline-flex;
+      align-items: center;
+
+      i {
+          font-size: 40px;
+      }
+  }
+}
