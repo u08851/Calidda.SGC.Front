@@ -137,7 +137,7 @@ export class DashboardComponent implements OnInit {
       date4: this.datePipe.transform(this.date4, 'MM-dd-yyyy') == null ? new Date() : this.date4,
       type: 0
     };
-    this.router.navigateByUrl('/manager/total-report', { state: { item: data }});
+    this.router.navigateByUrl('/manager/all-report', { state: { item: data }});
   }
 
   goToTableActivePais(){

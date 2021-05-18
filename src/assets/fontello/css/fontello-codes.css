@@ -1,6 +1,9 @@
 
-.icon-admin_panel_settings:before { content: '\e801'; } /* '' */
-.icon-inventory:before { content: '\e802'; } /* '' */
+.icon-account_circle:before { content: '\e800'; } /* '' */
+.icon-admin_settings:before { content: '\e801'; } /* '' */
+.icon-back:before { content: '\e802'; } /* '' */
 .icon-edit:before { content: '\e804'; } /* '' */
-.icon-account_circle:before { content: '\e805'; } /* '' */
-.icon-people_outline:before { content: '\e806'; } /* '' */
+.icon-export:before { content: '\e805'; } /* '' */
+.icon-inventory:before { content: '\e806'; } /* '' */
+.icon-people_outline:before { content: '\e807'; } /* '' */
+.icon-barchart:before { content: '\e808'; } /* '' */
