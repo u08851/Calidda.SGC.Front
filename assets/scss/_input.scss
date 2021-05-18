@@ -71,7 +71,7 @@
 
   .p-datepicker-trigger.p-button {
     background-color: transparent;
-    border-bottom: 3px solid var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
   }
 }
 
@@ -162,5 +162,24 @@
 
   .p-dropdown-label.p-placeholder {
     color: var(--primary-color);
+  }
+}
+
+.p-autocomplete {
+  width: 100%;
+}
+.p-autocomplete .p-inputtext {
+  width: 100%;
+}
+
+
+//Forms
+.p-formgrid {
+  font-size: 13px;
+}
+.p-formgrid.gray{
+  label {
+    color: #2E4259;
+    opacity: 0.8;
   }
 }

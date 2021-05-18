@@ -7,17 +7,21 @@
   --info-color: #00a1de;
   --dark-blue: #2e4259;
 
-  --red:   #e31919;
+  --red: #e31919;
   --green: #87d741;
-  --orange:#fab200;
-  --info:  #00a1de;
+  --orange: #fab200;
+  --info: #00a1de;
+  --sucess: #00A34B;
+  --blue-2:#f4fafe;
 
   --text-color: #7a7a7a !important;
   font-family: "Galano Grotesque", sans-serif;
   background: transparent linear-gradient(180deg, #f3f7fd 0%, #cde8f2 100%) 0%
     0% no-repeat padding-box;
+  background-size: cover;
+  background-attachment: fixed;
   width: 100%;
-  height: 100%;
+  height: inherit;
 
   @media screen and (min-width: 1025px) {
     height: -webkit-fill-available;
@@ -29,6 +33,7 @@ body {
     0% no-repeat padding-box;
   background-size: cover;
   background-attachment: fixed;
+  height: inherit;
 }
 
 .red {
@@ -44,15 +49,15 @@ body {
   color: #00a1de;
 }
 
-
 //Material Icons Class
-.exit_to_app, .east {
-  position:relative;
-  display:inline-block;
+.exit_to_app,
+.east {
+  position: relative;
+  display: inline-block;
 }
 .exit_to_app:after {
   content: "exit_to_app";
 }
 .east {
-  content: 'east';
+  content: "east";
 }
