@@ -426,3 +426,10 @@
     font-size: 18px;
   }
 }
+
+
+.p-hide-indicators{
+  .p-carousel-indicators{
+    display: none !important;
+  }
+}

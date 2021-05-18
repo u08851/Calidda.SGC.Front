@@ -63,7 +63,7 @@ import { TotalTableComponent } from './components/indicadores-inicio-tables/tota
     ImportDocumentComponent,
     ReportTableComponent,
     ComiteHistoryComponent,
-    TotalTableComponent,
+    TotalTableComponent
     
   ],
   imports: [

@@ -51,6 +51,8 @@ export class DashboardComponent implements OnInit {
   textFilter3: any = "";
 
   filteredCountriesSingle: any[];
+  dataCarousel:any[] = DATA_CAROUSEL;
+  testBo: boolean = true;
 
   @ViewChild(BarTodosComponent) barTodos: BarTodosComponent;
   @ViewChild(BarEmpresaDireccionComponent) barEmpresaDireccion: BarEmpresaDireccionComponent;
@@ -723,3 +725,40 @@ export class DashboardComponent implements OnInit {
   }
 
 }
+
+
+
+const  DATA_CAROUSEL = [
+  {
+    label: 'Semanal',
+    total: 150,
+    classColor: 'purple'
+  },
+  {
+    label: 'Quincenal',
+    total: 120,
+    classColor: 'darkblue'
+  },
+  {
+    label: 'Trimestral',
+    total: 130,
+    classColor: 'green'
+  },
+  {
+    label: 'Mensual',
+    total: 145,
+    classColor: 'lightblue'
+  },
+  {
+    label: 'Semenestral',
+    total: 165,
+    classColor: 'limon'
+  },
+  {
+    label: 'Anual',
+    total: 205,
+    classColor: 'oranges'
+  }
+]
+
+

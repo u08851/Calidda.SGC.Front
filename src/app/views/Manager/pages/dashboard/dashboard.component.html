@@ -14,7 +14,8 @@
                     <!-- calendario DESDE -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-calendar (onSelect)="onKeydown($event,0)" [(ngModel)]="date3" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,0)" [(ngModel)]="date3" [locale]="es"
+                                [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Desde</label>
                         </span>
                     </div>
@@ -22,7 +23,8 @@
                     <!-- calendario HASTA -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-calendar (onSelect)="onKeydown($event,0)" [(ngModel)]="date4" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,0)" [(ngModel)]="date4" [locale]="es"
+                                [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Hasta</label>
                         </span>
                     </div>
@@ -71,7 +73,8 @@
 
                     <!-- Total de comités -->
                     <div class="p-col-12 p-md-6 p-lg-3">
-                        <div class="box" routerLink="/manager/total-report">
+                        <div class="box" [style.border-left]="'8px solid var(--primary-color)'"
+                            routerLink="/manager/total-report">
                             <div class="box-detalle">
                                 <p>{{ val4 }}</p>
                                 <i class="icon-barchart gray"></i>
@@ -98,7 +101,9 @@
                 <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
                     <!-- Buscar país -->
                     <div class="p-col-12 p-md-6 p-lg-3">
-                        <p-dropdown (onChange)="onKeydown($event,1)" [options]="countries" [(ngModel)]="selectedCountry" optionLabel="nombre" [filter]="true" filterBy="nombre" [showClear]="true" placeholder="Buscar país">
+                        <p-dropdown (onChange)="onKeydown($event,1)" [options]="countries" [(ngModel)]="selectedCountry"
+                            optionLabel="nombre" [filter]="true" filterBy="nombre" [showClear]="true"
+                            placeholder="Buscar país">
                             <ng-template pTemplate="selectedItem">
                                 <div class="country-item country-item-value" *ngIf="selectedCountry">
                                     <img style="width: 20px;" [src]="selectedCountry.sigla" />
@@ -117,7 +122,8 @@
                     <!-- calendario DESDE -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-calendar (onSelect)="onKeydown($event,1)" [(ngModel)]="date3" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,1)" [(ngModel)]="date3" [locale]="es"
+                                [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Desde</label>
                         </span>
                     </div>
@@ -125,7 +131,8 @@
                     <!-- calendario HASTA -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-calendar (onSelect)="onKeydown($event,1)" [(ngModel)]="date4" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,1)" [(ngModel)]="date4" [locale]="es"
+                                [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Hasta</label>
                         </span>
                     </div>
@@ -174,7 +181,8 @@
 
                     <!-- Total de comités -->
                     <div class="p-col-12 p-md-6 p-lg-3">
-                        <div class="box" routerLink="/manager/total-report">
+                        <div class="box"  [style.border-left]="'8px solid var(--primary-color)'"
+                            routerLink="/manager/total-report">
                             <div class="box-detalle">
                                 <p>{{ val4 }}</p>
                                 <i class="icon-barchart gray"></i>
@@ -201,14 +209,15 @@
                 <div class="p-grid p-style-input-fill p-d-flex p-ai-end p-mb-4">
                     <!-- Buscar empresa -->
                     <div class="p-col-12 p-md-6 p-lg-3">
-                        <p-dropdown (onChange)="onKeydown($event,2)" [options]="cities" [(ngModel)]="selectedCity1" placeholder="Buscar empresa" optionLabel="nombre" [showClear]="true"></p-dropdown>
+                        <p-dropdown (onChange)="onKeydown($event,2)" [options]="cities" [(ngModel)]="selectedCity1"
+                            placeholder="Buscar empresa" optionLabel="nombre" [showClear]="true"></p-dropdown>
                     </div>
 
                     <!-- Buscar direccion del comite -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label p-input-icon-right">
                             <i class="pi pi-search"></i>
-                            <input (keydown)="onKeydown($event,2)" type="text" pInputText [(ngModel)]="textFilterDE"/>
+                            <input (keydown)="onKeydown($event,2)" type="text" pInputText [(ngModel)]="textFilterDE" />
                             <label for="inputtext">Buscar Dirección del Comité</label>
                         </span>
                     </div>
@@ -216,7 +225,8 @@
                     <!-- calendario DESDE -->
                     <div class="p-col-12 p-md-6 p-lg-2">
                         <span class="p-float-label">
-                            <p-calendar (onSelect)="onKeydown($event,2)" [(ngModel)]="date3" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,2)" [(ngModel)]="date3" [locale]="es"
+                                [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Desde</label>
                         </span>
                     </div>
@@ -224,7 +234,8 @@
                     <!-- calendario HASTA -->
                     <div class="p-col-12 p-md-6 p-lg-2">
                         <span class="p-float-label">
-                            <p-calendar (onSelect)="onKeydown($event,2)" [(ngModel)]="date4" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,2)" [(ngModel)]="date4" [locale]="es"
+                                [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Hasta</label>
                         </span>
                     </div>
@@ -273,7 +284,8 @@
 
                     <!-- Total de comités -->
                     <div class="p-col-12 p-md-6 p-lg-3">
-                        <div class="box" routerLink="/manager/total-report">
+                        <div class="box" [style.border-left]="'8px solid var(--primary-color)'"    
+                            routerLink="/manager/total-report">
                             <div class="box-detalle">
                                 <p>{{ val4 }}</p>
                                 <i class="icon-barchart gray"></i>
@@ -302,14 +314,9 @@
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label p-input-icon-right">
                             <i class="pi pi-search"></i>
-                            <p-autoComplete
-                                [ngModelOptions]="{standalone: true}"
-                                [(ngModel)]="textFilterSE"
-                                (completeMethod)="searchUser($event)"
-                                [suggestions]="filteredCountriesSingle"
-                                field="nombre"
-                                [minLength]="1"
-                                emptyMessage="No se han encontrado resultados"
+                            <p-autoComplete [ngModelOptions]="{standalone: true}" [(ngModel)]="textFilterSE"
+                                (completeMethod)="searchUser($event)" [suggestions]="filteredCountriesSingle"
+                                field="nombre" [minLength]="1" emptyMessage="No se han encontrado resultados"
                                 placeholder="Ingrese al menos 1 caracter...">
                             </p-autoComplete>
                         </span>
@@ -318,7 +325,8 @@
                     <!-- calendario DESDE -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-calendar (onSelect)="onKeydown($event,3)" [(ngModel)]="date3" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,3)" [(ngModel)]="date3" [locale]="es"
+                                [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Desde</label>
                         </span>
                     </div>
@@ -326,7 +334,8 @@
                     <!-- calendario HASTA -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-calendar (onSelect)="onKeydown($event,3)" [(ngModel)]="date4" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,3)" [(ngModel)]="date4" [locale]="es"
+                                [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Hasta</label>
                         </span>
                     </div>
@@ -375,7 +384,8 @@
 
                     <!-- Total de comités -->
                     <div class="p-col-12 p-md-6 p-lg-3">
-                        <div class="box" routerLink="/manager/total-report">
+                        <div class="box" [style.border-left]="'8px solid var(--primary-color)'"
+                            routerLink="/manager/total-report">
                             <div class="box-detalle">
                                 <p>{{ val4 }}</p>
                                 <i class="icon-barchart gray"></i>
@@ -405,7 +415,8 @@
                     <!-- calendario DESDE -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-calendar (onSelect)="onKeydown($event,4)" [(ngModel)]="date3" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,4)" [(ngModel)]="date3" [locale]="es"
+                                [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Desde</label>
                         </span>
                     </div>
@@ -413,16 +424,53 @@
                     <!-- calendario HASTA -->
                     <div class="p-col-12 p-md-6 p-lg-3">
                         <span class="p-float-label">
-                            <p-calendar (onSelect)="onKeydown($event,4)" [(ngModel)]="date4" [locale]="es" [showIcon]="true" inputId="icon"></p-calendar>
+                            <p-calendar (onSelect)="onKeydown($event,4)" [(ngModel)]="date4" [locale]="es"
+                                [showIcon]="true" inputId="icon"></p-calendar>
                             <label for="inputtext">Hasta</label>
                         </span>
                     </div>
                 </div>
 
                 <!-- INDICADORES -->
+                <!-- <app-carousel></app-carousel> -->
+
+
                 <div class="p-grid">
-                    <!-- Semanal -->
+
+                    <div class="p-col-12 p-md-10 p-lg-10">
+                        <p-carousel class="p-hide-indicators" [value]="dataCarousel" showNavigators="false" [numVisible]="4" [numScroll]="1" [circular]="false"> 
+                            <ng-template let-item pTemplate="item">
+                                <div class="product-item" [style.margin-right]="'1rem'">
+                                    <div class="product-item-content">
+                                        <div class="box p-py-2" (click)="goToTableActiveFrecuencia()">
+                                            <div class="box-detalle">
+                                                <p>{{ item.total }}</p>
+                                                <i class="material-icons" [ngClass]="item.classColor"> data_saver_off </i>
+                                            </div>
+                                            <div class="box-info">
+                                                <p>{{ item.label }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-carousel>
+                    </div>
+
                     <div class="p-col-12 p-md-6 p-lg-2">
+                        <div class="box" [style.border-left]="'8px solid var(--primary-color)'"
+                            (click)="goToTableActiveFrecuencia()">
+                            <div class="box-detalle">
+                                <p>150</p>
+                                <i class="material-icons purple"> data_saver_off </i>
+                            </div>
+                            <div class="box-info">
+                                <p>Total</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="p-col-12 p-md-6 p-lg-2">
                         <div class="box" (click)="goToTableActiveFrecuencia()">
                             <div class="box-detalle">
                                 <p>{{ val11 }}</p>
@@ -434,7 +482,6 @@
                         </div>
                     </div>
 
-                    <!-- Quincenal -->
                     <div class="p-col-12 p-md-6 p-lg-2">
                         <div class="box" routerLink="/manager/frecuencia-report">
                             <div class="box-detalle">
@@ -447,7 +494,6 @@
                         </div>
                     </div>
 
-                    <!-- Trimestral -->
                     <div class="p-col-12 p-md-6 p-lg-2">
                         <div class="box" routerLink="/manager/frecuencia-report">
                             <div class="box-detalle">
@@ -460,7 +506,6 @@
                         </div>
                     </div>
 
-                    <!-- Mensual -->
                     <div class="p-col-12 p-md-6 p-lg-2">
                         <div class="box" routerLink="/manager/frecuencia-report">
                             <div class="box-detalle">
@@ -473,7 +518,6 @@
                         </div>
                     </div>
 
-                    <!-- Semanal -->
                     <div class="p-col-12 p-md-6 p-lg-2">
                         <div class="box" routerLink="/manager/frecuencia-report">
                             <div class="box-detalle">
@@ -486,7 +530,7 @@
                         </div>
                     </div>
 
-                    <!-- Anual -->
+
                     <div class="p-col-12 p-md-6 p-lg-2">
                         <div class="box" routerLink="/manager/frecuencia-report">
                             <div class="box-detalle">
@@ -497,7 +541,8 @@
                                 <p>Anual</p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+
                 </div>
 
                 <!-- Grafico -->
