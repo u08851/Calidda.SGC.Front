@@ -56,3 +56,8 @@ export class ComiteCrudModel{
   estado:number;
 }
 
+
+export class BajaComiteModel{
+  comiteId: number;
+  estado:number;
+}

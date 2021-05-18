@@ -5,7 +5,7 @@ import { ComiteServices } from 'src/app/services/comite.service';
 import { ComiteHistoryComponent } from '../../dialog/comite-history/comite-history.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { EventHandlerVars } from '@angular/compiler/src/compiler_util/expression_converter';
-import { ComiteCrudModel, ComiteRequestModel } from 'src/app/models/comite.model';
+import { ComiteBajaModel, ComiteCrudModel, ComiteRequestModel } from 'src/app/models/comite.model';
 import { MessageService } from 'primeng/api';
 import { AppConstants } from 'src/app/shared/constants/app.constants';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -150,10 +150,10 @@ export class ComiteTableComponent implements OnInit {
   darBajaComite() {
 
     let data = this.data;
-    var odata = new ComiteRequestModel();
+    var odata = new ComiteBajaModel();
     odata.comiteId=data.comiteId;
 
-    this.comiteServices.darBajaComite(odata).subscribe(
+    this.comiteServices.darBajaComite(odata.comiteId).subscribe(
       (response: any) => {
 
         if(response.valid){
